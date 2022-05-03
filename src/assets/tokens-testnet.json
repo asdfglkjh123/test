@@ -1,0 +1,14 @@
+[
+    {
+        "name": "STAX",
+        "address": "",
+        "symbol": "STX",
+        "decimals": 18
+    },
+    {
+        "name": "STAX Shares",
+        "address": "",
+        "symbol": "sSTX",
+        "decimals": 0
+    }
+]

@@ -9,13 +9,13 @@
     "static/js/3.d54a005b.chunk.js": "/test/static/js/3.d54a005b.chunk.js",
     "static/js/3.d54a005b.chunk.js.map": "/test/static/js/3.d54a005b.chunk.js.map",
     "main.css": "/test/static/css/main.18152fb5.chunk.css",
-    "main.js": "/test/static/js/main.f9a03c8f.chunk.js",
-    "main.js.map": "/test/static/js/main.f9a03c8f.chunk.js.map",
+    "main.js": "/test/static/js/main.ebf59402.chunk.js",
+    "main.js.map": "/test/static/js/main.ebf59402.chunk.js.map",
     "runtime-main.js": "/test/static/js/runtime-main.860a7a03.js",
     "runtime-main.js.map": "/test/static/js/runtime-main.860a7a03.js.map",
     "static/css/6.03ebe89f.chunk.css": "/test/static/css/6.03ebe89f.chunk.css",
-    "static/js/6.bb22d588.chunk.js": "/test/static/js/6.bb22d588.chunk.js",
-    "static/js/6.bb22d588.chunk.js.map": "/test/static/js/6.bb22d588.chunk.js.map",
+    "static/js/6.09cacd04.chunk.js": "/test/static/js/6.09cacd04.chunk.js",
+    "static/js/6.09cacd04.chunk.js.map": "/test/static/js/6.09cacd04.chunk.js.map",
     "static/js/7.20da118b.chunk.js": "/test/static/js/7.20da118b.chunk.js",
     "static/js/7.20da118b.chunk.js.map": "/test/static/js/7.20da118b.chunk.js.map",
     "static/js/8.57ab7a29.chunk.js": "/test/static/js/8.57ab7a29.chunk.js",
@@ -34,7 +34,7 @@
     "static/css/6.03ebe89f.chunk.css.map": "/test/static/css/6.03ebe89f.chunk.css.map",
     "static/css/main.18152fb5.chunk.css.map": "/test/static/css/main.18152fb5.chunk.css.map",
     "static/js/2.b7e548f1.chunk.js.LICENSE.txt": "/test/static/js/2.b7e548f1.chunk.js.LICENSE.txt",
-    "static/js/6.bb22d588.chunk.js.LICENSE.txt": "/test/static/js/6.bb22d588.chunk.js.LICENSE.txt",
+    "static/js/6.09cacd04.chunk.js.LICENSE.txt": "/test/static/js/6.09cacd04.chunk.js.LICENSE.txt",
     "static/media/BigStaxLogo.0ae0d426.png": "/test/static/media/BigStaxLogo.0ae0d426.png",
     "static/media/Footer1.6db30e9f.png": "/test/static/media/Footer1.6db30e9f.png",
     "static/media/StakingLogo.3bbcb268.png": "/test/static/media/StakingLogo.3bbcb268.png",
@@ -49,8 +49,8 @@
   "entrypoints": [
     "static/js/runtime-main.860a7a03.js",
     "static/css/6.03ebe89f.chunk.css",
-    "static/js/6.bb22d588.chunk.js",
+    "static/js/6.09cacd04.chunk.js",
     "static/css/main.18152fb5.chunk.css",
-    "static/js/main.f9a03c8f.chunk.js"
+    "static/js/main.ebf59402.chunk.js"
   ]
 }

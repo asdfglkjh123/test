@@ -28,11 +28,11 @@ const MainRoutes = {
             element: <DashboardDefault />
         },
         {
-            path: 'test/home',
+            path: '/test/home',
             element: <DashboardDefault />
         },
         {
-            path: 'test/stake',
+            path: '/test/stake',
             element: <UtilsTypography />
         },
         {

@@ -88,8 +88,7 @@ const StakingCard = () => {
                                     borderBottom: 3,
                                     borderColor: theme.palette.success.light,
                                     borderRadius: 5,
-                                    boxShadow: '0px 10px 20px rgb(0, 230, 117)',
-                                    ml: 2
+                                    boxShadow: '0px 10px 20px rgb(0, 230, 117)'
                                 }}
                             >
                                 <Grid container sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
@@ -162,7 +161,7 @@ const StakingCard = () => {
                                             xs="none"
                                         >
                                             <Typography variant="h4" textAlign="center">
-                                                STAKE NAME:
+                                                STAKE AMOUNT:
                                             </Typography>
                                         </Grid>
                                         <Grid item sx={{ backgroundColor: theme.palette.grey[900], my: 0 }} lg={5}>

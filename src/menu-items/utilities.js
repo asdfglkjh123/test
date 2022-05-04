@@ -51,7 +51,7 @@ const utilities = {
         },
         {
             id: 'icons',
-            title: 'Liquidity',
+            title: 'DEX',
             type: 'item',
             url: '/utils/util-shadow',
             icon: icons.IconWindmill,

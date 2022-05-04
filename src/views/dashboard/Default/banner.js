@@ -8,7 +8,7 @@ const BannerComp = () => {
     return (
         <>
             <Grid justifyContent="center" alignContent="center">
-                <img height={405} width="100%" src={BigStaxLogo} alt="shares banner" />
+                <img height="100%" width="100%" src={BigStaxLogo} alt="shares banner" />
             </Grid>
         </>
     );

@@ -16,7 +16,7 @@ const SharesInfo = () => {
     return (
         <>
             <MainCard
-                sx={{ height: 'auto', width: '102.7%', backgroundColor: theme.palette.grey[900], border: 0, borderRadius: 0 }}
+                sx={{ height: 'auto', width: '100%', backgroundColor: theme.palette.grey[900], border: 0, borderRadius: 0 }}
                 content={false}
             >
                 <CardContent>

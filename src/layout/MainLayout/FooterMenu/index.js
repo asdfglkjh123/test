@@ -8,7 +8,7 @@ import MenuList from '../Sidebar/MenuList';
 
 const FooterMenu = () => {
     const theme = useTheme();
-    const hidden = useMediaQuery((theme) => theme.breakpoints.only('xs'));
+    const hidden = useMediaQuery((theme) => theme.breakpoints.between('xs', 'md'));
 
     return (
         <>
@@ -20,10 +20,7 @@ const FooterMenu = () => {
                         height: 58,
                         bgcolor: theme.palette.grey[900],
                         justifyContent: 'center',
-                        display: 'flex',
-                        [theme.breakpoints.down('md')]: {
-                            width: 'auto'
-                        }
+                        display: 'flex'
                     }}
                 >
                     <MenuList />

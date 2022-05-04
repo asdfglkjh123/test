@@ -14,7 +14,7 @@ const Description = () => {
     return (
         <>
             <MainCard
-                sx={{ height: 'auto', width: '102.7%', borderRadius: 0, backgroundColor: theme.palette.grey[900], border: 0 }}
+                sx={{ height: 'auto', width: '100%', borderRadius: 0, backgroundColor: theme.palette.grey[900], border: 0 }}
                 content={false}
             >
                 <CardContent>

@@ -36,7 +36,7 @@ const StakingCard = () => {
             });
     };
     const fetchStakesBalance = async () => {
-        stakeHas()
+        stakeHas(true)
             .then((balancee) => {
                 setStakesList(balancee);
                 console.log(balancee);
@@ -356,7 +356,7 @@ const StakingCard = () => {
                                     </Grid>
                                     <Grid item xs="auto">
                                         <Typography variant="h3" sx={{ ml: 1 }} color={theme.palette.success.main} textAlign="center">
-                                            8%
+                                            9.13%
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -437,7 +437,7 @@ const StakingCard = () => {
                                         <Grid item lg="auto" xs="auto" sx={{ mt: 1 }}>
                                             <Typography variant="h4" color={theme.palette.grey[50]} textAlign="center">
                                                 {stakedd.map((total, index) => (
-                                                    <Typography sx={{ mb: 3 }} variant="h4" key={index}>
+                                                    <Typography sx={{ mb: 3 }} key={index}>
                                                         {total.stakename}
                                                     </Typography>
                                                 ))}
@@ -473,13 +473,11 @@ const StakingCard = () => {
                                             </Tooltip>
                                         </Grid>
                                         <Grid item lg="auto" xs="auto" sx={{ mt: 1 }}>
-                                            <Typography variant="h4" color={theme.palette.grey[50]} textAlign="center">
-                                                {stakedd.map((total, index) => (
-                                                    <Typography sx={{ mb: 3 }} variant="h4" key={index}>
-                                                        {total.sharesbonus}
-                                                    </Typography>
-                                                ))}
-                                            </Typography>
+                                            {stakedd.map((total, index) => (
+                                                <Typography sx={{ mb: 3 }} textAlign="center" key={index}>
+                                                    {total.sharesbonus}
+                                                </Typography>
+                                            ))}
                                         </Grid>
                                     </Grid>
                                     <Grid item lg={1.8} md={1.9} sm="auto" xs="auto" sx={{ pl: 1, pt: 0.2 }}>
@@ -510,7 +508,7 @@ const StakingCard = () => {
                                         <Grid container sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
                                             <Typography variant="h4" color={theme.palette.grey[50]} textAlign="center">
                                                 {stakedd.map((total, index) => (
-                                                    <Typography sx={{ mb: 3 }} variant="h4" key={index}>
+                                                    <Typography sx={{ mb: 3 }} key={index}>
                                                         {(total.amount / Number18Decimals).toLocaleString(undefined, {
                                                             maximumFractionDigits: 2
                                                         })}
@@ -547,7 +545,12 @@ const StakingCard = () => {
                                         <Grid container sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
                                             <Typography variant="h4" color={theme.palette.grey[50]} textAlign="center">
                                                 {stakedd.map((total, index) => (
-                                                    <Typography sx={{ mb: 3 }} variant="h4" key={index}>
+                                                    <Typography
+                                                        sx={{ mb: 3 }}
+                                                        color={theme.palette.grey[50]}
+                                                        textAlign="center"
+                                                        key={index}
+                                                    >
                                                         {(total.claimable / Number18Decimals).toLocaleString(undefined, {
                                                             maximumFractionDigits: 2
                                                         })}
@@ -583,13 +586,11 @@ const StakingCard = () => {
                                             </Tooltip>
                                         </Grid>
                                         <Grid item lg="auto" xs="auto" sx={{ mt: 1 }}>
-                                            <Typography variant="h4" color={theme.palette.grey[50]} textAlign="center">
-                                                {stakedd.map((total, index) => (
-                                                    <Typography sx={{ mb: 3 }} variant="h4" key={index}>
-                                                        {total.since}
-                                                    </Typography>
-                                                ))}
-                                            </Typography>
+                                            {stakedd.map((total, index) => (
+                                                <Typography sx={{ mb: 3 }} color={theme.palette.grey[50]} textAlign="center" key={index}>
+                                                    {total.since}
+                                                </Typography>
+                                            ))}
                                         </Grid>
                                     </Grid>
                                     <Grid item lg={1.8} md={1.9} xs="auto" sx={{ pl: 1, pt: 0.2 }}>
@@ -617,26 +618,24 @@ const StakingCard = () => {
                                                 <InfoIcon />
                                             </Tooltip>
                                         </Grid>
-                                        <Grid item lg="auto" xs="auto" sx={{ mt: 0.5 }}>
-                                            <Typography variant="h4" color={theme.palette.grey[50]} textAlign="center">
-                                                {stakedd.map((total, index) => (
-                                                    <>
-                                                        <Button
-                                                            sx={{
-                                                                mb: 2.5,
-                                                                fontSize: 15,
-                                                                width: 30,
-                                                                height: 25,
-                                                                color: theme.palette.grey[900],
-                                                                backgroundColor: theme.palette.success.main
-                                                            }}
-                                                            key={index}
-                                                        >
-                                                            Close
-                                                        </Button>
-                                                    </>
-                                                ))}
-                                            </Typography>
+                                        <Grid container sx={{ display: 'flex', justifyContent: 'center', mt: 0.5 }}>
+                                            {stakedd.map((total, index) => (
+                                                <>
+                                                    <Button
+                                                        sx={{
+                                                            mb: 2.5,
+                                                            fontSize: 15,
+                                                            width: 30,
+                                                            height: 25,
+                                                            color: theme.palette.grey[900],
+                                                            backgroundColor: theme.palette.success.main
+                                                        }}
+                                                        key={index}
+                                                    >
+                                                        Close
+                                                    </Button>
+                                                </>
+                                            ))}
                                         </Grid>
                                     </Grid>
                                 </Grid>

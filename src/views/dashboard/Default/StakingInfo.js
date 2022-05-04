@@ -26,11 +26,11 @@ const StakingInfo = () => {
                                 </Typography>
                             </Grid>
                         </Grid>
-                        <Grid container sx={{ mt: 6 }} justifyContent="center">
-                            <Grid item lg={3} xs="auto" md={4} sm={4} sx={{ mt: 10, ml: 4 }}>
+                        <Grid container sx={{ mt: 6, display: 'flex', justifyContent: 'center' }}>
+                            <Grid item lg={3} xs="auto" md={4} sm={4} sx={{ mt: 10 }}>
                                 <StakingLogo />
                             </Grid>
-                            <Grid item lg={3.5} xs={10} md={4} sm={6} sx={{ mx: 1, mt: 5 }}>
+                            <Grid item lg={3.5} xs={10} md={4} sm={6} sx={{ mt: 10 }}>
                                 <Card
                                     sx={{
                                         borderLeft: 1,
@@ -40,17 +40,16 @@ const StakingInfo = () => {
                                         width: '100%',
                                         borderColor: theme.palette.success.light,
                                         borderRadius: 5,
-                                        boxShadow: '0px 10px 20px green',
-                                        ml: 2
+                                        boxShadow: '0px 10px 20px green'
                                     }}
                                 >
-                                    <Grid container sx={{ height: 330, my: 1, mx: 2 }}>
-                                        <Grid item sx={{ height: 50, backgroundColor: theme.palette.grey[900], my: 1 }} lg={12}>
-                                            <Typography variant="h2" color={theme.palette.grey[50]} textAlign="center">
+                                    <Grid container sx={{ height: 330, my: 1, display: 'flex', justifyContent: 'center' }}>
+                                        <Grid item xs={12} sx={{ height: 50, backgroundColor: theme.palette.grey[900] }} lg={12}>
+                                            <Typography variant="h2" sx={{ mt: 3 }} color={theme.palette.grey[50]} textAlign="center">
                                                 Staking Calculator
                                             </Typography>
                                         </Grid>
-                                        <Grid item sx={{ height: 40, backgroundColor: theme.palette.grey[900], ml: 4, my: 1 }} lg={4}>
+                                        <Grid item sx={{ height: 40, backgroundColor: theme.palette.grey[900], my: 1 }} lg={4}>
                                             <Typography variant="h4" textAlign="center">
                                                 STAX Amount:
                                             </Typography>
@@ -63,6 +62,11 @@ const StakingInfo = () => {
                                                 variant="standard"
                                                 color="success"
                                             />
+                                        </Grid>
+                                        <Grid item sx={{ height: 40, backgroundColor: theme.palette.grey[900], my: 1 }} lg={4}>
+                                            <Typography variant="h4" textAlign="center">
+                                                SHARES (sSTX) Balance:
+                                            </Typography>
                                         </Grid>
                                     </Grid>
                                 </Card>

@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 const FooterFirst = () => (
     <>
         <Box>
-            <img width="102.7%" src={Footer1} alt="shares banner" />
+            <img width="100%" src={Footer1} alt="shares banner" />
         </Box>
     </>
 );

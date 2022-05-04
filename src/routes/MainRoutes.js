@@ -20,39 +20,39 @@ const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
-    path: '/',
+    path: '/test',
     element: <MainLayout />,
     children: [
         {
-            path: 'test/home',
+            path: '/',
             element: <DashboardDefault />
         },
         {
-            path: 'test/home',
+            path: '/home',
             element: <DashboardDefault />
         },
         {
-            path: 'test/stake',
+            path: '/stake',
             element: <UtilsTypography />
         },
         {
-            path: 'test/shares',
+            path: '/shares',
             element: <UtilsColor />
         },
         {
-            path: 'test/stats',
+            path: '/stats',
             element: <UtilsShadow />
         },
         {
-            path: 'test/icons/tabler-icons',
+            path: '/icons/tabler-icons',
             element: <UtilsTablerIcons />
         },
         {
-            path: 'test/icons/material-icons',
+            path: '/icons/material-icons',
             element: <UtilsMaterialIcons />
         },
         {
-            path: 'test/sample-page',
+            path: '/sample-page',
             element: <SamplePage />
         }
     ]

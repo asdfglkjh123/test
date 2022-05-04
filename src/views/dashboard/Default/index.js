@@ -38,7 +38,7 @@ const Dashboard = () => {
                 <SmallDashboard isLoading={isLoading} />
             </Grid>
             <Grid container>
-                <Grid item lg={12} sx={{ my: 10, ml: -2.4 }}>
+                <Grid item lg={12} xs={12} sx={{ my: 10, ml: 0 }}>
                     <FooterFirst />
                 </Grid>
             </Grid>

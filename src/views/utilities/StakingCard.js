@@ -92,10 +92,15 @@ const StakingCard = () => {
                                 }}
                             >
                                 <Grid container sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
-                                    <Grid item sx={{ height: 100, backgroundColor: theme.palette.grey[900], my: 1 }} lg={3.6} xs="auto">
+                                    <Grid
+                                        item
+                                        sx={{ height: 100, backgroundColor: theme.palette.grey[900], my: 1, ml: 1 }}
+                                        lg={3.6}
+                                        xs="auto"
+                                    >
                                         <StaxLogo />
                                     </Grid>
-                                    <Grid item lg="auto" xs="auto" sx={{ ml: 3, mt: 5 }}>
+                                    <Grid item lg="auto" xs="auto" sx={{ ml: 2, mt: 5 }}>
                                         <Typography variant="h2" color={theme.palette.grey[50]} textAlign="center">
                                             Stake
                                         </Typography>

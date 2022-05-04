@@ -17,7 +17,7 @@ const FooterMenu = () => {
                     sm={12}
                     sx={{
                         mt: 1,
-                        width: '95%',
+                        width: '100%',
                         height: 57,
                         bgcolor: theme.palette.grey[900],
                         justifyContent: 'center',

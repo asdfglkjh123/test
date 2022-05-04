@@ -35,7 +35,7 @@ const utilities = {
         },
         {
             id: 'util-color',
-            title: 'Shares',
+            title: 'sSTX',
             type: 'item',
             url: '/shares',
             icon: icons.IconPalette,

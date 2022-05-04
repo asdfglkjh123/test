@@ -54,7 +54,6 @@ const NavItem = ({ item }) => {
             disabled={item.disabled}
             sx={{
                 borderRadius: `20px`,
-                mx: 0.5,
                 alignItems: 'flex-start',
                 bgcolor: theme.palette.grey[900],
                 height: 50,

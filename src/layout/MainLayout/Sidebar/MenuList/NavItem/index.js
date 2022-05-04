@@ -58,7 +58,7 @@ const NavItem = ({ item }) => {
                 alignItems: 'flex-start',
                 bgcolor: theme.palette.grey[900],
                 height: 50,
-                width: 65
+                width: 70
             }}
             selected={customization.isOpen.findIndex((id) => id === item.id) > -1}
             onClick={() => itemHandler(item.id)}

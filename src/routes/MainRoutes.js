@@ -28,31 +28,31 @@ const MainRoutes = {
             element: <DashboardDefault />
         },
         {
-            path: '/home',
+            path: 'test/home',
             element: <DashboardDefault />
         },
         {
-            path: '/stake',
+            path: 'test/stake',
             element: <UtilsTypography />
         },
         {
-            path: '/shares',
+            path: 'test/shares',
             element: <UtilsColor />
         },
         {
-            path: '/stats',
+            path: 'test/stats',
             element: <UtilsShadow />
         },
         {
-            path: '/icons/tabler-icons',
+            path: 'test/icons/tabler-icons',
             element: <UtilsTablerIcons />
         },
         {
-            path: '/icons/material-icons',
+            path: 'test/icons/material-icons',
             element: <UtilsMaterialIcons />
         },
         {
-            path: '/sample-page',
+            path: 'test/sample-page',
             element: <SamplePage />
         }
     ]

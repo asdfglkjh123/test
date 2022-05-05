@@ -1,6 +1,6 @@
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Card, CardContent, Grid, TextField, Typography } from '@mui/material';
+import { Card, CardContent, Grid, Button, Typography } from '@mui/material';
 import StakingLogo from './StakingLogo';
 
 // project imports
@@ -27,39 +27,41 @@ const StakingInfo = () => {
                             </Grid>
                         </Grid>
                         <Grid container sx={{ mt: 6, display: 'flex', justifyContent: 'center' }}>
-                            <Grid item lg={3} xs="auto" md={4} sm={4} sx={{ mt: 5 }}>
-                                <StakingLogo />
-                            </Grid>
-                            <Grid item lg={3.5} xs={12} md={4} sm={6} sx={{ mt: 10 }}>
-                                <Card
-                                    sx={{
-                                        borderLeft: 1,
-                                        borderRight: 1,
-                                        borderBottom: 3,
-                                        height: '100%',
-                                        width: '100%',
-                                        borderColor: theme.palette.success.light,
-                                        borderRadius: 5,
-                                        boxShadow: '0px 10px 20px green'
-                                    }}
-                                >
-                                    <Grid container sx={{ height: 330, my: 1, display: 'flex', justifyContent: 'center' }}>
-                                        <Grid item xs={12} sx={{ backgroundColor: theme.palette.grey[900] }} lg={12}>
-                                            <Typography variant="h2" sx={{ mt: 3 }} color={theme.palette.grey[50]} textAlign="center">
-                                                Staking
-                                            </Typography>
-                                        </Grid>
-                                        <Grid item sx={{ height: 40, backgroundColor: theme.palette.grey[900], mt: 3 }} xs={11} lg={4}>
-                                            <Typography variant="h4" textAlign="center">
-                                                STAX protocol provides unique staking mechanisms and high-yield rewards. Users may stake
-                                                STAX (Native Token) and receive rewards in the form of more STAX tokens. The initial
-                                                (minimum) APY is 9.13% and increases by 4.56% per every sSTX that the staker has at the
-                                                moment of opening the stake. There is a limit of maximum 100.38% per stake. Please find more
-                                                details on the whitepaper.
-                                            </Typography>
+                            <Grid item lg={3.5} xs={12} md={4} sm={6} sx={{ mt: 4 }}>
+                                <Grid container sx={{ height: 330, my: 1, display: 'flex', justifyContent: 'center' }}>
+                                    <Grid
+                                        item
+                                        lg={4}
+                                        xs={12}
+                                        md={4.4}
+                                        sm={7}
+                                        sx={{ borderRight: 2, borderColor: theme.palette.success.main }}
+                                    >
+                                        <Typography color={theme.palette.grey[50]} textAlign="right" sx={{ mr: 3 }} variant="h6">
+                                            STAX
+                                        </Typography>
+                                        <Typography color={theme.palette.success.main} textAlign="right" sx={{ mr: 3 }} variant="h6">
+                                            STAKING
+                                        </Typography>
+                                        <Typography variant="h4" textAlign="right" sx={{ color: theme.palette.grey[50], mt: 2.5, mr: 3 }}>
+                                            STAX is designed to store value and provide high rewards in the form of more STAX. Each stake
+                                            may receive different `Rewards rate` depending on the sSTX balance of a user at the moment of
+                                            opening the stake. The minimum APR is 9.125% and increases by 4.56% per 1 sSTX. However, the
+                                            maximum APR is 100,375%
+                                        </Typography>
+                                        <Grid container sx={{ display: 'flex', justifyContent: 'right' }}>
+                                            <Button sx={{ mr: 3, mt: 2 }} size="large" variant="outlined" color="success">
+                                                Learn more
+                                            </Button>
+                                            <Button sx={{ mr: 3, mt: 2 }} size="large" variant="contained" color="success">
+                                                STAKE
+                                            </Button>
                                         </Grid>
                                     </Grid>
-                                </Card>
+                                </Grid>
+                            </Grid>
+                            <Grid item lg={3} xs="auto" md={4} sm={4} sx={{ mt: 15 }}>
+                                <StakingLogo />
                             </Grid>
                         </Grid>
                     </Grid>

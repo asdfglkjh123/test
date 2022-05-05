@@ -8,7 +8,7 @@ const MetamaskLogo = () => {
     return (
         <>
             <Grid justifyContent="center" alignContent="center">
-                <img height={200} src={Metamask} alt="shares banner" />
+                <img width="100%" src={Metamask} alt="shares banner" />
             </Grid>
         </>
     );

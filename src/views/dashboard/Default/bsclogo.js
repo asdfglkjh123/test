@@ -8,7 +8,7 @@ const BscLogo = () => {
     return (
         <>
             <Grid justifyContent="center" alignContent="center">
-                <img width={200} src={Bsc} alt="shares banner" />
+                <img width="100%" src={Bsc} alt="shares banner" />
             </Grid>
         </>
     );

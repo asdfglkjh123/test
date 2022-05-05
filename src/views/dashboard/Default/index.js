@@ -62,8 +62,8 @@ const Dashboard = () => {
                     <Socials />
                 </Grid>
             </Grid>
-            <Grid container>
-                <Grid item lg={12} md={12} xs={8} sx={{ my: 0, ml: -3 }}>
+            <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Grid item lg={12} md={12} xs={12}>
                     <Partners />
                 </Grid>
             </Grid>

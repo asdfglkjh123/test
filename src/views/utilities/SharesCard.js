@@ -76,11 +76,12 @@ const StakingCard = () => {
     const [bonusAPY, setBonusAPY] = useState(0);
     const [totalsharesSupply, setTotalSharesSupply] = useState(0);
     const myAPYFormatted = bonusAPY * 4.5625;
+    const BIG18 = 1000000000000000000;
     const busdBalanceToNumber = new BigNumber(busdBalance);
     const busdBalanceFormat = busdBalanceToNumber.decimalPlaces(4);
     const busdBalanceFormatted = busdBalanceFormat.toLocaleString(undefined);
     const valueN = new BigNumber(value);
-    const priceN = new BigNumber(sSTXPriceFull).multipliedBy(valueN);
+    const priceN = new BigNumber(sSTXPriceFull).multipliedBy(valueN).dividedBy(BIG18);
     const myShareRate = (balance / totalsharesSupply) * 100;
     const myShareRateFormatted = myShareRate.toLocaleString(undefined, { maximumFractionDigits: 1 });
     const fetchsSTXPrice = async () => {
@@ -183,7 +184,7 @@ const StakingCard = () => {
                                         <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
                                             <Grid item xs="auto" lg="auto" md="auto" sm="auto">
                                                 <Typography variant="h4" color={theme.palette.grey[50]}>
-                                                    {sSTXPriceFull}
+                                                    SHARES
                                                 </Typography>
                                             </Grid>
                                             <Grid item xs="auto" lg="auto" sm="auto" md="auto">

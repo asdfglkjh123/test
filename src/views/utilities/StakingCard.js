@@ -21,7 +21,7 @@ const StakingCard = () => {
     const [stakeAmount, setStakeAmount] = useState(0);
     const [stakeName, setStakeName] = useState(0);
     const Number18Decimals = 1000000000000000000;
-    const stakeAmountFormatted = new BigNumber(stakeAmount).multipliedBy(Number18Decimals);
+    const stakeAmountFormatted = new BigNumber(stakeAmount);
     const [sharesBalance, setSharesBalance] = useState(0);
     const [stakesList, setStakesList] = useState([[], []]);
     const [staked, stakedd] = stakesList;

@@ -302,7 +302,7 @@ export const approve = async (address, priceToApprove, amount) => {
     return erc20BusdContract.methods
         .approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', priceToApprove)
         .send({ from: selectedAccount })
-        .then((result) => {
+        .then(() => {
             purchaseSharess(amount);
         })
         .catch((err) => {

@@ -29,7 +29,7 @@ const Dashboard = () => {
                 <Grid item sx={{ my: 4 }} lg={6} md={6} sm={12} xs={12}>
                     <TopTitle isLoading={isLoading} />
                 </Grid>
-                <Grid item lg={3.7} md={4.5} sm={7} xs={10} sx={{ mt: 3 }}>
+                <Grid item lg={3.7} md={4.5} sm={7} xs={12} sx={{ mt: 3 }}>
                     <BannerComp />
                 </Grid>
             </Grid>
@@ -43,22 +43,22 @@ const Dashboard = () => {
                 </Grid>
             </Grid>
             <Grid container>
-                <Grid item lg={12} sx={{ ml: -2.4 }}>
+                <Grid item lg={12}>
                     <Description />
                 </Grid>
             </Grid>
             <Grid container>
-                <Grid item lg={12} sx={{ ml: -2.4 }}>
+                <Grid item lg={12}>
                     <StakingInfo />
                 </Grid>
             </Grid>
             <Grid container>
-                <Grid item lg={12} sx={{ ml: -2.4 }}>
+                <Grid item lg={12}>
                     <SharesInfo />
                 </Grid>
             </Grid>
             <Grid container>
-                <Grid item lg={12} sx={{ my: 10, ml: -2.4 }}>
+                <Grid item lg={12} xs={12} sx={{ my: 10 }}>
                     <Socials />
                 </Grid>
             </Grid>
@@ -68,7 +68,7 @@ const Dashboard = () => {
                 </Grid>
             </Grid>
             <Grid container>
-                <Grid item lg={12} sx={{ my: 0, ml: -2.4 }}>
+                <Grid item lg={12}>
                     <FAQ />
                 </Grid>
             </Grid>

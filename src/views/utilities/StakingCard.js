@@ -25,7 +25,7 @@ const StakingCard = () => {
     const [sharesBalance, setSharesBalance] = useState(0);
     const [stakesList, setStakesList] = useState([[], []]);
     const [staked, stakedd] = stakesList;
-    const myAPY = 9.13 + sharesBalance * 4.5625;
+    const myAPY = 9.125 + sharesBalance * 4.5625;
     const fetchStaxBalance = async () => {
         ggetStaxBalance()
             .then((balance) => {
@@ -292,8 +292,6 @@ const StakingCard = () => {
                                         >
                                             <Button
                                                 onClick={() => {
-                                                    fetchStaxBalance();
-                                                    fetchSharesBalance();
                                                     stakeStax(stakeAmountFormatted, stakeName).then(() => {
                                                         fetchStaxBalance();
                                                         fetchSharesBalance();
@@ -350,7 +348,7 @@ const StakingCard = () => {
                                     <Grid item xs={10}>
                                         <Typography variant="h5" sx={{ my: 4 }} color={theme.palette.grey[50]} textAlign="center">
                                             When creating a stake, the contract will save the staker`s` sSTX balance as SHARESBONUS. 1
-                                            SHARESBONUS = + 5% APY.
+                                            SHARESBONUS + ~4.56% APY.
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -362,7 +360,7 @@ const StakingCard = () => {
                                     </Grid>
                                     <Grid item xs="auto">
                                         <Typography variant="h3" sx={{ ml: 1 }} color={theme.palette.success.main} textAlign="center">
-                                            9.13%
+                                            9.125%
                                         </Typography>
                                     </Grid>
                                 </Grid>

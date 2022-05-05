@@ -75,7 +75,7 @@ const StakingCard = () => {
     const [balance, setBalance] = useState(0);
     const [bonusAPY, setBonusAPY] = useState(0);
     const [totalsharesSupply, setTotalSharesSupply] = useState(0);
-    const myAPY = 9.13 + bonusAPY * 4.5625;
+    const myAPYFormatted = bonusAPY * 4.5625;
     const busdBalanceToNumber = new BigNumber(busdBalance);
     const busdBalanceFormat = busdBalanceToNumber.decimalPlaces(4);
     const busdBalanceFormatted = busdBalanceFormat.toLocaleString(undefined);
@@ -96,6 +96,7 @@ const StakingCard = () => {
         getSTXPriceFull()
             .then((sSTXPriceFull) => {
                 setsSTXPriceFull(sSTXPriceFull);
+                console.log(sSTXPriceFull);
             })
             .catch((err) => {
                 console.log(err);
@@ -107,6 +108,8 @@ const StakingCard = () => {
                 setBalance(balance);
                 if (balance > 20) {
                     setBonusAPY(20);
+                } else {
+                    setBonusAPY(balance);
                 }
             })
             .catch((err) => {
@@ -177,14 +180,14 @@ const StakingCard = () => {
                                     }}
                                 >
                                     <Grid container sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
-                                        <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                                        <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
                                             <Grid item xs="auto" lg="auto" md="auto" sm="auto">
-                                                <Typography variant="h2" color={theme.palette.grey[50]}>
-                                                    SHARES
+                                                <Typography variant="h4" color={theme.palette.grey[50]}>
+                                                    {sSTXPriceFull}
                                                 </Typography>
                                             </Grid>
                                             <Grid item xs="auto" lg="auto" sm="auto" md="auto">
-                                                <Typography variant="h2" sx={{ ml: 1 }} color={theme.palette.success.main} textAlign="left">
+                                                <Typography variant="h2" color={theme.palette.success.main} textAlign="left">
                                                     STAX
                                                 </Typography>
                                             </Grid>
@@ -251,7 +254,7 @@ const StakingCard = () => {
                                                 {busdBalanceFormatted} BUSD
                                             </Typography>
                                             <Typography sx={{ my: 2, color: theme.palette.success.main }} variant="h5" textAlign="right">
-                                                {myAPY} %
+                                                {myAPYFormatted} %
                                             </Typography>
                                             <Typography sx={{ my: 2, color: theme.palette.success.main }} variant="h5" textAlign="right">
                                                 {balance} sSTX

@@ -108,14 +108,14 @@ const StakingCard = () => {
                                     <Grid item lg="auto" xs="auto">
                                         <Typography
                                             variant="h2"
-                                            sx={{ ml: 0.5, mt: 5 }}
+                                            sx={{ ml: 0.7, mt: 5 }}
                                             color={theme.palette.success.main}
                                             textAlign="center"
                                         >
                                             STAX
                                         </Typography>
                                     </Grid>
-                                    <Grid item lg={1} xs="auto" sx={{ mt: 5, pl: 1, pt: 0.2 }}>
+                                    <Grid item lg={1} xs="auto" sx={{ mt: 5, pl: 0.5, pt: 0.2 }}>
                                         <Tooltip
                                             sx={{ color: theme.palette.success.main }}
                                             title={
@@ -137,23 +137,24 @@ const StakingCard = () => {
                                         <Grid
                                             item
                                             sx={{ justifyContent: 'center', backgroundColor: theme.palette.grey[900], my: 1 }}
-                                            lg={4}
-                                            xs="none"
+                                            lg="auto"
+                                            md="auto"
+                                            xs="auto"
                                         >
                                             <Typography variant="h4" textAlign="center">
                                                 STAKE NAME:
                                             </Typography>
                                         </Grid>
-                                        <Grid item sx={{ backgroundColor: theme.palette.grey[900], my: 0 }} lg={5}>
+                                        <Grid item sx={{ backgroundColor: theme.palette.grey[900], my: 0 }} lg="auto">
                                             <TextField
                                                 sx={{ borderBottom: 2, borderColor: theme.palette.success.main }}
                                                 onChange={(e) => setStakeName(e.target.value)}
-                                                inputProps={{ style: { color: 'white' } }}
+                                                inputProps={{ style: { width: 110, color: 'white' } }}
                                                 id="standard-basic"
                                                 variant="standard"
                                                 color="success"
                                             />
-                                            <Typography variant="h5" textAlign="center">
+                                            <Typography variant="h5" textAlign="left">
                                                 Enter stake name
                                             </Typography>
                                         </Grid>
@@ -162,14 +163,15 @@ const StakingCard = () => {
                                         <Grid
                                             item
                                             sx={{ justifyContent: 'center', backgroundColor: theme.palette.grey[900], my: 1 }}
-                                            lg={4}
-                                            xs="none"
+                                            lg="auto"
+                                            md="auto"
+                                            xs="auto"
                                         >
                                             <Typography variant="h4" textAlign="center">
                                                 STAKE AMOUNT:
                                             </Typography>
                                         </Grid>
-                                        <Grid item sx={{ backgroundColor: theme.palette.grey[900], my: 0 }} lg={5}>
+                                        <Grid item sx={{ backgroundColor: theme.palette.grey[900] }} lg="auto">
                                             <TextField
                                                 sx={{ borderBottom: 2, borderColor: theme.palette.success.main }}
                                                 onChange={(e) => setStakeAmount(e.target.value)}
@@ -312,7 +314,7 @@ const StakingCard = () => {
                                 </Grid>
                             </Card>
                         </Grid>
-                        <Grid item lg={4} xs={12} sx={{ ml: 2, mt: 6 }}>
+                        <Grid item lg={4} xs={12} sx={{ mt: 6 }}>
                             <Card
                                 sx={{
                                     borderLeft: 1,
@@ -383,7 +385,7 @@ const StakingCard = () => {
                                 </Grid>
                             </Card>
                         </Grid>
-                        <Grid item lg={8} xs={12} sx={{ ml: 2, mt: 5 }}>
+                        <Grid item lg={8} xs={12} sx={{ mt: 5 }}>
                             <Card
                                 sx={{
                                     width: 'auto',

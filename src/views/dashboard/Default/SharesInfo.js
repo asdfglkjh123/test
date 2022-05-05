@@ -22,14 +22,7 @@ const SharesInfo = () => {
                 <CardContent>
                     <Grid container xs={12} justifyContent="center" sx={{ mt: 10, backgroundColor: theme.palette.grey[900] }}>
                         <Grid container xs={12} sx={{ my: 5 }} alignContent="center" justifyContent="center">
-                            <Grid
-                                item
-                                lg={4}
-                                xs={12}
-                                md={4.4}
-                                sm={7}
-                                sx={{ borderLeft: 2, borderColor: theme.palette.success.main, ml: 0, my: 0 }}
-                            >
+                            <Grid item lg={4} xs={12} md={4.4} sm={7} sx={{ borderLeft: 2, borderColor: theme.palette.success.main }}>
                                 <Typography color={theme.palette.grey[50]} textAlign="left" sx={{ ml: 3 }} variant="h6">
                                     STAX
                                 </Typography>
@@ -51,6 +44,7 @@ const SharesInfo = () => {
                             </Grid>
                             <Grid item lg={5} xs={12} md={5} sm={7} sx={{ mx: 2, mt: 10 }}>
                                 <BajajAreaChartCard />
+                                <Typography>sSTX Price Chart</Typography>
                             </Grid>
                         </Grid>
                     </Grid>

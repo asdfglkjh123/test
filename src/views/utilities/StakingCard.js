@@ -172,6 +172,7 @@ const StakingCard = () => {
                                         <Grid item sx={{ backgroundColor: theme.palette.grey[900] }} lg="auto">
                                             <TextField
                                                 value={stakeAmount}
+                                                defaultValue={0}
                                                 sx={{ borderBottom: 2, borderColor: theme.palette.success.main }}
                                                 onChange={(e) => setStakeAmount(e.target.value)}
                                                 inputProps={{ style: { width: 110, color: 'white' } }}

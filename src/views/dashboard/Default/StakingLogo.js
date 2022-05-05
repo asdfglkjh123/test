@@ -7,7 +7,7 @@ const StakingLogo = () => {
     useTheme();
     return (
         <>
-            <Grid justifyContent="center">
+            <Grid justifyContent="center" sx={{ mt: 10 }}>
                 <img height={250} width={250} src={Staking} alt="shares banner" />
             </Grid>
         </>

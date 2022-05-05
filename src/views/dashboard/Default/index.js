@@ -43,17 +43,17 @@ const Dashboard = () => {
                 </Grid>
             </Grid>
             <Grid container>
-                <Grid item lg={12}>
+                <Grid item lg={12} xs={12}>
                     <Description />
                 </Grid>
             </Grid>
             <Grid container>
-                <Grid item lg={12}>
+                <Grid item lg={12} xs={12}>
                     <StakingInfo />
                 </Grid>
             </Grid>
             <Grid container>
-                <Grid item lg={12}>
+                <Grid item lg={12} xs={12}>
                     <SharesInfo />
                 </Grid>
             </Grid>

@@ -26,7 +26,7 @@ const TopTitle = () => {
                             </Grid>
                         </Grid>
                         <Grid container alignContent="center" justifyContent="left">
-                            <Grid item xs={10} md={12} sm={12} sx={{ mt: 5 }}>
+                            <Grid item xs={12} md={12} sm={12} sx={{ mt: 5 }}>
                                 <Typography variant="h2">Flexible Ecosystem & Hybrid-Rewards</Typography>
                             </Grid>
                         </Grid>

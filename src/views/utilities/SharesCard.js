@@ -16,8 +16,7 @@ import {
     sharesTotalSupply,
     getSTXPriceFull,
     approve,
-    ggetTotalDividends,
-    purchaseShares
+    ggetTotalDividends
 } from 'components/wallet/sharesABI';
 
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
@@ -278,16 +277,16 @@ const StakingCard = () => {
                                                 <Button
                                                     onClick={() => {
                                                         getSTXPriceFull();
-                                                        approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', priceN).then((result) => {
-                                                            purchaseShares(value).then((result) => {
+                                                        approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', priceN, value).then(
+                                                            (result) => {
                                                                 fetchBalance();
                                                                 fetchsSTXPriceFull();
                                                                 fetchTotalSupply();
                                                                 fetchsSTXPrice();
                                                                 fetchBusdBalance();
                                                                 fetchTotalDividends();
-                                                            });
-                                                        });
+                                                            }
+                                                        );
                                                     }}
                                                     sx={{
                                                         minHeight: 45,

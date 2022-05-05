@@ -277,7 +277,7 @@ export const stakeHas = async () => {
     }
     return erc20StaxContract.methods.hasStake(selectedAccount).call();
 };
-export const purchaseShares = async (value) => {
+export const purchaseSharess = async (value) => {
     if (!isInitialized) {
         await init();
     }
@@ -295,13 +295,16 @@ export const stakeStax = async (value2, stakename) => {
     return erc20StaxContract.methods.stake(value2, stakename).send({ from: selectedAccount });
 };
 
-export const approve = async (address, priceToApprove) => {
+export const approve = async (address, priceToApprove, amount) => {
     if (!isInitialized) {
         await init();
     }
     return erc20BusdContract.methods
         .approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', priceToApprove)
         .send({ from: selectedAccount })
+        .then((result) => {
+            purchaseSharess(amount);
+        })
         .catch((err) => {
             console.log(err);
         });

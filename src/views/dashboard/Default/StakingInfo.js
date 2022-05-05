@@ -33,7 +33,6 @@ const StakingInfo = () => {
                             <Grid item lg={3.5} xs={12} md={4} sm={6} sx={{ mt: 10 }}>
                                 <Card
                                     sx={{
-                                        backgroundColor: theme.palette.grey[50],
                                         borderLeft: 1,
                                         borderRight: 1,
                                         borderBottom: 3,
@@ -45,12 +44,12 @@ const StakingInfo = () => {
                                     }}
                                 >
                                     <Grid container sx={{ height: 330, my: 1, display: 'flex', justifyContent: 'center' }}>
-                                        <Grid item xs={12} sx={{ height: 50, backgroundColor: theme.palette.grey[900] }} lg={12}>
+                                        <Grid item xs={12} sx={{ backgroundColor: theme.palette.grey[900] }} lg={12}>
                                             <Typography variant="h2" sx={{ mt: 3 }} color={theme.palette.grey[50]} textAlign="center">
                                                 Staking
                                             </Typography>
                                         </Grid>
-                                        <Grid item sx={{ height: 40, backgroundColor: theme.palette.grey[900], my: 1 }} xs={11} lg={4}>
+                                        <Grid item sx={{ height: 40, backgroundColor: theme.palette.grey[900], mt: 3 }} xs={11} lg={4}>
                                             <Typography variant="h4" textAlign="center">
                                                 STAX protocol provides unique staking mechanisms and high-yield rewards. Users may stake
                                                 STAX (Native Token) and receive rewards in the form of more STAX tokens. The initial

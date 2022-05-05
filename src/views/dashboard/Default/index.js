@@ -63,7 +63,7 @@ const Dashboard = () => {
                 </Grid>
             </Grid>
             <Grid container>
-                <Grid item lg={12} md={12} sx={{ my: 0, ml: -3 }}>
+                <Grid item lg={12} md={12} xs={8} sx={{ my: 0, ml: -3 }}>
                     <Partners />
                 </Grid>
             </Grid>

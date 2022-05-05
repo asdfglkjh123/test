@@ -9,6 +9,7 @@ import StaxLogo from './staxlogo';
 import InfoIcon from '@mui/icons-material/Info';
 import { ggetStaxBalance, ggetOwnBalance, stakeStax, stakeHas } from 'components/wallet/sharesABI';
 import BigNumber from 'bignumber.js';
+import Web3 from 'web3';
 
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
@@ -21,7 +22,8 @@ const StakingCard = () => {
     const [stakeAmount, setStakeAmount] = useState(0);
     const [stakeName, setStakeName] = useState(0);
     const Number18Decimals = 1000000000000000000;
-    const stakeAmountFormatted = new BigNumber(stakeAmount);
+    const stakeAmountFormatted = Web3.utils.toWei(stakeAmount.toString(), 'ether');
+    const stakeAFormatted = Web3.utils.toBN(stakeAmountFormatted);
     const [sharesBalance, setSharesBalance] = useState(0);
     const [stakesList, setStakesList] = useState([[], []]);
     const [staked, stakedd] = stakesList;
@@ -142,6 +144,7 @@ const StakingCard = () => {
                                         </Grid>
                                         <Grid item sx={{ backgroundColor: theme.palette.grey[900] }} lg="auto">
                                             <TextField
+                                                value={stakeName}
                                                 sx={{ borderBottom: 2, borderColor: theme.palette.success.main }}
                                                 onChange={(e) => setStakeName(e.target.value)}
                                                 inputProps={{ style: { width: 110, color: 'white' } }}
@@ -168,6 +171,7 @@ const StakingCard = () => {
                                         </Grid>
                                         <Grid item sx={{ backgroundColor: theme.palette.grey[900] }} lg="auto">
                                             <TextField
+                                                value={stakeAmount}
                                                 sx={{ borderBottom: 2, borderColor: theme.palette.success.main }}
                                                 onChange={(e) => setStakeAmount(e.target.value)}
                                                 inputProps={{ style: { width: 110, color: 'white' } }}
@@ -179,7 +183,7 @@ const StakingCard = () => {
                                         </Grid>
                                         <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                                             <Typography variant="h5" textAlign="left">
-                                                Balance: STAX
+                                                Balance: {balance} STAX
                                             </Typography>
                                         </Grid>
                                     </Grid>
@@ -289,7 +293,7 @@ const StakingCard = () => {
                                         >
                                             <Button
                                                 onClick={() => {
-                                                    stakeStax(stakeAmountFormatted, stakeName).then(() => {
+                                                    stakeStax(stakeAFormatted, stakeName).then(() => {
                                                         fetchStaxBalance();
                                                         fetchSharesBalance();
                                                         fetchStakesBalance();

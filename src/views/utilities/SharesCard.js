@@ -269,7 +269,8 @@ const StakingCard = () => {
                                                     onChange={(e) => setValue(e.target.value)}
                                                     min={1}
                                                     max={10}
-                                                    defaultValue={1}
+                                                    value={value}
+                                                    defaultValue={value}
                                                 />
                                             </Grid>
                                         </Grid>

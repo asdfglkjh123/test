@@ -2,6 +2,7 @@
 import { useTheme, styled } from '@mui/material/styles';
 import { Button, Card, CardContent, Tooltip, Grid, Typography } from '@mui/material';
 import Slider from '@mui/material/Slider';
+import Web3 from 'web3';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import SharesSTAXChart from './SharesSTAXChart';
@@ -61,7 +62,6 @@ const PrettoSlider = styled(Slider)({
 
 const StakingCard = () => {
     const [value, setValue] = React.useState(1);
-    const valueString = value.toString();
     const [busdBalance, setBusdBalance] = React.useState(0);
     const [busdDividends, setBusdDividends] = React.useState(0);
     // const handleSliderChange = (event, newValue) => {
@@ -80,8 +80,9 @@ const StakingCard = () => {
     const busdBalanceToNumber = new BigNumber(busdBalance);
     const busdBalanceFormat = busdBalanceToNumber.decimalPlaces(4);
     const busdBalanceFormatted = busdBalanceFormat.toLocaleString(undefined);
-    const valueN = new BigNumber(value);
-    const priceN = new BigNumber(sSTXPriceFull).multipliedBy(valueN).dividedBy(BIG18);
+    const value222 = value * sSTXPrice * BIG18;
+    const valueHelper = Web3.utils.toWei(value222.toString(), 'ether');
+    const valueToApprove = Web3.utils.toBN(valueHelper);
     const myShareRate = (balance / totalsharesSupply) * 100;
     const myShareRateFormatted = myShareRate.toLocaleString(undefined, { maximumFractionDigits: 1 });
     const fetchsSTXPrice = async () => {
@@ -279,7 +280,7 @@ const StakingCard = () => {
                                                 <Button
                                                     onClick={() => {
                                                         getSTXPriceFull();
-                                                        approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', priceN, value).then(
+                                                        approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', valueToApprove, value).then(
                                                             (result) => {
                                                                 fetchBalance();
                                                                 fetchsSTXPriceFull();
@@ -297,7 +298,7 @@ const StakingCard = () => {
                                                         color: theme.palette.grey[900]
                                                     }}
                                                 >
-                                                    BUY {valueString} sSTX
+                                                    BUY {value} sSTX
                                                 </Button>
                                             </Grid>
                                         </Grid>

@@ -7,8 +7,8 @@ const StaxLogo = () => {
     useTheme();
     return (
         <>
-            <Grid justifyContent="center" alignContent="center" sx={{ height: 350 }}>
-                <img height={100} width="height" src={Stax} alt="shares banner" />
+            <Grid justifyContent="center" alignContent="center" sx={{ height: 100 }}>
+                <img height={80} width="height" src={Stax} alt="shares banner" />
             </Grid>
         </>
     );

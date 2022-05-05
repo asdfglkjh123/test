@@ -183,7 +183,7 @@ const StakingCard = () => {
                                     <Grid container sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
                                         <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
                                             <Grid item xs="auto" lg="auto" md="auto" sm="auto">
-                                                <Typography variant="h4" color={theme.palette.grey[50]}>
+                                                <Typography variant="h2" color={theme.palette.grey[50]}>
                                                     SHARES
                                                 </Typography>
                                             </Grid>
@@ -374,7 +374,7 @@ const StakingCard = () => {
                                     </Grid>
                                 </Card>
                             </Grid>
-                            <Grid container sx={{ display: 'flex', justifyContent: 'center', mt: 3 }} lg={11.5}>
+                            <Grid container xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 3 }} lg={11.5}>
                                 <Grid item lg={12} xs={12} md={12} sm={12}>
                                     <Card
                                         sx={{
@@ -391,11 +391,6 @@ const StakingCard = () => {
                                         <Grid container sx={{ my: 3.3, display: 'flex', justifyContent: 'center' }}>
                                             <Grid item lg="auto" xs="auto" sm="auto" md="auto" sx={{ mt: 1.3 }}>
                                                 <BusdLogo />
-                                            </Grid>
-                                            <Grid item lg="auto" md="auto" xs="auto" sm="auto">
-                                                <Typography variant="h2" xs="auto" sx={{ mt: 3.3 }} color={theme.palette.grey[50]}>
-                                                    BUSD
-                                                </Typography>
                                             </Grid>
                                             <Grid item lg="auto" xs="auto" md="auto" sm="auto" sx={{ ml: 0.5, mt: 3.3 }}>
                                                 <Typography variant="h2" color={theme.palette.success.main}>

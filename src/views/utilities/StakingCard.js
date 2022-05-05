@@ -92,12 +92,7 @@ const StakingCard = () => {
                                 }}
                             >
                                 <Grid container sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
-                                    <Grid
-                                        item
-                                        sx={{ height: 100, backgroundColor: theme.palette.grey[900], my: 1, ml: 1 }}
-                                        lg={3.6}
-                                        xs="auto"
-                                    >
+                                    <Grid item sx={{ backgroundColor: theme.palette.grey[900], mt: 2, ml: 1 }} lg={3.6} xs="auto">
                                         <StaxLogo />
                                     </Grid>
                                     <Grid item lg="auto" xs="auto" sx={{ ml: 2, mt: 5 }}>
@@ -145,7 +140,7 @@ const StakingCard = () => {
                                                 NAME:
                                             </Typography>
                                         </Grid>
-                                        <Grid item sx={{ backgroundColor: theme.palette.grey[900], my: 0 }} lg="auto">
+                                        <Grid item sx={{ backgroundColor: theme.palette.grey[900] }} lg="auto">
                                             <TextField
                                                 sx={{ borderBottom: 2, borderColor: theme.palette.success.main }}
                                                 onChange={(e) => setStakeName(e.target.value)}
@@ -175,14 +170,16 @@ const StakingCard = () => {
                                             <TextField
                                                 sx={{ borderBottom: 2, borderColor: theme.palette.success.main }}
                                                 onChange={(e) => setStakeAmount(e.target.value)}
-                                                inputProps={{ style: { color: 'white' } }}
+                                                inputProps={{ style: { width: 110, color: 'white' } }}
                                                 type="number"
                                                 id="standard-basic"
                                                 variant="standard"
                                                 color="success"
                                             />
-                                            <Typography variant="h5" textAlign="center">
-                                                Balance: {balanceFormatted} STAX
+                                        </Grid>
+                                        <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
+                                            <Typography variant="h5" textAlign="left">
+                                                Balance: STAX
                                             </Typography>
                                         </Grid>
                                     </Grid>

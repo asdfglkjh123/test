@@ -44,7 +44,7 @@ const TopTitle = () => {
                                         Learn More
                                     </Button>
                                 </Grid>
-                                <Grid sx={{ mx: 3 }}>
+                                <Grid sx={{ ml: 3 }}>
                                     <Button size="large" variant="contained" color="success">
                                         Buy STAX
                                     </Button>

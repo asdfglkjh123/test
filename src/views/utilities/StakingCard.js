@@ -142,7 +142,7 @@ const StakingCard = () => {
                                             xs="auto"
                                         >
                                             <Typography variant="h4" textAlign="center">
-                                                STAKE NAME:
+                                                NAME:
                                             </Typography>
                                         </Grid>
                                         <Grid item sx={{ backgroundColor: theme.palette.grey[900], my: 0 }} lg="auto">
@@ -168,7 +168,7 @@ const StakingCard = () => {
                                             xs="auto"
                                         >
                                             <Typography variant="h4" textAlign="center">
-                                                STAKE AMOUNT:
+                                                AMOUNT:
                                             </Typography>
                                         </Grid>
                                         <Grid item sx={{ backgroundColor: theme.palette.grey[900] }} lg="auto">

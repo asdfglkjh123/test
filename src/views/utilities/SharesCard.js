@@ -215,24 +215,24 @@ const StakingCard = () => {
                                         <Grid item sx={{ backgroundColor: theme.palette.grey[900], my: 0 }} lg={10} xs={9.3}>
                                             <SharesSTAXChart />
                                         </Grid>
-                                        <Grid item sx={{ backgroundColor: theme.palette.grey[900], mt: 1.6 }} lg={4.7} xs={7}>
+                                        <Grid item sx={{ backgroundColor: theme.palette.grey[900], mt: 1.6 }} lg={4.7} xs="auto">
                                             <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
-                                                Total sSTX Sold:
+                                                Total Sold:
                                             </Typography>
                                             <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
-                                                Initial sSTX Price:
+                                                Initial Price:
                                             </Typography>
                                             <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
-                                                Current sSTX Price:
+                                                Current Price:
                                             </Typography>
                                             <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
-                                                My BUSD Balance:
+                                                BUSD Balance:
                                             </Typography>
                                             <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
-                                                My BONUS APY:
+                                                BONUS APY:
                                             </Typography>
                                             <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
-                                                My sSTX Balance:
+                                                sSTX Balance:
                                             </Typography>
                                         </Grid>
                                         <Grid
@@ -412,7 +412,7 @@ const StakingCard = () => {
                                                     </Typography>
                                                 </Grid>
                                             </Grid>
-                                            <Grid item lg={12} xs={10} sx={{ mt: 5, justifyContent: 'center', display: 'flex' }}>
+                                            <Grid item lg={12} md={10} xs={10} sx={{ mt: 5, justifyContent: 'center', display: 'flex' }}>
                                                 <Typography variant="h5" color={theme.palette.grey[50]} textAlign="center">
                                                     STAX Volume Dividends
                                                 </Typography>
@@ -432,13 +432,19 @@ const StakingCard = () => {
                                                     <InfoIcon />
                                                 </Tooltip>
                                             </Grid>
-                                            <Grid item lg={5} xs="auto" sx={{ mt: 1, mx: 1, justifyContent: 'right', display: 'flex' }}>
+                                            <Grid
+                                                item
+                                                lg={5}
+                                                md={6}
+                                                xs="auto"
+                                                sx={{ mt: 1, mx: 1, justifyContent: 'right', display: 'flex' }}
+                                            >
                                                 <Typography variant="h2" sx={{ mr: 1 }} color={theme.palette.grey[50]} textAlign="center">
                                                     0
                                                 </Typography>
                                                 <BusdSmallLogo />
                                             </Grid>
-                                            <Grid item lg={4.3} xs={3} sx={{ mt: 0.7, justifyContent: 'left', display: 'flex' }}>
+                                            <Grid item lg={4.3} md={4.3} xs={3} sx={{ mt: 0.7, justifyContent: 'left', display: 'flex' }}>
                                                 <Button
                                                     sx={{
                                                         mb: 1,
@@ -450,7 +456,7 @@ const StakingCard = () => {
                                                     Claim
                                                 </Button>
                                             </Grid>
-                                            <Grid item lg={12} xs={10} sx={{ mt: 2, justifyContent: 'center', display: 'flex' }}>
+                                            <Grid item lg={12} md={12} xs={10} sx={{ mt: 2, justifyContent: 'center', display: 'flex' }}>
                                                 <Typography variant="h5" color={theme.palette.grey[50]} textAlign="center">
                                                     STAX Pool Dividends
                                                 </Typography>

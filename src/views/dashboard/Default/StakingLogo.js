@@ -8,7 +8,7 @@ const StakingLogo = () => {
     return (
         <>
             <Grid justifyContent="center">
-                <img height={300} width="100%" src={Staking} alt="shares banner" />
+                <img height={250} width="100%" src={Staking} alt="shares banner" />
             </Grid>
         </>
     );

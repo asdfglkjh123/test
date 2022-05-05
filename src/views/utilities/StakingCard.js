@@ -444,7 +444,7 @@ const StakingCard = () => {
                                             <Typography variant="h4" color={theme.palette.grey[50]} textAlign="center">
                                                 {stakedd.map((total, index) => (
                                                     <Typography sx={{ mb: 3 }} key={index}>
-                                                        {total[1]}
+                                                        {total.stakename}
                                                     </Typography>
                                                 ))}
                                             </Typography>

@@ -267,7 +267,7 @@ const StakingCard = () => {
                                         </Grid>
                                     </Grid>
                                     <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
-                                        <Grid item lg={12} sx={{ my: 2, display: 'flex', justifyContent: 'center' }}>
+                                        <Grid item lg={12} sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
                                             <Button
                                                 onClick={() => {
                                                     getSTXPriceFull();
@@ -283,7 +283,8 @@ const StakingCard = () => {
                                                     });
                                                 }}
                                                 sx={{
-                                                    height: 35,
+                                                    minHeight: 45,
+                                                    minWidth: 140,
                                                     backgroundColor: theme.palette.success.main,
                                                     color: theme.palette.grey[900]
                                                 }}
@@ -379,10 +380,10 @@ const StakingCard = () => {
                                     </Grid>
                                     <Grid item lg="auto" md="auto" xs="auto" sm="auto">
                                         <Typography variant="h2" xs="auto" sx={{ mt: 3.3 }} color={theme.palette.grey[50]}>
-                                            My BUSD
+                                            BUSD
                                         </Typography>
                                     </Grid>
-                                    <Grid item lg={3.6} xs="auto" md="auto" sm="auto" sx={{ ml: 0.5, mt: 3.3 }}>
+                                    <Grid item lg="auto" xs="auto" md="auto" sm="auto" sx={{ ml: 0.5, mt: 3.3 }}>
                                         <Typography variant="h2" color={theme.palette.success.main}>
                                             Dividends
                                         </Typography>

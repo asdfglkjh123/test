@@ -25,7 +25,7 @@ const SharesInfo = () => {
                             <Grid
                                 item
                                 lg={4}
-                                xs={9.6}
+                                xs={10}
                                 md={4.4}
                                 sm={7}
                                 sx={{ borderLeft: 2, borderColor: theme.palette.success.main, ml: 0, my: 0 }}

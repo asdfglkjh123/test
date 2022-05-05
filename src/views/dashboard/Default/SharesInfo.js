@@ -48,7 +48,7 @@ const SharesInfo = () => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid container spacing={10} alignContent="center" justifyContent="center">
+                    <Grid container spacing={10} sx={{ mt: 5 }} alignContent="center" justifyContent="center">
                         <Grid item lg={3} xs={12} sm={5} md={3}>
                             <Card
                                 sx={{

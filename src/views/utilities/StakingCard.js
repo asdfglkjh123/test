@@ -71,7 +71,7 @@ const StakingCard = () => {
         <>
             <MainCard sx={{ borderRadius: 0, backgroundColor: theme.palette.grey[900], border: 0 }} content={false}>
                 <CardContent>
-                    <Grid container sx={{ justifyContent: 'center', display: 'flex' }}>
+                    <Grid container spacing={2} sx={{ justifyContent: 'center', display: 'flex' }}>
                         <Grid container mt={5} sx={{ justifyContent: 'center', display: 'flex' }}>
                             <Grid item>
                                 <Typography textAlign="center" variant="h1" color={theme.palette.grey[50]}>
@@ -80,7 +80,7 @@ const StakingCard = () => {
                                 <Divider />
                             </Grid>
                         </Grid>
-                        <Grid item lg={4} xs={12} sx={{ mt: 6 }} justifyContent="center">
+                        <Grid item lg={4.5} xs={12} sx={{ mt: 6 }} justifyContent="center">
                             <Card
                                 sx={{
                                     borderLeft: 1,
@@ -314,7 +314,7 @@ const StakingCard = () => {
                                 </Grid>
                             </Card>
                         </Grid>
-                        <Grid item lg={4} xs={12} sx={{ mt: 6 }}>
+                        <Grid item lg={4.5} xs={12} sx={{ mt: 6 }}>
                             <Card
                                 sx={{
                                     borderLeft: 1,
@@ -385,7 +385,7 @@ const StakingCard = () => {
                                 </Grid>
                             </Card>
                         </Grid>
-                        <Grid item lg={8} xs={12} sx={{ mt: 5 }}>
+                        <Grid item lg={9} xs={12} sx={{ mt: 5 }}>
                             <Card
                                 sx={{
                                     width: 'auto',
@@ -599,7 +599,7 @@ const StakingCard = () => {
                                             ))}
                                         </Grid>
                                     </Grid>
-                                    <Grid item lg={1.8} md={1.9} xs="auto" sx={{ pl: 1, pt: 0.2 }}>
+                                    <Grid item lg={1.6} md={1.9} xs="auto" sx={{ pl: 1 }}>
                                         <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
                                             <Typography
                                                 variant="h4"
@@ -624,7 +624,7 @@ const StakingCard = () => {
                                                 <InfoIcon />
                                             </Tooltip>
                                         </Grid>
-                                        <Grid container sx={{ display: 'flex', justifyContent: 'center', mt: 0.5 }}>
+                                        <Grid container sx={{ display: 'flex', justifyContent: 'center', mt: 0.7 }}>
                                             {stakedd.map((total, index) => (
                                                 <>
                                                     <Button
@@ -632,7 +632,7 @@ const StakingCard = () => {
                                                             mb: 2.5,
                                                             fontSize: 15,
                                                             width: 30,
-                                                            height: 25,
+                                                            height: 23,
                                                             color: theme.palette.grey[900],
                                                             backgroundColor: theme.palette.success.main
                                                         }}

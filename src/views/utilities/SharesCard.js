@@ -78,7 +78,7 @@ const StakingCard = () => {
     const myAPYFormatted = bonusAPY * 4.5625;
     const BIG18 = 1000000000000000000;
     const busdBalanceToNumber = new BigNumber(busdBalance);
-    const busdBalanceFormat = busdBalanceToNumber.decimalPlaces(4);
+    const busdBalanceFormat = busdBalanceToNumber.decimalPlaces(2);
     const busdBalanceFormatted = busdBalanceFormat.toLocaleString(undefined);
     const value222 = value * sSTXPrice * BIG18;
     const valueHelper = Web3.utils.toWei(value222.toString(), 'ether');

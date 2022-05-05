@@ -45,6 +45,7 @@ const MainLayout = () => {
                 position="fixed"
                 color="inherit"
                 elevation={0}
+                xs={12}
                 sx={{
                     top: 'auto',
                     bottom: 0,

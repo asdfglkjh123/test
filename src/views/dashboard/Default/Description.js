@@ -47,7 +47,7 @@ const Description = () => {
                                     </Button>
                                 </Grid>
                             </Grid>
-                            <Grid item sx={{ backgroundColor: theme.palette.grey[900], my: 5, mx: 0 }} sm={5} lg={4} md={5}>
+                            <Grid item sx={{ backgroundColor: theme.palette.grey[900], my: 5, mx: 0 }} sm={5} lg={4} md={5} xs={12}>
                                 <DecLogo />
                                 <Typography textAlign="center">STAX & BUSD Rewards</Typography>
                             </Grid>

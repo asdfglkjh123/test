@@ -8,7 +8,7 @@ const DecLogo = () => {
     return (
         <>
             <Grid justifyContent="center" alignContent="center" sx={{ height: 350 }}>
-                <img height={410} width="100%" src={Decentralized} alt="shares banner" />
+                <img height="100%" width="100%" src={Decentralized} alt="shares banner" />
             </Grid>
         </>
     );

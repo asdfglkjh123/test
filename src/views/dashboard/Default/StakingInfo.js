@@ -27,7 +27,7 @@ const StakingInfo = () => {
                             </Grid>
                         </Grid>
                         <Grid container sx={{ mt: 6, display: 'flex', justifyContent: 'center' }}>
-                            <Grid item lg={3.5} xs={12} md={4} sm={6} sx={{ mt: 4 }}>
+                            <Grid item lg={5} xs={12} md={5} sm={8} sx={{ mt: 4 }}>
                                 <Grid container sx={{ height: 330, my: 1, display: 'flex', justifyContent: 'center' }}>
                                     <Grid
                                         item

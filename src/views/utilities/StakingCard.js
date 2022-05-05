@@ -184,7 +184,7 @@ const StakingCard = () => {
                                         </Grid>
                                         <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                                             <Typography variant="h5" textAlign="left">
-                                                Balance: {balance} STAX
+                                                Balance: {balanceFormatted} STAX
                                             </Typography>
                                         </Grid>
                                     </Grid>

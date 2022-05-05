@@ -20,12 +20,12 @@ const SharesInfo = () => {
                 content={false}
             >
                 <CardContent>
-                    <Grid container justifyContent="center" sx={{ mt: 10, backgroundColor: theme.palette.grey[900] }}>
-                        <Grid container sx={{ my: 5 }} alignContent="center" justifyContent="center">
+                    <Grid container xs={12} justifyContent="center" sx={{ mt: 10, backgroundColor: theme.palette.grey[900] }}>
+                        <Grid container xs={12} sx={{ my: 5 }} alignContent="center" justifyContent="center">
                             <Grid
                                 item
                                 lg={4}
-                                xs={10}
+                                xs={12}
                                 md={4.4}
                                 sm={7}
                                 sx={{ borderLeft: 2, borderColor: theme.palette.success.main, ml: 0, my: 0 }}
@@ -55,7 +55,7 @@ const SharesInfo = () => {
                         </Grid>
                     </Grid>
                     <Grid container spacing={10} mt={0} alignContent="center" justifyContent="center">
-                        <Grid item lg={3} xs={10} sm={5} md={3}>
+                        <Grid item lg={3} xs={12} sm={5} md={3}>
                             <Card
                                 sx={{
                                     border: 0,
@@ -76,7 +76,7 @@ const SharesInfo = () => {
                                 </CardContent>
                             </Card>
                         </Grid>
-                        <Grid item lg={3} xs={10} sm={5} md={3}>
+                        <Grid item lg={3} xs={12} sm={5} md={3}>
                             <Card
                                 sx={{
                                     border: 0,
@@ -97,7 +97,7 @@ const SharesInfo = () => {
                                 </CardContent>
                             </Card>
                         </Grid>
-                        <Grid item lg={3} xs={10} sm={5} md={3}>
+                        <Grid item lg={3} xs={12} sm={5} md={3}>
                             <Card
                                 sx={{
                                     border: 0,
@@ -118,7 +118,7 @@ const SharesInfo = () => {
                                 </CardContent>
                             </Card>
                         </Grid>
-                        <Grid item lg={3} xs={10} sm={5} md={3}>
+                        <Grid item lg={3} xs={12} sm={5} md={3}>
                             <Card
                                 sx={{
                                     border: 0,

@@ -1,21 +1,7 @@
 import { useState, useEffect } from 'react';
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import {
-    Button,
-    Card,
-    Table,
-    CardContent,
-    Divider,
-    Grid,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    TextField,
-    Tooltip,
-    Typography
-} from '@mui/material';
+import { Button, Card, CardContent, Divider, Grid, TextField, Tooltip, Typography } from '@mui/material';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
@@ -24,7 +10,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import { ggetStaxBalance, ggetOwnBalance, stakeStax, stakeHas } from 'components/wallet/sharesABI';
 import BigNumber from 'bignumber.js';
 import Web3 from 'web3';
-import Paper from '@mui/material/Paper';
+
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
 const StakingCard = () => {
@@ -412,267 +398,253 @@ const StakingCard = () => {
                                     mb: 10
                                 }}
                             >
-                                <TableContainer component={Paper}>
-                                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                                        <TableHead>
-                                            <TableRow>
-                                                <Grid
-                                                    container
-                                                    sx={{
-                                                        backgroundColor: theme.palette.grey[900],
-                                                        mt: 3,
-                                                        display: 'flex',
-                                                        justifyContent: 'center'
-                                                    }}
-                                                >
-                                                    <Grid item xs="auto">
-                                                        <Typography
-                                                            variant="h2"
-                                                            sx={{ ml: 1 }}
-                                                            color={theme.palette.grey[50]}
-                                                            textAlign="center"
-                                                        >
-                                                            Active Stakes
-                                                        </Typography>
-                                                    </Grid>
-                                                </Grid>
-                                                <Grid container sx={{ my: 3, display: 'flex', justifyContent: 'center' }}>
-                                                    <Grid item lg={1.8} md={1.9} xs="auto" sx={{ pl: 1, pt: 0.2 }}>
-                                                        <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
-                                                            <TableCell>Name</TableCell>
-                                                            <Tooltip
-                                                                sx={{ color: theme.palette.success.main, mt: -0.3 }}
-                                                                title={
-                                                                    <Typography
-                                                                        sx={{
-                                                                            color: theme.palette.success.main
-                                                                        }}
-                                                                    >
-                                                                        Name of the stake.
-                                                                    </Typography>
-                                                                }
-                                                            >
-                                                                <InfoIcon />
-                                                            </Tooltip>
-                                                        </Grid>
-                                                        <Divider sx={{ backgroundColor: theme.palette.grey[50] }} />
-                                                        <Grid item lg="auto" xs="auto" sx={{ mt: 1 }}>
-                                                            <Typography variant="h4" color={theme.palette.grey[50]} textAlign="center">
-                                                                {stakedd.map((total, index) => (
-                                                                    <Typography sx={{ mb: 3 }} key={index}>
-                                                                        {total[1]}
-                                                                    </Typography>
-                                                                ))}
-                                                            </Typography>
-                                                        </Grid>
-                                                    </Grid>
-                                                    <Grid item lg={1.8} md={2} xs="auto" sx={{ pl: 1, pt: 0.2 }}>
-                                                        <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
-                                                            <Typography
-                                                                variant="h4"
-                                                                sx={{ mt: -0.2 }}
-                                                                color={theme.palette.success.main}
-                                                                textAlign="center"
-                                                            >
-                                                                Sharesbonus
-                                                            </Typography>
-                                                            <Tooltip
-                                                                sx={{ color: theme.palette.success.main, mt: -0.3 }}
-                                                                title={
-                                                                    <Typography
-                                                                        sx={{
-                                                                            color: theme.palette.success.main
-                                                                        }}
-                                                                    >
-                                                                        SHARESBONUS (BONUS) shows the amount of sSTX that you held at the
-                                                                        moment of opening the stake. It also increases your stake APY as it
-                                                                        follows: 5% per sSTX token. Each sSTX increases the SHAREBONUS by
-                                                                        the factor of 1. There is a limit of maximum 20 SHARESBONUS or 100%
-                                                                        Bonus APY.
-                                                                    </Typography>
-                                                                }
-                                                            >
-                                                                <InfoIcon />
-                                                            </Tooltip>
-                                                        </Grid>
-                                                        <Grid item lg="auto" xs="auto" sx={{ mt: 1 }}>
-                                                            {stakedd.map((total, index) => (
-                                                                <Typography sx={{ mb: 3 }} textAlign="center" key={index}>
-                                                                    {total.sharesbonus}
-                                                                </Typography>
-                                                            ))}
-                                                        </Grid>
-                                                    </Grid>
-                                                    <Grid item lg={1.8} md={1.9} sm="auto" xs="auto" sx={{ pl: 1, pt: 0.2 }}>
-                                                        <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
-                                                            <Typography
-                                                                variant="h4"
-                                                                sx={{ mt: -0.2 }}
-                                                                color={theme.palette.success.main}
-                                                                textAlign="center"
-                                                            >
-                                                                Staked
-                                                            </Typography>
-                                                            <Tooltip
-                                                                sx={{ color: theme.palette.success.main, mt: -0.3 }}
-                                                                title={
-                                                                    <Typography
-                                                                        sx={{
-                                                                            color: theme.palette.success.main
-                                                                        }}
-                                                                    >
-                                                                        Shows the amount of staked STAX tokens.
-                                                                    </Typography>
-                                                                }
-                                                            >
-                                                                <InfoIcon />
-                                                            </Tooltip>
-                                                        </Grid>
-                                                        <Grid container sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
-                                                            <Typography variant="h4" color={theme.palette.grey[50]} textAlign="center">
-                                                                {stakedd.map((total, index) => (
-                                                                    <Typography sx={{ mb: 3 }} key={index}>
-                                                                        {(total.amount / Number18Decimals).toLocaleString(undefined, {
-                                                                            maximumFractionDigits: 2
-                                                                        })}
-                                                                    </Typography>
-                                                                ))}
-                                                            </Typography>
-                                                        </Grid>
-                                                    </Grid>
-                                                    <Grid item lg={1.8} md={1.9} xs="auto" sx={{ pl: 1, pt: 0.2 }}>
-                                                        <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
-                                                            <Typography
-                                                                variant="h4"
-                                                                sx={{ mt: -0.2 }}
-                                                                color={theme.palette.success.main}
-                                                                textAlign="center"
-                                                            >
-                                                                Rewards
-                                                            </Typography>
-                                                            <Tooltip
-                                                                sx={{ color: theme.palette.success.main, mt: -0.3 }}
-                                                                title={
-                                                                    <Typography
-                                                                        sx={{
-                                                                            color: theme.palette.success.main
-                                                                        }}
-                                                                    >
-                                                                        Shows the rewards of the stake.
-                                                                    </Typography>
-                                                                }
-                                                            >
-                                                                <InfoIcon />
-                                                            </Tooltip>
-                                                        </Grid>
-                                                        <Grid container sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
-                                                            <Typography variant="h4" color={theme.palette.grey[50]} textAlign="center">
-                                                                {stakedd.map((total, index) => (
-                                                                    <Typography
-                                                                        sx={{ mb: 3 }}
-                                                                        color={theme.palette.grey[50]}
-                                                                        textAlign="center"
-                                                                        key={index}
-                                                                    >
-                                                                        {(total.claimable / Number18Decimals).toLocaleString(undefined, {
-                                                                            maximumFractionDigits: 2
-                                                                        })}
-                                                                    </Typography>
-                                                                ))}
-                                                            </Typography>
-                                                        </Grid>
-                                                    </Grid>
-                                                    <Grid item lg={1.8} md={1.9} xs="auto" sx={{ pl: 1, pt: 0.2 }}>
-                                                        <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
-                                                            <Typography
-                                                                variant="h4"
-                                                                sx={{ mt: -0.2 }}
-                                                                color={theme.palette.success.main}
-                                                                textAlign="center"
-                                                            >
-                                                                TUM
-                                                            </Typography>
-                                                            <Tooltip
-                                                                sx={{ color: theme.palette.success.main, mt: -0.3 }}
-                                                                title={
-                                                                    <Typography
-                                                                        sx={{
-                                                                            color: theme.palette.success.main
-                                                                        }}
-                                                                    >
-                                                                        TUM stands for Time Until Mature and it shows how many days left
-                                                                        until a user can claim the stake rewards or close it without facing
-                                                                        a penalty.
-                                                                    </Typography>
-                                                                }
-                                                            >
-                                                                <InfoIcon />
-                                                            </Tooltip>
-                                                        </Grid>
-                                                        <Grid item lg="auto" xs="auto" sx={{ mt: 1 }}>
-                                                            {stakedd.map((total, index) => (
-                                                                <Typography
-                                                                    sx={{ mb: 3 }}
-                                                                    color={theme.palette.grey[50]}
-                                                                    textAlign="center"
-                                                                    key={index}
-                                                                >
-                                                                    {total.since}
-                                                                </Typography>
-                                                            ))}
-                                                        </Grid>
-                                                    </Grid>
-                                                    <Grid item lg={1.6} md={1.9} xs="auto" sx={{ pl: 1 }}>
-                                                        <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
-                                                            <Typography
-                                                                variant="h4"
-                                                                sx={{ mt: -0.2 }}
-                                                                color={theme.palette.success.main}
-                                                                textAlign="center"
-                                                            >
-                                                                Activities
-                                                            </Typography>
-                                                            <Tooltip
-                                                                sx={{ color: theme.palette.success.main, mt: -0.3 }}
-                                                                title={
-                                                                    <Typography
-                                                                        sx={{
-                                                                            color: theme.palette.success.main
-                                                                        }}
-                                                                    >
-                                                                        Users may claim their rewards or close the stake by clicking below
-                                                                        buttons.
-                                                                    </Typography>
-                                                                }
-                                                            >
-                                                                <InfoIcon />
-                                                            </Tooltip>
-                                                        </Grid>
-                                                        <Grid container sx={{ display: 'flex', justifyContent: 'center', mt: 0.7 }}>
-                                                            {stakedd.map((total, index) => (
-                                                                <>
-                                                                    <Button
-                                                                        sx={{
-                                                                            mb: 2.5,
-                                                                            fontSize: 15,
-                                                                            width: 30,
-                                                                            height: 23,
-                                                                            color: theme.palette.grey[900],
-                                                                            backgroundColor: theme.palette.success.main
-                                                                        }}
-                                                                        key={index}
-                                                                    >
-                                                                        Close
-                                                                    </Button>
-                                                                </>
-                                                            ))}
-                                                        </Grid>
-                                                    </Grid>
-                                                </Grid>
-                                            </TableRow>
-                                        </TableHead>
-                                    </Table>
-                                </TableContainer>
+                                <Grid
+                                    container
+                                    sx={{
+                                        backgroundColor: theme.palette.grey[900],
+                                        mt: 3,
+                                        display: 'flex',
+                                        justifyContent: 'center'
+                                    }}
+                                >
+                                    <Grid item xs="auto">
+                                        <Typography variant="h2" sx={{ ml: 1 }} color={theme.palette.grey[50]} textAlign="center">
+                                            Active Stakes
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                                <Grid container sx={{ my: 3, display: 'flex', justifyContent: 'center' }}>
+                                    <Grid item lg={1.8} md={1.9} xs="auto" sx={{ pl: 1, pt: 0.2 }}>
+                                        <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
+                                            <Typography
+                                                variant="h4"
+                                                sx={{ mt: -0.2 }}
+                                                color={theme.palette.success.main}
+                                                textAlign="center"
+                                            >
+                                                Name
+                                            </Typography>
+                                            <Tooltip
+                                                sx={{ color: theme.palette.success.main, mt: -0.3 }}
+                                                title={
+                                                    <Typography
+                                                        sx={{
+                                                            color: theme.palette.success.main
+                                                        }}
+                                                    >
+                                                        Name of the stake.
+                                                    </Typography>
+                                                }
+                                            >
+                                                <InfoIcon />
+                                            </Tooltip>
+                                        </Grid>
+                                        <Divider sx={{ backgroundColor: theme.palette.grey[50] }} />
+                                        <Grid item lg="auto" xs="auto" sx={{ mt: 1 }}>
+                                            <Typography variant="h4" color={theme.palette.grey[50]} textAlign="center">
+                                                {stakedd.map((total, index) => (
+                                                    <Typography sx={{ mb: 3 }} key={index}>
+                                                        {total[1]}
+                                                    </Typography>
+                                                ))}
+                                            </Typography>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item lg={1.8} md={2} xs="auto" sx={{ pl: 1, pt: 0.2 }}>
+                                        <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
+                                            <Typography
+                                                variant="h4"
+                                                sx={{ mt: -0.2 }}
+                                                color={theme.palette.success.main}
+                                                textAlign="center"
+                                            >
+                                                Sharesbonus
+                                            </Typography>
+                                            <Tooltip
+                                                sx={{ color: theme.palette.success.main, mt: -0.3 }}
+                                                title={
+                                                    <Typography
+                                                        sx={{
+                                                            color: theme.palette.success.main
+                                                        }}
+                                                    >
+                                                        SHARESBONUS (BONUS) shows the amount of sSTX that you held at the moment of opening
+                                                        the stake. It also increases your stake APY as it follows: 5% per sSTX token. Each
+                                                        sSTX increases the SHAREBONUS by the factor of 1. There is a limit of maximum 20
+                                                        SHARESBONUS or 100% Bonus APY.
+                                                    </Typography>
+                                                }
+                                            >
+                                                <InfoIcon />
+                                            </Tooltip>
+                                        </Grid>
+                                        <Grid item lg="auto" xs="auto" sx={{ mt: 1 }}>
+                                            {stakedd.map((total, index) => (
+                                                <Typography sx={{ mb: 3 }} textAlign="center" key={index}>
+                                                    {total.sharesbonus}
+                                                </Typography>
+                                            ))}
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item lg={1.8} md={1.9} sm="auto" xs="auto" sx={{ pl: 1, pt: 0.2 }}>
+                                        <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
+                                            <Typography
+                                                variant="h4"
+                                                sx={{ mt: -0.2 }}
+                                                color={theme.palette.success.main}
+                                                textAlign="center"
+                                            >
+                                                Staked
+                                            </Typography>
+                                            <Tooltip
+                                                sx={{ color: theme.palette.success.main, mt: -0.3 }}
+                                                title={
+                                                    <Typography
+                                                        sx={{
+                                                            color: theme.palette.success.main
+                                                        }}
+                                                    >
+                                                        Shows the amount of staked STAX tokens.
+                                                    </Typography>
+                                                }
+                                            >
+                                                <InfoIcon />
+                                            </Tooltip>
+                                        </Grid>
+                                        <Grid container sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
+                                            <Typography variant="h4" color={theme.palette.grey[50]} textAlign="center">
+                                                {stakedd.map((total, index) => (
+                                                    <Typography sx={{ mb: 3 }} key={index}>
+                                                        {(total.amount / Number18Decimals).toLocaleString(undefined, {
+                                                            maximumFractionDigits: 2
+                                                        })}
+                                                    </Typography>
+                                                ))}
+                                            </Typography>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item lg={1.8} md={1.9} xs="auto" sx={{ pl: 1, pt: 0.2 }}>
+                                        <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
+                                            <Typography
+                                                variant="h4"
+                                                sx={{ mt: -0.2 }}
+                                                color={theme.palette.success.main}
+                                                textAlign="center"
+                                            >
+                                                Rewards
+                                            </Typography>
+                                            <Tooltip
+                                                sx={{ color: theme.palette.success.main, mt: -0.3 }}
+                                                title={
+                                                    <Typography
+                                                        sx={{
+                                                            color: theme.palette.success.main
+                                                        }}
+                                                    >
+                                                        Shows the rewards of the stake.
+                                                    </Typography>
+                                                }
+                                            >
+                                                <InfoIcon />
+                                            </Tooltip>
+                                        </Grid>
+                                        <Grid container sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
+                                            <Typography variant="h4" color={theme.palette.grey[50]} textAlign="center">
+                                                {stakedd.map((total, index) => (
+                                                    <Typography
+                                                        sx={{ mb: 3 }}
+                                                        color={theme.palette.grey[50]}
+                                                        textAlign="center"
+                                                        key={index}
+                                                    >
+                                                        {(total.claimable / Number18Decimals).toLocaleString(undefined, {
+                                                            maximumFractionDigits: 2
+                                                        })}
+                                                    </Typography>
+                                                ))}
+                                            </Typography>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item lg={1.8} md={1.9} xs="auto" sx={{ pl: 1, pt: 0.2 }}>
+                                        <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
+                                            <Typography
+                                                variant="h4"
+                                                sx={{ mt: -0.2 }}
+                                                color={theme.palette.success.main}
+                                                textAlign="center"
+                                            >
+                                                TUM
+                                            </Typography>
+                                            <Tooltip
+                                                sx={{ color: theme.palette.success.main, mt: -0.3 }}
+                                                title={
+                                                    <Typography
+                                                        sx={{
+                                                            color: theme.palette.success.main
+                                                        }}
+                                                    >
+                                                        TUM stands for Time Until Mature and it shows how many days left until a user can
+                                                        claim the stake rewards or close it without facing a penalty.
+                                                    </Typography>
+                                                }
+                                            >
+                                                <InfoIcon />
+                                            </Tooltip>
+                                        </Grid>
+                                        <Grid item lg="auto" xs="auto" sx={{ mt: 1 }}>
+                                            {stakedd.map((total, index) => (
+                                                <Typography sx={{ mb: 3 }} color={theme.palette.grey[50]} textAlign="center" key={index}>
+                                                    {total.since}
+                                                </Typography>
+                                            ))}
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item lg={1.6} md={1.9} xs="auto" sx={{ pl: 1 }}>
+                                        <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
+                                            <Typography
+                                                variant="h4"
+                                                sx={{ mt: -0.2 }}
+                                                color={theme.palette.success.main}
+                                                textAlign="center"
+                                            >
+                                                Activities
+                                            </Typography>
+                                            <Tooltip
+                                                sx={{ color: theme.palette.success.main, mt: -0.3 }}
+                                                title={
+                                                    <Typography
+                                                        sx={{
+                                                            color: theme.palette.success.main
+                                                        }}
+                                                    >
+                                                        Users may claim their rewards or close the stake by clicking below buttons.
+                                                    </Typography>
+                                                }
+                                            >
+                                                <InfoIcon />
+                                            </Tooltip>
+                                        </Grid>
+                                        <Grid container sx={{ display: 'flex', justifyContent: 'center', mt: 0.7 }}>
+                                            {stakedd.map((total, index) => (
+                                                <>
+                                                    <Button
+                                                        sx={{
+                                                            mb: 2.5,
+                                                            fontSize: 15,
+                                                            width: 30,
+                                                            height: 23,
+                                                            color: theme.palette.grey[900],
+                                                            backgroundColor: theme.palette.success.main
+                                                        }}
+                                                        key={index}
+                                                    >
+                                                        Close
+                                                    </Button>
+                                                </>
+                                            ))}
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
                             </Card>
                         </Grid>
                     </Grid>

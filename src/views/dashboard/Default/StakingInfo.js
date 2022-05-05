@@ -46,8 +46,8 @@ const StakingInfo = () => {
                                         <Typography variant="h4" textAlign="right" sx={{ color: theme.palette.grey[50], mt: 2.5, mr: 3 }}>
                                             STAX is designed to store value and provide high rewards in the form of more STAX. Each stake
                                             may receive different `Rewards rate` depending on the sSTX balance of a user at the moment of
-                                            opening the stake. The minimum APR is 9.125% and increases by 4.56% per 1 sSTX. However, the
-                                            maximum APR is 100,375%
+                                            opening the stake. The minimum APR is 9.125% and increases by 4.56% per 1 sSTX (limited to
+                                            100,375%)
                                         </Typography>
                                         <Grid container sx={{ display: 'flex', justifyContent: 'right' }}>
                                             <Button sx={{ mr: 3, mt: 2 }} size="large" variant="outlined" color="success">

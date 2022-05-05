@@ -7,7 +7,7 @@ const TelegramLogo = () => {
     useTheme();
     return (
         <>
-            <Grid justifyContent="center">
+            <Grid sx={{ justifyContent: 'center', display: 'flex' }}>
                 <img height={200} src={Telegram} alt="shares banner" />
             </Grid>
         </>

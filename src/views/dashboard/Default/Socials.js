@@ -25,7 +25,7 @@ const Socials = () => {
                 content={false}
             >
                 <CardContent>
-                    <Grid container justifyContent="center">
+                    <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Grid item lg={12} md={12} xs={12} sx={{ mt: 8 }}>
                             <Typography variant="h1" sx={{ color: theme.palette.grey[900] }} textAlign="center">
                                 Join STAX
@@ -37,7 +37,11 @@ const Socials = () => {
                                 ecosystem.
                             </Typography>
                         </Grid>
-                        <Grid container sx={{ mt: 7, justifyContent: 'center', backgroundColor: theme.palette.success.dark }}>
+                        <Grid
+                            container
+                            xs={12}
+                            sx={{ mt: 7, justifyContent: 'center', display: 'flex', backgroundColor: theme.palette.success.dark }}
+                        >
                             <Grid item lg={4} sx={{ mx: 2 }}>
                                 <Grid item sx={{ my: 6, borderLeft: 4, borderColor: theme.palette.grey[900] }}>
                                     <Typography variant="h2" sx={{ ml: 2, color: theme.palette.grey[900] }}>
@@ -50,7 +54,7 @@ const Socials = () => {
                                     </Typography>
                                 </Grid>
                             </Grid>
-                            <Grid item lg={2} sx={{ mx: 2 }}>
+                            <Grid item mt={5} lg={2} xs={12}>
                                 <TelegramLogo />
                             </Grid>
                         </Grid>

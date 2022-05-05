@@ -42,13 +42,13 @@ const SharesInfo = () => {
                                     Buy SHARES
                                 </Button>
                             </Grid>
-                            <Grid item lg={5} xs={12} md={5} sm={7} sx={{ mx: 2, mt: 10 }}>
+                            <Grid item lg={5} xs={12} md={5} sm={7} sx={{ mt: 10 }}>
                                 <BajajAreaChartCard />
                                 <Typography>sSTX Price Chart</Typography>
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid container spacing={10} mt={0} alignContent="center" justifyContent="center">
+                    <Grid container spacing={10} alignContent="center" justifyContent="center">
                         <Grid item lg={3} xs={12} sm={5} md={3}>
                             <Card
                                 sx={{

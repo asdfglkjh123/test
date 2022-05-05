@@ -35,10 +35,10 @@ const SharesInfo = () => {
                                     limited to 108%. No tokens are available at the launch but users mint them on each purchase. The maximum
                                     total supply is 100,000. The initial sSTX price is 20 BUSD and increases by 0.01 BUSD per token sale.
                                 </Typography>
-                                <Button sx={{ mx: 3, mt: 2 }} size="large" variant="outlined" color="success">
+                                <Button sx={{ ml: 3, mt: 2 }} size="large" variant="outlined" color="success">
                                     Learn more
                                 </Button>
-                                <Button sx={{ mt: 2 }} size="large" variant="contained" color="success">
+                                <Button sx={{ ml: 3, mt: 2 }} size="large" variant="contained" color="success">
                                     Buy SHARES
                                 </Button>
                             </Grid>

@@ -20,14 +20,13 @@ const Socials = () => {
                     width: '100%',
                     border: 0,
                     borderRadius: 8,
-                    mx: 1,
                     backgroundColor: theme.palette.success.dark
                 }}
                 content={false}
             >
                 <CardContent>
                     <Grid container justifyContent="center">
-                        <Grid item lg={12} md={12} sx={{ mt: 8 }}>
+                        <Grid item lg={12} md={12} xs={12} sx={{ mt: 8 }}>
                             <Typography variant="h1" sx={{ color: theme.palette.grey[900] }} textAlign="center">
                                 Join STAX
                             </Typography>

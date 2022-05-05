@@ -61,6 +61,7 @@ const PrettoSlider = styled(Slider)({
 
 const StakingCard = () => {
     const [value, setValue] = React.useState(1);
+    const valueString = value.toString();
     const [busdBalance, setBusdBalance] = React.useState(0);
     const [busdDividends, setBusdDividends] = React.useState(0);
     // const handleSliderChange = (event, newValue) => {
@@ -295,7 +296,7 @@ const StakingCard = () => {
                                                         color: theme.palette.grey[900]
                                                     }}
                                                 >
-                                                    BUY {value} sSTX
+                                                    BUY {valueString} sSTX
                                                 </Button>
                                             </Grid>
                                         </Grid>

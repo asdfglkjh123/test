@@ -215,7 +215,7 @@ const StakingCard = () => {
                                         <Grid item sx={{ backgroundColor: theme.palette.grey[900], my: 0 }} lg={10} xs={9.3}>
                                             <SharesSTAXChart />
                                         </Grid>
-                                        <Grid item sx={{ backgroundColor: theme.palette.grey[900], mt: 1.6 }} lg={4.7} xs={5.5}>
+                                        <Grid item sx={{ backgroundColor: theme.palette.grey[900], mt: 1.6 }} lg={4.7} xs={7}>
                                             <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
                                                 Total sSTX Sold:
                                             </Typography>

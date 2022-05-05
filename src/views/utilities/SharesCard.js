@@ -365,7 +365,7 @@ const StakingCard = () => {
                                     borderLeft: 1,
                                     borderRight: 1,
                                     borderBottom: 3,
-                                    height: '100%',
+                                    height: '90%',
                                     width: '100%',
                                     borderColor: theme.palette.success.light,
                                     borderRadius: 5,
@@ -374,29 +374,16 @@ const StakingCard = () => {
                                 }}
                             >
                                 <Grid container sx={{ my: 1.5, display: 'flex', justifyContent: 'center' }}>
-                                    <Grid
-                                        item
-                                        lg={2}
-                                        xs="auto"
-                                        sm="auto"
-                                        md="auto"
-                                        sx={{ display: 'flex', justifyContent: 'right', mt: 1.3 }}
-                                    >
+                                    <Grid item lg="auto" xs="auto" sm="auto" md="auto" sx={{ mt: 1.3 }}>
                                         <BusdLogo />
                                     </Grid>
                                     <Grid item lg="auto" md="auto" xs="auto" sm="auto">
-                                        <Typography
-                                            variant="h2"
-                                            xs="auto"
-                                            sx={{ mt: 3.3 }}
-                                            color={theme.palette.grey[50]}
-                                            textAlign="center"
-                                        >
+                                        <Typography variant="h2" xs="auto" sx={{ mt: 3.3 }} color={theme.palette.grey[50]}>
                                             My BUSD
                                         </Typography>
                                     </Grid>
                                     <Grid item lg={3.6} xs="auto" md="auto" sm="auto" sx={{ ml: 0.5, mt: 3.3 }}>
-                                        <Typography variant="h2" color={theme.palette.success.main} textAlign="left">
+                                        <Typography variant="h2" color={theme.palette.success.main}>
                                             Dividends
                                         </Typography>
                                     </Grid>
@@ -408,7 +395,7 @@ const StakingCard = () => {
                                             </Typography>
                                         </Grid>
                                     </Grid>
-                                    <Grid item lg={12} xs={8.3} sx={{ mt: 5, justifyContent: 'center', display: 'flex' }}>
+                                    <Grid item lg={12} xs={10} sx={{ mt: 5, justifyContent: 'center', display: 'flex' }}>
                                         <Typography variant="h5" color={theme.palette.grey[50]} textAlign="center">
                                             STAX Volume Dividends
                                         </Typography>
@@ -428,9 +415,9 @@ const StakingCard = () => {
                                             <InfoIcon />
                                         </Tooltip>
                                     </Grid>
-                                    <Grid item lg={5} xs={3.5} sx={{ mt: 1, mx: 1, justifyContent: 'right', display: 'flex' }}>
-                                        <Typography variant="h2" color={theme.palette.grey[50]} textAlign="left">
-                                            102.38
+                                    <Grid item lg={5} xs="auto" sx={{ mt: 1, mx: 1, justifyContent: 'right', display: 'flex' }}>
+                                        <Typography variant="h2" sx={{ mr: 1 }} color={theme.palette.grey[50]} textAlign="center">
+                                            0
                                         </Typography>
                                         <BusdSmallLogo />
                                     </Grid>
@@ -446,7 +433,7 @@ const StakingCard = () => {
                                             Claim
                                         </Button>
                                     </Grid>
-                                    <Grid item lg={12} xs={8.3} sx={{ mt: 2, justifyContent: 'center', display: 'flex' }}>
+                                    <Grid item lg={12} xs={10} sx={{ mt: 2, justifyContent: 'center', display: 'flex' }}>
                                         <Typography variant="h5" color={theme.palette.grey[50]} textAlign="center">
                                             STAX Pool Dividends
                                         </Typography>
@@ -466,8 +453,8 @@ const StakingCard = () => {
                                             <InfoIcon />
                                         </Tooltip>
                                     </Grid>
-                                    <Grid item lg={5} xs={3.5} sx={{ mt: 1, mx: 1, justifyContent: 'right', display: 'flex' }}>
-                                        <Typography variant="h2" color={theme.palette.grey[50]} textAlign="left">
+                                    <Grid item lg={5} xs="auto" sx={{ mt: 1, mx: 1, justifyContent: 'right', display: 'flex' }}>
+                                        <Typography variant="h2" sx={{ mr: 1 }} color={theme.palette.grey[50]} textAlign="center">
                                             {busdDividends}
                                         </Typography>
                                         <BusdSmallLogo />

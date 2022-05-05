@@ -156,7 +156,7 @@ const StakingCard = () => {
             <MainCard sx={{ width: 'full%', borderRadius: 0, backgroundColor: theme.palette.grey[900], border: 0 }} content={false}>
                 <CardContent>
                     <Grid container sx={{ justifyContent: 'center', display: 'flex' }}>
-                        <Grid container mt={5}>
+                        <Grid container lg={12} sx={{ justifyContent: 'center', display: 'flex' }} mt={5}>
                             <Typography textAlign="center" variant="h6" color={theme.palette.grey[50]}>
                                 Shares & BUSD Dividends
                             </Typography>
@@ -295,7 +295,7 @@ const StakingCard = () => {
                                 </Grid>
                             </Card>
                         </Grid>
-                        <Grid item lg={4} xs={12} md={12} sm={12}>
+                        <Grid item lg={4} xs={12} md={12} sm={12} mt={2}>
                             <Card
                                 sx={{
                                     borderLeft: 1,
@@ -359,7 +359,7 @@ const StakingCard = () => {
                                 </Grid>
                             </Card>
                         </Grid>
-                        <Grid item lg={4} xs={12} md={12} sm={12} sx={{ mx: 1, mt: 1.7 }}>
+                        <Grid item lg={4} xs={12} md={12} sm={12} sx={{ mt: 1.7 }}>
                             <Card
                                 sx={{
                                     borderLeft: 1,

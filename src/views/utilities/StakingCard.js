@@ -55,7 +55,7 @@ const StakingCard = () => {
     const [stakesList, setStakesList] = useState([[], []]);
     const [withdrawSum, setWithdrawSum] = useState(0);
     const withdrawSumF = withdrawSum * Number18Decimals;
-    const withdrawFormatted = withdrawSumF.toString();
+    const withdrawFormatted = new BigNumber(withdrawSumF);
     const [staked, stakedd] = stakesList;
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);

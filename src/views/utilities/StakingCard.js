@@ -39,6 +39,8 @@ const style = {
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
+    borderRadius: 7,
+    borderColor: 'black',
     p: 4
 };
 const StakingCard = () => {
@@ -132,6 +134,7 @@ const StakingCard = () => {
                                 color: theme.palette.grey[900],
                                 backgroundColor: theme.palette.success.main
                             }}
+                            key={index}
                         >
                             Withdraw
                         </Button>
@@ -168,6 +171,7 @@ const StakingCard = () => {
                                 color: theme.palette.grey[900],
                                 backgroundColor: theme.palette.success.main
                             }}
+                            key={index}
                         >
                             Claim
                         </Button>
@@ -176,23 +180,27 @@ const StakingCard = () => {
             ))}
             <Modal open={open3} onClose={handleClose3} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
                 <Box sx={style}>
-                    <DoneIcon color="success" fontSize="large" />
-                    <Typography variant="h5" component="h2">
+                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <DoneIcon color="success" fontSize="large" />
+                    </Grid>
+                    <Typography variant="h5" textAlign="center" sx={{ mt: 3 }} component="h2">
                         Transaction completed.
                     </Typography>
-                    <Button
-                        onClick={handleClose3}
-                        sx={{
-                            mt: 3,
-                            fontSize: 15,
-                            width: 80,
-                            height: 30,
-                            color: theme.palette.grey[900],
-                            backgroundColor: theme.palette.success.main
-                        }}
-                    >
-                        Close
-                    </Button>
+                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <Button
+                            onClick={handleClose3}
+                            sx={{
+                                mt: 3,
+                                fontSize: 15,
+                                width: 80,
+                                height: 30,
+                                color: theme.palette.grey[900],
+                                backgroundColor: theme.palette.success.main
+                            }}
+                        >
+                            Close
+                        </Button>
+                    </Grid>
                 </Box>
             </Modal>
             <Grid item container spacing={2} xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>

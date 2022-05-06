@@ -49,8 +49,8 @@ const UpgradePlanCard = () => {
     const [sharesBalance, setSharesBalance] = useState(0);
     const fetchStaxBalance = async () => {
         ggetStaxBalance()
-            .then((balance) => {
-                setBalance(balance);
+            .then((balancee) => {
+                setBalance(balancee);
             })
             .catch((err) => {
                 console.log(err);
@@ -59,11 +59,7 @@ const UpgradePlanCard = () => {
     const fetchSharesBalance = async () => {
         ggetOwnBalance()
             .then((balance) => {
-                if (balance > 20) {
-                    setSharesBalance(20);
-                } else {
-                    setSharesBalance(balance);
-                }
+                setSharesBalance(balance);
             })
             .catch((err) => {
                 console.log(err);
@@ -76,45 +72,48 @@ const UpgradePlanCard = () => {
         }
         load();
     }, []);
-    <CardStyle>
-        <CardContent>
-            <Grid container direction="column" spacing={2.5}>
-                <Grid item>
-                    <Typography variant="h4" color="grey.50">
-                        STAX - Store of Value
-                    </Typography>
+    return (
+        <CardStyle>
+            <CardContent>
+                <Grid container direction="column" spacing={2.5}>
+                    <Grid item>
+                        <Typography variant="h4" color="grey.50">
+                            STAX - Store of Value
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="h5" color="grey.50">
+                            STAX Balance: {balanceFormatted}
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="h5" color="grey.50">
+                            Shares Balance: {sharesBalance}
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Stack direction="row">
+                            <AnimateButton>
+                                <Button
+                                    sx={{
+                                        fontSize: 20,
+                                        width: 100,
+                                        color: theme.palette.grey[900],
+                                        backgroundColor: theme.palette.success.main,
+                                        borderRadius: 3
+                                    }}
+                                >
+                                    <Typography variant="h4" sx={{ color: theme.palette.grey[900] }}>
+                                        Stake
+                                    </Typography>
+                                </Button>
+                            </AnimateButton>
+                        </Stack>
+                    </Grid>
                 </Grid>
-                <Grid item>
-                    <Typography variant="h5" color="grey.50">
-                        STAX Balance: {balanceFormatted}
-                    </Typography>
-                </Grid>
-                <Grid item>
-                    <Typography variant="h5" color="grey.50">
-                        Shares Balance: {sharesBalance}
-                    </Typography>
-                </Grid>
-                <Grid item>
-                    <Stack direction="row">
-                        <AnimateButton>
-                            <Button
-                                sx={{
-                                    fontSize: 20,
-                                    width: 130,
-                                    color: theme.palette.grey[900],
-                                    backgroundColor: theme.palette.success.main
-                                }}
-                            >
-                                <Typography variant="h3" color="success.dark">
-                                    Stake
-                                </Typography>
-                            </Button>
-                        </AnimateButton>
-                    </Stack>
-                </Grid>
-            </Grid>
-        </CardContent>
-    </CardStyle>;
+            </CardContent>
+        </CardStyle>
+    );
 };
 
 export default UpgradePlanCard;

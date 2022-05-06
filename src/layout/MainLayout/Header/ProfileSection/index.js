@@ -32,7 +32,7 @@ const ProfileSection = () => {
     const theme = useTheme();
     const customization = useSelector((state) => state.customization);
     const [open, setOpen] = useState(false);
-    const { active, activate, account, deactivate } = useWeb3React();
+    const { active, account, deactivate } = useWeb3React();
     /**
      * anchorRef is used on different componets and specifying one type leads to other components throwing an error
      * */
@@ -59,7 +59,6 @@ const ProfileSection = () => {
 
     const prevOpen = useRef(open);
     useEffect(() => {
-        activate();
         if (prevOpen.current === true && open === false) {
             anchorRef.current.focus();
         }

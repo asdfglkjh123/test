@@ -5,11 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Avatar, Chip, ListItemButton, ListItemText, Typography, useMediaQuery } from '@mui/material';
+import { Avatar, Chip, Icon, ListItemButton, ListItemText, Typography, useMediaQuery } from '@mui/material';
 
 // project imports
 import { MENU_OPEN, SET_MENU } from 'store/actions';
 import config from 'config';
+import { IconHome } from '@tabler/icons';
 
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 
@@ -57,7 +58,7 @@ const NavItem = ({ item }) => {
                 alignItems: 'flex-start',
                 bgcolor: theme.palette.grey[900],
                 height: 50,
-                width: 70
+                width: '100%'
             }}
             selected={customization.isOpen.findIndex((id) => id === item.id) > -1}
             onClick={() => itemHandler(item.id)}

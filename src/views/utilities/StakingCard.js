@@ -23,7 +23,7 @@ import {
 import MainCard from 'ui-component/cards/MainCard';
 import StaxLogo from './staxlogo';
 import InfoIcon from '@mui/icons-material/Info';
-import { ggetStaxBalance, ggetOwnBalance, stakeStax, stakeHas } from 'components/wallet/sharesABI';
+import { ggetStaxBalance, withdrawAmount, ggetOwnBalance, stakeStax, stakeHas } from 'components/wallet/sharesABI';
 import BigNumber from 'bignumber.js';
 import Web3 from 'web3';
 import { Box } from '@mui/system';
@@ -39,6 +39,7 @@ const StakingCard = () => {
     const [stakeAmount, setStakeAmount] = useState(0);
     const [stakeName, setStakeName] = useState(0);
     const Number18Decimals = 1000000000000000000;
+    const withdrawsum = Web3.utils.toWei((100).toString(), 'ether');
     const stakeAmountFormatted = Web3.utils.toWei(stakeAmount.toString(), 'ether');
     const stakeAFormatted = Web3.utils.toBN(stakeAmountFormatted);
     const [sharesBalance, setSharesBalance] = useState(0);
@@ -393,16 +394,11 @@ const StakingCard = () => {
                     boxShadow: '0px 0px 20px rgb(0, 230, 117)',
                     justifyContent: 'center',
                     mb: 15,
-                    width: 347
+                    width: 330
                 }}
             >
                 <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-                    <TableContainer
-                        sx={{
-                            maxHeight: 500,
-                            minHeight: 100
-                        }}
-                    >
+                    <TableContainer sx={{ borderRadius: 5 }}>
                         <Table stickyHeader aria-label="sticky table">
                             <TableHead>
                                 <TableRow>
@@ -507,6 +503,9 @@ const StakingCard = () => {
                                                 </Grid>
                                                 <Grid item xs={6}>
                                                     <Button
+                                                        onClick={() => {
+                                                            withdrawAmount(0, index);
+                                                        }}
                                                         sx={{
                                                             fontSize: 15,
                                                             width: 30,

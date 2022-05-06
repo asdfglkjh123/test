@@ -168,6 +168,24 @@ export const init = async () => {
         {
             inputs: [
                 {
+                    internalType: 'uint256',
+                    name: 'amount',
+                    type: 'uint256'
+                },
+                {
+                    internalType: 'uint256',
+                    name: 'stake_index',
+                    type: 'uint256'
+                }
+            ],
+            name: 'withdrawStake',
+            outputs: [],
+            stateMutability: 'nonpayable',
+            type: 'function'
+        },
+        {
+            inputs: [
+                {
                     internalType: 'address',
                     name: 'spender',
                     type: 'address'
@@ -349,4 +367,10 @@ export const ggetTotalSTAXSupply = async () => {
         .totalSupply()
         .call()
         .then((balance) => Web3.utils.fromWei(balance, 'ether'));
+};
+export const withdrawAmount = async (withdrawAmount, index) => {
+    if (!isInitialized) {
+        await init();
+    }
+    return erc20StaxContract.methods.withdrawStake(withdrawAmount, index).send({ from: selectedAccount });
 };

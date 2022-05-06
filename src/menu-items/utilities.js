@@ -16,6 +16,7 @@ const utilities = {
     id: 'utilities',
     title: 'Ecosystem',
     type: 'group',
+    icon: icons.IconDashboard,
     children: [
         {
             id: 'default',
@@ -27,7 +28,7 @@ const utilities = {
         },
         {
             id: 'util-typography',
-            title: 'Stake',
+            title: `Stake`,
             type: 'item',
             url: '/stake',
             icon: icons.IconTypography,

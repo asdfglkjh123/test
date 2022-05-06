@@ -155,7 +155,7 @@ const StakingCard = () => {
                 <Box sx={style}>
                     <Typography variant="h5" textAlign="center" component="h2">
                         Important: Your stake will be in `pre-mature` phase for the first 45 days and will face heavy penatlies in case of
-                        any withdraws / claims (90% fee on the staked, 5% on the rewards and minus 1 SHARESBONUS).
+                        any withdraws / claims (90% fee on the staked, 5% on the rewards and minus 1 SHARESBONUS per Transaction).
                     </Typography>
                     <Button
                         onClick={() =>

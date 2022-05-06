@@ -54,8 +54,8 @@ const StakingCard = () => {
     const [sharesBalance, setSharesBalance] = useState(0);
     const [stakesList, setStakesList] = useState([[], []]);
     const [withdrawSum, setWithdrawSum] = useState(0);
-    const withdrawSumF = withdrawSum * Number18Decimals;
-    const withdrawFormatted = new BigNumber(withdrawSumF);
+    const withdrawSumFormatted = Web3.utils.toWei(withdrawSum.toString(), 'ether');
+    const withdrawAFormatted = Web3.utils.toBN(withdrawSumFormatted);
     const [staked, stakedd] = stakesList;
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
@@ -114,7 +114,7 @@ const StakingCard = () => {
                             Important: 90% penalty is applied to the `withdraw amount` to all pre-mature stakes.
                         </Typography>
                         <Button
-                            onClick={() => withdrawAmount(withdrawFormatted, index)}
+                            onClick={() => withdrawAmount(withdrawAFormatted, index)}
                             sx={{
                                 mt: 3,
                                 fontSize: 15,

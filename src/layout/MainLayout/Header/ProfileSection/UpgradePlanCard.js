@@ -1,9 +1,11 @@
 // material-ui
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { Button, Card, CardContent, Grid, Stack, Typography } from '@mui/material';
-
+import { useState, useEffect } from 'react';
+import BigNumber from 'bignumber.js';
 // project imports
 import AnimateButton from 'ui-component/extended/AnimateButton';
+import { ggetOwnBalance, ggetStaxBalance } from 'components/wallet/sharesABI';
 
 // styles
 const CardStyle = styled(Card)(({ theme }) => ({
@@ -38,7 +40,42 @@ const CardStyle = styled(Card)(({ theme }) => ({
 
 // ==============================|| PROFILE MENU - UPGRADE PLAN CARD ||============================== //
 
-const UpgradePlanCard = () => (
+const UpgradePlanCard = () => {
+    const theme = useTheme();
+    const [balance, setBalance] = useState(0);
+    const balanceToNumber = new BigNumber(balance);
+    const balanceFormat = balanceToNumber.decimalPlaces(2);
+    const balanceFormatted = balanceFormat.toLocaleString(undefined);
+    const [sharesBalance, setSharesBalance] = useState(0);
+    const fetchStaxBalance = async () => {
+        ggetStaxBalance()
+            .then((balance) => {
+                setBalance(balance);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+    const fetchSharesBalance = async () => {
+        ggetOwnBalance()
+            .then((balance) => {
+                if (balance > 20) {
+                    setSharesBalance(20);
+                } else {
+                    setSharesBalance(balance);
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+    useEffect(() => {
+        async function load() {
+            fetchStaxBalance();
+            fetchSharesBalance();
+        }
+        load();
+    }, []);
     <CardStyle>
         <CardContent>
             <Grid container direction="column" spacing={2.5}>
@@ -49,14 +86,25 @@ const UpgradePlanCard = () => (
                 </Grid>
                 <Grid item>
                     <Typography variant="h5" color="grey.50">
-                        Stake STAX in order to generate more interest <br />
-                        in the form of more STAX.
+                        STAX Balance: {balanceFormatted}
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Typography variant="h5" color="grey.50">
+                        Shares Balance: {sharesBalance}
                     </Typography>
                 </Grid>
                 <Grid item>
                     <Stack direction="row">
                         <AnimateButton>
-                            <Button variant="contained" color="grey" sx={{ boxShadow: '10' }}>
+                            <Button
+                                sx={{
+                                    fontSize: 20,
+                                    width: 130,
+                                    color: theme.palette.grey[900],
+                                    backgroundColor: theme.palette.success.main
+                                }}
+                            >
                                 <Typography variant="h3" color="success.dark">
                                     Stake
                                 </Typography>
@@ -66,7 +114,7 @@ const UpgradePlanCard = () => (
                 </Grid>
             </Grid>
         </CardContent>
-    </CardStyle>
-);
+    </CardStyle>;
+};
 
 export default UpgradePlanCard;

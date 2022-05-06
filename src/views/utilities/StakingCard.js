@@ -23,6 +23,7 @@ import {
 } from '@mui/material';
 // project imports
 import StaxLogo from './staxlogo';
+import DoneIcon from '@mui/icons-material/Done';
 import InfoIcon from '@mui/icons-material/Info';
 import { ggetStaxBalance, withdrawAmount, ggetOwnBalance, stakeStax, stakeHas } from 'components/wallet/sharesABI';
 import BigNumber from 'bignumber.js';
@@ -59,10 +60,13 @@ const StakingCard = () => {
     const [staked, stakedd] = stakesList;
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
+    const [open3, setOpen3] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const handleOpen2 = () => setOpen2(true);
-    const handleClose2 = () => setOpen2(false);
+    const handleOpen2 = () => setOpen3(true);
+    const handleClose2 = () => setOpen3(false);
+    const handleOpen3 = () => setOpen3(true);
+    const handleClose3 = () => setOpen3(false);
     const myAPY = 9.125 + sharesBalance * 4.5625;
     const fetchStaxBalance = async () => {
         ggetStaxBalance()
@@ -110,16 +114,21 @@ const StakingCard = () => {
             {stakedd.map((total, index) => (
                 <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
                     <Box sx={style}>
-                        <Typography variant="h5" component="h2">
+                        <Typography variant="h5" textAlign="center" component="h2">
                             Important: 90% penalty is applied to the `withdraw amount` to all pre-mature stakes.
                         </Typography>
                         <Button
-                            onClick={() => withdrawAmount(withdrawAFormatted, index)}
+                            onClick={() =>
+                                withdrawAmount(withdrawAFormatted, index).then(() => {
+                                    setOpen3(true);
+                                    fetchStakesBalance();
+                                })
+                            }
                             sx={{
-                                mt: 3,
+                                mt: 2.5,
                                 fontSize: 15,
                                 width: 80,
-                                height: 23,
+                                height: 30,
                                 color: theme.palette.grey[900],
                                 backgroundColor: theme.palette.success.main
                             }}
@@ -140,17 +149,22 @@ const StakingCard = () => {
             {stakedd.map((total, index) => (
                 <Modal open={open2} onClose={handleClose2} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
                     <Box sx={style}>
-                        <Typography variant="h5" component="h2">
+                        <Typography variant="h5" textAlign="center" component="h2">
                             Important: Each claim reduces the SHARESBONUS by 1. Therefore, the stake APR will be reduced by ~4,56% on each
                             claim/withdraw.
                         </Typography>
                         <Button
-                            onClick={() => withdrawAmount(0, index)}
+                            onClick={() =>
+                                withdrawAmount(0, index).then(() => {
+                                    setOpen3(true);
+                                    fetchStakesBalance();
+                                })
+                            }
                             sx={{
                                 mt: 3,
                                 fontSize: 15,
                                 width: 80,
-                                height: 23,
+                                height: 30,
                                 color: theme.palette.grey[900],
                                 backgroundColor: theme.palette.success.main
                             }}
@@ -160,6 +174,27 @@ const StakingCard = () => {
                     </Box>
                 </Modal>
             ))}
+            <Modal open={open3} onClose={handleClose3} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+                <Box sx={style}>
+                    <DoneIcon color="success" fontSize="large" />
+                    <Typography variant="h5" component="h2">
+                        Transaction completed.
+                    </Typography>
+                    <Button
+                        onClick={handleClose3}
+                        sx={{
+                            mt: 3,
+                            fontSize: 15,
+                            width: 80,
+                            height: 30,
+                            color: theme.palette.grey[900],
+                            backgroundColor: theme.palette.success.main
+                        }}
+                    >
+                        Close
+                    </Button>
+                </Box>
+            </Modal>
             <Grid item container spacing={2} xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Grid item lg={12} xs={12} md={12} sm={12}>
                     <Typography textAlign="center" variant="h1" color={theme.palette.grey[50]}>
@@ -539,14 +574,14 @@ const StakingCard = () => {
                                             </Typography>
                                         </TableCell>
                                         <TableCell>
-                                            <Typography key={index} textAllign="center">
+                                            <Typography key={index} textAlign="center">
                                                 {(total.amount / Number18Decimals).toLocaleString(undefined, {
                                                     maximumFractionDigits: 2
                                                 })}
                                             </Typography>
                                         </TableCell>
                                         <TableCell>
-                                            <Typography key={index} textAllign="center">
+                                            <Typography key={index} textAlign="center">
                                                 {(total.claimable / Number18Decimals).toLocaleString(undefined, {
                                                     maximumFractionDigits: 2
                                                 })}

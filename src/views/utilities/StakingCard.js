@@ -71,7 +71,7 @@ const StakingCard = () => {
     const handleClose3 = () => setOpen3(false);
     const handleOpen3 = () => setOpen3(true);
     const handleClose4 = () => setOpen4(false);
-    const handleOpen4 = () => setOpen4(false);
+    const handleOpen4 = () => setOpen4(true);
     const [currentIndex, setCurrentIndex] = useState(0);
     const myAPY = 9.125 + sharesBalance * 4.5625;
     const fetchStaxBalance = async () => {
@@ -142,6 +142,7 @@ const StakingCard = () => {
                         Withdraw
                     </Button>
                     <TextField
+                        required
                         sx={{ borderBottom: 2, mt: 2.1, ml: 5, borderColor: theme.palette.success.main }}
                         onChange={(e) => setWithdrawSum(e.target.value)}
                         inputProps={{ style: { width: 110, textAlign: 'center', color: 'white' } }}
@@ -157,34 +158,28 @@ const StakingCard = () => {
                         Important: Your stake will be in `pre-mature` phase for the first 45 days and will face heavy penatlies in case of
                         any withdraws / claims (90% fee on the staked, 5% on the rewards and minus 1 SHARESBONUS per Transaction).
                     </Typography>
-                    <Button
-                        onClick={() =>
-                            stakeStax(stakeAFormatted, stakeName).then(() => {
-                                setOpen4(false);
-                                setOpen3(true);
-                                fetchStakesBalance();
-                                fetchStaxBalance();
-                            })
-                        }
-                        sx={{
-                            mt: 2.5,
-                            fontSize: 15,
-                            width: 80,
-                            height: 30,
-                            color: theme.palette.grey[900],
-                            backgroundColor: theme.palette.success.main
-                        }}
-                    >
-                        Stake
-                    </Button>
-                    <TextField
-                        sx={{ borderBottom: 2, mt: 2.1, ml: 5, borderColor: theme.palette.success.main }}
-                        onChange={(e) => setWithdrawSum(e.target.value)}
-                        inputProps={{ style: { width: 110, textAlign: 'center', color: 'white' } }}
-                        id="standard-basic"
-                        variant="standard"
-                        color="success"
-                    />
+                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <Button
+                            onClick={() =>
+                                stakeStax(stakeAFormatted, stakeName).then(() => {
+                                    handleClose4();
+                                    handleOpen3();
+                                    fetchStakesBalance();
+                                    fetchStaxBalance();
+                                })
+                            }
+                            sx={{
+                                mt: 2.5,
+                                fontSize: 15,
+                                width: 50,
+                                height: 30,
+                                color: theme.palette.grey[900],
+                                backgroundColor: theme.palette.success.main
+                            }}
+                        >
+                            Stake
+                        </Button>
+                    </Grid>
                 </Box>
             </Modal>
             <Modal open={open2} onClose={handleClose2} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
@@ -193,25 +188,27 @@ const StakingCard = () => {
                         Important: Each claim reduces the SHARESBONUS by 1. Therefore, the stake APR will be reduced by ~4,56% on each
                         claim/withdraw.
                     </Typography>
-                    <Button
-                        onClick={() =>
-                            withdrawAmount(0, currentIndex).then(() => {
-                                setOpen2(false);
-                                setOpen3(true);
-                                fetchStakesBalance();
-                            })
-                        }
-                        sx={{
-                            mt: 3,
-                            fontSize: 15,
-                            width: 80,
-                            height: 30,
-                            color: theme.palette.grey[900],
-                            backgroundColor: theme.palette.success.main
-                        }}
-                    >
-                        Claim
-                    </Button>
+                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <Button
+                            onClick={() =>
+                                withdrawAmount(0, currentIndex).then(() => {
+                                    setOpen2(false);
+                                    setOpen3(true);
+                                    fetchStakesBalance();
+                                })
+                            }
+                            sx={{
+                                mt: 3,
+                                fontSize: 15,
+                                width: 80,
+                                height: 30,
+                                color: theme.palette.grey[900],
+                                backgroundColor: theme.palette.success.main
+                            }}
+                        >
+                            Claim
+                        </Button>
+                    </Grid>
                 </Box>
             </Modal>
             <Modal open={open3} onClose={handleClose3} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
@@ -304,6 +301,7 @@ const StakingCard = () => {
                                 </Grid>
                                 <Grid item sx={{ backgroundColor: theme.palette.grey[900] }} lg="auto">
                                     <TextField
+                                        required
                                         value={stakeName}
                                         sx={{ borderBottom: 2, borderColor: theme.palette.success.main }}
                                         onChange={(e) => setStakeName(e.target.value)}
@@ -331,6 +329,7 @@ const StakingCard = () => {
                                 </Grid>
                                 <Grid item sx={{ backgroundColor: theme.palette.grey[900] }} lg="auto">
                                     <TextField
+                                        required
                                         value={stakeAmount}
                                         sx={{ borderBottom: 2, borderColor: theme.palette.success.main }}
                                         onChange={(e) => setStakeAmount(e.target.value)}
@@ -446,12 +445,15 @@ const StakingCard = () => {
                                     lg="auto"
                                 >
                                     <Button
-                                        onClick={() => handleOpen4()}
+                                        onClick={() => {
+                                            handleOpen4();
+                                        }}
                                         sx={{
-                                            fontSize: 20,
-                                            width: 130,
-                                            color: theme.palette.grey[900],
-                                            backgroundColor: theme.palette.success.main
+                                            fontSize: 18,
+                                            minHeight: 45,
+                                            minWidth: 140,
+                                            backgroundColor: theme.palette.success.main,
+                                            color: theme.palette.grey[900]
                                         }}
                                     >
                                         Stake
@@ -536,13 +538,11 @@ const StakingCard = () => {
                     borderRadius: 5,
                     boxShadow: '0px 0px 20px rgb(0, 230, 117)',
                     justifyContent: 'center',
-                    mb: 15,
-                    width: 330,
-                    height: 330
+                    mb: 15
                 }}
             >
                 <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-                    <TableContainer sx={{ borderRadius: 5 }}>
+                    <TableContainer sx={{ borderRadius: 5, maxHeight: 350, width: 350 }}>
                         <Table stickyHeader aria-label="sticky table">
                             <TableHead>
                                 <TableRow>
@@ -609,7 +609,7 @@ const StakingCard = () => {
                                         </TableCell>
                                         <TableCell>
                                             <Typography key={index} textAlign="center">
-                                                {total.sharesbonus}
+                                                {total.sharesbonus} / {total.sharesbonus * 4.56 + 9.12}%
                                             </Typography>
                                         </TableCell>
                                         <TableCell>

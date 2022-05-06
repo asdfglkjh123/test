@@ -391,7 +391,7 @@ const StakingCard = () => {
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid item cotainer sx={{ display: 'flex', justifyContent: 'center', width: 350, minHeight: 320, maxHeight: 500 }}>
+            <Grid cotainer sx={{ display: 'flex', justifyContent: 'center', width: 350, minHeight: 320, maxHeight: 500 }}>
                 <TableContainer component={Paper}>
                     <Table aria-label="simple table">
                         <TableHead>
@@ -480,18 +480,36 @@ const StakingCard = () => {
                                         </Typography>
                                     </TableCell>
                                     <TableCell key={index} allign="center">
-                                        <Button
-                                            sx={{
-                                                fontSize: 15,
-                                                width: 30,
-                                                height: 23,
-                                                color: theme.palette.grey[900],
-                                                backgroundColor: theme.palette.success.main
-                                            }}
-                                            key={index}
-                                        >
-                                            Close
-                                        </Button>
+                                        <Grid container xs={12} sx={{ width: 140 }}>
+                                            <Grid item xs={6}>
+                                                <Button
+                                                    sx={{
+                                                        fontSize: 15,
+                                                        width: 30,
+                                                        height: 23,
+                                                        color: theme.palette.grey[900],
+                                                        backgroundColor: theme.palette.success.main
+                                                    }}
+                                                    key={index}
+                                                >
+                                                    Close
+                                                </Button>
+                                            </Grid>
+                                            <Grid item xs={6}>
+                                                <Button
+                                                    sx={{
+                                                        fontSize: 15,
+                                                        width: 30,
+                                                        height: 23,
+                                                        color: theme.palette.grey[900],
+                                                        backgroundColor: theme.palette.success.main
+                                                    }}
+                                                    key={index}
+                                                >
+                                                    Claim
+                                                </Button>
+                                            </Grid>
+                                        </Grid>
                                     </TableCell>
                                 </TableRow>
                             ))}

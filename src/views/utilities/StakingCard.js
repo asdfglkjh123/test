@@ -63,13 +63,16 @@ const StakingCard = () => {
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
     const [open3, setOpen3] = React.useState(false);
-    const handleOpen = () => setOpen(true);
+    const [open4, setOpen4] = React.useState(false);
     const handleClose = () => setOpen(false);
-    const handleOpen2 = () => setOpen2(true);
+    const handleOpen = () => setOpen(true);
     const handleClose2 = () => setOpen3(false);
-    const handleOpen3 = () => setOpen3(true);
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const handleOpen2 = () => setOpen2(true);
     const handleClose3 = () => setOpen3(false);
+    const handleOpen3 = () => setOpen3(true);
+    const handleClose4 = () => setOpen4(false);
+    const handleOpen4 = () => setOpen4(false);
+    const [currentIndex, setCurrentIndex] = useState(0);
     const myAPY = 9.125 + sharesBalance * 4.5625;
     const fetchStaxBalance = async () => {
         ggetStaxBalance()
@@ -137,6 +140,42 @@ const StakingCard = () => {
                         }}
                     >
                         Withdraw
+                    </Button>
+                    <TextField
+                        sx={{ borderBottom: 2, mt: 2.1, ml: 5, borderColor: theme.palette.success.main }}
+                        onChange={(e) => setWithdrawSum(e.target.value)}
+                        inputProps={{ style: { width: 110, textAlign: 'center', color: 'white' } }}
+                        id="standard-basic"
+                        variant="standard"
+                        color="success"
+                    />
+                </Box>
+            </Modal>
+            <Modal open={open4} onClose={handleClose4} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+                <Box sx={style}>
+                    <Typography variant="h5" textAlign="center" component="h2">
+                        Important: Your stake will be in `pre-mature` phase for the first 45 days and will face heavy penatlies in case of
+                        any withdraws / claims (90% fee on the staked, 5% on the rewards and minus 1 SHARESBONUS).
+                    </Typography>
+                    <Button
+                        onClick={() =>
+                            stakeStax(stakeAFormatted, stakeName).then(() => {
+                                setOpen4(false);
+                                setOpen3(true);
+                                fetchStakesBalance();
+                                fetchStaxBalance();
+                            })
+                        }
+                        sx={{
+                            mt: 2.5,
+                            fontSize: 15,
+                            width: 80,
+                            height: 30,
+                            color: theme.palette.grey[900],
+                            backgroundColor: theme.palette.success.main
+                        }}
+                    >
+                        Stake
                     </Button>
                     <TextField
                         sx={{ borderBottom: 2, mt: 2.1, ml: 5, borderColor: theme.palette.success.main }}
@@ -407,13 +446,7 @@ const StakingCard = () => {
                                     lg="auto"
                                 >
                                     <Button
-                                        onClick={() => {
-                                            stakeStax(stakeAFormatted, stakeName).then(() => {
-                                                fetchStaxBalance();
-                                                fetchSharesBalance();
-                                                fetchStakesBalance();
-                                            });
-                                        }}
+                                        onClick={() => handleOpen4()}
                                         sx={{
                                             fontSize: 20,
                                             width: 130,

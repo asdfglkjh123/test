@@ -383,139 +383,150 @@ const StakingCard = () => {
                         </Grid>
                     </Card>
                 </Grid>
-                <Grid item lg={10} xs="auto" sx={{ mt: 5 }}>
-                    <Grid item xs="auto">
-                        <Typography variant="h2" sx={{ ml: 1 }} color={theme.palette.grey[50]} textAlign="center">
-                            Active Stakes
-                        </Typography>
-                    </Grid>
-                </Grid>
             </Grid>
-            <Grid cotainer sx={{ display: 'flex', justifyContent: 'center', width: 350, minHeight: 320, maxHeight: 500 }}>
-                <TableContainer component={Paper}>
-                    <Table aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell allign="center">
-                                    <Typography color={theme.palette.success.main} textAlign="center">
-                                        NAME
-                                    </Typography>
-                                </TableCell>
-                                <TableCell allign="center">
-                                    <Typography color={theme.palette.success.main} textAlign="center">
-                                        SHARESBONUS
-                                    </Typography>
-                                </TableCell>
-                                <TableCell allign="center">
-                                    <Typography color={theme.palette.success.main} textAlign="center">
-                                        STAKED
-                                    </Typography>
-                                </TableCell>
-                                <TableCell allign="center">
-                                    <Typography color={theme.palette.success.main} textAlign="center">
-                                        REWARDS
-                                    </Typography>
-                                </TableCell>
-                                <TableCell allign="center">
-                                    <Grid container>
-                                        <Grid item xs={6} sx={{ mt: 0.9 }}>
-                                            <Typography color={theme.palette.success.main} textAlign="center">
-                                                TUM
-                                            </Typography>
-                                        </Grid>
-                                        <Grid item xs={3}>
-                                            <Tooltip
-                                                sx={{ mt: 0.6, color: theme.palette.success.main }}
-                                                title={
-                                                    <Typography
-                                                        sx={{
-                                                            color: theme.palette.success.main
-                                                        }}
-                                                    >
-                                                        TUM stands for Time Until Mature. Each stake will face heavy penalty (90% on the
-                                                        staked balane) if the stake is ended before the 45th day.
-                                                    </Typography>
-                                                }
-                                            >
-                                                <InfoIcon />
-                                            </Tooltip>
-                                        </Grid>
-                                    </Grid>
-                                </TableCell>
-                                <TableCell allign="center">
-                                    <Typography color={theme.palette.success.main} textAlign="center">
-                                        ACTIVITIES
-                                    </Typography>
-                                </TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {stakedd.map((total, index) => (
+            <Grid
+                cotainer
+                sx={{
+                    display: 'flex',
+                    borderColor: theme.palette.success.light,
+                    borderRadius: 5,
+                    boxShadow: '0px 0px 20px rgb(0, 230, 117)',
+                    justifyContent: 'center',
+                    mb: 15,
+                    width: 347
+                }}
+            >
+                <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+                    <TableContainer
+                        sx={{
+                            maxHeight: 500,
+                            minHeight: 100
+                        }}
+                    >
+                        <Table stickyHeader aria-label="sticky table">
+                            <TableHead>
                                 <TableRow>
-                                    <TableCell key={index} allign="right">
-                                        <Typography textAlign="center">{total.stakename}</Typography>
-                                    </TableCell>
-                                    <TableCell key={index} allign="right">
-                                        <Typography textAlign="center">{total.sharesbonus}</Typography>
-                                    </TableCell>
-                                    <TableCell key={index} allign="right">
-                                        <Typography textAllign="center">
-                                            {(total.amount / Number18Decimals).toLocaleString(undefined, {
-                                                maximumFractionDigits: 2
-                                            })}
+                                    <TableCell allign="center">
+                                        <Typography color={theme.palette.success.main} textAlign="center">
+                                            NAME
                                         </Typography>
                                     </TableCell>
-                                    <TableCell key={index} allign="center">
-                                        <Typography textAllign="center">
-                                            {(total.claimable / Number18Decimals).toLocaleString(undefined, {
-                                                maximumFractionDigits: 2
-                                            })}
+                                    <TableCell allign="center">
+                                        <Typography color={theme.palette.success.main} textAlign="center">
+                                            SHARESBONUS
                                         </Typography>
                                     </TableCell>
-                                    <TableCell key={index} width={100} allign="center">
-                                        <Typography textAlign="center">
-                                            <SimpleDateTime dateSeparator="/" format="MYD" showTime="0">
-                                                {total.since}
-                                            </SimpleDateTime>
+                                    <TableCell allign="center">
+                                        <Typography color={theme.palette.success.main} textAlign="center">
+                                            STAKED
                                         </Typography>
                                     </TableCell>
-                                    <TableCell key={index} allign="center">
-                                        <Grid container xs={12} sx={{ width: 140 }}>
-                                            <Grid item xs={6}>
-                                                <Button
-                                                    sx={{
-                                                        fontSize: 15,
-                                                        width: 30,
-                                                        height: 23,
-                                                        color: theme.palette.grey[900],
-                                                        backgroundColor: theme.palette.success.main
-                                                    }}
-                                                    key={index}
-                                                >
-                                                    Close
-                                                </Button>
+                                    <TableCell allign="center">
+                                        <Typography color={theme.palette.success.main} textAlign="center">
+                                            REWARDS
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell allign="center">
+                                        <Grid container>
+                                            <Grid item xs={6} sx={{ mt: 0.9 }}>
+                                                <Typography color={theme.palette.success.main} textAlign="center">
+                                                    TUM
+                                                </Typography>
                                             </Grid>
-                                            <Grid item xs={6}>
-                                                <Button
-                                                    sx={{
-                                                        fontSize: 15,
-                                                        width: 30,
-                                                        height: 23,
-                                                        color: theme.palette.grey[900],
-                                                        backgroundColor: theme.palette.success.main
-                                                    }}
-                                                    key={index}
+                                            <Grid item xs={3}>
+                                                <Tooltip
+                                                    sx={{ mt: 0.6, color: theme.palette.success.main }}
+                                                    title={
+                                                        <Typography
+                                                            sx={{
+                                                                color: theme.palette.success.main
+                                                            }}
+                                                        >
+                                                            TUM stands for Time Until Mature. Each stake will face heavy penalty (90% on the
+                                                            staked balane) if the stake is ended before the 45th day.
+                                                        </Typography>
+                                                    }
                                                 >
-                                                    Claim
-                                                </Button>
+                                                    <InfoIcon />
+                                                </Tooltip>
                                             </Grid>
                                         </Grid>
+                                    </TableCell>
+                                    <TableCell allign="center">
+                                        <Typography color={theme.palette.success.main} textAlign="center">
+                                            ACTIVITIES
+                                        </Typography>
                                     </TableCell>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                            </TableHead>
+                            <TableBody>
+                                {stakedd.map((total, index) => (
+                                    <TableRow>
+                                        <TableCell key={index} allign="right">
+                                            <Typography textAlign="center">{total.stakename}</Typography>
+                                        </TableCell>
+                                        <TableCell key={index} allign="right">
+                                            <Typography textAlign="center">{total.sharesbonus}</Typography>
+                                        </TableCell>
+                                        <TableCell key={index} allign="right">
+                                            <Typography textAllign="center">
+                                                {(total.amount / Number18Decimals).toLocaleString(undefined, {
+                                                    maximumFractionDigits: 2
+                                                })}
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell key={index} allign="center">
+                                            <Typography textAllign="center">
+                                                {(total.claimable / Number18Decimals).toLocaleString(undefined, {
+                                                    maximumFractionDigits: 2
+                                                })}
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell key={index} width={100} allign="center">
+                                            <Typography textAlign="center">
+                                                <SimpleDateTime dateSeparator="/" format="MYD" showTime="0">
+                                                    {total.since}
+                                                </SimpleDateTime>
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell key={index} allign="center">
+                                            <Grid container xs={12} sx={{ width: 140 }}>
+                                                <Grid item xs={6}>
+                                                    <Button
+                                                        sx={{
+                                                            fontSize: 15,
+                                                            width: 30,
+                                                            height: 23,
+                                                            color: theme.palette.grey[900],
+                                                            backgroundColor: theme.palette.success.main
+                                                        }}
+                                                        key={index}
+                                                    >
+                                                        Close
+                                                    </Button>
+                                                </Grid>
+                                                <Grid item xs={6}>
+                                                    <Button
+                                                        sx={{
+                                                            fontSize: 15,
+                                                            width: 30,
+                                                            height: 23,
+                                                            color: theme.palette.grey[900],
+                                                            backgroundColor: theme.palette.success.main
+                                                        }}
+                                                        key={index}
+                                                    >
+                                                        Claim
+                                                    </Button>
+                                                </Grid>
+                                            </Grid>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Paper>
             </Grid>
         </>
     );

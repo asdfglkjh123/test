@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 // material-ui
+import SimpleDateTime from 'react-simple-timestamp-to-date';
 import { useTheme } from '@mui/material/styles';
 import {
     Button,
@@ -97,7 +98,6 @@ const StakingCard = () => {
                 <Grid item container lg={4} xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 6 }}>
                     <Card
                         sx={{
-                            width: 320,
                             maxWidth: 1900,
                             borderLeft: 1,
                             borderRight: 1,
@@ -320,7 +320,6 @@ const StakingCard = () => {
                 <Grid item container lg={4} xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 6 }}>
                     <Card
                         sx={{
-                            width: 320,
                             borderLeft: 1,
                             borderRight: 1,
                             borderBottom: 3,
@@ -392,28 +391,61 @@ const StakingCard = () => {
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid item cotainer sx={{ display: 'flex', justifyContent: 'center', width: 330, minHeight: 320, maxHeight: 500 }}>
+            <Grid item cotainer sx={{ display: 'flex', justifyContent: 'center', width: 350, minHeight: 320, maxHeight: 500 }}>
                 <TableContainer component={Paper}>
                     <Table aria-label="simple table">
                         <TableHead>
                             <TableRow>
                                 <TableCell allign="center">
-                                    <Typography textAlign="center">NAME</Typography>
+                                    <Typography color={theme.palette.success.main} textAlign="center">
+                                        NAME
+                                    </Typography>
                                 </TableCell>
                                 <TableCell allign="center">
-                                    <Typography textAlign="center">SHARESBONUS</Typography>
+                                    <Typography color={theme.palette.success.main} textAlign="center">
+                                        SHARESBONUS
+                                    </Typography>
                                 </TableCell>
                                 <TableCell allign="center">
-                                    <Typography textAlign="center">STAKED</Typography>
+                                    <Typography color={theme.palette.success.main} textAlign="center">
+                                        STAKED
+                                    </Typography>
                                 </TableCell>
                                 <TableCell allign="center">
-                                    <Typography textAlign="center">REWARDS</Typography>
+                                    <Typography color={theme.palette.success.main} textAlign="center">
+                                        REWARDS
+                                    </Typography>
                                 </TableCell>
                                 <TableCell allign="center">
-                                    <Typography textAlign="center">TUM</Typography>
+                                    <Grid container>
+                                        <Grid item xs={6} sx={{ mt: 0.9 }}>
+                                            <Typography color={theme.palette.success.main} textAlign="center">
+                                                TUM
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item xs={3}>
+                                            <Tooltip
+                                                sx={{ mt: 0.6, color: theme.palette.success.main }}
+                                                title={
+                                                    <Typography
+                                                        sx={{
+                                                            color: theme.palette.success.main
+                                                        }}
+                                                    >
+                                                        TUM stands for Time Until Mature. Each stake will face heavy penalty (90% on the
+                                                        staked balane) if the stake is ended before the 45th day.
+                                                    </Typography>
+                                                }
+                                            >
+                                                <InfoIcon />
+                                            </Tooltip>
+                                        </Grid>
+                                    </Grid>
                                 </TableCell>
                                 <TableCell allign="center">
-                                    <Typography textAlign="center">ACTIVITIES</Typography>
+                                    <Typography color={theme.palette.success.main} textAlign="center">
+                                        ACTIVITIES
+                                    </Typography>
                                 </TableCell>
                             </TableRow>
                         </TableHead>
@@ -440,8 +472,12 @@ const StakingCard = () => {
                                             })}
                                         </Typography>
                                     </TableCell>
-                                    <TableCell key={index} allign="center">
-                                        <Typography textAlign="center">{total.since}</Typography>
+                                    <TableCell key={index} width={100} allign="center">
+                                        <Typography textAlign="center">
+                                            <SimpleDateTime dateSeparator="/" format="MYD" showTime="0">
+                                                {total.since}
+                                            </SimpleDateTime>
+                                        </Typography>
                                     </TableCell>
                                     <TableCell key={index} allign="center">
                                         <Button

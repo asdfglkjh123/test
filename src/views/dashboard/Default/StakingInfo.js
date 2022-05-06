@@ -1,7 +1,6 @@
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import { Card, CardContent, Grid, Button, Typography } from '@mui/material';
-import StakingLogo from './StakingLogo';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
@@ -59,9 +58,6 @@ const StakingInfo = () => {
                                         </Grid>
                                     </Grid>
                                 </Grid>
-                            </Grid>
-                            <Grid item lg={3} xs="auto" md={4} sm={4} sx={{ mt: 15 }}>
-                                <StakingLogo />
                             </Grid>
                         </Grid>
                     </Grid>

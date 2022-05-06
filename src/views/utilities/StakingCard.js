@@ -41,7 +41,7 @@ const style = {
     boxShadow: 24,
     borderRadius: 7,
     borderColor: 'black',
-    p: 4
+    p: 3
 };
 const StakingCard = () => {
     const theme = useTheme();
@@ -68,6 +68,7 @@ const StakingCard = () => {
     const handleOpen2 = () => setOpen3(true);
     const handleClose2 = () => setOpen3(false);
     const handleOpen3 = () => setOpen3(true);
+    const [currentIndex, setCurrentIndex] = useState(0);
     const handleClose3 = () => setOpen3(false);
     const myAPY = 9.125 + sharesBalance * 4.5625;
     const fetchStaxBalance = async () => {
@@ -113,71 +114,67 @@ const StakingCard = () => {
     }, []);
     return (
         <>
-            {stakedd.map((total, index) => (
-                <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
-                    <Box sx={style}>
-                        <Typography variant="h5" textAlign="center" component="h2">
-                            Important: 90% penalty is applied to the `withdraw amount` to all pre-mature stakes.
-                        </Typography>
-                        <Button
-                            onClick={() =>
-                                withdrawAmount(withdrawAFormatted, index).then(() => {
-                                    setOpen3(true);
-                                    fetchStakesBalance();
-                                })
-                            }
-                            sx={{
-                                mt: 2.5,
-                                fontSize: 15,
-                                width: 80,
-                                height: 30,
-                                color: theme.palette.grey[900],
-                                backgroundColor: theme.palette.success.main
-                            }}
-                            key={index}
-                        >
-                            Withdraw
-                        </Button>
-                        <TextField
-                            sx={{ borderBottom: 2, mt: 2.1, ml: 5, borderColor: theme.palette.success.main }}
-                            onChange={(e) => setWithdrawSum(e.target.value)}
-                            inputProps={{ style: { width: 110, textAlign: 'center', color: 'white' } }}
-                            id="standard-basic"
-                            variant="standard"
-                            color="success"
-                        />
-                    </Box>
-                </Modal>
-            ))}
-            {stakedd.map((total, index) => (
-                <Modal open={open2} onClose={handleClose2} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
-                    <Box sx={style}>
-                        <Typography variant="h5" textAlign="center" component="h2">
-                            Important: Each claim reduces the SHARESBONUS by 1. Therefore, the stake APR will be reduced by ~4,56% on each
-                            claim/withdraw.
-                        </Typography>
-                        <Button
-                            onClick={() =>
-                                withdrawAmount(0, index).then(() => {
-                                    setOpen3(true);
-                                    fetchStakesBalance();
-                                })
-                            }
-                            sx={{
-                                mt: 3,
-                                fontSize: 15,
-                                width: 80,
-                                height: 30,
-                                color: theme.palette.grey[900],
-                                backgroundColor: theme.palette.success.main
-                            }}
-                            key={index}
-                        >
-                            Claim
-                        </Button>
-                    </Box>
-                </Modal>
-            ))}
+            <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+                <Box sx={style}>
+                    <Typography variant="h5" textAlign="center" component="h2">
+                        Important: 90% penalty is applied to the `withdraw amount` to all pre-mature stakes.
+                    </Typography>
+                    <Button
+                        onClick={() =>
+                            withdrawAmount(withdrawAFormatted, currentIndex).then(() => {
+                                setOpen(false);
+                                setOpen3(true);
+                                fetchStakesBalance();
+                            })
+                        }
+                        sx={{
+                            mt: 2.5,
+                            fontSize: 15,
+                            width: 80,
+                            height: 30,
+                            color: theme.palette.grey[900],
+                            backgroundColor: theme.palette.success.main
+                        }}
+                    >
+                        Withdraw
+                    </Button>
+                    <TextField
+                        sx={{ borderBottom: 2, mt: 2.1, ml: 5, borderColor: theme.palette.success.main }}
+                        onChange={(e) => setWithdrawSum(e.target.value)}
+                        inputProps={{ style: { width: 110, textAlign: 'center', color: 'white' } }}
+                        id="standard-basic"
+                        variant="standard"
+                        color="success"
+                    />
+                </Box>
+            </Modal>
+            <Modal open={open2} onClose={handleClose2} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+                <Box sx={style}>
+                    <Typography variant="h5" textAlign="center" component="h2">
+                        Important: Each claim reduces the SHARESBONUS by 1. Therefore, the stake APR will be reduced by ~4,56% on each
+                        claim/withdraw.
+                    </Typography>
+                    <Button
+                        onClick={() =>
+                            withdrawAmount(0, currentIndex).then(() => {
+                                setOpen2(false);
+                                setOpen3(true);
+                                fetchStakesBalance();
+                            })
+                        }
+                        sx={{
+                            mt: 3,
+                            fontSize: 15,
+                            width: 80,
+                            height: 30,
+                            color: theme.palette.grey[900],
+                            backgroundColor: theme.palette.success.main
+                        }}
+                    >
+                        Claim
+                    </Button>
+                </Box>
+            </Modal>
             <Modal open={open3} onClose={handleClose3} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
                 <Box sx={style}>
                     <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -618,7 +615,10 @@ const StakingCard = () => {
                                                     Withdraw
                                                 </Button>
                                                 <Button
-                                                    onClick={handleOpen2}
+                                                    onClick={() => {
+                                                        handleOpen2();
+                                                        setCurrentIndex(index);
+                                                    }}
                                                     sx={{
                                                         ml: 1,
                                                         fontSize: 15,

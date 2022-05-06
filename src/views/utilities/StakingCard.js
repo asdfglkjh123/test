@@ -537,7 +537,8 @@ const StakingCard = () => {
                     boxShadow: '0px 0px 20px rgb(0, 230, 117)',
                     justifyContent: 'center',
                     mb: 15,
-                    width: 330
+                    width: 330,
+                    height: 330
                 }}
             >
                 <Paper sx={{ width: '100%', overflow: 'hidden' }}>

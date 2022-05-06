@@ -602,7 +602,10 @@ const StakingCard = () => {
                                         <TableCell>
                                             <Grid item container xs={12} sx={{ width: 170 }}>
                                                 <Button
-                                                    onClick={handleOpen}
+                                                    onClick={() => {
+                                                        handleOpen();
+                                                        setCurrentIndex(index);
+                                                    }}
                                                     sx={{
                                                         fontSize: 15,
                                                         width: 80,

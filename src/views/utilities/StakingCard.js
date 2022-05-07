@@ -57,6 +57,8 @@ const StakingCard = () => {
     const stakeAFormatted = Web3.utils.toBN(stakeAmountFormatted);
     const [sharesBalance, setSharesBalance] = useState(0);
     const [stakesList, setStakesList] = useState([[], []]);
+    const [currentClaimable, setCurrentClaimable] = useState(0);
+    const [currentStaked, setCurrentStaked] = useState(0);
     const [withdrawSum, setWithdrawSum] = useState(0);
     const withdrawSumFormatted = Web3.utils.toWei(withdrawSum.toString(), 'ether');
     const withdrawAFormatted = Web3.utils.toBN(withdrawSumFormatted);
@@ -144,41 +146,60 @@ const StakingCard = () => {
                     <Typography variant="h5" textAlign="center" component="h2">
                         Important: 90% penalty is applied to the `withdraw amount` to all pre-mature stakes.
                     </Typography>
-                    <LoadingButton
-                        loading={loading5}
-                        onClick={() => {
-                            handleLoadingTrue5();
-                            withdrawAmount(withdrawAFormatted, currentIndex).then(() => {
-                                handleSubmitTrue().then(() => {
-                                    handleLoadingFalse5();
-                                    setOpen(false);
-                                    setOpen3(true);
-                                    handleLoadingFalse3();
-                                    fetchStakesBalance();
+                    <Grid item container sx={{ mt: 2, mb: 1, display: 'flex', justifyContent: 'center' }}>
+                        <Typography variant="h5" textAlign="center" component="h2">
+                            Rewards:{' '}
+                            {(currentClaimable / Number18Decimals).toLocaleString(undefined, {
+                                maximumFractionDigits: 2
+                            })}
+                        </Typography>
+                        <Typography variant="h5" textAlign="center" sx={{ ml: 2 }} component="h2">
+                            Staked:{' '}
+                            {(currentStaked / Number18Decimals).toLocaleString(undefined, {
+                                maximumFractionDigits: 2
+                            })}
+                        </Typography>
+                    </Grid>
+                    <Grid item sx={{ justifyContent: 'center', display: 'flex' }}>
+                        <TextField
+                            required
+                            sx={{ borderBottom: 2, borderColor: theme.palette.success.main }}
+                            onChange={(e) => setWithdrawSum(e.target.value)}
+                            inputProps={{ style: { width: 120, textAlign: 'center', color: 'white' } }}
+                            id="standard-basic"
+                            label="Withdraw amount"
+                            variant="standard"
+                            color="success"
+                        />
+                    </Grid>
+                    <Grid item sx={{ justifyContent: 'center', display: 'flex' }}>
+                        <LoadingButton
+                            loading={loading5}
+                            onClick={() => {
+                                handleLoadingTrue5();
+                                withdrawAmount(withdrawAFormatted, currentIndex).then(() => {
+                                    handleSubmitTrue().then(() => {
+                                        handleLoadingFalse5();
+                                        setOpen(false);
+                                        setOpen3(true);
+                                        handleLoadingFalse3();
+                                        fetchStakesBalance();
+                                    });
                                 });
-                            });
-                        }}
-                        sx={{
-                            mt: 2.5,
-                            fontSize: 15,
-                            width: 80,
-                            height: 30,
-                            color: theme.palette.grey[900],
-                            bgcolor: theme.palette.success.main,
-                            backgroundColor: theme.palette.success.main
-                        }}
-                    >
-                        Withdraw
-                    </LoadingButton>
-                    <TextField
-                        required
-                        sx={{ borderBottom: 2, mt: 2.1, ml: 5, borderColor: theme.palette.success.main }}
-                        onChange={(e) => setWithdrawSum(e.target.value)}
-                        inputProps={{ style: { width: 110, textAlign: 'center', color: 'white' } }}
-                        id="standard-basic"
-                        variant="standard"
-                        color="success"
-                    />
+                            }}
+                            sx={{
+                                mt: 2.5,
+                                fontSize: 15,
+                                width: 80,
+                                height: 30,
+                                color: theme.palette.grey[900],
+                                bgcolor: theme.palette.success.main,
+                                backgroundColor: theme.palette.success.main
+                            }}
+                        >
+                            Withdraw
+                        </LoadingButton>
+                    </Grid>
                 </Box>
             </Modal>
             <Modal open={open4} onClose={handleClose4} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
@@ -216,12 +237,26 @@ const StakingCard = () => {
                     </Grid>
                 </Box>
             </Modal>
-            <Modal open={open2} onClose={handleClose2} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+            <Modal
+                open={open2}
+                onClose={handleClose2}
+                onBackdropClick={handleClose2}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
                 <Box sx={style}>
                     <Typography variant="h5" textAlign="center" component="h2">
                         Important: Each claim reduces the SHARESBONUS by 1. Therefore, the stake APR will be reduced by ~4,56% on each
                         claim/withdraw.
                     </Typography>
+                    <Grid item sx={{ display: 'flex', my: 2, justifyContent: 'center' }}>
+                        <Typography variant="h5" textAlign="center" component="h2" key={currentIndex}>
+                            Amount to be claimed:{' '}
+                            {(currentClaimable / Number18Decimals).toLocaleString(undefined, {
+                                maximumFractionDigits: 2
+                            })}
+                        </Typography>
+                    </Grid>
                     <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
                         <LoadingButton
                             loading={loading5}
@@ -236,9 +271,10 @@ const StakingCard = () => {
                                 });
                             }}
                             sx={{
+                                mt: 1,
                                 fontSize: 18,
-                                minHeight: 45,
-                                minWidth: 140,
+                                minHeight: 35,
+                                minWidth: 110,
                                 bgcolor: theme.palette.success.main,
                                 backgroundColor: theme.palette.success.main,
                                 color: theme.palette.grey[900]
@@ -677,6 +713,8 @@ const StakingCard = () => {
                                                 <LoadingButton
                                                     loading={loading3}
                                                     onClick={() => {
+                                                        setCurrentClaimable(total.claimable);
+                                                        setCurrentStaked(total.amount);
                                                         handleLoadingTrue3();
                                                         handleOpen();
                                                         setCurrentIndex(index);
@@ -696,6 +734,7 @@ const StakingCard = () => {
                                                 <LoadingButton
                                                     loading={loading4}
                                                     onClick={() => {
+                                                        setCurrentClaimable(total.claimable);
                                                         handleLoadingTrue4();
                                                         handleOpen2();
                                                         setCurrentIndex(index);

@@ -22,7 +22,7 @@ const NavItem = ({ item, level }) => {
 
     const Icon = item.icon;
     const itemIcon = item?.icon ? (
-        <Icon color="success" stroke={1.5} size="1.3rem" />
+        <Icon stroke={1.5} size="1.3rem" color={customization.isOpen.findIndex((id) => id === item?.id) > -1 ? 'white' : 'success'} />
     ) : (
         <FiberManualRecordIcon
             sx={{
@@ -67,17 +67,18 @@ const NavItem = ({ item, level }) => {
             {...listItemProps}
             disabled={item.disabled}
             sx={{
+                mx: 0.5,
                 borderRadius: `20px`,
                 alignItems: 'flex-start',
                 bgcolor: theme.palette.grey[900],
-                height: 50,
+                height: 55,
                 width: 'auto'
             }}
             selected={customization.isOpen.findIndex((id) => id === item.id) > -1}
             onClick={() => itemHandler(item.id)}
         >
             <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
-                <ListItemIcon sx={{ my: 'auto', justifyContent: 'center', minWidth: !item?.icon ? 18 : 36 }}>{itemIcon}</ListItemIcon>
+                <ListItemIcon sx={{ my: -0.3, justifyContent: 'center', minWidth: !item?.icon ? 10 : 36 }}>{itemIcon}</ListItemIcon>
                 <ListItemText
                     primary={
                         <Typography

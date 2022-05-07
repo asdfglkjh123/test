@@ -331,7 +331,7 @@ const StakingCard = () => {
                                                             setValue(1);
                                                         }
                                                     }}
-                                                    min={0}
+                                                    min={1}
                                                     max={10}
                                                 />
                                             </Grid>

@@ -63,6 +63,8 @@ const StakingCard = () => {
     const [staked, stakedd] = stakesList;
     const [loading, setLoading] = React.useState(false);
     const [loading2, setLoading2] = React.useState(false);
+    const [loading3, setLoading3] = React.useState(false);
+    const [loading4, setLoading4] = React.useState(false);
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
     const [open3, setOpen3] = React.useState(false);
@@ -79,6 +81,10 @@ const StakingCard = () => {
     const handleLoadingTrue = () => setLoading(true);
     const handleLoadingFalse2 = () => setLoading2(false);
     const handleLoadingTrue2 = () => setLoading2(true);
+    const handleLoadingFalse3 = () => setLoading3(false);
+    const handleLoadingTrue3 = () => setLoading3(true);
+    const handleLoadingFalse4 = () => setLoading4(false);
+    const handleLoadingTrue4 = () => setLoading4(true);
     const [currentIndex, setCurrentIndex] = useState(0);
     const myAPY = 9.125 + sharesBalance * 4.5625;
     const fetchStaxBalance = async () => {
@@ -134,6 +140,7 @@ const StakingCard = () => {
                             withdrawAmount(withdrawAFormatted, currentIndex).then(() => {
                                 setOpen(false);
                                 setOpen3(true);
+                                handleLoadingFalse3();
                                 fetchStakesBalance();
                             })
                         }
@@ -204,6 +211,7 @@ const StakingCard = () => {
                                 withdrawAmount(0, currentIndex).then(() => {
                                     setOpen2(false);
                                     setOpen3(true);
+                                    handleLoadingFalse4();
                                     fetchStakesBalance();
                                 })
                             }
@@ -646,8 +654,10 @@ const StakingCard = () => {
                                         </TableCell>
                                         <TableCell>
                                             <Grid item container xs={12} sx={{ width: 170 }}>
-                                                <Button
+                                                <LoadingButton
+                                                    loading={loading3}
                                                     onClick={() => {
+                                                        handleLoadingTrue3();
                                                         handleOpen();
                                                         setCurrentIndex(index);
                                                     }}
@@ -656,14 +666,17 @@ const StakingCard = () => {
                                                         width: 80,
                                                         height: 23,
                                                         color: theme.palette.grey[900],
+                                                        bgcolor: theme.palette.success.main,
                                                         backgroundColor: theme.palette.success.main
                                                     }}
                                                     key={index}
                                                 >
                                                     Withdraw
-                                                </Button>
-                                                <Button
+                                                </LoadingButton>
+                                                <LoadingButton
+                                                    loading={loading4}
                                                     onClick={() => {
+                                                        handleLoadingTrue4();
                                                         handleOpen2();
                                                         setCurrentIndex(index);
                                                     }}
@@ -673,12 +686,13 @@ const StakingCard = () => {
                                                         width: 80,
                                                         height: 23,
                                                         color: theme.palette.grey[900],
+                                                        bgcolor: theme.palette.success.main,
                                                         backgroundColor: theme.palette.success.main
                                                     }}
                                                     key={index}
                                                 >
                                                     Claim
-                                                </Button>
+                                                </LoadingButton>
                                             </Grid>
                                         </TableCell>
                                     </TableRow>

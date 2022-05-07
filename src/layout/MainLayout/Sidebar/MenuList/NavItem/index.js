@@ -5,20 +5,33 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Avatar, Chip, Icon, ListItemButton, ListItemText, Typography, useMediaQuery } from '@mui/material';
+import { Avatar, Grid, Chip, Icon, ListItemButton, ListItemText, ListItemIcon, Typography, useMediaQuery } from '@mui/material';
 
 // project imports
 import { MENU_OPEN, SET_MENU } from 'store/actions';
 import config from 'config';
 import { IconHome } from '@tabler/icons';
-
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 
-const NavItem = ({ item }) => {
+const NavItem = ({ item, level }) => {
     const theme = useTheme();
     const dispatch = useDispatch();
     const customization = useSelector((state) => state.customization);
     const matchesSM = useMediaQuery(theme.breakpoints.down('lg'));
+
+    const Icon = item.icon;
+    const itemIcon = item?.icon ? (
+        <Icon color="success" stroke={1.5} size="1.3rem" />
+    ) : (
+        <FiberManualRecordIcon
+            sx={{
+                width: customization.isOpen.findIndex((id) => id === item?.id) > -1 ? 8 : 6,
+                height: customization.isOpen.findIndex((id) => id === item?.id) > -1 ? 8 : 6
+            }}
+            fontSize={level > 0 ? 'inherit' : 'medium'}
+        />
+    );
 
     let itemTarget = '_self';
     if (item.target) {
@@ -58,50 +71,54 @@ const NavItem = ({ item }) => {
                 alignItems: 'flex-start',
                 bgcolor: theme.palette.grey[900],
                 height: 50,
-                width: '100%'
+                width: 'auto'
             }}
             selected={customization.isOpen.findIndex((id) => id === item.id) > -1}
             onClick={() => itemHandler(item.id)}
         >
-            <ListItemText
-                primary={
-                    <Typography
-                        textAlign="center"
-                        variant={customization.isOpen.findIndex((id) => id === item.id) > -1 ? 'h5' : 'body1'}
-                        color={theme.palette.grey[50]}
-                    >
-                        {item.title}
-                    </Typography>
-                }
-                secondary={
-                    item.caption && (
+            <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
+                <ListItemIcon sx={{ my: 'auto', justifyContent: 'center', minWidth: !item?.icon ? 18 : 36 }}>{itemIcon}</ListItemIcon>
+                <ListItemText
+                    primary={
                         <Typography
                             textAlign="center"
-                            variant="caption"
-                            sx={{ ...theme.typography.subMenuCaption }}
-                            display="block"
-                            gutterBottom
+                            variant={customization.isOpen.findIndex((id) => id === item.id) > -1 ? 'h5' : 'body1'}
+                            color={theme.palette.grey[50]}
                         >
-                            {item.caption}
+                            {item.title}
                         </Typography>
-                    )
-                }
-            />
-            {item.chip && (
-                <Chip
-                    color={item.chip.color}
-                    variant={item.chip.variant}
-                    size={item.chip.size}
-                    label={item.chip.label}
-                    avatar={item.chip.avatar && <Avatar>{item.chip.avatar}</Avatar>}
+                    }
+                    secondary={
+                        item.caption && (
+                            <Typography
+                                textAlign="center"
+                                variant="caption"
+                                sx={{ ...theme.typography.subMenuCaption }}
+                                display="block"
+                                gutterBottom
+                            >
+                                {item.caption}
+                            </Typography>
+                        )
+                    }
                 />
-            )}
+                {item.chip && (
+                    <Chip
+                        color={item.chip.color}
+                        variant={item.chip.variant}
+                        size={item.chip.size}
+                        label={item.chip.label}
+                        avatar={item.chip.avatar && <Avatar>{item.chip.avatar}</Avatar>}
+                    />
+                )}
+            </Grid>
         </ListItemButton>
     );
 };
 
 NavItem.propTypes = {
-    item: PropTypes.object
+    item: PropTypes.object,
+    level: PropTypes.number
 };
 
 export default NavItem;

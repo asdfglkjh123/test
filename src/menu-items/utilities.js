@@ -1,13 +1,18 @@
 // assets
 import { IconTypography, IconPalette, IconShadow, IconWindmill, IconDashboard } from '@tabler/icons';
+import HomeIcon from '@mui/icons-material/Home';
+import GroupWorkIcon from '@mui/icons-material/GroupWork';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
+import SwapVerticalCircleIcon from '@mui/icons-material/SwapVerticalCircle';
+import LayersIcon from '@mui/icons-material/Layers';
 
 // constant
 const icons = {
-    IconTypography,
-    IconPalette,
-    IconShadow,
-    IconWindmill,
-    IconDashboard
+    LayersIcon,
+    GroupWorkIcon,
+    QueryStatsIcon,
+    SwapVerticalCircleIcon,
+    HomeIcon
 };
 
 // ==============================|| UTILITIES MENU ITEMS ||============================== //
@@ -16,14 +21,13 @@ const utilities = {
     id: 'utilities',
     title: 'Ecosystem',
     type: 'group',
-    icon: icons.IconDashboard,
     children: [
         {
             id: 'default',
             title: 'Home',
             type: 'item',
             url: '/home',
-            icon: icons.IconDashboard,
+            icon: icons.HomeIcon,
             breadcrumbs: false
         },
         {
@@ -31,7 +35,7 @@ const utilities = {
             title: `Stake`,
             type: 'item',
             url: '/stake',
-            icon: icons.IconTypography,
+            icon: icons.LayersIcon,
             breadcrumbs: false
         },
         {
@@ -39,7 +43,7 @@ const utilities = {
             title: 'sSTX',
             type: 'item',
             url: '/shares',
-            icon: icons.IconPalette,
+            icon: icons.GroupWorkIcon,
             breadcrumbs: false
         },
         {
@@ -47,7 +51,7 @@ const utilities = {
             title: 'Stats',
             type: 'item',
             url: '/stats',
-            icon: icons.IconShadow,
+            icon: icons.QueryStatsIcon,
             breadcrumbs: false
         },
         {
@@ -55,7 +59,7 @@ const utilities = {
             title: 'DEX',
             type: 'item',
             url: '/utils/util-shadow',
-            icon: icons.IconWindmill,
+            icon: icons.SwapVerticalCircleIcon,
             breadcrumbs: false
         }
     ]

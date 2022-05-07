@@ -61,14 +61,17 @@ const StakingCard = () => {
     const withdrawSumFormatted = Web3.utils.toWei(withdrawSum.toString(), 'ether');
     const withdrawAFormatted = Web3.utils.toBN(withdrawSumFormatted);
     const [staked, stakedd] = stakesList;
+    // POP - UPS
     const [loading, setLoading] = React.useState(false);
     const [loading2, setLoading2] = React.useState(false);
     const [loading3, setLoading3] = React.useState(false);
     const [loading4, setLoading4] = React.useState(false);
+    const [loading5, setLoading5] = React.useState(false);
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
     const [open3, setOpen3] = React.useState(false);
     const [open4, setOpen4] = React.useState(false);
+    const [open5, setOpen5] = React.useState(false);
     const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);
     const handleClose2 = () => setOpen3(false);
@@ -85,8 +88,12 @@ const StakingCard = () => {
     const handleLoadingTrue3 = () => setLoading3(true);
     const handleLoadingFalse4 = () => setLoading4(false);
     const handleLoadingTrue4 = () => setLoading4(true);
+    const handleLoadingFalse5 = () => setLoading5(false);
+    const handleLoadingTrue5 = () => setLoading5(true);
+    //  WITHDRAWING INDEX
     const [currentIndex, setCurrentIndex] = useState(0);
     const myAPY = 9.125 + sharesBalance * 4.5625;
+    //  FETCHING BLOCKCHAIN DATA
     const fetchStaxBalance = async () => {
         ggetStaxBalance()
             .then((balance) => {
@@ -135,14 +142,17 @@ const StakingCard = () => {
                     <Typography variant="h5" textAlign="center" component="h2">
                         Important: 90% penalty is applied to the `withdraw amount` to all pre-mature stakes.
                     </Typography>
-                    <Button
-                        onClick={() =>
+                    <LoadingButton
+                        loading={loading5}
+                        onClick={() => {
+                            handleLoadingTrue5();
                             withdrawAmount(withdrawAFormatted, currentIndex).then(() => {
+                                handleLoadingFalse5();
                                 setOpen(false);
                                 setOpen3(true);
                                 handleLoadingFalse3();
                                 fetchStakesBalance();
-                            })
+                            })}
                         }
                         sx={{
                             mt: 2.5,
@@ -150,11 +160,12 @@ const StakingCard = () => {
                             width: 80,
                             height: 30,
                             color: theme.palette.grey[900],
+                            bgcolor: theme.palette.success.main,
                             backgroundColor: theme.palette.success.main
                         }}
                     >
                         Withdraw
-                    </Button>
+                    </LoadingButton>
                     <TextField
                         required
                         sx={{ borderBottom: 2, mt: 2.1, ml: 5, borderColor: theme.palette.success.main }}

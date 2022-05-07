@@ -107,6 +107,9 @@ const StakingCard = () => {
     const handleOpen3 = () => setOpen3(true);
     const handleLoadingTrue = () => setLoading(true);
     const handleLoadingFalse = () => setLoading(false);
+    const [submitted, setSubmitted] = React.useState(false);
+    const handleSubmitTrue = () => setSubmitted(true);
+    const handleSubmitFalse = () => setSubmitted(false);
     const myShareRateFormatted = myShareRate.toLocaleString(undefined, { maximumFractionDigits: 1 });
     const fetchsSTXPrice = async () => {
         getSTXPrice()
@@ -199,6 +202,36 @@ const StakingCard = () => {
                                 height: 30,
                                 color: theme.palette.grey[900],
                                 backgroundColor: theme.palette.success.main
+                            }}
+                        >
+                            Close
+                        </Button>
+                    </Grid>
+                </Box>
+            </Modal>
+            <Modal
+                open={submitted}
+                onClose={handleSubmitFalse}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <DoneIcon color="success" fontSize="large" />
+                    </Grid>
+                    <Typography variant="h5" textAlign="center" sx={{ mt: 3 }} component="h2">
+                        Transaction submitted.
+                    </Typography>
+                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <Button
+                            onClick={handleSubmitFalse}
+                            sx={{
+                                fontSize: 18,
+                                minHeight: 45,
+                                minWidth: 140,
+                                bgcolor: theme.palette.success.main,
+                                backgroundColor: theme.palette.success.main,
+                                color: theme.palette.grey[900]
                             }}
                         >
                             Close
@@ -346,14 +379,16 @@ const StakingCard = () => {
                                                         approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', valueToApprove).then(
                                                             (result) => {
                                                                 purchaseSharess(value).then(() => {
-                                                                    handleLoadingFalse();
-                                                                    handleOpen3();
-                                                                    fetchBalance();
-                                                                    fetchsSTXPriceFull();
-                                                                    fetchTotalSupply();
-                                                                    fetchsSTXPrice();
-                                                                    fetchBusdBalance();
-                                                                    fetchTotalDividends();
+                                                                    handleSubmitTrue.then(() => {
+                                                                        handleLoadingFalse();
+                                                                        handleOpen3();
+                                                                        fetchBalance();
+                                                                        fetchsSTXPriceFull();
+                                                                        fetchTotalSupply();
+                                                                        fetchsSTXPrice();
+                                                                        fetchBusdBalance();
+                                                                        fetchTotalDividends();
+                                                                    });
                                                                 });
                                                             }
                                                         );

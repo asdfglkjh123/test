@@ -67,6 +67,7 @@ const StakingCard = () => {
     const [loading3, setLoading3] = React.useState(false);
     const [loading4, setLoading4] = React.useState(false);
     const [loading5, setLoading5] = React.useState(false);
+    const [submitted, setSubmitted] = React.useState(false);
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
     const [open3, setOpen3] = React.useState(false);
@@ -89,6 +90,8 @@ const StakingCard = () => {
     const handleLoadingTrue4 = () => setLoading4(true);
     const handleLoadingFalse5 = () => setLoading5(false);
     const handleLoadingTrue5 = () => setLoading5(true);
+    const handleSubmitTrue = () => setSubmitted(true);
+    const handleSubmitFalse = () => setSubmitted(false);
     //  WITHDRAWING INDEX
     const [currentIndex, setCurrentIndex] = useState(0);
     const myAPY = 9.125 + sharesBalance * 4.5625;
@@ -146,11 +149,13 @@ const StakingCard = () => {
                         onClick={() => {
                             handleLoadingTrue5();
                             withdrawAmount(withdrawAFormatted, currentIndex).then(() => {
-                                handleLoadingFalse5();
-                                setOpen(false);
-                                setOpen3(true);
-                                handleLoadingFalse3();
-                                fetchStakesBalance();
+                                handleSubmitTrue().then(() => {
+                                    handleLoadingFalse5();
+                                    setOpen(false);
+                                    setOpen3(true);
+                                    handleLoadingFalse3();
+                                    fetchStakesBalance();
+                                });
                             });
                         }}
                         sx={{
@@ -188,11 +193,13 @@ const StakingCard = () => {
                             onClick={() => {
                                 handleLoadingTrue2();
                                 stakeStax(stakeAFormatted, stakeName).then(() => {
-                                    handleClose4();
-                                    handleOpen3();
-                                    handleLoadingFalse2();
-                                    fetchStakesBalance();
-                                    fetchStaxBalance();
+                                    handleSubmitTrue().then(() => {
+                                        handleClose4();
+                                        handleOpen3();
+                                        handleLoadingFalse2();
+                                        fetchStakesBalance();
+                                        fetchStaxBalance();
+                                    });
                                 });
                             }}
                             sx={{
@@ -221,10 +228,12 @@ const StakingCard = () => {
                             onClick={() => {
                                 handleLoadingTrue5();
                                 withdrawAmount(0, currentIndex).then(() => {
-                                    setOpen2(false);
-                                    setOpen3(true);
-                                    handleLoadingFalse4();
-                                    fetchStakesBalance();
+                                    handleSubmitTrue().then(() => {
+                                        setOpen2(false);
+                                        setOpen3(true);
+                                        handleLoadingFalse4();
+                                        fetchStakesBalance();
+                                    });
                                 });
                             }}
                             sx={{
@@ -252,6 +261,36 @@ const StakingCard = () => {
                     <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Button
                             onClick={handleClose3}
+                            sx={{
+                                fontSize: 18,
+                                minHeight: 45,
+                                minWidth: 140,
+                                bgcolor: theme.palette.success.main,
+                                backgroundColor: theme.palette.success.main,
+                                color: theme.palette.grey[900]
+                            }}
+                        >
+                            Close
+                        </Button>
+                    </Grid>
+                </Box>
+            </Modal>
+            <Modal
+                open={submitted}
+                onClose={handleSubmitFalse}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <DoneIcon color="success" fontSize="large" />
+                    </Grid>
+                    <Typography variant="h5" textAlign="center" sx={{ mt: 3 }} component="h2">
+                        Transaction submitted.
+                    </Typography>
+                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <Button
+                            onClick={handleSubmitFalse}
                             sx={{
                                 fontSize: 18,
                                 minHeight: 45,

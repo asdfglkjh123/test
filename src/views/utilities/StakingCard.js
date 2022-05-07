@@ -228,12 +228,11 @@ const StakingCard = () => {
                             onClick={() => {
                                 handleLoadingTrue5();
                                 withdrawAmount(0, currentIndex).then(() => {
-                                    handleSubmitTrue().then(() => {
-                                        setOpen2(false);
-                                        setOpen3(true);
-                                        handleLoadingFalse4();
-                                        fetchStakesBalance();
-                                    });
+                                    handleLoadingFalse5();
+                                    setOpen2(false);
+                                    setOpen3(true);
+                                    handleLoadingFalse4();
+                                    fetchStakesBalance();
                                 });
                             }}
                             sx={{
@@ -261,36 +260,6 @@ const StakingCard = () => {
                     <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Button
                             onClick={handleClose3}
-                            sx={{
-                                fontSize: 18,
-                                minHeight: 45,
-                                minWidth: 140,
-                                bgcolor: theme.palette.success.main,
-                                backgroundColor: theme.palette.success.main,
-                                color: theme.palette.grey[900]
-                            }}
-                        >
-                            Close
-                        </Button>
-                    </Grid>
-                </Box>
-            </Modal>
-            <Modal
-                open={submitted}
-                onClose={handleSubmitFalse}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box sx={style}>
-                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <DoneIcon color="success" fontSize="large" />
-                    </Grid>
-                    <Typography variant="h5" textAlign="center" sx={{ mt: 3 }} component="h2">
-                        Transaction submitted.
-                    </Typography>
-                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Button
-                            onClick={handleSubmitFalse}
                             sx={{
                                 fontSize: 18,
                                 minHeight: 45,

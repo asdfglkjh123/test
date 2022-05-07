@@ -378,17 +378,14 @@ const StakingCard = () => {
                                                         handleLoadingTrue();
                                                         approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', valueToApprove).then(
                                                             (result) => {
-                                                                purchaseSharess(value).once(() => {
-                                                                    handleSubmitTrue.once(() => {
-                                                                        handleLoadingFalse();
-                                                                        handleOpen3();
-                                                                        fetchBalance();
-                                                                        fetchsSTXPriceFull();
-                                                                        fetchTotalSupply();
-                                                                        fetchsSTXPrice();
-                                                                        fetchBusdBalance();
-                                                                        fetchTotalDividends();
-                                                                    });
+                                                                purchaseSharess(value).then(() => {
+                                                                    handleLoadingFalse();
+                                                                    handleOpen3();
+                                                                    fetchBalance();
+                                                                    fetchTotalSupply();
+                                                                    fetchsSTXPrice();
+                                                                    fetchBusdBalance();
+                                                                    fetchTotalDividends();
                                                                 });
                                                             }
                                                         );

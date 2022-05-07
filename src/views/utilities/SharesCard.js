@@ -1,7 +1,8 @@
 // material-ui
 import { useTheme, styled } from '@mui/material/styles';
-import { Button, Card, CardContent, Tooltip, Grid, Typography } from '@mui/material';
+import { Button, Box, Card, CardContent, Tooltip, Grid, Typography, Modal } from '@mui/material';
 import Slider from '@mui/material/Slider';
+import DoneIcon from '@mui/icons-material/Done';
 import Web3 from 'web3';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
@@ -19,8 +20,21 @@ import {
     approve,
     ggetTotalDividends
 } from 'components/wallet/sharesABI';
-
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 300,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    borderRadius: 7,
+    borderColor: 'black',
+    p: 3
+};
 const PrettoSlider = styled(Slider)({
     color: '#52af77',
     height: 8,
@@ -84,6 +98,10 @@ const StakingCard = () => {
     const valueHelper = Web3.utils.toWei(value222.toString(), 'ether');
     const valueToApprove = Web3.utils.toBN(valueHelper);
     const myShareRate = (balance / totalsharesSupply) * 100;
+    const [open, setOpen] = React.useState(false);
+    const [open3, setOpen3] = React.useState(false);
+    const handleClose3 = () => setOpen3(false);
+    const handleOpen3 = () => setOpen3(true);
     const myShareRateFormatted = myShareRate.toLocaleString(undefined, { maximumFractionDigits: 1 });
     const fetchsSTXPrice = async () => {
         getSTXPrice()
@@ -158,6 +176,31 @@ const StakingCard = () => {
     }, []);
     return (
         <>
+            <Modal open={open3} onClose={handleClose3} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+                <Box sx={style}>
+                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <DoneIcon color="success" fontSize="large" />
+                    </Grid>
+                    <Typography variant="h5" textAlign="center" sx={{ mt: 3 }} component="h2">
+                        Transaction completed.
+                    </Typography>
+                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <Button
+                            onClick={handleClose3}
+                            sx={{
+                                mt: 3,
+                                fontSize: 15,
+                                width: 80,
+                                height: 30,
+                                color: theme.palette.grey[900],
+                                backgroundColor: theme.palette.success.main
+                            }}
+                        >
+                            Close
+                        </Button>
+                    </Grid>
+                </Box>
+            </Modal>
             <MainCard
                 sx={{ width: 'full%', height: '108%', borderRadius: 0, backgroundColor: theme.palette.grey[900], border: 0 }}
                 content={false}
@@ -289,6 +332,7 @@ const StakingCard = () => {
                                                         getSTXPriceFull();
                                                         approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', valueToApprove, value).then(
                                                             (result) => {
+                                                                handleOpen3();
                                                                 fetchBalance();
                                                                 fetchsSTXPriceFull();
                                                                 fetchTotalSupply();

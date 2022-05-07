@@ -151,8 +151,8 @@ const StakingCard = () => {
                                 setOpen3(true);
                                 handleLoadingFalse3();
                                 fetchStakesBalance();
-                            })}
-                        }
+                            });
+                        }}
                         sx={{
                             mt: 2.5,
                             fontSize: 15,
@@ -216,15 +216,17 @@ const StakingCard = () => {
                         claim/withdraw.
                     </Typography>
                     <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Button
-                            onClick={() =>
+                        <LoadingButton
+                            loading={loading5}
+                            onClick={() => {
+                                handleLoadingTrue5();
                                 withdrawAmount(0, currentIndex).then(() => {
                                     setOpen2(false);
                                     setOpen3(true);
                                     handleLoadingFalse4();
                                     fetchStakesBalance();
-                                })
-                            }
+                                });
+                            }}
                             sx={{
                                 fontSize: 18,
                                 minHeight: 45,
@@ -235,7 +237,7 @@ const StakingCard = () => {
                             }}
                         >
                             Claim
-                        </Button>
+                        </LoadingButton>
                     </Grid>
                 </Box>
             </Modal>

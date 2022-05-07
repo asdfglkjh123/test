@@ -378,8 +378,8 @@ const StakingCard = () => {
                                                         handleLoadingTrue();
                                                         approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', valueToApprove).then(
                                                             (result) => {
-                                                                purchaseSharess(value).then(() => {
-                                                                    handleSubmitTrue.then(() => {
+                                                                purchaseSharess(value).once(() => {
+                                                                    handleSubmitTrue.once(() => {
                                                                         handleLoadingFalse();
                                                                         handleOpen3();
                                                                         fetchBalance();

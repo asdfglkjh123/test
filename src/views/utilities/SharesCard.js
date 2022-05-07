@@ -322,8 +322,16 @@ const StakingCard = () => {
                                                 <PrettoSlider
                                                     valueLabelDisplay="auto"
                                                     aria-label="pretto slider"
-                                                    onChange={(e) => setValue(e.target.value)}
-                                                    min={1}
+                                                    onChange={(e) => {
+                                                        setValue(e.target.value);
+                                                        if (value === '') {
+                                                            setValue(1);
+                                                        }
+                                                        if (value === 0) {
+                                                            setValue(1);
+                                                        }
+                                                    }}
+                                                    min={0}
                                                     max={10}
                                                 />
                                             </Grid>

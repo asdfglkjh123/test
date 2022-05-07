@@ -71,7 +71,6 @@ const StakingCard = () => {
     const [open2, setOpen2] = React.useState(false);
     const [open3, setOpen3] = React.useState(false);
     const [open4, setOpen4] = React.useState(false);
-    const [open5, setOpen5] = React.useState(false);
     const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);
     const handleClose2 = () => setOpen3(false);

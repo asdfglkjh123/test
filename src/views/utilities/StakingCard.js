@@ -62,6 +62,7 @@ const StakingCard = () => {
     const withdrawAFormatted = Web3.utils.toBN(withdrawSumFormatted);
     const [staked, stakedd] = stakesList;
     const [loading, setLoading] = React.useState(false);
+    const [loading2, setLoading2] = React.useState(false);
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
     const [open3, setOpen3] = React.useState(false);
@@ -76,6 +77,8 @@ const StakingCard = () => {
     const handleOpen4 = () => setOpen4(true);
     const handleLoadingFalse = () => setLoading(false);
     const handleLoadingTrue = () => setLoading(true);
+    const handleLoadingFalse2 = () => setLoading2(false);
+    const handleLoadingTrue2 = () => setLoading2(true);
     const [currentIndex, setCurrentIndex] = useState(0);
     const myAPY = 9.125 + sharesBalance * 4.5625;
     const fetchStaxBalance = async () => {
@@ -164,23 +167,24 @@ const StakingCard = () => {
                     </Typography>
                     <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
                         <LoadingButton
-                            loading={loading}
-                            onClick={() =>
+                            loading={loading2}
+                            onClick={() => {
+                                handleLoadingTrue2();
                                 stakeStax(stakeAFormatted, stakeName).then(() => {
                                     handleClose4();
                                     handleOpen3();
-                                    handleLoadingFalse();
+                                    handleLoadingFalse2();
                                     fetchStakesBalance();
                                     fetchStaxBalance();
-                                })
-                            }
+                                });
+                            }}
                             sx={{
-                                mt: 2.5,
-                                fontSize: 15,
-                                width: 50,
-                                height: 30,
-                                color: theme.palette.grey[900],
-                                backgroundColor: theme.palette.success.main
+                                fontSize: 18,
+                                minHeight: 45,
+                                minWidth: 140,
+                                bgcolor: theme.palette.success.main,
+                                backgroundColor: theme.palette.success.main,
+                                color: theme.palette.grey[900]
                             }}
                         >
                             Stake
@@ -204,12 +208,12 @@ const StakingCard = () => {
                                 })
                             }
                             sx={{
-                                mt: 3,
-                                fontSize: 15,
-                                width: 80,
-                                height: 30,
-                                color: theme.palette.grey[900],
-                                backgroundColor: theme.palette.success.main
+                                fontSize: 18,
+                                minHeight: 45,
+                                minWidth: 140,
+                                bgcolor: theme.palette.success.main,
+                                backgroundColor: theme.palette.success.main,
+                                color: theme.palette.grey[900]
                             }}
                         >
                             Claim
@@ -229,12 +233,12 @@ const StakingCard = () => {
                         <Button
                             onClick={handleClose3}
                             sx={{
-                                mt: 3,
-                                fontSize: 15,
-                                width: 80,
-                                height: 30,
-                                color: theme.palette.grey[900],
-                                backgroundColor: theme.palette.success.main
+                                fontSize: 18,
+                                minHeight: 45,
+                                minWidth: 140,
+                                bgcolor: theme.palette.success.main,
+                                backgroundColor: theme.palette.success.main,
+                                color: theme.palette.grey[900]
                             }}
                         >
                             Close
@@ -458,6 +462,7 @@ const StakingCard = () => {
                                             fontSize: 18,
                                             minHeight: 45,
                                             minWidth: 140,
+                                            bgcolor: theme.palette.success.main,
                                             backgroundColor: theme.palette.success.main,
                                             color: theme.palette.grey[900]
                                         }}

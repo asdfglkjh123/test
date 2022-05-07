@@ -351,8 +351,10 @@ const StakingCard = () => {
                                                         );
                                                     }}
                                                     sx={{
+                                                        fontSize: 18,
                                                         minHeight: 45,
                                                         minWidth: 140,
+                                                        bgcolor: theme.palette.success.main,
                                                         backgroundColor: theme.palette.success.main,
                                                         color: theme.palette.grey[900]
                                                     }}
@@ -503,11 +505,13 @@ const StakingCard = () => {
                                                 </Typography>
                                                 <BusdSmallLogo />
                                             </Grid>
-                                            <Grid item lg={4.3} md={4.3} xs={3} sx={{ mt: 0.7, justifyContent: 'left', display: 'flex' }}>
+                                            <Grid item lg={4.3} md={4.3} xs={3} sx={{ mt: 0.8, justifyContent: 'left', display: 'flex' }}>
                                                 <Button
                                                     sx={{
-                                                        mb: 1,
-                                                        height: 35,
+                                                        fontSize: 18,
+                                                        height: 30,
+                                                        minWidth: 80,
+                                                        bgcolor: theme.palette.success.main,
                                                         backgroundColor: theme.palette.success.main,
                                                         color: theme.palette.grey[900]
                                                     }}
@@ -541,11 +545,13 @@ const StakingCard = () => {
                                                 </Typography>
                                                 <BusdSmallLogo />
                                             </Grid>
-                                            <Grid item lg={4.3} xs={3} sx={{ mt: 0.7, justifyContent: 'left', display: 'flex' }}>
+                                            <Grid item lg={4.3} xs={3} sx={{ mt: 0.8, justifyContent: 'left', display: 'flex' }}>
                                                 <Button
                                                     sx={{
-                                                        mb: 1,
-                                                        height: 35,
+                                                        fontSize: 18,
+                                                        height: 30,
+                                                        minWidth: 80,
+                                                        bgcolor: theme.palette.success.main,
                                                         backgroundColor: theme.palette.success.main,
                                                         color: theme.palette.grey[900]
                                                     }}

@@ -2,6 +2,7 @@
 import { useTheme, styled } from '@mui/material/styles';
 import { Button, Box, Card, CardContent, Tooltip, Grid, Typography, Modal } from '@mui/material';
 import Slider from '@mui/material/Slider';
+import LoadingButton from '@mui/lab/LoadingButton';
 import DoneIcon from '@mui/icons-material/Done';
 import Web3 from 'web3';
 // project imports
@@ -18,7 +19,8 @@ import {
     sharesTotalSupply,
     getSTXPriceFull,
     approve,
-    ggetTotalDividends
+    ggetTotalDividends,
+    purchaseSharess
 } from 'components/wallet/sharesABI';
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
@@ -99,9 +101,12 @@ const StakingCard = () => {
     const valueToApprove = Web3.utils.toBN(valueHelper);
     const myShareRate = (balance / totalsharesSupply) * 100;
     const [open, setOpen] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
     const [open3, setOpen3] = React.useState(false);
     const handleClose3 = () => setOpen3(false);
     const handleOpen3 = () => setOpen3(true);
+    const handleLoadingTrue = () => setLoading(true);
+    const handleLoadingFalse = () => setLoading(false);
     const myShareRateFormatted = myShareRate.toLocaleString(undefined, { maximumFractionDigits: 1 });
     const fetchsSTXPrice = async () => {
         getSTXPrice()
@@ -320,25 +325,28 @@ const StakingCard = () => {
                                                     onChange={(e) => setValue(e.target.value)}
                                                     min={1}
                                                     max={10}
-                                                    value={value}
-                                                    defaultValue={value}
                                                 />
                                             </Grid>
                                         </Grid>
                                         <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
                                             <Grid item lg={12} sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
-                                                <Button
+                                                <LoadingButton
+                                                    loading={loading}
                                                     onClick={() => {
                                                         getSTXPriceFull();
-                                                        approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', valueToApprove, value).then(
+                                                        handleLoadingTrue();
+                                                        approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', valueToApprove).then(
                                                             (result) => {
-                                                                handleOpen3();
-                                                                fetchBalance();
-                                                                fetchsSTXPriceFull();
-                                                                fetchTotalSupply();
-                                                                fetchsSTXPrice();
-                                                                fetchBusdBalance();
-                                                                fetchTotalDividends();
+                                                                purchaseSharess(value).then(() => {
+                                                                    handleLoadingFalse();
+                                                                    handleOpen3();
+                                                                    fetchBalance();
+                                                                    fetchsSTXPriceFull();
+                                                                    fetchTotalSupply();
+                                                                    fetchsSTXPrice();
+                                                                    fetchBusdBalance();
+                                                                    fetchTotalDividends();
+                                                                });
                                                             }
                                                         );
                                                     }}
@@ -350,7 +358,7 @@ const StakingCard = () => {
                                                     }}
                                                 >
                                                     BUY {value} sSTX
-                                                </Button>
+                                                </LoadingButton>
                                             </Grid>
                                         </Grid>
                                     </Grid>

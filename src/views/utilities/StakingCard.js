@@ -28,6 +28,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import { ggetStaxBalance, withdrawAmount, ggetOwnBalance, stakeStax, stakeHas } from 'components/wallet/sharesABI';
 import BigNumber from 'bignumber.js';
 import Web3 from 'web3';
+import { LoadingButton } from '@mui/lab';
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
 const style = {
@@ -60,6 +61,7 @@ const StakingCard = () => {
     const withdrawSumFormatted = Web3.utils.toWei(withdrawSum.toString(), 'ether');
     const withdrawAFormatted = Web3.utils.toBN(withdrawSumFormatted);
     const [staked, stakedd] = stakesList;
+    const [loading, setLoading] = React.useState(false);
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
     const [open3, setOpen3] = React.useState(false);
@@ -72,6 +74,8 @@ const StakingCard = () => {
     const handleOpen3 = () => setOpen3(true);
     const handleClose4 = () => setOpen4(false);
     const handleOpen4 = () => setOpen4(true);
+    const handleLoadingFalse = () => setLoading(false);
+    const handleLoadingTrue = () => setLoading(true);
     const [currentIndex, setCurrentIndex] = useState(0);
     const myAPY = 9.125 + sharesBalance * 4.5625;
     const fetchStaxBalance = async () => {
@@ -159,11 +163,13 @@ const StakingCard = () => {
                         any withdraws / claims (90% fee on the staked, 5% on the rewards and minus 1 SHARESBONUS per Transaction).
                     </Typography>
                     <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Button
+                        <LoadingButton
+                            loading={loading}
                             onClick={() =>
                                 stakeStax(stakeAFormatted, stakeName).then(() => {
                                     handleClose4();
                                     handleOpen3();
+                                    handleLoadingFalse();
                                     fetchStakesBalance();
                                     fetchStaxBalance();
                                 })
@@ -178,7 +184,7 @@ const StakingCard = () => {
                             }}
                         >
                             Stake
-                        </Button>
+                        </LoadingButton>
                     </Grid>
                 </Box>
             </Modal>
@@ -302,7 +308,6 @@ const StakingCard = () => {
                                 <Grid item sx={{ backgroundColor: theme.palette.grey[900] }} lg="auto">
                                     <TextField
                                         required
-                                        value={stakeName}
                                         sx={{ borderBottom: 2, borderColor: theme.palette.success.main }}
                                         onChange={(e) => setStakeName(e.target.value)}
                                         inputProps={{ style: { width: 110, textAlign: 'center', color: 'white' } }}
@@ -330,7 +335,6 @@ const StakingCard = () => {
                                 <Grid item sx={{ backgroundColor: theme.palette.grey[900] }} lg="auto">
                                     <TextField
                                         required
-                                        value={stakeAmount}
                                         sx={{ borderBottom: 2, borderColor: theme.palette.success.main }}
                                         onChange={(e) => setStakeAmount(e.target.value)}
                                         inputProps={{ style: { width: 110, textAlign: 'center', color: 'white' } }}
@@ -444,8 +448,10 @@ const StakingCard = () => {
                                     }}
                                     lg="auto"
                                 >
-                                    <Button
+                                    <LoadingButton
+                                        loading={loading}
                                         onClick={() => {
+                                            handleLoadingTrue();
                                             handleOpen4();
                                         }}
                                         sx={{
@@ -457,7 +463,7 @@ const StakingCard = () => {
                                         }}
                                     >
                                         Stake
-                                    </Button>
+                                    </LoadingButton>
                                 </Grid>
                             </Grid>
                         </Grid>

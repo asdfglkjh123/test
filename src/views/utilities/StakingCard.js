@@ -605,7 +605,7 @@ const StakingCard = () => {
             <Grid
                 item
                 sx={{
-                    width: 410,
+                    width: 350,
                     mt: 6,
                     mb: 15,
                     borderLeft: 1,

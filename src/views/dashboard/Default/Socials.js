@@ -39,7 +39,6 @@ const Socials = () => {
                         </Grid>
                         <Grid
                             container
-                            xs={12}
                             sx={{ mt: 7, justifyContent: 'center', display: 'flex', backgroundColor: theme.palette.success.dark }}
                         >
                             <Grid item lg={4} sx={{ mx: 2 }}>

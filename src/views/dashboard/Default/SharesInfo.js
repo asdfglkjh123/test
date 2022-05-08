@@ -20,8 +20,8 @@ const SharesInfo = () => {
                 content={false}
             >
                 <CardContent>
-                    <Grid container xs={12} justifyContent="center" sx={{ mt: 10, backgroundColor: theme.palette.grey[900] }}>
-                        <Grid container xs={12} sx={{ my: 5 }} alignContent="center" justifyContent="center">
+                    <Grid container justifyContent="center" sx={{ mt: 10, backgroundColor: theme.palette.grey[900] }}>
+                        <Grid container sx={{ my: 5 }} alignContent="center" justifyContent="center">
                             <Grid item lg={4} xs={12} md={4.4} sm={7} sx={{ borderLeft: 2, borderColor: theme.palette.success.main }}>
                                 <Typography color={theme.palette.grey[50]} textAlign="left" sx={{ ml: 3 }} variant="h6">
                                     STAX

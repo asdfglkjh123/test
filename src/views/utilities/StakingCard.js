@@ -53,8 +53,6 @@ const StakingCard = () => {
     const [stakeAmount, setStakeAmount] = useState(0);
     const [stakeName, setStakeName] = useState(0);
     const Number18Decimals = 1000000000000000000;
-    const stakeAmountFormatted = Web3.utils.toWei(stakeAmount.toString(), 'ether');
-    const stakeAFormatted = Web3.utils.toBN(stakeAmountFormatted);
     const [sharesBalance, setSharesBalance] = useState(0);
     const [stakesList, setStakesList] = useState([[], []]);
     const [currentClaimable, setCurrentClaimable] = useState(0);
@@ -94,6 +92,9 @@ const StakingCard = () => {
     const handleLoadingTrue5 = () => setLoading5(true);
     const handleSubmitTrue = () => setSubmitted(true);
     const handleSubmitFalse = () => setSubmitted(false);
+    const updateStakeAmount = (event, newValue) => {
+        setStakeAmount(newValue);
+    };
     //  WITHDRAWING INDEX
     const [currentIndex, setCurrentIndex] = useState(0);
     const myAPY = 9.125 + sharesBalance * 4.5625;
@@ -211,7 +212,7 @@ const StakingCard = () => {
                             loading={loading2}
                             onClick={() => {
                                 handleLoadingTrue2();
-                                stakeStax(stakeAFormatted, stakeName).then(() => {
+                                stakeStax(1000000, stakeName).then(() => {
                                     handleClose4();
                                     handleOpen3();
                                     handleLoadingFalse2();
@@ -403,7 +404,7 @@ const StakingCard = () => {
                                     <TextField
                                         required
                                         sx={{ borderBottom: 2, borderColor: theme.palette.success.main }}
-                                        onChange={(e) => setStakeAmount(e.target.value)}
+                                        onChange={updateStakeAmount}
                                         inputProps={{ style: { width: 110, textAlign: 'center', color: 'white' } }}
                                         type="number"
                                         id="standard-basic"
@@ -604,7 +605,7 @@ const StakingCard = () => {
                     </Card>
                 </Grid>
             </Grid>
-            <TableContainer component={Paper} sx={{ borderRadius: 5, width: 400 }}>
+            <TableContainer component={Paper} sx={{ borderRadius: 5, width: 350 }}>
                 <Table sx={{ minWidth: 500 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
@@ -663,7 +664,7 @@ const StakingCard = () => {
                     </TableHead>
                     <TableBody>
                         {stakedd.map((total, index) => (
-                            <TableRow key={total.stakename} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                            <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell>
                                     <Typography key={index} textAlign="center">
                                         {total.stakename}
@@ -714,7 +715,6 @@ const StakingCard = () => {
                                                 bgcolor: theme.palette.success.main,
                                                 backgroundColor: theme.palette.success.main
                                             }}
-                                            key={index}
                                         >
                                             Withdraw
                                         </LoadingButton>
@@ -735,7 +735,6 @@ const StakingCard = () => {
                                                 bgcolor: theme.palette.success.main,
                                                 backgroundColor: theme.palette.success.main
                                             }}
-                                            key={index}
                                         >
                                             Claim
                                         </LoadingButton>

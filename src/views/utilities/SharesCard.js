@@ -261,154 +261,141 @@ const StakingCard = () => {
                                 Shares & BUSD Dividends
                             </Typography>
                         </Grid>
-                        <Grid item container sx={{ display: 'flex', justifyContent: 'center' }} lg={4.5}>
-                            <Grid item lg={11.5} xs={12} md={12} sm={12} sx={{ mt: 5 }}>
-                                <Card
-                                    sx={{
-                                        borderLeft: 1,
-                                        borderRight: 1,
-                                        borderBottom: 3,
-                                        borderColor: theme.palette.success.light,
-                                        borderRadius: 5,
-                                        boxShadow: '0px 10px 20px rgb(0, 230, 117)'
-                                    }}
-                                >
-                                    <Grid container sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
-                                        <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-                                            <Grid item xs="auto" lg="auto" md="auto" sm="auto">
-                                                <Typography variant="h2" color={theme.palette.grey[50]}>
-                                                    SHARES
-                                                </Typography>
-                                            </Grid>
-                                            <Grid item xs="auto" lg="auto" sm="auto" md="auto">
-                                                <Typography variant="h2" color={theme.palette.success.main} textAlign="left">
-                                                    STAX
-                                                </Typography>
-                                            </Grid>
-                                            <Grid item lg="auto" sx={{ pl: 0.5, mt: 0.24 }}>
-                                                <Tooltip
-                                                    sx={{ color: theme.palette.success.main }}
-                                                    title={
-                                                        <Typography
-                                                            sx={{
-                                                                color: theme.palette.success.main
-                                                            }}
-                                                        >
-                                                            The initial (starting) price of sSTX is 20 BUSD and it increases by 0.01 BUSD
-                                                            every sSTX sold. The current sSTX price can be checked below. 70% of the BUSD
-                                                            amount used for sSTX purchases is distributed to sSTX holders every 24 hours.
-                                                        </Typography>
-                                                    }
-                                                >
-                                                    <InfoIcon />
-                                                </Tooltip>
-                                            </Grid>
-                                        </Grid>
-                                        <Grid item sx={{ backgroundColor: theme.palette.grey[900], my: 0 }} lg={10} xs={9.3}>
-                                            <SharesSTAXChart />
-                                        </Grid>
-                                        <Grid
-                                            item
-                                            sx={{ backgroundColor: theme.palette.grey[900], mt: 1.6 }}
-                                            lg={4.7}
-                                            md={7}
-                                            sm={7}
-                                            xs="auto"
-                                        >
-                                            <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
-                                                Total Sold:
-                                            </Typography>
-                                            <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
-                                                Initial Price:
-                                            </Typography>
-                                            <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
-                                                Current Price:
-                                            </Typography>
-                                            <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
-                                                BUSD Balance:
-                                            </Typography>
-                                            <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
-                                                BONUS APY:
-                                            </Typography>
-                                            <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
-                                                sSTX Balance:
+                        <Grid item container sx={{ mt: 5, display: 'flex', justifyContent: 'center' }} lg={4.5}>
+                            <Card
+                                sx={{
+                                    borderLeft: 1,
+                                    borderRight: 1,
+                                    borderBottom: 3,
+                                    borderColor: theme.palette.success.light,
+                                    borderRadius: 5,
+                                    boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                                }}
+                            >
+                                <Grid container sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
+                                    <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                                        <Grid item xs="auto" lg="auto" md="auto" sm="auto">
+                                            <Typography variant="h2" color={theme.palette.grey[50]}>
+                                                SHARES
                                             </Typography>
                                         </Grid>
-                                        <Grid
-                                            item
-                                            sx={{ backgroundColor: theme.palette.grey[900], mt: 1.6 }}
-                                            lg="auto"
-                                            sm="auto"
-                                            md="auto"
-                                            xs="auto"
-                                        >
-                                            <Typography sx={{ my: 2 }} variant="h5" textAlign="right">
-                                                {totalsharesSupply}/100,000 sSTX
-                                            </Typography>
-                                            <Typography sx={{ my: 2 }} variant="h5" textAlign="right">
-                                                20 BUSD
-                                            </Typography>
-                                            <Typography sx={{ my: 2 }} variant="h5" textAlign="right">
-                                                {sSTXPrice} BUSD
-                                            </Typography>
-                                            <Typography sx={{ my: 2 }} variant="h5" textAlign="right">
-                                                {busdBalanceFormatted} BUSD
-                                            </Typography>
-                                            <Typography sx={{ my: 2, color: theme.palette.success.main }} variant="h5" textAlign="right">
-                                                {myAPYFormatted} %
-                                            </Typography>
-                                            <Typography sx={{ my: 2, color: theme.palette.success.main }} variant="h5" textAlign="right">
-                                                {balance} sSTX
+                                        <Grid item xs="auto" lg="auto" sm="auto" md="auto">
+                                            <Typography variant="h2" color={theme.palette.success.main} textAlign="left">
+                                                STAX
                                             </Typography>
                                         </Grid>
-                                        <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
-                                            <Grid item lg={5} xs={7.5}>
-                                                <PrettoSlider
-                                                    valueLabelDisplay="auto"
-                                                    aria-label="pretto slider"
-                                                    onChange={updateValue}
-                                                    defaultValue={1}
-                                                    max={10}
-                                                />
-                                            </Grid>
-                                        </Grid>
-                                        <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
-                                            <Grid item lg={12} sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
-                                                <LoadingButton
-                                                    loading={loading}
-                                                    onClick={() => {
-                                                        getSTXPriceFull();
-                                                        handleLoadingTrue();
-                                                        approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', valueFormatted).then(
-                                                            (result) => {
-                                                                purchaseSharess(value).then(() => {
-                                                                    handleLoadingFalse();
-                                                                    handleOpen3();
-                                                                    fetchBalance();
-                                                                    fetchTotalSupply();
-                                                                    fetchsSTXPrice();
-                                                                    fetchBusdBalance();
-                                                                    fetchTotalDividends();
-                                                                });
-                                                            }
-                                                        );
-                                                    }}
-                                                    sx={{
-                                                        fontSize: 18,
-                                                        minHeight: 45,
-                                                        minWidth: 140,
-                                                        bgcolor: theme.palette.success.main,
-                                                        backgroundColor: theme.palette.success.main,
-                                                        color: theme.palette.grey[900]
-                                                    }}
-                                                >
-                                                    BUY {value} sSTX
-                                                </LoadingButton>
-                                            </Grid>
+                                        <Grid item lg="auto" sx={{ pl: 0.5, mt: 0.24 }}>
+                                            <Tooltip
+                                                sx={{ color: theme.palette.success.main }}
+                                                title={
+                                                    <Typography
+                                                        sx={{
+                                                            color: theme.palette.success.main
+                                                        }}
+                                                    >
+                                                        The initial (starting) price of sSTX is 20 BUSD and it increases by 0.01 BUSD every
+                                                        sSTX sold. The current sSTX price can be checked below. 70% of the BUSD amount used
+                                                        for sSTX purchases is distributed to sSTX holders every 24 hours.
+                                                    </Typography>
+                                                }
+                                            >
+                                                <InfoIcon />
+                                            </Tooltip>
                                         </Grid>
                                     </Grid>
-                                </Card>
-                            </Grid>
+                                    <Grid item sx={{ backgroundColor: theme.palette.grey[900], my: 0 }} lg={10} xs={9.3}>
+                                        <SharesSTAXChart />
+                                    </Grid>
+                                    <Grid item sx={{ backgroundColor: theme.palette.grey[900], mt: 1.6 }} lg={4.7} md={7} sm={7} xs="auto">
+                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
+                                            Total Sold:
+                                        </Typography>
+                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
+                                            Initial Price:
+                                        </Typography>
+                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
+                                            Current Price:
+                                        </Typography>
+                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
+                                            BUSD Balance:
+                                        </Typography>
+                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
+                                            BONUS APY:
+                                        </Typography>
+                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
+                                            sSTX Balance:
+                                        </Typography>
+                                    </Grid>
+                                    <Grid
+                                        item
+                                        sx={{ backgroundColor: theme.palette.grey[900], mt: 1.6 }}
+                                        lg="auto"
+                                        sm="auto"
+                                        md="auto"
+                                        xs="auto"
+                                    >
+                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="right">
+                                            {totalsharesSupply}/100,000 sSTX
+                                        </Typography>
+                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="right">
+                                            20 BUSD
+                                        </Typography>
+                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="right">
+                                            {sSTXPrice} BUSD
+                                        </Typography>
+                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="right">
+                                            {busdBalanceFormatted} BUSD
+                                        </Typography>
+                                        <Typography sx={{ my: 2, color: theme.palette.success.main }} variant="h5" textAlign="right">
+                                            {myAPYFormatted} %
+                                        </Typography>
+                                        <Typography sx={{ my: 2, color: theme.palette.success.main }} variant="h5" textAlign="right">
+                                            {balance} sSTX
+                                        </Typography>
+                                    </Grid>
+                                    <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
+                                        <Grid item lg={5} xs={7.5}>
+                                            <PrettoSlider
+                                                valueLabelDisplay="auto"
+                                                aria-label="pretto slider"
+                                                onChange={updateValue}
+                                                defaultValue={1}
+                                                max={10}
+                                            />
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
+                                        <LoadingButton
+                                            loading={loading}
+                                            onClick={() => {
+                                                getSTXPriceFull();
+                                                handleLoadingTrue();
+                                                approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', valueFormatted).then((result) => {
+                                                    purchaseSharess(value).then(() => {
+                                                        handleLoadingFalse();
+                                                        handleOpen3();
+                                                        fetchBalance();
+                                                        fetchTotalSupply();
+                                                        fetchsSTXPrice();
+                                                        fetchBusdBalance();
+                                                        fetchTotalDividends();
+                                                    });
+                                                });
+                                            }}
+                                            sx={{
+                                                fontSize: 18,
+                                                minHeight: 45,
+                                                minWidth: 140,
+                                                bgcolor: theme.palette.success.main,
+                                                backgroundColor: theme.palette.success.main,
+                                                color: theme.palette.grey[900]
+                                            }}
+                                        >
+                                            BUY {value} sSTX
+                                        </LoadingButton>
+                                    </Grid>
+                                </Grid>
+                            </Card>
                         </Grid>
                         <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 3 }} lg={4.5}>
                             <Grid item lg={11.5} xs={12} md={12} sm={12} mt={2}>
@@ -503,7 +490,7 @@ const StakingCard = () => {
                                                     Dividends
                                                 </Typography>
                                             </Grid>
-                                            <Grid item lg={12} sx={{ mt: 1, justifyContent: 'center', display: 'flex' }}>
+                                            <Grid item lg={12} md={12} sx={{ mt: 1, justifyContent: 'center', display: 'flex' }}>
                                                 <Grid item lg={8} xs={10} md={7}>
                                                     <Typography
                                                         variant="h5"
@@ -516,7 +503,7 @@ const StakingCard = () => {
                                                     </Typography>
                                                 </Grid>
                                             </Grid>
-                                            <Grid item lg={12} md={10} xs={10} sx={{ mt: 5, justifyContent: 'center', display: 'flex' }}>
+                                            <Grid item lg={12} md={12} xs={10} sx={{ mt: 5, justifyContent: 'center', display: 'flex' }}>
                                                 <Typography variant="h5" color={theme.palette.grey[50]} textAlign="center">
                                                     STAX Volume Dividends
                                                 </Typography>
@@ -538,19 +525,18 @@ const StakingCard = () => {
                                             </Grid>
                                             <Grid
                                                 item
-                                                lg={5}
-                                                md={6}
+                                                lg="auto"
+                                                md="auto"
                                                 xs="auto"
-                                                sx={{ mt: 1, mx: 1, justifyContent: 'right', display: 'flex' }}
+                                                sx={{ mt: 1, mx: 1, justifyContent: 'center', display: 'flex' }}
                                             >
-                                                <Typography variant="h2" sx={{ mr: 1 }} color={theme.palette.grey[50]} textAlign="center">
+                                                <Typography variant="h2" sx={{ mr: 1 }} color={theme.palette.grey[50]} textAlign="right">
                                                     0
                                                 </Typography>
                                                 <BusdSmallLogo />
-                                            </Grid>
-                                            <Grid item lg={4.3} md={4.3} xs={3} sx={{ mt: 0.8, justifyContent: 'left', display: 'flex' }}>
                                                 <Button
                                                     sx={{
+                                                        ml: 1,
                                                         fontSize: 18,
                                                         height: 30,
                                                         minWidth: 80,
@@ -582,15 +568,20 @@ const StakingCard = () => {
                                                     <InfoIcon />
                                                 </Tooltip>
                                             </Grid>
-                                            <Grid item lg={5} xs="auto" sx={{ mt: 1, mx: 1, justifyContent: 'right', display: 'flex' }}>
-                                                <Typography variant="h2" sx={{ mr: 1 }} color={theme.palette.grey[50]} textAlign="center">
+                                            <Grid
+                                                item
+                                                lg="auto"
+                                                md="auto"
+                                                xs="auto"
+                                                sx={{ mt: 1, justifyContent: 'center', display: 'flex' }}
+                                            >
+                                                <Typography variant="h2" sx={{ mr: 1 }} color={theme.palette.grey[50]} textAlign="right">
                                                     {busdDividends}
                                                 </Typography>
                                                 <BusdSmallLogo />
-                                            </Grid>
-                                            <Grid item lg={4.3} xs={3} sx={{ mt: 0.8, justifyContent: 'left', display: 'flex' }}>
                                                 <Button
                                                     sx={{
+                                                        ml: 1,
                                                         fontSize: 18,
                                                         height: 30,
                                                         minWidth: 80,

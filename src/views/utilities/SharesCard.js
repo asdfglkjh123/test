@@ -24,6 +24,51 @@ import {
 } from 'components/wallet/sharesABI';
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
+const marks = [
+    {
+        value: 1,
+        label: '1'
+    },
+    {
+        value: 2,
+        label: '2'
+    },
+    {
+        value: 3,
+        label: '3'
+    },
+    {
+        value: 4,
+        label: '4'
+    },
+    {
+        value: 5,
+        label: '5'
+    },
+    {
+        value: 6,
+        label: '6'
+    },
+    {
+        value: 7,
+        label: '7'
+    },
+    {
+        value: 8,
+        label: '8'
+    },
+    {
+        value: 9,
+        label: '9'
+    },
+    {
+        value: 10,
+        label: '10'
+    }
+];
+function valuetext(value) {
+    return `${value}C`;
+}
 const style = {
     position: 'absolute',
     top: '50%',
@@ -80,9 +125,6 @@ const StakingCard = () => {
     const [value, setValue] = React.useState(1);
     const [busdBalance, setBusdBalance] = React.useState(0);
     const [busdDividends, setBusdDividends] = React.useState(0);
-    // const handleSliderChange = (event, newValue) => {
-    //    setValue(newValue);
-    // };
     const theme = useTheme();
     // eslint-disable-next-line global-require
     const BigNumber = require('bignumber.js');
@@ -92,14 +134,16 @@ const StakingCard = () => {
     const [bonusAPY, setBonusAPY] = useState(0);
     const [totalsharesSupply, setTotalSharesSupply] = useState(0);
     const myAPYFormatted = bonusAPY * 4.5625;
-    const BIG18 = 1000000000000000000;
+    const test1 = value * sSTXPrice;
+    const test1String = test1.toString();
+    const valueFormatted = Web3.utils.toWei(test1String, 'ether');
     const busdBalanceToNumber = new BigNumber(busdBalance);
     const busdBalanceFormat = busdBalanceToNumber.decimalPlaces(2);
     const busdBalanceFormatted = busdBalanceFormat.toLocaleString(undefined);
-    const value222 = value * sSTXPrice * BIG18;
-    const valueHelper = Web3.utils.toWei(value222.toString(), 'ether');
-    const valueToApprove = Web3.utils.toBN(valueHelper);
     const myShareRate = (balance / totalsharesSupply) * 100;
+    const updateValue = (event, newValue) => {
+        setValue(newValue);
+    };
     const [open, setOpen] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
     const [open3, setOpen3] = React.useState(false);
@@ -107,9 +151,6 @@ const StakingCard = () => {
     const handleOpen3 = () => setOpen3(true);
     const handleLoadingTrue = () => setLoading(true);
     const handleLoadingFalse = () => setLoading(false);
-    const [submitted, setSubmitted] = React.useState(false);
-    const handleSubmitTrue = () => setSubmitted(true);
-    const handleSubmitFalse = () => setSubmitted(false);
     const myShareRateFormatted = myShareRate.toLocaleString(undefined, { maximumFractionDigits: 1 });
     const fetchsSTXPrice = async () => {
         getSTXPrice()
@@ -209,48 +250,18 @@ const StakingCard = () => {
                     </Grid>
                 </Box>
             </Modal>
-            <Modal
-                open={submitted}
-                onClose={handleSubmitFalse}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box sx={style}>
-                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <DoneIcon color="success" fontSize="large" />
-                    </Grid>
-                    <Typography variant="h5" textAlign="center" sx={{ mt: 3 }} component="h2">
-                        Transaction submitted.
-                    </Typography>
-                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Button
-                            onClick={handleSubmitFalse}
-                            sx={{
-                                fontSize: 18,
-                                minHeight: 45,
-                                minWidth: 140,
-                                bgcolor: theme.palette.success.main,
-                                backgroundColor: theme.palette.success.main,
-                                color: theme.palette.grey[900]
-                            }}
-                        >
-                            Close
-                        </Button>
-                    </Grid>
-                </Box>
-            </Modal>
             <MainCard
                 sx={{ width: 'full%', height: '108%', borderRadius: 0, backgroundColor: theme.palette.grey[900], border: 0 }}
                 content={false}
             >
                 <CardContent>
                     <Grid container sx={{ justifyContent: 'center', display: 'flex' }}>
-                        <Grid container lg={12} sx={{ justifyContent: 'center', display: 'flex' }} mt={5}>
+                        <Grid container sx={{ justifyContent: 'center', display: 'flex' }} mt={5}>
                             <Typography textAlign="center" variant="h6" color={theme.palette.grey[50]}>
                                 Shares & BUSD Dividends
                             </Typography>
                         </Grid>
-                        <Grid container sx={{ display: 'flex', justifyContent: 'center' }} lg={4.5}>
+                        <Grid item container sx={{ display: 'flex', justifyContent: 'center' }} lg={4.5}>
                             <Grid item lg={11.5} xs={12} md={12} sm={12} sx={{ mt: 5 }}>
                                 <Card
                                     sx={{
@@ -355,16 +366,8 @@ const StakingCard = () => {
                                                 <PrettoSlider
                                                     valueLabelDisplay="auto"
                                                     aria-label="pretto slider"
-                                                    onChange={(e) => {
-                                                        setValue(e.target.value);
-                                                        if (value === '') {
-                                                            setValue(1);
-                                                        }
-                                                        if (value === 0) {
-                                                            setValue(1);
-                                                        }
-                                                    }}
-                                                    min={1}
+                                                    onChange={updateValue}
+                                                    defaultValue={1}
                                                     max={10}
                                                 />
                                             </Grid>
@@ -376,7 +379,7 @@ const StakingCard = () => {
                                                     onClick={() => {
                                                         getSTXPriceFull();
                                                         handleLoadingTrue();
-                                                        approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', valueToApprove).then(
+                                                        approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', valueFormatted).then(
                                                             (result) => {
                                                                 purchaseSharess(value).then(() => {
                                                                     handleLoadingFalse();
@@ -407,7 +410,7 @@ const StakingCard = () => {
                                 </Card>
                             </Grid>
                         </Grid>
-                        <Grid container sx={{ display: 'flex', justifyContent: 'center', mt: 3 }} lg={4.5}>
+                        <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 3 }} lg={4.5}>
                             <Grid item lg={11.5} xs={12} md={12} sm={12} mt={2}>
                                 <Card
                                     sx={{
@@ -477,7 +480,7 @@ const StakingCard = () => {
                                     </Grid>
                                 </Card>
                             </Grid>
-                            <Grid container xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 3 }} lg={11.5}>
+                            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 3 }} lg={11.5}>
                                 <Grid item lg={12} xs={12} md={12} sm={12}>
                                     <Card
                                         sx={{

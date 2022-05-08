@@ -605,6 +605,7 @@ const StakingCard = () => {
             <Grid
                 item
                 sx={{
+                    width: 410,
                     mt: 6,
                     mb: 15,
                     borderLeft: 1,
@@ -615,7 +616,7 @@ const StakingCard = () => {
                     boxShadow: '0px 10px 20px rgb(0, 230, 117)'
                 }}
             >
-                <TableContainer sx={{ borderRadius: 5, width: 400 }}>
+                <TableContainer sx={{ borderRadius: 5 }}>
                     <Paper sx={{ height: 300 }}>
                         <Table stickyHeader sx={{ minWidth: 600 }} aria-label="simple table">
                             <TableHead>

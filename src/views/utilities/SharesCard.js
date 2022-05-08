@@ -261,7 +261,7 @@ const StakingCard = () => {
                                 Shares & BUSD Dividends
                             </Typography>
                         </Grid>
-                        <Grid item container sx={{ mt: 5, display: 'flex', justifyContent: 'center' }} lg={4.5}>
+                        <Grid item container xs={12} sx={{ mt: 5, display: 'flex', justifyContent: 'center' }} lg={4.5}>
                             <Card
                                 sx={{
                                     borderLeft: 1,

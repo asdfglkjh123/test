@@ -617,7 +617,7 @@ const StakingCard = () => {
                 }}
             >
                 <TableContainer sx={{ borderRadius: 5 }}>
-                    <Paper sx={{ height: 300 }}>
+                    <Paper sx={{ height: 300, borderRadius: 5 }}>
                         <Table stickyHeader sx={{ minWidth: 600 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow>

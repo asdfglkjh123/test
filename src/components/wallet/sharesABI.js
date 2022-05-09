@@ -228,7 +228,7 @@ export const init = async () => {
     ];
 
     erc20SharesContract = new web3.eth.Contract(erc20Abi, '0xb08CE509caFb6660E4F7b951Fbb8ae63930a6aEE');
-    erc20StaxContract = new web3.eth.Contract(erc20Abi, '0xF224398d6d757142eDE2F6AFFa4837DBDa9C04CA');
+    erc20StaxContract = new web3.eth.Contract(erc20Abi, '0x1155605B148DEB0f649F9b815Fc18d956af7a93d');
     erc20BusdContract = new web3.eth.Contract(erc20Abi, '0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
 
     isInitialized = true;

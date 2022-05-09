@@ -264,7 +264,7 @@ const DEX = () => {
                                 DEX - Swap & Liquidity
                             </Typography>
                         </Grid>
-                        <Grid item container xs={12} sx={{ mt: 5, display: 'flex', justifyContent: 'center' }} lg={6}>
+                        <Grid item container xs={12} sx={{ mt: 5, display: 'flex', justifyContent: 'center' }} lg={4.5}>
                             <Card
                                 sx={{
                                     borderLeft: 1,
@@ -288,123 +288,181 @@ const DEX = () => {
                                             </Typography>
                                         </Grid>
                                     </Grid>
-                                    <Grid item sx={{ backgroundColor: theme.palette.grey[900], my: 0 }} lg={8} xs={9.3}>
+                                    <Grid item sx={{ backgroundColor: theme.palette.grey[900], my: 0 }} lg={11} xs={9.3}>
                                         <SharesSTAXChart />
                                     </Grid>
-                                    <Grid item lg={12}>
+                                    <Grid item lg={12} xs={12}>
                                         <Typography sx={{ my: 2 }} variant="h5" textAlign="center">
                                             STAX PRICE CHART
                                         </Typography>
                                     </Grid>
-                                    <Grid item sx={{ backgroundColor: theme.palette.grey[900], mt: 1.6 }} lg={4.7} md={7} sm={7} xs="auto">
-                                        <Typography sx={{ my: 2 }} variant="h3" textAlign="left">
-                                            BUY STAX
-                                        </Typography>
+                                    <Grid
+                                        item
+                                        container
+                                        sx={{
+                                            backgroundColor: theme.palette.grey[900],
+                                            justifyContent: 'center',
+                                            display: 'flex',
+                                            mt: 1.6
+                                        }}
+                                        lg={4.7}
+                                        md={7}
+                                        xs={12}
+                                        sm={7}
+                                    >
+                                        <Grid item xs={12}>
+                                            <Typography sx={{ my: 2 }} variant="h3" textAlign="center">
+                                                BUY STAX
+                                            </Typography>
+                                        </Grid>
                                         <Grid
                                             item
+                                            xs={4}
                                             sx={{
                                                 borderRadius: 2,
                                                 border: 3,
                                                 borderColor: theme.palette.success.main,
                                                 justifyContent: 'center',
-                                                display: 'flex',
-                                                width: 150
+                                                display: 'flex'
                                             }}
                                         >
                                             <TextField
                                                 sx={{
                                                     borderBottom: 2,
-                                                    justifyContent: 'center',
                                                     display: 'flex',
                                                     borderColor: theme.palette.success.main
                                                 }}
-                                                inputProps={{ style: { width: 140, textAlign: 'center', color: 'white' } }}
+                                                inputProps={{ style: { textAlign: 'center', color: 'white' } }}
                                                 id="standard-basic"
-                                                label="Enter amount:"
+                                                label="Enter BUSD amount:"
                                                 variant="standard"
                                                 color="success"
                                             />
                                         </Grid>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
-                                            Current Price:
-                                        </Typography>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
-                                            BUSD Balance:
-                                        </Typography>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
-                                            BONUS APY:
-                                        </Typography>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
-                                            sSTX Balance:
-                                        </Typography>
+                                        <Grid item xs={12}>
+                                            <Typography sx={{ my: 2 }} variant="h5" textAlign="center">
+                                                Price: 0.00020 BUSD per STX
+                                            </Typography>
+                                            <Typography sx={{ my: 2 }} variant="h5" textAlign="center">
+                                                You will receive:
+                                            </Typography>
+                                            <Grid item sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
+                                                <LoadingButton
+                                                    loading={loading}
+                                                    onClick={() => {
+                                                        getSTXPriceFull();
+                                                        handleLoadingTrue();
+                                                        approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', valueFormatted).then(
+                                                            (result) => {
+                                                                purchaseSharess(value).then(() => {
+                                                                    handleLoadingFalse();
+                                                                    handleOpen3();
+                                                                    fetchBalance();
+                                                                    fetchTotalSupply();
+                                                                    fetchsSTXPrice();
+                                                                    fetchBusdBalance();
+                                                                    fetchTotalDividends();
+                                                                });
+                                                            }
+                                                        );
+                                                    }}
+                                                    sx={{
+                                                        fontSize: 18,
+                                                        minHeight: 45,
+                                                        minWidth: 110,
+                                                        bgcolor: theme.palette.success.main,
+                                                        backgroundColor: theme.palette.success.main,
+                                                        color: theme.palette.grey[900]
+                                                    }}
+                                                >
+                                                    SWAP
+                                                </LoadingButton>
+                                            </Grid>
+                                        </Grid>
                                     </Grid>
                                     <Grid
                                         item
-                                        sx={{ backgroundColor: theme.palette.grey[900], mt: 1.6 }}
-                                        lg="auto"
-                                        sm="auto"
-                                        md="auto"
-                                        xs="auto"
+                                        container
+                                        sx={{
+                                            backgroundColor: theme.palette.grey[900],
+                                            justifyContent: 'center',
+                                            display: 'flex',
+                                            mt: 1.6
+                                        }}
+                                        lg={4.7}
+                                        md={7}
+                                        xs={12}
+                                        sm={7}
                                     >
-                                        <Typography sx={{ my: 2 }} variant="h3" textAlign="right">
-                                            SELL STAX
-                                        </Typography>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="right">
-                                            20 BUSD
-                                        </Typography>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="right">
-                                            {sSTXPrice} BUSD
-                                        </Typography>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="right">
-                                            {busdBalanceFormatted} BUSD
-                                        </Typography>
-                                        <Typography sx={{ my: 2, color: theme.palette.success.main }} variant="h5" textAlign="right">
-                                            {myAPYFormatted} %
-                                        </Typography>
-                                        <Typography sx={{ my: 2, color: theme.palette.success.main }} variant="h5" textAlign="right">
-                                            {balance} sSTX
-                                        </Typography>
-                                    </Grid>
-                                    <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
-                                        <Grid item lg={5} xs={7.5}>
-                                            <PrettoSlider
-                                                valueLabelDisplay="auto"
-                                                aria-label="pretto slider"
-                                                onChange={updateValue}
-                                                defaultValue={1}
-                                                max={10}
-                                            />
+                                        <Grid item xs={12}>
+                                            <Typography sx={{ my: 2 }} variant="h3" textAlign="center">
+                                                SELL STAX
+                                            </Typography>
                                         </Grid>
-                                    </Grid>
-                                    <Grid item sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
-                                        <LoadingButton
-                                            loading={loading}
-                                            onClick={() => {
-                                                getSTXPriceFull();
-                                                handleLoadingTrue();
-                                                approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', valueFormatted).then((result) => {
-                                                    purchaseSharess(value).then(() => {
-                                                        handleLoadingFalse();
-                                                        handleOpen3();
-                                                        fetchBalance();
-                                                        fetchTotalSupply();
-                                                        fetchsSTXPrice();
-                                                        fetchBusdBalance();
-                                                        fetchTotalDividends();
-                                                    });
-                                                });
-                                            }}
+                                        <Grid
+                                            item
+                                            xs={4}
                                             sx={{
-                                                fontSize: 18,
-                                                minHeight: 45,
-                                                minWidth: 140,
-                                                bgcolor: theme.palette.success.main,
-                                                backgroundColor: theme.palette.success.main,
-                                                color: theme.palette.grey[900]
+                                                borderRadius: 2,
+                                                border: 3,
+                                                borderColor: theme.palette.success.main,
+                                                justifyContent: 'center',
+                                                display: 'flex'
                                             }}
                                         >
-                                            SWAP
-                                        </LoadingButton>
+                                            <TextField
+                                                sx={{
+                                                    borderBottom: 2,
+                                                    display: 'flex',
+                                                    borderColor: theme.palette.success.main
+                                                }}
+                                                inputProps={{ style: { textAlign: 'center', color: 'white' } }}
+                                                id="standard-basic"
+                                                label="Enter STAX amount:"
+                                                variant="standard"
+                                                color="success"
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <Typography sx={{ my: 2 }} variant="h5" textAlign="center">
+                                                Price: 0.5000 STAX per BUSD
+                                            </Typography>
+                                            <Typography sx={{ my: 2 }} variant="h5" textAlign="center">
+                                                You will receive:
+                                            </Typography>
+                                            <Grid item sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
+                                                <LoadingButton
+                                                    loading={loading}
+                                                    onClick={() => {
+                                                        getSTXPriceFull();
+                                                        handleLoadingTrue();
+                                                        approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', valueFormatted).then(
+                                                            (result) => {
+                                                                purchaseSharess(value).then(() => {
+                                                                    handleLoadingFalse();
+                                                                    handleOpen3();
+                                                                    fetchBalance();
+                                                                    fetchTotalSupply();
+                                                                    fetchsSTXPrice();
+                                                                    fetchBusdBalance();
+                                                                    fetchTotalDividends();
+                                                                });
+                                                            }
+                                                        );
+                                                    }}
+                                                    sx={{
+                                                        fontSize: 18,
+                                                        minHeight: 45,
+                                                        minWidth: 110,
+                                                        bgcolor: theme.palette.success.main,
+                                                        backgroundColor: theme.palette.success.main,
+                                                        color: theme.palette.grey[900]
+                                                    }}
+                                                >
+                                                    SWAP
+                                                </LoadingButton>
+                                            </Grid>
+                                        </Grid>
                                     </Grid>
                                 </Grid>
                             </Card>

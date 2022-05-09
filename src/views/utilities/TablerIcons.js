@@ -425,7 +425,7 @@ const DEX = () => {
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Typography sx={{ my: 2 }} variant="h5" textAlign="center">
-                                                Price: 0.5000 STAX per BUSD
+                                                Price: 5000.00 STAX per BUSD
                                             </Typography>
                                             <Typography sx={{ my: 2 }} variant="h5" textAlign="center">
                                                 You will receive:

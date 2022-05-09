@@ -121,7 +121,7 @@ const PrettoSlider = styled(Slider)({
     }
 });
 
-const StakingCard = () => {
+const SharesCard = () => {
     const [value, setValue] = React.useState(1);
     const [busdBalance, setBusdBalance] = React.useState(0);
     const [busdDividends, setBusdDividends] = React.useState(0);
@@ -605,4 +605,4 @@ const StakingCard = () => {
     );
 };
 
-export default StakingCard;
+export default SharesCard;

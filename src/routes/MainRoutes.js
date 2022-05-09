@@ -43,12 +43,8 @@ const MainRoutes = {
             element: <UtilsShadow />
         },
         {
-            path: '/icons/tabler-icons',
+            path: '/dex',
             element: <UtilsTablerIcons />
-        },
-        {
-            path: '/icons/material-icons',
-            element: <UtilsMaterialIcons />
         },
         {
             path: '/sample-page',

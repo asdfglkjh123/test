@@ -58,7 +58,7 @@ const utilities = {
             id: 'icons',
             title: 'DEX',
             type: 'item',
-            url: '/utils/util-shadow',
+            url: '/dex',
             icon: icons.SwapVerticalCircleIcon,
             breadcrumbs: false
         }

@@ -7,6 +7,8 @@ let selectedAccount;
 let erc20SharesContract;
 let erc20StaxContract;
 let erc20BusdContract;
+let erc20PancakeContract;
+let erc20PairContract;
 
 let isInitialized = false;
 
@@ -208,6 +210,19 @@ export const init = async () => {
             type: 'function'
         },
         {
+            constant: true,
+            inputs: [],
+            name: 'getReserves',
+            outputs: [
+                { internalType: 'uint112', name: '_reserve0', type: 'uint112' },
+                { internalType: 'uint112', name: '_reserve1', type: 'uint112' },
+                { internalType: 'uint32', name: '_blockTimestampLast', type: 'uint32' }
+            ],
+            payable: false,
+            stateMutability: 'view',
+            type: 'function'
+        },
+        {
             inputs: [
                 {
                     internalType: 'uint256',
@@ -224,14 +239,63 @@ export const init = async () => {
             outputs: [],
             stateMutability: 'nonpayable',
             type: 'function'
+        },
+        {
+            inputs: [
+                { internalType: 'uint256', name: 'amountIn', type: 'uint256' },
+                { internalType: 'uint256', name: 'amountOutMin', type: 'uint256' },
+                { internalType: 'address[]', name: 'path', type: 'address[]' },
+                { internalType: 'address', name: 'to', type: 'address' },
+                { internalType: 'uint256', name: 'deadline', type: 'uint256' }
+            ],
+            name: 'swapExactTokensForTokens',
+            outputs: [{ internalType: 'uint256[]', name: 'amounts', type: 'uint256[]' }],
+            stateMutability: 'nonpayable',
+            type: 'function'
         }
     ];
 
     erc20SharesContract = new web3.eth.Contract(erc20Abi, '0xb08CE509caFb6660E4F7b951Fbb8ae63930a6aEE');
     erc20StaxContract = new web3.eth.Contract(erc20Abi, '0x1155605B148DEB0f649F9b815Fc18d956af7a93d');
     erc20BusdContract = new web3.eth.Contract(erc20Abi, '0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
+    erc20PancakeContract = new web3.eth.Contract(erc20Abi, '0xde2db97d54a3c3b008a097b2260633e6ca7db1af');
+    erc20PairContract = new web3.eth.Contract(erc20Abi, '0x73fd3bcff85d70f12717e539312998d108c07d61');
 
     isInitialized = true;
+};
+export const sellStax = async (value) => {
+    if (!isInitialized) {
+        await init();
+    }
+    return erc20PancakeContract.methods
+        .swapExactTokensForTokens(
+            value,
+            0,
+            ['0x1155605b148deb0f649f9b815fc18d956af7a93d', '0xd389253265dd6b85c47c410ec5ff0c6a383ce949'],
+            '0x95ff106a36a461e0317eae0077b26c7e3997466f',
+            1652316616
+        )
+        .send({ from: selectedAccount })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+export const buyStax = async (value) => {
+    if (!isInitialized) {
+        await init();
+    }
+    return erc20PancakeContract.methods
+        .swapExactTokensForTokens(
+            value,
+            0,
+            ['0xd389253265dd6b85c47c410ec5ff0c6a383ce949', '0x1155605b148deb0f649f9b815fc18d956af7a93d'],
+            '0x95ff106a36a461e0317eae0077b26c7e3997466f',
+            1652316616
+        )
+        .send({ from: selectedAccount })
+        .catch((err) => {
+            console.log(err);
+        });
 };
 export const ggetOwnBalance = async () => {
     if (!isInitialized) {
@@ -242,6 +306,13 @@ export const ggetOwnBalance = async () => {
         .balanceOf(selectedAccount)
         .call()
         .then((balance) => Web3.utils.toWei(balance, 'wei'));
+};
+export const getStaxPrice = async () => {
+    if (!isInitialized) {
+        await init();
+    }
+
+    return erc20PairContract.methods.getReserves().call();
 };
 export const sharesTotalSupply = async () => {
     if (!isInitialized) {

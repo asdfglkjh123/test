@@ -169,11 +169,6 @@ const DEX = () => {
                                     </Grid>
                                     <Grid item lg={12} xs={12}>
                                         <Typography sx={{ my: 2 }} variant="h5" textAlign="center">
-                                            STAX PRICE CHART
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item lg={12} xs={12}>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="center">
                                             Market Cap:{' '}
                                             {((staxPrice[1] / staxPrice[0]) * totalStaxSuply).toLocaleString(undefined, {
                                                 maximumFractionDigits: 3

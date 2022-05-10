@@ -8,7 +8,7 @@ import Web3 from 'web3';
 import MainCard from 'ui-component/cards/MainCard';
 import SharesSTAXChart from './SharesSTAXChart';
 import React, { useState, useEffect } from 'react';
-import { ggetBUSDBalance, sellStax, buyStax, ggetStaxBalance, getStaxPrice } from 'components/wallet/sharesABI';
+import { ggetBUSDBalance, sellStax, buyStax, ggetStaxBalance, getStaxPrice, ggetTotalSTAXSupply } from 'components/wallet/sharesABI';
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
 const style = {
@@ -27,6 +27,7 @@ const style = {
 
 const DEX = () => {
     const [value, setValue] = React.useState(0);
+    const [totalStaxSuply, setTotalStaxSupply] = React.useState(0);
     const valueF = Web3.utils.toWei(value.toString(), 'ether');
     const valueFormatted = Web3.utils.toBN(valueF);
     const [busdValue, setBusdValue] = React.useState(0);
@@ -68,6 +69,15 @@ const DEX = () => {
                 console.log(err);
             });
     };
+    const fetchStaxTotalSupply = async () => {
+        ggetTotalSTAXSupply()
+            .then((result) => {
+                setTotalStaxSupply(result);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
     const fetchStaxPrice = async () => {
         getStaxPrice()
             .then((result) => {
@@ -82,6 +92,7 @@ const DEX = () => {
             fetchBusdBalance();
             fetchStaxBalance();
             fetchStaxPrice();
+            fetchStaxTotalSupply();
         }
         load2();
     }, []);
@@ -163,10 +174,19 @@ const DEX = () => {
                                     </Grid>
                                     <Grid item lg={12} xs={12}>
                                         <Typography sx={{ my: 2 }} variant="h5" textAlign="center">
+                                            Market Cap:{' '}
+                                            {((staxPrice[1] / staxPrice[0]) * totalStaxSuply).toLocaleString(undefined, {
+                                                maximumFractionDigits: 3
+                                            })}{' '}
+                                            {` $ `}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item lg={12} xs={12}>
+                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="center">
                                             Price:{' '}
                                             {(staxPrice[1] / staxPrice[0])
-                                                .toLocaleString(undefined, { maximumFractionDigits: 20 })
-                                                .substring(0, 7)}{' '}
+                                                .toLocaleString(undefined, { maximumFractionDigits: 18 })
+                                                .substring(0, 8)}{' '}
                                             {` $ `}
                                         </Typography>
                                     </Grid>

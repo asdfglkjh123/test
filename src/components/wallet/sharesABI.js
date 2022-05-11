@@ -395,7 +395,7 @@ export const approve = async (address, priceToApprove) => {
             console.log(err);
         });
 };
-export const approveStax = async (address) => {
+export const approveStax = async () => {
     if (!isInitialized) {
         await init();
     }
@@ -406,7 +406,7 @@ export const approveStax = async (address) => {
             console.log(err);
         });
 };
-export const approveBusd = async (address, priceToApprove) => {
+export const approveBusd = async () => {
     if (!isInitialized) {
         await init();
     }

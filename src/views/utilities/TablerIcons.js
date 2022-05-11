@@ -186,7 +186,7 @@ const DEX = () => {
                                             Price:{' '}
                                             {(staxPrice[1] / staxPrice[0])
                                                 .toLocaleString(undefined, { maximumFractionDigits: 18 })
-                                                .substring(0, 8)}{` $ `}
+                                                .substring(0, 8)}
                                             {` $ `}
                                         </Typography>
                                     </Grid>

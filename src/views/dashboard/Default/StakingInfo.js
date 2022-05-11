@@ -1,7 +1,7 @@
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Card, CardContent, Grid, Button, Typography } from '@mui/material';
-
+import { CardContent, Grid, Button, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 
@@ -30,7 +30,7 @@ const StakingInfo = () => {
                                 <Grid container sx={{ height: 330, my: 1, display: 'flex', justifyContent: 'center' }}>
                                     <Grid
                                         item
-                                        lg={4}
+                                        lg={12}
                                         xs={12}
                                         md={4.4}
                                         sm={7}
@@ -52,7 +52,14 @@ const StakingInfo = () => {
                                             <Button sx={{ mr: 3, mt: 2 }} size="large" variant="outlined" color="success">
                                                 Learn more
                                             </Button>
-                                            <Button sx={{ mr: 3, mt: 2 }} size="large" variant="contained" color="success">
+                                            <Button
+                                                component={Link}
+                                                to="/test/stake"
+                                                sx={{ mr: 3, mt: 2 }}
+                                                size="large"
+                                                variant="contained"
+                                                color="success"
+                                            >
                                                 STAKE
                                             </Button>
                                         </Grid>

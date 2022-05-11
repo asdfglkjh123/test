@@ -2,7 +2,7 @@
 import { useTheme } from '@mui/material/styles';
 import { Button, CardContent, Grid, Typography } from '@mui/material';
 import DecLogo from './declogo';
-
+import { Link } from 'react-router-dom';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 
@@ -39,10 +39,24 @@ const Description = () => {
                                         protocol provides boost token used for different features - Shares STAX (sSTX). Shares STAX holders
                                         receive passive BUSD dividends received from STAX Daily Volume & each sSTX purchase.
                                     </Typography>
-                                    <Button sx={{ mx: 2, mt: 2 }} size="large" variant="outlined" color="success">
+                                    <Button
+                                        component={Link}
+                                        to="/test/dex"
+                                        sx={{ mx: 2, mt: 2 }}
+                                        size="large"
+                                        variant="outlined"
+                                        color="success"
+                                    >
                                         Buy STAX
                                     </Button>
-                                    <Button sx={{ mt: 2 }} size="large" variant="contained" color="success">
+                                    <Button
+                                        component={Link}
+                                        to="/test/stake"
+                                        sx={{ mt: 2 }}
+                                        size="large"
+                                        variant="contained"
+                                        color="success"
+                                    >
                                         STAKE
                                     </Button>
                                 </Grid>

@@ -7,8 +7,8 @@ const MetamaskLogo = () => {
     useTheme();
     return (
         <>
-            <Grid justifyContent="center" alignContent="center">
-                <img width="100%" src={Metamask} alt="shares banner" />
+            <Grid item sx={{ display: 'flex', justifyContent: 'center', mt: 10 }}>
+                <img width={220} src={Metamask} alt="shares banner" />
             </Grid>
         </>
     );

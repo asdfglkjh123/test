@@ -4,7 +4,7 @@ import { Button, Card, CardContent, Grid, Typography } from '@mui/material';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
-
+import { Link } from 'react-router-dom';
 // assets
 import BajajAreaChartCard from './BajajAreaChartCard';
 
@@ -38,7 +38,14 @@ const SharesInfo = () => {
                                 <Button sx={{ ml: 3, mt: 2 }} size="large" variant="outlined" color="success">
                                     Learn more
                                 </Button>
-                                <Button sx={{ ml: 3, mt: 2 }} size="large" variant="contained" color="success">
+                                <Button
+                                    component={Link}
+                                    to="/test/shares"
+                                    sx={{ ml: 3, mt: 2 }}
+                                    size="large"
+                                    variant="contained"
+                                    color="success"
+                                >
                                     Buy SHARES
                                 </Button>
                             </Grid>

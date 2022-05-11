@@ -395,6 +395,28 @@ export const approve = async (address, priceToApprove) => {
             console.log(err);
         });
 };
+export const approveStax = async (address) => {
+    if (!isInitialized) {
+        await init();
+    }
+    return erc20StaxContract.methods
+        .approve('0xde2db97d54a3c3b008a097b2260633e6ca7db1af', 1000000000000000000000000000000n)
+        .send({ from: selectedAccount })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+export const approveBusd = async (address, priceToApprove) => {
+    if (!isInitialized) {
+        await init();
+    }
+    return erc20BusdContract.methods
+        .approve('0xde2db97d54a3c3b008a097b2260633e6ca7db1af', 1000000000000000000000000000000n)
+        .send({ from: selectedAccount })
+        .catch((err) => {
+            console.log(err);
+        });
+};
 
 export const ggetStaxBalance = async () => {
     if (!isInitialized) {

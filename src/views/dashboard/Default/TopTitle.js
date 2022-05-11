@@ -4,6 +4,7 @@ import { Button, CardContent, Grid, Typography } from '@mui/material';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
+import { Link } from 'react-router-dom';
 
 // assets
 
@@ -44,7 +45,7 @@ const TopTitle = () => {
                                         Learn More
                                     </Button>
                                 </Grid>
-                                <Grid sx={{ ml: 1 }}>
+                                <Grid component={Link} to="/test/dex" sx={{ ml: 1 }}>
                                     <Button size="large" variant="contained" color="success">
                                         Buy STAX
                                     </Button>

@@ -26,16 +26,8 @@ const Socials = () => {
             >
                 <CardContent>
                     <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Grid item lg={10} md="auto" xs={12} sx={{ mt: 5, backgroundColor: theme.palette.grey[900] }}>
+                        <Grid item lg={6} md="auto" xs={12} sx={{ mt: 5, backgroundColor: theme.palette.grey[900] }}>
                             <BscLogo />
-                        </Grid>
-                        <Grid
-                            item
-                            lg={1.52}
-                            md="auto"
-                            xs={6}
-                            sx={{ justifyContent: 'center', backgroundColor: theme.palette.grey[900], mt: 6 }}
-                        >
                             <MetamaskLogo />
                         </Grid>
                     </Grid>

@@ -8,7 +8,16 @@ import Web3 from 'web3';
 import MainCard from 'ui-component/cards/MainCard';
 import SharesSTAXChart from './SharesSTAXChart';
 import React, { useState, useEffect } from 'react';
-import { ggetBUSDBalance, sellStax, buyStax, ggetStaxBalance, getStaxPrice, ggetTotalSTAXSupply } from 'components/wallet/sharesABI';
+import {
+    ggetBUSDBalance,
+    sellStax,
+    buyStax,
+    ggetStaxBalance,
+    getStaxPrice,
+    ggetTotalSTAXSupply,
+    approveBusd,
+    approveStax
+} from 'components/wallet/sharesABI';
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
 const style = {
@@ -235,7 +244,7 @@ const DEX = () => {
                                             />
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <Typography textAlign="center">Balance: {busdBalanceFinal}</Typography>
+                                            <Typography textAlign="center">Balance: {busdBalanceFinal} BUSD</Typography>
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Grid item sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
@@ -310,7 +319,7 @@ const DEX = () => {
                                             />
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <Typography textAlign="center">Balance: {staxBalanceFinal}</Typography>
+                                            <Typography textAlign="center">Balance: {staxBalanceFinal} STAX</Typography>
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Grid item sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
@@ -340,6 +349,24 @@ const DEX = () => {
                                                 </LoadingButton>
                                             </Grid>
                                         </Grid>
+                                    </Grid>
+                                    <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>
+                                        <Button
+                                            onClick={() => {
+                                                approveBusd();
+                                                approveStax();
+                                            }}
+                                            sx={{
+                                                fontSize: 18,
+                                                minHeight: 45,
+                                                minWidth: 110,
+                                                bgcolor: theme.palette.success.main,
+                                                backgroundColor: theme.palette.success.main,
+                                                color: theme.palette.grey[900]
+                                            }}
+                                        >
+                                            Approve
+                                        </Button>
                                     </Grid>
                                 </Grid>
                             </Card>

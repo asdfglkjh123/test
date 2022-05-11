@@ -353,8 +353,9 @@ const DEX = () => {
                                     <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>
                                         <Button
                                             onClick={() => {
-                                                approveBusd();
-                                                approveStax();
+                                                approveBusd().then(() => {
+                                                    approveStax();
+                                                });
                                             }}
                                             sx={{
                                                 fontSize: 18,

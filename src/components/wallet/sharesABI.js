@@ -272,7 +272,7 @@ export const sellStax = async (value) => {
             value,
             0,
             ['0x1155605b148deb0f649f9b815fc18d956af7a93d', '0xd389253265dd6b85c47c410ec5ff0c6a383ce949'],
-            '0x95ff106a36a461e0317eae0077b26c7e3997466f',
+            selectedAccount,
             1652316616
         )
         .send({ from: selectedAccount })
@@ -289,7 +289,7 @@ export const buyStax = async (value) => {
             value,
             0,
             ['0xd389253265dd6b85c47c410ec5ff0c6a383ce949', '0x1155605b148deb0f649f9b815fc18d956af7a93d'],
-            '0x95ff106a36a461e0317eae0077b26c7e3997466f',
+            selectedAccount,
             1652316616
         )
         .send({ from: selectedAccount })

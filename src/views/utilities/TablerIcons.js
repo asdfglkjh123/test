@@ -60,6 +60,7 @@ const DEX = () => {
     const handleOpen3 = () => setOpen3(true);
     const handleLoadingTrue = () => setLoading(true);
     const handleLoadingFalse = () => setLoading(false);
+    const timestamp = Math.floor(Date.now() / 1000);
     const fetchBusdBalance = async () => {
         ggetBUSDBalance()
             .then((busdBalance) => {
@@ -102,6 +103,7 @@ const DEX = () => {
             fetchStaxBalance();
             fetchStaxPrice();
             fetchStaxTotalSupply();
+            console.log(timestamp);
         }
         load2();
     }, []);

@@ -5,12 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Avatar, Grid, Chip, Icon, ListItemButton, ListItemText, ListItemIcon, Typography, useMediaQuery } from '@mui/material';
+import { Avatar, Grid, Chip, ListItemButton, ListItemText, ListItemIcon, Typography, useMediaQuery } from '@mui/material';
 
 // project imports
 import { MENU_OPEN, SET_MENU } from 'store/actions';
 import config from 'config';
-import { IconHome } from '@tabler/icons';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 
@@ -67,7 +66,6 @@ const NavItem = ({ item, level }) => {
             {...listItemProps}
             disabled={item.disabled}
             sx={{
-                mx: 0.5,
                 borderRadius: `20px`,
                 alignItems: 'flex-start',
                 bgcolor: theme.palette.grey[900],

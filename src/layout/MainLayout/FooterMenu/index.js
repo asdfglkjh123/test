@@ -14,6 +14,7 @@ const FooterMenu = () => {
         <>
             {hidden ? (
                 <Box
+                    xs={12}
                     sm={12}
                     sx={{
                         mt: 1,

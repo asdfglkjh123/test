@@ -35,14 +35,6 @@ ShadowBox.propTypes = {
 const UtilitiesShadow = () => {
     const theme = useTheme();
     const option = {
-        title: {
-            text: 'Staking',
-            subtext: 'Stats',
-            x: 'center',
-            textStyle: {
-                color: theme.palette.success.main
-            }
-        },
         tooltip: {
             trigger: 'item',
             formatter: '{a} <br/>{b} : {c} ({d}%)'
@@ -60,7 +52,14 @@ const UtilitiesShadow = () => {
                 name: 'Supply & Staking Stats',
                 type: 'pie',
                 radius: '55%',
-                center: ['50%', '60%'],
+                center: ['50%', '70%'],
+                label: {
+                    normal: {
+                        textStyle: {
+                            color: theme.palette.success.main
+                        }
+                    }
+                },
                 data: [
                     { value: 37355902, name: 'Total Staked' },
                     { value: 9020992, name: 'PancakeSwap Pool' },
@@ -95,7 +94,12 @@ const UtilitiesShadow = () => {
                 </Button>
             </Grid>
             <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 10 }}>
-                <Grid item xs={12} lg={6}>
+                <Grid item lg={12}>
+                    <Typography variant="h3" sx={{ mb: 5, color: theme.palette.grey[50], textAlign: 'center' }}>
+                        Staking Stats
+                    </Typography>
+                </Grid>
+                <Grid item xs={12} lg={6} sx={{ mb: 20 }}>
                     <EChartsReact option={option} style={{ height: 400 }} />
                 </Grid>
             </Grid>

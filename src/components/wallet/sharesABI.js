@@ -290,7 +290,7 @@ export const buyStax = async (value) => {
             0,
             ['0xd389253265dd6b85c47c410ec5ff0c6a383ce949', '0x1155605b148deb0f649f9b815fc18d956af7a93d'],
             selectedAccount,
-            1652316616
+            1952316616
         )
         .send({ from: selectedAccount })
         .catch((err) => {

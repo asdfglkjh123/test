@@ -189,6 +189,15 @@ const DEX = () => {
                                     </Grid>
                                     <Grid item lg={12} xs={12}>
                                         <Typography sx={{ my: 2 }} variant="h5" textAlign="center">
+                                            Liquidity:{' '}
+                                            {(staxPrice[1] / 1000000000000000000).toLocaleString(undefined, {
+                                                maximumFractionDigits: 2
+                                            })}{' '}
+                                            {` $ `}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item lg={12} xs={12}>
+                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="center">
                                             Starting Price: 0.0002$
                                         </Typography>
                                     </Grid>

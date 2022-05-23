@@ -153,7 +153,7 @@ const ProfileSection = () => {
                                                 >
                                                     <ListItemButton sx={{ borderRadius: `${customization.borderRadius}px` }}>
                                                         <ListItemIcon>
-                                                            <IconShare stroke={1.5} size="1.3rem" color={theme.palette.grey[50]} />
+                                                            <IconShare stroke={1.5} size="1.3rem" color={theme.palette.success.main} />
                                                         </ListItemIcon>
                                                         <ListItemText
                                                             primary={
@@ -190,7 +190,7 @@ const ProfileSection = () => {
                                                         }}
                                                     >
                                                         <ListItemIcon>
-                                                            <IconLogout stroke={1.5} size="1.3rem" color={theme.palette.grey[50]} />
+                                                            <IconLogout stroke={1.5} size="1.3rem" color={theme.palette.success.main} />
                                                         </ListItemIcon>
                                                         <ListItemText
                                                             primary={

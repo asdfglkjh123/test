@@ -7,7 +7,9 @@ import Web3 from 'web3';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import SharesSTAXChart from './SharesSTAXChart';
+import SettingsIcon from '@mui/icons-material/Settings';
 import React, { useState, useEffect } from 'react';
+import SwapVerticalCircleIcon from '@mui/icons-material/SwapVerticalCircle';
 import {
     ggetBUSDBalance,
     sellStax,
@@ -165,50 +167,18 @@ const DEX = () => {
                                 <Grid container sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
                                     <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
                                         <Grid item xs="auto" lg="auto" md="auto" sm="auto">
-                                            <Typography variant="h2" color={theme.palette.grey[50]}>
-                                                BUY/SELL
+                                            <Typography variant="h3" color={theme.palette.grey[50]}>
+                                                SWAP
                                             </Typography>
                                         </Grid>
                                         <Grid item xs="auto" lg="auto" sm="auto" md="auto">
-                                            <Typography variant="h2" color={theme.palette.success.main} textAlign="left">
+                                            <Typography variant="h3" color={theme.palette.success.main} textAlign="left">
                                                 STAX
                                             </Typography>
                                         </Grid>
-                                    </Grid>
-                                    <Grid item sx={{ backgroundColor: theme.palette.grey[900], my: 0 }} lg={11} xs={9.3}>
-                                        <SharesSTAXChart />
-                                    </Grid>
-                                    <Grid item lg={12} xs={12}>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="center">
-                                            Market Cap:{' '}
-                                            {((staxPrice[1] / staxPrice[0]) * totalStaxSuply).toLocaleString(undefined, {
-                                                maximumFractionDigits: 2
-                                            })}{' '}
-                                            {` $ `}
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item lg={12} xs={12}>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="center">
-                                            Liquidity:{' '}
-                                            {((staxPrice[1] * 2) / 1000000000000000000).toLocaleString(undefined, {
-                                                maximumFractionDigits: 2
-                                            })}{' '}
-                                            {` $ `}
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item lg={12} xs={12}>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="center">
-                                            Starting Price: 0.0002$
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item lg={12} xs={12}>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="center">
-                                            Price:{' '}
-                                            {(staxPrice[1] / staxPrice[0])
-                                                .toLocaleString(undefined, { maximumFractionDigits: 18 })
-                                                .substring(0, 8)}
-                                            {` $ `}
-                                        </Typography>
+                                        <Grid item xs="auto" lg="auto" sm="auto" md="auto">
+                                            <SettingsIcon fontSize="medium" color="success" />
+                                        </Grid>
                                     </Grid>
                                     <Grid
                                         item
@@ -217,18 +187,13 @@ const DEX = () => {
                                             backgroundColor: theme.palette.grey[900],
                                             justifyContent: 'center',
                                             display: 'flex',
-                                            mt: 1.6
+                                            mt: 4
                                         }}
                                         lg={4.7}
                                         md={7}
                                         xs={12}
                                         sm={7}
                                     >
-                                        <Grid item xs={12}>
-                                            <Typography sx={{ my: 2 }} variant="h3" textAlign="center">
-                                                BUY STAX
-                                            </Typography>
-                                        </Grid>
                                         <Grid
                                             item
                                             xs={7}
@@ -257,33 +222,9 @@ const DEX = () => {
                                         <Grid item xs={12}>
                                             <Typography textAlign="center">Balance: {busdBalanceFinal} BUSD</Typography>
                                         </Grid>
-                                        <Grid item xs={12}>
-                                            <Grid item sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
-                                                <LoadingButton
-                                                    loading={loading}
-                                                    onClick={() => {
-                                                        handleLoadingTrue();
-                                                        buyStax(busdValueFormatted).then(() => {
-                                                            handleLoadingFalse();
-                                                            handleOpen3();
-                                                            fetchBusdBalance();
-                                                            fetchStaxBalance();
-                                                            fetchStaxPrice();
-                                                        });
-                                                    }}
-                                                    sx={{
-                                                        fontSize: 18,
-                                                        minHeight: 45,
-                                                        minWidth: 110,
-                                                        bgcolor: theme.palette.success.main,
-                                                        backgroundColor: theme.palette.success.main,
-                                                        color: theme.palette.grey[900]
-                                                    }}
-                                                >
-                                                    SWAP
-                                                </LoadingButton>
-                                            </Grid>
-                                        </Grid>
+                                    </Grid>
+                                    <Grid item sx={{ mt: 3 }}>
+                                        <SwapVerticalCircleIcon color="success" fontSize="large" />
                                     </Grid>
                                     <Grid
                                         item
@@ -299,16 +240,12 @@ const DEX = () => {
                                         xs={12}
                                         sm={7}
                                     >
-                                        <Grid item xs={12}>
-                                            <Typography sx={{ my: 2 }} variant="h3" textAlign="center">
-                                                SELL STAX
-                                            </Typography>
-                                        </Grid>
                                         <Grid
                                             item
                                             xs={7}
                                             sx={{
                                                 borderRadius: 2,
+                                                mt: 1,
                                                 border: 3,
                                                 borderColor: theme.palette.success.main,
                                                 justifyContent: 'center',
@@ -333,7 +270,7 @@ const DEX = () => {
                                             <Typography textAlign="center">Balance: {staxBalanceFinal} STAX</Typography>
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <Grid item sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
+                                            <Grid item sx={{ mb: 3, mt: 3, display: 'flex', justifyContent: 'center' }}>
                                                 <LoadingButton
                                                     loading={loading}
                                                     onClick={() => {
@@ -360,25 +297,6 @@ const DEX = () => {
                                                 </LoadingButton>
                                             </Grid>
                                         </Grid>
-                                    </Grid>
-                                    <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>
-                                        <Button
-                                            onClick={() => {
-                                                approveBusd().then(() => {
-                                                    approveStax();
-                                                });
-                                            }}
-                                            sx={{
-                                                fontSize: 18,
-                                                minHeight: 45,
-                                                minWidth: 110,
-                                                bgcolor: theme.palette.success.main,
-                                                backgroundColor: theme.palette.success.main,
-                                                color: theme.palette.grey[900]
-                                            }}
-                                        >
-                                            Approve
-                                        </Button>
                                     </Grid>
                                 </Grid>
                             </Card>

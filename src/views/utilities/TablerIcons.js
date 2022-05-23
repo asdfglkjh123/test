@@ -142,7 +142,8 @@ const DEX = () => {
                     height: '108%',
                     borderRadius: 0,
                     backgroundColor: theme.palette.grey[900],
-                    border: 0
+                    border: 0,
+                    mb: 5
                 }}
                 content={false}
             >

@@ -52,7 +52,7 @@ const Header = () => {
 
             {/* header search */}
             <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ flexGrow: 1, border: 1, height: 44, width: 45, borderRadius: 5, mr: 2, borderColor: theme.palette.success.main }}>
+            <Box sx={{ flexGrow: 1, border: 1, height: 44, width: 50, borderRadius: 5, mr: 2, borderColor: theme.palette.success.main }}>
                 <Typography sx={{ mt: 1.3, color: theme.palette.success.light }} variant="h4" textAlign="center">
                     {(staxPrice[1] / staxPrice[0]).toLocaleString(undefined, { maximumFractionDigits: 3 }).substring(0, 8)}
                     {` $ `}

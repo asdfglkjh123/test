@@ -81,7 +81,7 @@ const UtilitiesShadow = () => {
                 name: 'Supply Stats',
                 type: 'pie',
                 radius: '55%',
-                center: ['55%', '60%'],
+                center: ['50%', '60%'],
                 label: {
                     normal: {
                         textStyle: {
@@ -99,7 +99,7 @@ const UtilitiesShadow = () => {
         ]
     };
     return (
-        <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'center' }}>
             <Typography textAlign="center" variant="h2">
                 STAX Global Stats
             </Typography>
@@ -121,7 +121,8 @@ const UtilitiesShadow = () => {
             <Grid
                 item
                 container
-                lg={7}
+                lg={9.1}
+                xs={11}
                 sx={{
                     borderLeft: 3,
                     borderBottom: 3,
@@ -137,7 +138,7 @@ const UtilitiesShadow = () => {
                     <EChartsReact option={option} style={{ height: 400 }} />
                 </Grid>
             </Grid>
-            <Grid item container xs={12} sx={{ mb: 15 }}>
+            <Grid item container lg={3.5} xs={12} sx={{ mb: 15 }}>
                 <Card
                     sx={{
                         width: '100%',
@@ -160,7 +161,7 @@ const UtilitiesShadow = () => {
                     </Typography>
                 </Card>
             </Grid>
-            <Grid item container xs={12} sx={{ mb: 15 }}>
+            <Grid item container lg={3.5} xs={12} sx={{ mb: 15 }}>
                 <Card
                     sx={{
                         width: '100%',
@@ -182,7 +183,7 @@ const UtilitiesShadow = () => {
                     </Typography>
                 </Card>
             </Grid>
-            <Grid item container xs={12} sx={{ mb: 15 }}>
+            <Grid item container lg={3.5} xs={12} sx={{ mb: 15 }}>
                 <Card
                     sx={{
                         width: '100%',
@@ -205,7 +206,7 @@ const UtilitiesShadow = () => {
                     </Typography>
                 </Card>
             </Grid>
-            <Grid item container xs={12} sx={{ mb: 15 }}>
+            <Grid item container lg={3.5} xs={12} sx={{ mb: 15 }}>
                 <Card
                     sx={{
                         width: '100%',
@@ -230,7 +231,7 @@ const UtilitiesShadow = () => {
                     </Typography>
                 </Card>
             </Grid>
-            <Grid item container xs={12} sx={{ mb: 25 }}>
+            <Grid item container lg={3.5} xs={12} sx={{ mb: 15 }}>
                 <Card
                     sx={{
                         width: '100%',

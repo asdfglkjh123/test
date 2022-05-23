@@ -20,6 +20,10 @@ import {
     approveBusd,
     approveStax
 } from 'components/wallet/sharesABI';
+import BusdLogo from './busdlogo';
+import BusdSmallLogo from './busdSmallLogo';
+import StaxLogo from './staxlogo';
+import SmallStaxLogo from './smallStaxLogo';
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
 const style = {
@@ -154,7 +158,7 @@ const DEX = () => {
                                 DEX - Swap & Liquidity
                             </Typography>
                         </Grid>
-                        <Grid item container xs={12} sx={{ mt: 5, display: 'flex', justifyContent: 'center' }} lg={4.5}>
+                        <Grid item container xs={12} sx={{ mt: 5, display: 'flex', justifyContent: 'center' }} lg={4}>
                             <Card
                                 sx={{
                                     borderLeft: 1,
@@ -190,7 +194,7 @@ const DEX = () => {
                                             display: 'flex',
                                             mt: 4
                                         }}
-                                        lg={4.7}
+                                        lg={7}
                                         md={7}
                                         xs={12}
                                         sm={7}
@@ -200,15 +204,18 @@ const DEX = () => {
                                             xs={7}
                                             sx={{
                                                 borderRadius: 2,
-                                                border: 3,
+                                                border: 2,
                                                 borderColor: theme.palette.success.main,
-                                                justifyContent: 'center',
+                                                justifyContent: 'right',
                                                 display: 'flex'
                                             }}
                                         >
+                                            <Grid item sx={{ display: 'flex', justifyContent: 'center', mt: 1.5, mr: 1, ml: 1 }}>
+                                                <BusdSmallLogo />
+                                            </Grid>
                                             <TextField
+                                                fullWidth
                                                 sx={{
-                                                    borderBottom: 2,
                                                     display: 'flex',
                                                     borderColor: theme.palette.success.main
                                                 }}
@@ -224,7 +231,7 @@ const DEX = () => {
                                             <Typography textAlign="center">Balance: {busdBalanceFinal} BUSD</Typography>
                                         </Grid>
                                     </Grid>
-                                    <Grid item sx={{ mt: 3 }}>
+                                    <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
                                         <SwapVerticalCircleIcon color="success" fontSize="large" />
                                     </Grid>
                                     <Grid
@@ -236,7 +243,7 @@ const DEX = () => {
                                             display: 'flex',
                                             mt: 1.6
                                         }}
-                                        lg={4.7}
+                                        lg={12}
                                         md={7}
                                         xs={12}
                                         sm={7}
@@ -247,15 +254,18 @@ const DEX = () => {
                                             sx={{
                                                 borderRadius: 2,
                                                 mt: 1,
-                                                border: 3,
+                                                border: 2,
                                                 borderColor: theme.palette.success.main,
                                                 justifyContent: 'center',
                                                 display: 'flex'
                                             }}
                                         >
+                                            <Grid item sx={{ display: 'flex', justifyContent: 'center', mt: 1.5, mr: 1, ml: 1 }}>
+                                                <SmallStaxLogo />
+                                            </Grid>
                                             <TextField
+                                                fullWidth
                                                 sx={{
-                                                    borderBottom: 2,
                                                     display: 'flex',
                                                     borderColor: theme.palette.success.main
                                                 }}

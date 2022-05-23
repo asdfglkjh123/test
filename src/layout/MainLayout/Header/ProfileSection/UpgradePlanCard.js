@@ -1,11 +1,12 @@
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
 import { Button, Card, CardContent, Grid, Stack, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import BigNumber from 'bignumber.js';
 // project imports
 import AnimateButton from 'ui-component/extended/AnimateButton';
-import { ggetOwnBalance, ggetStaxBalance } from 'components/wallet/sharesABI';
+import { ggetOwnBalance, getSTXPrice, ggetStaxBalance, getStaxPrice } from 'components/wallet/sharesABI';
 
 // styles
 const CardStyle = styled(Card)(({ theme }) => ({
@@ -47,10 +48,30 @@ const UpgradePlanCard = () => {
     const balanceFormat = balanceToNumber.decimalPlaces(2);
     const balanceFormatted = balanceFormat.toLocaleString(undefined);
     const [sharesBalance, setSharesBalance] = useState(0);
+    const [sSTXPrice, setsSTXPrice] = useState(0);
+    const [staxPrice, setStaxPrice] = useState([], [], []);
     const fetchStaxBalance = async () => {
         ggetStaxBalance()
             .then((balancee) => {
                 setBalance(balancee);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+    const fetchsSTXPrice = async () => {
+        getSTXPrice()
+            .then((sSTXPrice) => {
+                setsSTXPrice(sSTXPrice);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+    const fetchStaxPrice = async () => {
+        getStaxPrice()
+            .then((result) => {
+                setStaxPrice(result);
             })
             .catch((err) => {
                 console.log(err);
@@ -69,6 +90,8 @@ const UpgradePlanCard = () => {
         async function load() {
             fetchStaxBalance();
             fetchSharesBalance();
+            fetchsSTXPrice();
+            fetchStaxPrice();
         }
         load();
     }, []);
@@ -77,24 +100,28 @@ const UpgradePlanCard = () => {
             <CardContent>
                 <Grid container direction="column" spacing={2.5}>
                     <Grid item>
-                        <Typography variant="h4" color="grey.50">
+                        <Typography variant="h4" sx={{ color: theme.palette.success.main }}>
                             STAX - Store of Value
                         </Typography>
                     </Grid>
                     <Grid item>
                         <Typography variant="h5" color="grey.50">
-                            STAX Balance: {balanceFormatted}
+                            STAX: {balanceFormatted} ({' '}
+                            {((staxPrice[1] / staxPrice[0]) * balanceFormatted).toLocaleString(undefined, { maximumFractionDigits: 2 })}
+                            {` $ `} )
                         </Typography>
                     </Grid>
                     <Grid item>
                         <Typography variant="h5" color="grey.50">
-                            Shares Balance: {sharesBalance}
+                            sSTX: {sharesBalance} ({(sharesBalance * sSTXPrice).toLocaleString(undefined, { maximumFractionDigits: 2 })} $)
                         </Typography>
                     </Grid>
                     <Grid item>
                         <Stack direction="row">
                             <AnimateButton>
                                 <Button
+                                    component={Link}
+                                    to="/test/stake"
                                     sx={{
                                         fontSize: 20,
                                         width: 100,

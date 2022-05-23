@@ -205,7 +205,7 @@ const UtilitiesShadow = () => {
                     </Typography>
                 </Card>
             </Grid>
-            <Grid item container xs={12} sx={{ mb: 20 }}>
+            <Grid item container xs={12} sx={{ mb: 15 }}>
                 <Card
                     sx={{
                         width: '100%',
@@ -230,7 +230,7 @@ const UtilitiesShadow = () => {
                     </Typography>
                 </Card>
             </Grid>
-            <Grid item container xs={12} sx={{ mb: 20 }}>
+            <Grid item container xs={12} sx={{ mb: 25 }}>
                 <Card
                     sx={{
                         width: '100%',

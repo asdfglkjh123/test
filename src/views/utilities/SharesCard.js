@@ -222,7 +222,7 @@ const SharesCard = () => {
             fetchTotalDividends();
         }
         load2();
-    }, []);
+    }, [totalsharesSupply, balance, sSTXPriceFull, sSTXPrice]);
     return (
         <>
             <Modal open={open3} onClose={handleClose3} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">

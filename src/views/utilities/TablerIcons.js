@@ -6,7 +6,6 @@ import DoneIcon from '@mui/icons-material/Done';
 import Web3 from 'web3';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
-import SharesSTAXChart from './SharesSTAXChart';
 import SettingsIcon from '@mui/icons-material/Settings';
 import React, { useState, useEffect } from 'react';
 import SwapVerticalCircleIcon from '@mui/icons-material/SwapVerticalCircle';
@@ -20,9 +19,7 @@ import {
     approveBusd,
     approveStax
 } from 'components/wallet/sharesABI';
-import BusdLogo from './busdlogo';
 import BusdSmallLogo from './busdSmallLogo';
-import StaxLogo from './staxlogo';
 import SmallStaxLogo from './smallStaxLogo';
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
@@ -50,11 +47,12 @@ const DEX = () => {
     const busdValueFormatted = Web3.utils.toBN(busdValueF);
     // eslint-disable-next-line global-require
     const BigNumber = require('bignumber.js');
-    const [busdBalance, setBusdBalance] = React.useState(0);
+    const [busdBalance, setBusdBalance] = React.useState();
+    const test = busdBalance;
     const busdBalanceNumber = new BigNumber(busdBalance);
     const busdBalanceFormat = busdBalanceNumber.decimalPlaces(2);
     const busdBalanceFinal = busdBalanceFormat.toLocaleString(undefined);
-    const [staxBalance, setStaxBalance] = React.useState(0);
+    const [staxBalance, setStaxBalance] = React.useState();
     const staxBalanceNumber = new BigNumber(staxBalance);
     const staxBalanceFormat = staxBalanceNumber.decimalPlaces(2);
     const staxBalanceFinal = staxBalanceFormat.toLocaleString(undefined);
@@ -66,7 +64,8 @@ const DEX = () => {
     const handleOpen3 = () => setOpen3(true);
     const handleLoadingTrue = () => setLoading(true);
     const handleLoadingFalse = () => setLoading(false);
-    const timestamp = Math.floor(Date.now() / 1000);
+    const tokenA = [staxBalance, staxBalanceFinal];
+    const tokenB = [busdBalance, busdBalanceFinal];
     const fetchBusdBalance = async () => {
         ggetBUSDBalance()
             .then((busdBalance) => {
@@ -109,10 +108,10 @@ const DEX = () => {
             fetchStaxBalance();
             fetchStaxPrice();
             fetchStaxTotalSupply();
-            console.log(timestamp);
+            console.log(tokenA);
         }
         load2();
-    }, []);
+    }, [tokenA]);
     return (
         <>
             <Modal open={open3} onClose={handleClose3} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
@@ -228,7 +227,7 @@ const DEX = () => {
                                             />
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <Typography textAlign="center">Balance: {busdBalanceFinal} BUSD</Typography>
+                                            <Typography textAlign="center">Balance: BUSD</Typography>
                                         </Grid>
                                     </Grid>
                                     <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
@@ -278,7 +277,7 @@ const DEX = () => {
                                             />
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <Typography textAlign="center">Balance: {staxBalanceFinal} STAX</Typography>
+                                            <Typography textAlign="center">Balance: STAX</Typography>
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Grid item sx={{ mb: 3, mt: 3, display: 'flex', justifyContent: 'center' }}>

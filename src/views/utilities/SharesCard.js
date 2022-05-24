@@ -333,27 +333,27 @@ const SharesCard = () => {
                                         lg="auto"
                                         sm="auto"
                                         md="auto"
-                                        xs="auto"
+                                        xs={4}
                                     >
-                                        <Grid item container xs={12} sx={{ mt: 2, mb: 1, justifyContent: 'right', display: 'flex' }}>
+                                        <Grid item container sx={{ mt: 1.8, justifyContent: 'right' }}>
                                             <Typography variant="h5" textAlign="right">
                                                 {totalsharesSupply}/40,000
                                             </Typography>
                                             <SmallStaxLogo />
                                         </Grid>
-                                        <Grid item container xs={12} sx={{ mb: 1, justifyContent: 'right', display: 'flex' }}>
+                                        <Grid item container sx={{ mt: 1, justifyContent: 'right' }}>
                                             <Typography variant="h5" textAlign="right">
                                                 20
                                             </Typography>
                                             <BusdSmallLogo />
                                         </Grid>
-                                        <Grid item container xs={12} sx={{ mt: 1, justifyContent: 'right', display: 'flex' }}>
+                                        <Grid item container sx={{ mt: 1, justifyContent: 'right' }}>
                                             <Typography variant="h5" textAlign="right">
                                                 {sSTXPrice}
                                             </Typography>
                                             <BusdSmallLogo />
                                         </Grid>
-                                        <Grid item container xs={12} sx={{ mt: 1, justifyContent: 'right', display: 'flex' }}>
+                                        <Grid item container sx={{ mt: 1, justifyContent: 'right' }}>
                                             <Typography variant="h5" textAlign="right">
                                                 {busdBalanceFormatted}
                                             </Typography>

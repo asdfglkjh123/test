@@ -22,6 +22,7 @@ import {
     ggetTotalDividends,
     purchaseSharess
 } from 'components/wallet/sharesABI';
+import SmallStaxLogo from './smallStaxLogo';
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
 const marks = [
@@ -222,7 +223,7 @@ const SharesCard = () => {
             fetchTotalDividends();
         }
         load2();
-    }, [totalsharesSupply, balance, sSTXPriceFull, sSTXPrice]);
+    }, []);
     return (
         <>
             <Modal open={open3} onClose={handleClose3} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
@@ -334,19 +335,31 @@ const SharesCard = () => {
                                         md="auto"
                                         xs="auto"
                                     >
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="right">
-                                            {totalsharesSupply}/100,000 sSTX
-                                        </Typography>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="right">
-                                            20 BUSD
-                                        </Typography>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="right">
-                                            {sSTXPrice} BUSD
-                                        </Typography>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="right">
-                                            {busdBalanceFormatted} BUSD
-                                        </Typography>
-                                        <Typography sx={{ my: 2, color: theme.palette.success.main }} variant="h5" textAlign="right">
+                                        <Grid item container sx={{ mt: 2, mb: 1, justifyContent: 'right', display: 'flex' }}>
+                                            <Typography variant="h5" textAlign="right">
+                                                {totalsharesSupply}/40,000
+                                            </Typography>
+                                            <SmallStaxLogo />
+                                        </Grid>
+                                        <Grid item container sx={{ mb: 1, justifyContent: 'right', display: 'flex' }}>
+                                            <Typography variant="h5" textAlign="right">
+                                                20
+                                            </Typography>
+                                            <BusdSmallLogo />
+                                        </Grid>
+                                        <Grid item container sx={{ mt: 1, justifyContent: 'right', display: 'flex' }}>
+                                            <Typography variant="h5" textAlign="right">
+                                                {sSTXPrice}
+                                            </Typography>
+                                            <BusdSmallLogo />
+                                        </Grid>
+                                        <Grid item container sx={{ mt: 1, justifyContent: 'right', display: 'flex' }}>
+                                            <Typography variant="h5" textAlign="right">
+                                                {busdBalanceFormatted}
+                                            </Typography>
+                                            <BusdSmallLogo />
+                                        </Grid>
+                                        <Typography sx={{ mt: 0.7, color: theme.palette.success.main }} variant="h5" textAlign="right">
                                             {myAPYFormatted} %
                                         </Typography>
                                         <Typography sx={{ my: 2, color: theme.palette.success.main }} variant="h5" textAlign="right">
@@ -360,6 +373,7 @@ const SharesCard = () => {
                                                 aria-label="pretto slider"
                                                 onChange={updateValue}
                                                 defaultValue={1}
+                                                min={1}
                                                 max={10}
                                             />
                                         </Grid>

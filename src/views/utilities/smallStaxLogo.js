@@ -8,7 +8,7 @@ const SmallStaxLogo = () => {
     return (
         <>
             <Grid justifyContent="center" alignContent="center">
-                <img width={26} src={Stax} alt="shares banner" />
+                <img width={23} src={Stax} alt="shares banner" />
             </Grid>
         </>
     );

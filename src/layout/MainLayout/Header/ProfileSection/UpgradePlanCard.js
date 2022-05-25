@@ -7,6 +7,8 @@ import BigNumber from 'bignumber.js';
 // project imports
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { ggetOwnBalance, getSTXPrice, ggetStaxBalance, getStaxPrice } from 'components/wallet/sharesABI';
+import XsSharesLogo from 'views/utilities/XsSharesLogo copy';
+import XsStaxLogo from 'views/utilities/xsStaxLogo';
 
 // styles
 const CardStyle = styled(Card)(({ theme }) => ({
@@ -104,16 +106,23 @@ const UpgradePlanCard = () => {
                             STAX - Store of Value
                         </Typography>
                     </Grid>
-                    <Grid item>
+                    <Grid item container>
                         <Typography variant="h5" color="grey.50">
-                            STAX: {balanceFormatted} ({' '}
-                            {((staxPrice[1] / staxPrice[0]) * balanceFormatted).toLocaleString(undefined, { maximumFractionDigits: 2 })}
+                            STAX: {balanceFormatted}
+                        </Typography>
+                        <XsStaxLogo />
+                        <Typography variant="h5" color="success.light" sx={{ ml: 1 }}>
+                            ( {((staxPrice[1] / staxPrice[0]) * balanceFormatted).toLocaleString(undefined, { maximumFractionDigits: 2 })}
                             {` $ `} )
                         </Typography>
                     </Grid>
-                    <Grid item>
+                    <Grid item container>
                         <Typography variant="h5" color="grey.50">
-                            sSTX: {sharesBalance} ({(sharesBalance * sSTXPrice).toLocaleString(undefined, { maximumFractionDigits: 2 })} $)
+                            sSTX: {sharesBalance}
+                        </Typography>
+                        <XsSharesLogo />
+                        <Typography variant="h5" color="success.light" sx={{ ml: 1 }}>
+                            ({(sharesBalance * sSTXPrice).toLocaleString(undefined, { maximumFractionDigits: 2 })} $)
                         </Typography>
                     </Grid>
                     <Grid item>

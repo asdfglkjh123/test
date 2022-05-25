@@ -1,5 +1,4 @@
 // assets
-import { IconTypography, IconPalette, IconShadow, IconWindmill, IconDashboard } from '@tabler/icons';
 import HomeIcon from '@mui/icons-material/Home';
 import GroupWorkIcon from '@mui/icons-material/GroupWork';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';

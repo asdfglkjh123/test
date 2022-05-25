@@ -21,6 +21,8 @@ import {
 } from 'components/wallet/sharesABI';
 import BusdSmallLogo from './busdSmallLogo';
 import SmallStaxLogo from './smallStaxLogo';
+import XsStaxLogo from './xsStaxLogo';
+import XsBusdLogo from './XsBusdLogo';
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
 const style = {
@@ -152,12 +154,12 @@ const DEX = () => {
             >
                 <CardContent>
                     <Grid item container sx={{ justifyContent: 'center', display: 'flex' }}>
-                        <Grid container sx={{ justifyContent: 'center', display: 'flex' }} mt={5}>
+                        <Grid container sx={{ justifyContent: 'center', display: 'flex' }}>
                             <Typography textAlign="center" variant="h6" color={theme.palette.grey[50]}>
-                                DEX - Swap & Liquidity
+                                Swap
                             </Typography>
+                            <SwapVerticalCircleIcon color="success" fontSize="large" sx={{ mt: 2.5, ml: 1 }} />
                         </Grid>
-                        <Button onClick={() => setToken1(busdBalance)}> Test </Button>
                         <Grid item container xs={12} sx={{ mt: 5, display: 'flex', justifyContent: 'center' }} lg={4}>
                             <Card
                                 sx={{
@@ -194,7 +196,7 @@ const DEX = () => {
                                             display: 'flex',
                                             mt: 4
                                         }}
-                                        lg={7}
+                                        lg={12}
                                         md={7}
                                         xs={12}
                                         sm={7}
@@ -227,8 +229,9 @@ const DEX = () => {
                                                 color="success"
                                             />
                                         </Grid>
-                                        <Grid item xs={12}>
-                                            <Typography textAlign="center">Balance: BUSD</Typography>
+                                        <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 0.5 }}>
+                                            <Typography textAlign="center">Balance:</Typography>
+                                            <XsBusdLogo />
                                         </Grid>
                                     </Grid>
                                     <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
@@ -277,8 +280,9 @@ const DEX = () => {
                                                 color="success"
                                             />
                                         </Grid>
-                                        <Grid item xs={12}>
-                                            <Typography textAlign="center">Balance: STAX</Typography>
+                                        <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 0.5 }}>
+                                            <Typography textAlign="center">Balance:</Typography>
+                                            <XsStaxLogo />
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Grid item sx={{ mb: 3, mt: 3, display: 'flex', justifyContent: 'center' }}>

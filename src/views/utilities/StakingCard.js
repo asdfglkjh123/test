@@ -28,6 +28,8 @@ import { ggetStaxBalance, withdrawAmount, ggetOwnBalance, stakeStax, stakeHas } 
 import BigNumber from 'bignumber.js';
 import Web3 from 'web3';
 import { LoadingButton } from '@mui/lab';
+import LayersIcon from '@mui/icons-material/Layers';
+import XsStaxLogo from './xsStaxLogo';
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
 const style = {
@@ -310,11 +312,11 @@ const StakingCard = () => {
                 </Box>
             </Modal>
             <Grid item container spacing={2} xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
-                <Grid item lg={12} xs={12} md={12} sm={12}>
+                <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 7 }}>
                     <Typography textAlign="center" variant="h1" color={theme.palette.grey[50]}>
-                        Staking
+                        Stake
                     </Typography>
-                    <Divider />
+                    <LayersIcon color="success" fontSize="large" sx={{ mt: 2, ml: 1 }} />
                 </Grid>
                 <Grid item container lg={4} xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 6 }}>
                     <Card
@@ -409,10 +411,11 @@ const StakingCard = () => {
                                         color="success"
                                     />
                                 </Grid>
-                                <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
+                                <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                                     <Typography variant="h5" textAlign="left">
-                                        Balance: {balanceFormatted} STAX
+                                        Balance: {balanceFormatted}
                                     </Typography>
+                                    <XsStaxLogo />
                                 </Grid>
                             </Grid>
                             <Grid container sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>

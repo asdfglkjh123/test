@@ -3,15 +3,15 @@ import BUSD from '../../assets/images/busdlogo.png';
 import { Grid } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-const BusdSmallLogo = () => {
+const XsBusdLogo = () => {
     useTheme();
     return (
         <>
-            <Grid justifyContent="center">
-                <img width={28} src={BUSD} alt="shares banner" />
+            <Grid justifyContent="center" sx={{ ml: 0.5, mt: 0.2 }}>
+                <img width={15} src={BUSD} alt="shares banner" />
             </Grid>
         </>
     );
 };
 
-export default BusdSmallLogo;
+export default XsBusdLogo;

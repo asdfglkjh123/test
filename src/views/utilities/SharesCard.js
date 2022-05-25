@@ -4,6 +4,7 @@ import { Button, Box, Card, CardContent, Tooltip, Grid, Typography, Modal } from
 import Slider from '@mui/material/Slider';
 import LoadingButton from '@mui/lab/LoadingButton';
 import DoneIcon from '@mui/icons-material/Done';
+import GroupWorkIcon from '@mui/icons-material/GroupWork';
 import Web3 from 'web3';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
@@ -23,6 +24,9 @@ import {
     purchaseSharess
 } from 'components/wallet/sharesABI';
 import SmallStaxLogo from './smallStaxLogo';
+import XsStaxLogo from './xsStaxLogo';
+import XsBusdLogo from './XsBusdLogo';
+import XsSharesLogo from './XsSharesLogo copy';
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
 const marks = [
@@ -257,10 +261,11 @@ const SharesCard = () => {
             >
                 <CardContent>
                     <Grid container sx={{ justifyContent: 'center', display: 'flex' }}>
-                        <Grid container sx={{ justifyContent: 'center', display: 'flex' }} mt={5}>
+                        <Grid item container sx={{ justifyContent: 'center', display: 'flex', mt: 5 }}>
                             <Typography textAlign="center" variant="h6" color={theme.palette.grey[50]}>
-                                Shares & BUSD Dividends
+                                STAX Shares
                             </Typography>
+                            <GroupWorkIcon fontSize="large" color="success" sx={{ mt: 2.4, ml: 1 }} />
                         </Grid>
                         <Grid item container xs={12} sx={{ mt: 5, display: 'flex', justifyContent: 'center' }} lg={4.5}>
                             <Card
@@ -333,38 +338,41 @@ const SharesCard = () => {
                                         lg="auto"
                                         sm="auto"
                                         md="auto"
-                                        xs={4}
+                                        xs={6}
                                     >
                                         <Grid item container sx={{ mt: 1.8, justifyContent: 'right' }}>
                                             <Typography variant="h5" textAlign="right">
                                                 {totalsharesSupply}/40,000
                                             </Typography>
-                                            <SmallStaxLogo />
+                                            <XsSharesLogo />
                                         </Grid>
-                                        <Grid item container sx={{ mt: 1, justifyContent: 'right' }}>
+                                        <Grid item container sx={{ mt: 1.7, justifyContent: 'right' }}>
                                             <Typography variant="h5" textAlign="right">
                                                 20
                                             </Typography>
-                                            <BusdSmallLogo />
+                                            <XsBusdLogo />
                                         </Grid>
-                                        <Grid item container sx={{ mt: 1, justifyContent: 'right' }}>
+                                        <Grid item container sx={{ mt: 1.7, justifyContent: 'right' }}>
                                             <Typography variant="h5" textAlign="right">
                                                 {sSTXPrice}
                                             </Typography>
-                                            <BusdSmallLogo />
+                                            <XsBusdLogo />
                                         </Grid>
-                                        <Grid item container sx={{ mt: 1, justifyContent: 'right' }}>
+                                        <Grid item container sx={{ mt: 1.7, justifyContent: 'right' }}>
                                             <Typography variant="h5" textAlign="right">
                                                 {busdBalanceFormatted}
                                             </Typography>
-                                            <BusdSmallLogo />
+                                            <XsBusdLogo />
                                         </Grid>
-                                        <Typography sx={{ mt: 0.7, color: theme.palette.success.main }} variant="h5" textAlign="right">
+                                        <Typography sx={{ mt: 1.7, color: theme.palette.success.main }} variant="h5" textAlign="right">
                                             {myAPYFormatted} %
                                         </Typography>
-                                        <Typography sx={{ my: 2, color: theme.palette.success.main }} variant="h5" textAlign="right">
-                                            {balance} sSTX
-                                        </Typography>
+                                        <Grid item container sx={{ mt: 1.7, justifyContent: 'right' }}>
+                                            <Typography sx={{ color: theme.palette.success.main }} variant="h5" textAlign="right">
+                                                {balance}
+                                            </Typography>
+                                            <XsSharesLogo />
+                                        </Grid>
                                     </Grid>
                                     <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
                                         <Grid item lg={5} xs={7.5}>
@@ -439,15 +447,17 @@ const SharesCard = () => {
                                             </Grid>
                                         </Grid>
                                         <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
-                                            <Grid item lg={12} xs={12}>
-                                                <Typography variant="h5" sx={{ mt: 2 }} color={theme.palette.grey[50]} textAlign="center">
-                                                    My sSTX Balance: {balance} sSTX
+                                            <Grid item container lg={12} xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                                                <Typography variant="h5" color={theme.palette.grey[50]} textAlign="center">
+                                                    My sSTX Balance: {balance}
                                                 </Typography>
+                                                <XsSharesLogo />
                                             </Grid>
-                                            <Grid item lg={12} xs={12}>
-                                                <Typography variant="h5" sx={{ mt: 2 }} color={theme.palette.grey[50]} textAlign="center">
-                                                    Circulating sSTX: {totalsharesSupply} sSTX
+                                            <Grid item container lg={12} xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                                                <Typography variant="h5" color={theme.palette.grey[50]} textAlign="center">
+                                                    Circulating sSTX: {totalsharesSupply}
                                                 </Typography>
+                                                <XsSharesLogo />
                                             </Grid>
                                             <Grid item lg="auto" xs="auto" sm="auto" sx={{ my: 2 }}>
                                                 <Typography variant="h5" color={theme.palette.grey[50]} textAlign="center">

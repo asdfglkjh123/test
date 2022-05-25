@@ -12,6 +12,7 @@ import PriceChangeIcon from '@mui/icons-material/PriceChange';
 import SwitchAccountIcon from '@mui/icons-material/SwitchAccount';
 import { ggetTotalSTAXSupply, getStaxPrice } from 'components/wallet/sharesABI';
 import BigNumber from 'bignumber.js';
+import XsStaxLogo from './xsStaxLogo';
 
 const ShadowBox = ({ shadow }) => (
     <Card sx={{ mb: 3, boxShadow: shadow }}>
@@ -100,10 +101,12 @@ const UtilitiesShadow = () => {
     };
     return (
         <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Typography textAlign="center" variant="h6" sx={{ mt: 10, ml: 1 }}>
-                STAX Global Stats
-            </Typography>
-            <QueryStatsIcon sx={{ ml: 1, mt: 12 }} fontSize="large" color="success" />
+            <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Typography textAlign="center" variant="h6" sx={{ mt: 10 }}>
+                    Stats
+                </Typography>
+                <QueryStatsIcon sx={{ ml: 1, mt: 12 }} fontSize="large" color="success" />
+            </Grid>
             <Grid item container xs={12} sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
                 <Button size="large" color="success" variant="outlined">
                     <LayersIcon color="success" />
@@ -122,7 +125,7 @@ const UtilitiesShadow = () => {
                 item
                 container
                 lg={9.1}
-                xs={11}
+                xs={10.5}
                 sx={{
                     borderLeft: 3,
                     borderBottom: 3,
@@ -138,7 +141,7 @@ const UtilitiesShadow = () => {
                     <EChartsReact option={option} style={{ height: 400 }} />
                 </Grid>
             </Grid>
-            <Grid item container lg={3.5} xs={12} sx={{ mb: 15 }}>
+            <Grid item container lg={3.5} xs={10} sx={{ mb: 15 }}>
                 <Card
                     sx={{
                         width: '100%',
@@ -155,13 +158,16 @@ const UtilitiesShadow = () => {
                         {' '}
                         Total staked
                     </Typography>
-                    <Typography textAlign="center" variant="h4" sx={{ mb: 7, mt: 5, color: theme.palette.success.main }}>
-                        {' '}
-                        10,000,000 STAX
-                    </Typography>
+                    <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                        <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
+                            {' '}
+                            10,000,000
+                        </Typography>
+                        <XsStaxLogo />
+                    </Grid>
                 </Card>
             </Grid>
-            <Grid item container lg={3.5} xs={12} sx={{ mb: 15 }}>
+            <Grid item container lg={3.5} xs={10} sx={{ mb: 15 }}>
                 <Card
                     sx={{
                         width: '100%',
@@ -176,14 +182,18 @@ const UtilitiesShadow = () => {
                 >
                     <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
                         {' '}
-                        Circulating Supply (excl. PanCakeSwap)
+                        Circulating Supply (excl. PancakeSwap Pool)
                     </Typography>
-                    <Typography textAlign="center" variant="h4" sx={{ mt: 5, mb: 7, color: theme.palette.success.main }}>
-                        {TotalSupply}
-                    </Typography>
+                    <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                        <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
+                            {' '}
+                            {TotalSupply}
+                        </Typography>
+                        <XsStaxLogo />
+                    </Grid>
                 </Card>
             </Grid>
-            <Grid item container lg={3.5} xs={12} sx={{ mb: 15 }}>
+            <Grid item container lg={3.5} xs={10} sx={{ mb: 15 }}>
                 <Card
                     sx={{
                         width: '100%',
@@ -198,15 +208,18 @@ const UtilitiesShadow = () => {
                 >
                     <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
                         {' '}
-                        Locked (rewards to sSTX Holders)
+                        Locked (rewards to sSTX holders)
                     </Typography>
-                    <Typography textAlign="center" variant="h4" sx={{ mt: 5, mb: 7, color: theme.palette.success.main }}>
-                        {' '}
-                        10,000,000 STAX
-                    </Typography>
+                    <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                        <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
+                            {' '}
+                            10,000,000 STAX
+                        </Typography>
+                        <XsStaxLogo />
+                    </Grid>
                 </Card>
             </Grid>
-            <Grid item container lg={3.5} xs={12} sx={{ mb: 15 }}>
+            <Grid item container lg={3.5} xs={10} sx={{ mb: 15 }}>
                 <Card
                     sx={{
                         width: '100%',
@@ -223,15 +236,18 @@ const UtilitiesShadow = () => {
                         {' '}
                         PancakeSwap Pool
                     </Typography>
-                    <Typography textAlign="center" variant="h4" sx={{ mt: 5, mb: 7, color: theme.palette.success.main }}>
-                        {(staxPrice[0] / 1000000000000000000).toLocaleString(undefined, {
-                            maximumFractionDigits: 2
-                        })}{' '}
-                        STAX
-                    </Typography>
+                    <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                        <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
+                            {(staxPrice[0] / 1000000000000000000).toLocaleString(undefined, {
+                                maximumFractionDigits: 2
+                            })}{' '}
+                            STAX
+                        </Typography>
+                        <XsStaxLogo />
+                    </Grid>
                 </Card>
             </Grid>
-            <Grid item container lg={3.5} xs={12} sx={{ mb: 15 }}>
+            <Grid item container lg={3.5} xs={10} sx={{ mb: 15 }}>
                 <Card
                     sx={{
                         width: '100%',
@@ -248,9 +264,12 @@ const UtilitiesShadow = () => {
                         {' '}
                         Total Supply
                     </Typography>
-                    <Typography textAlign="center" variant="h4" sx={{ mt: 5, mb: 7, color: theme.palette.success.main }}>
-                        {TotalSupply} STAX
-                    </Typography>
+                    <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                        <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
+                            {TotalSupply}
+                        </Typography>
+                        <XsStaxLogo />
+                    </Grid>
                 </Card>
             </Grid>
         </Grid>

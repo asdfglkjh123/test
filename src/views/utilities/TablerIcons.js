@@ -54,6 +54,9 @@ const DEX = () => {
     const [open3, setOpen3] = React.useState(false);
     const handleClose3 = () => setOpen3(false);
     const handleOpen3 = () => setOpen3(true);
+    const [open4, setOpen4] = React.useState(false);
+    const handleClose4 = () => setOpen4(false);
+    const handleOpen4 = () => setOpen4(true);
     const [staxLogoFirst, setStaxLogoFirst] = React.useState(true);
     const handleStaxLogoFirst = () => setStaxLogoFirst(true);
     const handleStaxLogoFirstN = () => setStaxLogoFirst(false);
@@ -64,7 +67,8 @@ const DEX = () => {
     const [token1address, setToken1address] = useState();
     const [token2address, setToken2address] = useState();
     const pathToPurchase = [token1address, token2address];
-    const [slippage, setSlippage] = useState(0);
+    const [slippage, setSlippage] = useState(6);
+    const [slippageF, setSlippageF] = useState();
     const handleSwap = () => {
         if (token1 === staxBalance) {
             setToken1(busdBalance);
@@ -122,6 +126,7 @@ const DEX = () => {
             setToken1address('0x1155605B148DEB0f649F9b815Fc18d956af7a93d');
             setToken2(busdBalance);
             setToken2address('0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
+            setSlippageF(5.5);
         }
         load2();
     }, [busdBalance, staxBalance]);
@@ -152,27 +157,42 @@ const DEX = () => {
                     </Grid>
                 </Box>
             </Modal>
-            <Modal aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+            <Modal
+                open={open4}
+                onBackdropClick={handleClose4}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
                 <Box sx={style}>
-                    <Typography variant="h5" textAlign="center" sx={{ mt: 3 }} component="h2">
-                        Slippage:
-                    </Typography>
-                    <TextField
-                        fullWidth
-                        sx={{
-                            display: 'flex',
-                            borderColor: theme.palette.success.main
-                        }}
-                        inputProps={{ style: { textAlign: 'center', color: 'white' } }}
-                        onChange={(e) => setBusdValue(e.target.value)}
-                        id="standard-basic"
-                        label="Enter BUSD amount:"
-                        variant="standard"
-                        color="success"
-                    />
+                    <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <Grid item>
+                            <Typography variant="h5" textAlign="center" sx={{ mt: 3 }} component="h2">
+                                Slippage should be at least 5.5% as the STAX Token applies 5% fee on every Buy / Sell transaction.
+                            </Typography>
+                        </Grid>
+                        <Typography variant="h5" textAlign="center" sx={{ mt: 3 }} component="h2">
+                            Enter slippage:
+                        </Typography>
+                        <TextField
+                            sx={{
+                                display: 'flex',
+                                width: 40,
+                                mt: 2,
+                                borderColor: theme.palette.success.main
+                            }}
+                            inputProps={{ style: { textAlign: 'center', color: 'white' } }}
+                            onChange={(e) => setSlippage(e.target.value)}
+                            id="standard-basic"
+                            variant="standard"
+                            color="success"
+                        />
+                    </Grid>
                     <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Button
-                            onClick={handleClose3}
+                            onClick={() => {
+                                handleClose4();
+                                setSlippageF(slippage);
+                            }}
                             sx={{
                                 mt: 3,
                                 fontSize: 15,
@@ -182,7 +202,7 @@ const DEX = () => {
                                 backgroundColor: theme.palette.success.main
                             }}
                         >
-                            Close
+                            Done
                         </Button>
                     </Grid>
                 </Box>
@@ -219,18 +239,20 @@ const DEX = () => {
                             >
                                 <Grid container sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
                                     <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-                                        <Grid item xs="auto" lg="auto" md="auto" sm="auto">
+                                        <Grid item xs="auto" lg="auto" md="auto" sm="auto" sx={{ mt: 1.2 }}>
                                             <Typography variant="h3" color={theme.palette.grey[50]}>
                                                 SWAP
                                             </Typography>
                                         </Grid>
-                                        <Grid item xs="auto" lg="auto" sm="auto" md="auto">
+                                        <Grid item xs="auto" lg="auto" sm="auto" md="auto" sx={{ mt: 1.2 }}>
                                             <Typography variant="h3" color={theme.palette.success.main} textAlign="left">
                                                 STAX
                                             </Typography>
                                         </Grid>
                                         <Grid item xs="auto" lg="auto" sm="auto" md="auto">
-                                            <SettingsIcon fontSize="medium" color="success" />
+                                            <IconButton onClick={() => handleOpen4()}>
+                                                <SettingsIcon fontSize="medium" color="success" />
+                                            </IconButton>
                                         </Grid>
                                     </Grid>
                                     <Grid
@@ -363,6 +385,15 @@ const DEX = () => {
                                                     SWAP
                                                 </LoadingButton>
                                             </Grid>
+                                            <Typography textAlign="center" sx={{ mb: 1, color: theme.palette.success.light }}>
+                                                Price impact: 1.2%
+                                            </Typography>
+                                            <Typography textAlign="center" sx={{ mb: 1, color: theme.palette.success.light }}>
+                                                Slippage: {slippageF}%
+                                            </Typography>
+                                            <Typography textAlign="center" sx={{ mb: 3, color: theme.palette.success.light }}>
+                                                Estimated Price: 0.057$
+                                            </Typography>
                                         </Grid>
                                     </Grid>
                                 </Grid>

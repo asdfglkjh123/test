@@ -48,7 +48,6 @@ const DEX = () => {
     // eslint-disable-next-line global-require
     const BigNumber = require('bignumber.js');
     const [busdBalance, setBusdBalance] = React.useState();
-    const test = busdBalance;
     const busdBalanceNumber = new BigNumber(busdBalance);
     const busdBalanceFormat = busdBalanceNumber.decimalPlaces(2);
     const busdBalanceFinal = busdBalanceFormat.toLocaleString(undefined);
@@ -64,8 +63,8 @@ const DEX = () => {
     const handleOpen3 = () => setOpen3(true);
     const handleLoadingTrue = () => setLoading(true);
     const handleLoadingFalse = () => setLoading(false);
-    const tokenA = [staxBalance, staxBalanceFinal];
-    const tokenB = [busdBalance, busdBalanceFinal];
+    const [token1, setToken1] = useState();
+    const [token2, setToken2] = useState();
     const fetchBusdBalance = async () => {
         ggetBUSDBalance()
             .then((busdBalance) => {
@@ -79,6 +78,7 @@ const DEX = () => {
         ggetStaxBalance()
             .then((staxBalance) => {
                 setStaxBalance(staxBalance);
+                setToken1(staxBalance);
             })
             .catch((err) => {
                 console.log(err);
@@ -108,10 +108,10 @@ const DEX = () => {
             fetchStaxBalance();
             fetchStaxPrice();
             fetchStaxTotalSupply();
-            console.log(tokenA);
+            console.log(token1);
         }
         load2();
-    }, [tokenA]);
+    }, []);
     return (
         <>
             <Modal open={open3} onClose={handleClose3} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
@@ -157,6 +157,7 @@ const DEX = () => {
                                 DEX - Swap & Liquidity
                             </Typography>
                         </Grid>
+                        <Button onClick={() => setToken1(busdBalance)}> Test </Button>
                         <Grid item container xs={12} sx={{ mt: 5, display: 'flex', justifyContent: 'center' }} lg={4}>
                             <Card
                                 sx={{

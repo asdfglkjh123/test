@@ -100,11 +100,11 @@ const UtilitiesShadow = () => {
     };
     return (
         <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Typography textAlign="center" variant="h2">
+            <Typography textAlign="center" variant="h6" sx={{ mt: 10, ml: 1 }}>
                 STAX Global Stats
             </Typography>
-            <QueryStatsIcon sx={{ ml: 1 }} fontSize="medium" color="success" />
-            <Grid container xs={12} sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
+            <QueryStatsIcon sx={{ ml: 1, mt: 12 }} fontSize="large" color="success" />
+            <Grid item container xs={12} sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
                 <Button size="large" color="success" variant="outlined">
                     <LayersIcon color="success" />
                 </Button>

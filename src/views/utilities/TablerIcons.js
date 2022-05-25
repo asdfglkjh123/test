@@ -1,6 +1,6 @@
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Button, Box, Card, CardContent, TextField, Grid, Typography, Modal } from '@mui/material';
+import { Button, Box, Card, CardContent, TextField, Grid, Typography, Modal, IconButton } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import DoneIcon from '@mui/icons-material/Done';
 import Web3 from 'web3';
@@ -67,10 +67,20 @@ const DEX = () => {
     const handleLoadingFalse = () => setLoading(false);
     const [token1, setToken1] = useState();
     const [token2, setToken2] = useState();
+    const handleSwap = () => {
+        if (token1 === staxBalance) {
+            setToken1(busdBalance);
+            setToken2(staxBalance);
+        } else {
+            setToken1(staxBalance);
+            setToken2(busdBalance);
+        }
+    };
     const fetchBusdBalance = async () => {
         ggetBUSDBalance()
             .then((busdBalance) => {
                 setBusdBalance(busdBalance);
+                setToken2(busdBalance);
             })
             .catch((err) => {
                 console.log(err);
@@ -110,7 +120,6 @@ const DEX = () => {
             fetchStaxBalance();
             fetchStaxPrice();
             fetchStaxTotalSupply();
-            console.log(token1);
         }
         load2();
     }, []);
@@ -230,12 +239,18 @@ const DEX = () => {
                                             />
                                         </Grid>
                                         <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 0.5 }}>
-                                            <Typography textAlign="center">Balance:</Typography>
+                                            <Typography textAlign="center">Balance:{token1}</Typography>
                                             <XsBusdLogo />
                                         </Grid>
                                     </Grid>
                                     <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
-                                        <SwapVerticalCircleIcon color="success" fontSize="large" />
+                                        <IconButton
+                                            onClick={() => {
+                                                handleSwap();
+                                            }}
+                                        >
+                                            <SwapVerticalCircleIcon color="success" fontSize="large" />
+                                        </IconButton>
                                     </Grid>
                                     <Grid
                                         item
@@ -281,7 +296,7 @@ const DEX = () => {
                                             />
                                         </Grid>
                                         <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 0.5 }}>
-                                            <Typography textAlign="center">Balance:</Typography>
+                                            <Typography textAlign="center">Balance:{token2}</Typography>
                                             <XsStaxLogo />
                                         </Grid>
                                         <Grid item xs={12}>

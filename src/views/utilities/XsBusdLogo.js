@@ -8,7 +8,7 @@ const XsBusdLogo = () => {
     return (
         <>
             <Grid justifyContent="center" sx={{ ml: 0.5, mt: 0.2 }}>
-                <img width={15} src={BUSD} alt="shares banner" />
+                <img width={16} src={BUSD} alt="shares banner" />
             </Grid>
         </>
     );

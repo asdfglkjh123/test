@@ -73,10 +73,12 @@ const DEX = () => {
         if (token1 === staxBalance) {
             setToken1(busdBalance);
             setToken2(staxBalance);
+            setToken1address('0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
             handleStaxLogoFirstN();
         } else {
             setToken1(staxBalance);
             setToken2(busdBalance);
+            setToken2address('0x1155605B148DEB0f649F9b815Fc18d956af7a93d');
             handleStaxLogoFirst();
         }
     };

@@ -4,7 +4,6 @@ import { Button, Box, Card, CardContent, Tooltip, Grid, Typography, Modal } from
 import Slider from '@mui/material/Slider';
 import LoadingButton from '@mui/lab/LoadingButton';
 import DoneIcon from '@mui/icons-material/Done';
-import GroupWorkIcon from '@mui/icons-material/GroupWork';
 import Web3 from 'web3';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
@@ -23,10 +22,9 @@ import {
     ggetTotalDividends,
     purchaseSharess
 } from 'components/wallet/sharesABI';
-import SmallStaxLogo from './smallStaxLogo';
-import XsStaxLogo from './xsStaxLogo';
 import XsBusdLogo from './XsBusdLogo';
-import XsSharesLogo from './XsSharesLogo copy';
+import XsSharesLogo from './XsSharesLogo';
+import BigSharesLogo from './BigSharesLogo';
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
 const marks = [
@@ -262,10 +260,10 @@ const SharesCard = () => {
                 <CardContent>
                     <Grid container sx={{ justifyContent: 'center', display: 'flex' }}>
                         <Grid item container sx={{ justifyContent: 'center', display: 'flex', mt: 5 }}>
+                            <BigSharesLogo />
                             <Typography textAlign="center" variant="h6" color={theme.palette.grey[50]}>
-                                STAX Shares
+                                Shares
                             </Typography>
-                            <GroupWorkIcon fontSize="large" color="success" sx={{ mt: 2.4, ml: 1 }} />
                         </Grid>
                         <Grid item container xs={12} sx={{ mt: 5, display: 'flex', justifyContent: 'center' }} lg={4.5}>
                             <Card
@@ -281,13 +279,13 @@ const SharesCard = () => {
                                 <Grid container sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
                                     <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
                                         <Grid item xs="auto" lg="auto" md="auto" sm="auto">
-                                            <Typography variant="h2" color={theme.palette.grey[50]}>
-                                                SHARES
+                                            <Typography variant="h2" color={theme.palette.success.main} textAlign="left">
+                                                STAX
                                             </Typography>
                                         </Grid>
                                         <Grid item xs="auto" lg="auto" sm="auto" md="auto">
-                                            <Typography variant="h2" color={theme.palette.success.main} textAlign="left">
-                                                STAX
+                                            <Typography variant="h2" color={theme.palette.grey[50]}>
+                                                SHARES
                                             </Typography>
                                         </Grid>
                                         <Grid item lg="auto" sx={{ pl: 0.5, mt: 0.24 }}>

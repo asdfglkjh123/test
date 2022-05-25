@@ -7,7 +7,7 @@ import BigNumber from 'bignumber.js';
 // project imports
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { ggetOwnBalance, getSTXPrice, ggetStaxBalance, getStaxPrice } from 'components/wallet/sharesABI';
-import XsSharesLogo from 'views/utilities/XsSharesLogo copy';
+import XsSharesLogo from 'views/utilities/XsSharesLogo';
 import XsStaxLogo from 'views/utilities/xsStaxLogo';
 
 // styles

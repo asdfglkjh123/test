@@ -312,62 +312,71 @@ const SharesCard = () => {
                                     <Grid item sx={{ backgroundColor: theme.palette.grey[900], my: 0 }} lg={10} xs={9.3}>
                                         <SharesSTAXChart />
                                     </Grid>
-                                    <Grid item sx={{ backgroundColor: theme.palette.grey[900], mt: 1.6 }} lg={4.7} md={7} sm={7} xs="auto">
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
+                                    <Grid
+                                        item
+                                        container
+                                        sx={{ backgroundColor: theme.palette.grey[900], mt: 1.6, display: 'flex', justifyContent: 'left' }}
+                                        lg={4.7}
+                                        md={7}
+                                        sm={7}
+                                        xs={4}
+                                    >
+                                        <Typography sx={{ my: 1 }} variant="h5" textAlign="left">
                                             Total Sold:
                                         </Typography>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
+                                        <Typography sx={{ my: 1 }} variant="h5" textAlign="left">
                                             Initial Price:
                                         </Typography>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
+                                        <Typography sx={{ my: 1 }} variant="h5" textAlign="left">
                                             Current Price:
                                         </Typography>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
+                                        <Typography sx={{ my: 1 }} variant="h5" textAlign="left">
                                             BUSD Balance:
                                         </Typography>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
+                                        <Typography sx={{ my: 1 }} variant="h5" textAlign="left">
                                             BONUS APY:
                                         </Typography>
-                                        <Typography sx={{ my: 2 }} variant="h5" textAlign="left">
+                                        <Typography sx={{ my: 1 }} variant="h5" textAlign="left">
                                             sSTX Balance:
                                         </Typography>
                                     </Grid>
                                     <Grid
                                         item
-                                        sx={{ backgroundColor: theme.palette.grey[900], mt: 1.6 }}
+                                        container
+                                        sx={{ backgroundColor: theme.palette.grey[900], mt: 1.6, display: 'flex', justifyContent: 'right' }}
                                         lg="auto"
                                         sm="auto"
                                         md="auto"
                                         xs={6}
                                     >
-                                        <Grid item container sx={{ mt: 1.8, justifyContent: 'right' }}>
+                                        <Grid item container sx={{ mt: 1, justifyContent: 'right' }}>
                                             <Typography variant="h5" textAlign="right">
                                                 {totalsharesSupply}/40,000
                                             </Typography>
                                             <XsSharesLogo />
                                         </Grid>
-                                        <Grid item container sx={{ mt: 1.7, justifyContent: 'right' }}>
+                                        <Grid item container sx={{ mt: 1, justifyContent: 'right' }}>
                                             <Typography variant="h5" textAlign="right">
                                                 20
                                             </Typography>
                                             <XsBusdLogo />
                                         </Grid>
-                                        <Grid item container sx={{ mt: 1.7, justifyContent: 'right' }}>
+                                        <Grid item container sx={{ mt: 1, justifyContent: 'right' }}>
                                             <Typography variant="h5" textAlign="right">
                                                 {sSTXPrice}
                                             </Typography>
                                             <XsBusdLogo />
                                         </Grid>
-                                        <Grid item container sx={{ mt: 1.7, justifyContent: 'right' }}>
+                                        <Grid item container sx={{ mt: 1, justifyContent: 'right' }}>
                                             <Typography variant="h5" textAlign="right">
                                                 {busdBalanceFormatted}
                                             </Typography>
                                             <XsBusdLogo />
                                         </Grid>
-                                        <Typography sx={{ mt: 1.7, color: theme.palette.success.main }} variant="h5" textAlign="right">
+                                        <Typography sx={{ mt: 1, color: theme.palette.success.main }} variant="h5" textAlign="right">
                                             {myAPYFormatted} %
                                         </Typography>
-                                        <Grid item container sx={{ mt: 1.7, justifyContent: 'right' }}>
+                                        <Grid item container sx={{ mt: 1, justifyContent: 'right' }}>
                                             <Typography sx={{ color: theme.palette.success.main }} variant="h5" textAlign="right">
                                                 {balance}
                                             </Typography>

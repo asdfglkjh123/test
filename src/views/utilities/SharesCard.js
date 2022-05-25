@@ -307,19 +307,34 @@ const SharesCard = () => {
                                             </Tooltip>
                                         </Grid>
                                     </Grid>
-                                    <Grid item sx={{ backgroundColor: theme.palette.grey[900], my: 0 }} lg={10} xs={9.3}>
-                                        <SharesSTAXChart />
+                                    <Grid
+                                        item
+                                        container
+                                        sx={{ backgroundColor: theme.palette.grey[900], my: 0, justifyContent: 'center', display: 'flex' }}
+                                        lg={10}
+                                        sm={12}
+                                        md={12}
+                                        xs={9.3}
+                                    >
+                                        <Grid item md={7.5} sm={8} lg={10.5}>
+                                            <SharesSTAXChart />
+                                        </Grid>
                                     </Grid>
                                     <Grid
                                         item
                                         container
-                                        sx={{ backgroundColor: theme.palette.grey[900], mt: 1.6, display: 'flex', justifyContent: 'left' }}
-                                        lg={4.7}
-                                        md={7}
-                                        sm={7}
-                                        xs={4}
+                                        sx={{
+                                            backgroundColor: theme.palette.grey[900],
+                                            mt: 1.6,
+                                            display: 'flex',
+                                            justifyContent: 'left'
+                                        }}
+                                        lg={3}
+                                        md={1.5}
+                                        sm={2.11}
+                                        xs={3.3}
                                     >
-                                        <Typography sx={{ my: 1 }} variant="h5" textAlign="left">
+                                        <Typography xs={12} sx={{ my: 1 }} variant="h5" textAlign="left">
                                             Total Sold:
                                         </Typography>
                                         <Typography sx={{ my: 1 }} variant="h5" textAlign="left">
@@ -341,11 +356,16 @@ const SharesCard = () => {
                                     <Grid
                                         item
                                         container
-                                        sx={{ backgroundColor: theme.palette.grey[900], mt: 1.6, display: 'flex', justifyContent: 'right' }}
-                                        lg="auto"
-                                        sm="auto"
-                                        md="auto"
-                                        xs={6}
+                                        sx={{
+                                            backgroundColor: theme.palette.grey[900],
+                                            mt: 1.6,
+                                            display: 'flex',
+                                            justifyContent: 'right'
+                                        }}
+                                        lg={6}
+                                        sm={6}
+                                        md={6}
+                                        xs={5}
                                     >
                                         <Grid item container sx={{ mt: 1, justifyContent: 'right' }}>
                                             <Typography variant="h5" textAlign="right">

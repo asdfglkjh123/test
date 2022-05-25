@@ -263,24 +263,7 @@ export const init = async () => {
 
     isInitialized = true;
 };
-export const sellStax = async (value) => {
-    if (!isInitialized) {
-        await init();
-    }
-    return erc20PancakeContract.methods
-        .swapExactTokensForTokens(
-            value,
-            0,
-            ['0x1155605b148deb0f649f9b815fc18d956af7a93d', '0xd389253265dd6b85c47c410ec5ff0c6a383ce949'],
-            selectedAccount,
-            1652316616
-        )
-        .send({ from: selectedAccount })
-        .catch((err) => {
-            console.log(err);
-        });
-};
-export const buyStax = async (value) => {
+export const swapStaxAndBusd = async (value, slippage, path) => {
     if (!isInitialized) {
         await init();
     }

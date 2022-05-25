@@ -7,7 +7,7 @@ const XsStaxLogo = () => {
     useTheme();
     return (
         <>
-            <Grid justifyContent="center" alignContent="center" sx={{ ml: 0.5, mt: 0.2 }}>
+            <Grid justifyContent="center" alignContent="center" sx={{ ml: 0.4, mt: 0.1 }}>
                 <img width={16} src={Stax} alt="shares banner" />
             </Grid>
         </>

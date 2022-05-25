@@ -8,7 +8,7 @@ const BusdSmallLogo = () => {
     return (
         <>
             <Grid justifyContent="center">
-                <img width={28} src={BUSD} alt="shares banner" />
+                <img width={23} src={BUSD} alt="shares banner" />
             </Grid>
         </>
     );

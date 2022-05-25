@@ -7,7 +7,7 @@ const XsBusdLogo = () => {
     useTheme();
     return (
         <>
-            <Grid justifyContent="center" sx={{ ml: 0.5, mt: 0.2 }}>
+            <Grid justifyContent="center" sx={{ ml: 0.4, mt: 0.1 }}>
                 <img width={16} src={BUSD} alt="shares banner" />
             </Grid>
         </>

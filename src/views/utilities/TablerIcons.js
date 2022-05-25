@@ -9,16 +9,7 @@ import MainCard from 'ui-component/cards/MainCard';
 import SettingsIcon from '@mui/icons-material/Settings';
 import React, { useState, useEffect } from 'react';
 import SwapVerticalCircleIcon from '@mui/icons-material/SwapVerticalCircle';
-import {
-    ggetBUSDBalance,
-    sellStax,
-    buyStax,
-    ggetStaxBalance,
-    getStaxPrice,
-    ggetTotalSTAXSupply,
-    approveBusd,
-    approveStax
-} from 'components/wallet/sharesABI';
+import { ggetBUSDBalance, ggetStaxBalance, getStaxPrice, ggetTotalSTAXSupply, swapStaxAndBusd } from 'components/wallet/sharesABI';
 import BusdSmallLogo from './busdSmallLogo';
 import SmallStaxLogo from './smallStaxLogo';
 import XsStaxLogo from './xsStaxLogo';
@@ -63,24 +54,32 @@ const DEX = () => {
     const [open3, setOpen3] = React.useState(false);
     const handleClose3 = () => setOpen3(false);
     const handleOpen3 = () => setOpen3(true);
+    const [staxLogoFirst, setStaxLogoFirst] = React.useState(true);
+    const handleStaxLogoFirst = () => setStaxLogoFirst(true);
+    const handleStaxLogoFirstN = () => setStaxLogoFirst(false);
     const handleLoadingTrue = () => setLoading(true);
     const handleLoadingFalse = () => setLoading(false);
     const [token1, setToken1] = useState();
     const [token2, setToken2] = useState();
+    const [token1address, setToken1address] = useState();
+    const [token2address, setToken2address] = useState();
+    const pathToPurchase = [token1address, token2address];
+    const [slippage, setSlippage] = useState(0);
     const handleSwap = () => {
         if (token1 === staxBalance) {
             setToken1(busdBalance);
             setToken2(staxBalance);
+            handleStaxLogoFirstN();
         } else {
             setToken1(staxBalance);
             setToken2(busdBalance);
+            handleStaxLogoFirst();
         }
     };
     const fetchBusdBalance = async () => {
         ggetBUSDBalance()
             .then((busdBalance) => {
                 setBusdBalance(busdBalance);
-                setToken2(busdBalance);
             })
             .catch((err) => {
                 console.log(err);
@@ -90,7 +89,6 @@ const DEX = () => {
         ggetStaxBalance()
             .then((staxBalance) => {
                 setStaxBalance(staxBalance);
-                setToken1(staxBalance);
             })
             .catch((err) => {
                 console.log(err);
@@ -120,9 +118,13 @@ const DEX = () => {
             fetchStaxBalance();
             fetchStaxPrice();
             fetchStaxTotalSupply();
+            setToken1(staxBalance);
+            setToken1address('0x1155605B148DEB0f649F9b815Fc18d956af7a93d');
+            setToken2(busdBalance);
+            setToken2address('0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
         }
         load2();
-    }, []);
+    }, [busdBalance, staxBalance]);
     return (
         <>
             <Modal open={open3} onClose={handleClose3} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
@@ -133,6 +135,41 @@ const DEX = () => {
                     <Typography variant="h5" textAlign="center" sx={{ mt: 3 }} component="h2">
                         Transaction completed.
                     </Typography>
+                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <Button
+                            onClick={handleClose3}
+                            sx={{
+                                mt: 3,
+                                fontSize: 15,
+                                width: 80,
+                                height: 30,
+                                color: theme.palette.grey[900],
+                                backgroundColor: theme.palette.success.main
+                            }}
+                        >
+                            Close
+                        </Button>
+                    </Grid>
+                </Box>
+            </Modal>
+            <Modal aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+                <Box sx={style}>
+                    <Typography variant="h5" textAlign="center" sx={{ mt: 3 }} component="h2">
+                        Slippage:
+                    </Typography>
+                    <TextField
+                        fullWidth
+                        sx={{
+                            display: 'flex',
+                            borderColor: theme.palette.success.main
+                        }}
+                        inputProps={{ style: { textAlign: 'center', color: 'white' } }}
+                        onChange={(e) => setBusdValue(e.target.value)}
+                        id="standard-basic"
+                        label="Enter BUSD amount:"
+                        variant="standard"
+                        color="success"
+                    />
                     <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Button
                             onClick={handleClose3}
@@ -222,7 +259,7 @@ const DEX = () => {
                                             }}
                                         >
                                             <Grid item sx={{ display: 'flex', justifyContent: 'center', mt: 1.5, mr: 1, ml: 1 }}>
-                                                <BusdSmallLogo />
+                                                {staxLogoFirst ? <SmallStaxLogo /> : <BusdSmallLogo />}
                                             </Grid>
                                             <TextField
                                                 fullWidth
@@ -230,7 +267,7 @@ const DEX = () => {
                                                     display: 'flex',
                                                     borderColor: theme.palette.success.main
                                                 }}
-                                                inputProps={{ style: { textAlign: 'center', color: 'white' } }}
+                                                inputProps={{ style: { textAlign: 'left', color: 'white' } }}
                                                 onChange={(e) => setBusdValue(e.target.value)}
                                                 id="standard-basic"
                                                 label="Enter BUSD amount:"
@@ -240,7 +277,7 @@ const DEX = () => {
                                         </Grid>
                                         <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 0.5 }}>
                                             <Typography textAlign="center">Balance:{token1}</Typography>
-                                            <XsBusdLogo />
+                                            {staxLogoFirst ? <XsStaxLogo /> : <XsBusdLogo />}
                                         </Grid>
                                     </Grid>
                                     <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
@@ -279,7 +316,7 @@ const DEX = () => {
                                             }}
                                         >
                                             <Grid item sx={{ display: 'flex', justifyContent: 'center', mt: 1.5, mr: 1, ml: 1 }}>
-                                                <SmallStaxLogo />
+                                                {staxLogoFirst ? <BusdSmallLogo /> : <SmallStaxLogo />}
                                             </Grid>
                                             <TextField
                                                 fullWidth
@@ -287,7 +324,7 @@ const DEX = () => {
                                                     display: 'flex',
                                                     borderColor: theme.palette.success.main
                                                 }}
-                                                inputProps={{ style: { textAlign: 'center', color: 'white' } }}
+                                                inputProps={{ style: { textAlign: 'left', color: 'white' } }}
                                                 onChange={(e) => setValue(e.target.value)}
                                                 id="standard-basic"
                                                 label="Enter STAX amount:"
@@ -297,7 +334,7 @@ const DEX = () => {
                                         </Grid>
                                         <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 0.5 }}>
                                             <Typography textAlign="center">Balance:{token2}</Typography>
-                                            <XsStaxLogo />
+                                            {staxLogoFirst ? <XsBusdLogo /> : <XsStaxLogo />}
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Grid item sx={{ mb: 3, mt: 3, display: 'flex', justifyContent: 'center' }}>
@@ -306,7 +343,7 @@ const DEX = () => {
                                                     onClick={() => {
                                                         handleLoadingTrue();
                                                         getStaxPrice();
-                                                        sellStax(valueFormatted).then(() => {
+                                                        swapStaxAndBusd(busdValueFormatted, slippage, pathToPurchase).then(() => {
                                                             handleLoadingFalse();
                                                             handleOpen3();
                                                             fetchBusdBalance();

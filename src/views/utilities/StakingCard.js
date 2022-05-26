@@ -349,7 +349,7 @@ const StakingCard = () => {
                     </Typography>
                     <LayersIcon color="success" fontSize="large" sx={{ mt: 2, ml: 1 }} />
                 </Grid>
-                <Grid item container lg={4} xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 6 }}>
+                <Grid item container lg={4} xs={11} sx={{ display: 'flex', justifyContent: 'center', mt: 6 }}>
                     <Card
                         sx={{
                             maxWidth: 1900,

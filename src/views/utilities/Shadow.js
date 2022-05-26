@@ -42,6 +42,20 @@ const UtilitiesShadow = () => {
     const TotalSupplyFormatted = supplyNumber.decimalPlaces(2);
     const TotalSupply = TotalSupplyFormatted.toLocaleString(undefined);
     const [staxPrice, setStaxPrice] = useState([], [], []);
+    const [stakingAndSupplyStats, setStakingAndSupplyStats] = useState(true);
+    const [marketStats, setMarketStats] = useState(false);
+    const [sharesStats, setSharesStats] = useState(false);
+    const [myStats, setMyStats] = useState(false);
+    const handleCloseAllStats = () => {
+        setStakingAndSupplyStats(false);
+        setMarketStats(false);
+        setSharesStats(false);
+        setMyStats(false);
+    };
+    const handleStakingAndSupplyStats = () => setStakingAndSupplyStats(true);
+    const handleMarketStats = () => setMarketStats(true);
+    const handleSharesStats = () => setSharesStats(true);
+    const handleMyStats = () => setMyStats(true);
     const fetchStaxTotalSupply = async () => {
         ggetTotalSTAXSupply()
             .then((result) => {
@@ -108,170 +122,243 @@ const UtilitiesShadow = () => {
                 <QueryStatsIcon sx={{ ml: 1, mt: 12 }} fontSize="large" color="success" />
             </Grid>
             <Grid item container xs={12} sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
-                <Button size="large" color="success" variant="outlined">
+                <Button
+                    onClick={() => {
+                        handleCloseAllStats();
+                        handleStakingAndSupplyStats(true);
+                    }}
+                    size="large"
+                    color="success"
+                    variant="outlined"
+                >
                     <LayersIcon color="success" />
                 </Button>
-                <Button size="large" color="success" sx={{ ml: 2 }} variant="outlined">
+                <Button
+                    onClick={() => {
+                        handleCloseAllStats();
+                        handleMarketStats(true);
+                    }}
+                    size="large"
+                    color="success"
+                    sx={{ ml: 2 }}
+                    variant="outlined"
+                >
                     <CandlestickChartIcon color="success" />
                 </Button>
-                <Button size="large" color="success" sx={{ ml: 2 }} variant="outlined">
+                <Button
+                    onClick={() => {
+                        handleCloseAllStats();
+                        handleSharesStats(true);
+                    }}
+                    size="large"
+                    color="success"
+                    sx={{ ml: 2 }}
+                    variant="outlined"
+                >
                     <PriceChangeIcon color="success" />
                 </Button>
-                <Button size="large" color="success" sx={{ ml: 2 }} variant="outlined">
+                <Button
+                    onClick={() => {
+                        handleCloseAllStats();
+                        handleMyStats(true);
+                    }}
+                    size="large"
+                    color="success"
+                    sx={{ ml: 2 }}
+                    variant="outlined"
+                >
                     <SwitchAccountIcon color="success" />
                 </Button>
             </Grid>
-            <Grid
-                item
-                container
-                lg={9.1}
-                xs={10.5}
-                sx={{
-                    borderLeft: 3,
-                    borderBottom: 3,
-                    borderRadius: 5,
-                    borderColor: theme.palette.success.main,
-                    mt: 5,
-                    mb: 10,
-                    display: 'flex',
-                    justifyContent: 'center'
-                }}
-            >
-                <Grid item xs={12} lg={12} sx={{ mb: 10, mt: 5 }}>
-                    <EChartsReact option={option} style={{ height: 400 }} />
+            {stakingAndSupplyStats ? (
+                <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Grid
+                        item
+                        container
+                        lg={9.1}
+                        xs={10.5}
+                        sx={{
+                            borderLeft: 3,
+                            borderBottom: 3,
+                            borderRadius: 5,
+                            borderColor: theme.palette.success.main,
+                            mt: 5,
+                            mb: 10,
+                            display: 'flex',
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <Grid item xs={12} lg={12} sx={{ mb: 10, mt: 5 }}>
+                            <EChartsReact option={option} style={{ height: 400, width: 400 }} />
+                        </Grid>
+                    </Grid>
+                    <Grid item container lg={12} xs={10} sx={{ mb: 15 }}>
+                        <Card
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                borderLeft: 1,
+                                borderRight: 1,
+                                borderBottom: 3,
+                                borderColor: theme.palette.success.light,
+                                borderRadius: 5,
+                                boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                            }}
+                        >
+                            <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
+                                {' '}
+                                Total staked
+                            </Typography>
+                            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                                <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
+                                    {' '}
+                                    10,000,000
+                                </Typography>
+                                <XsStaxLogo />
+                            </Grid>
+                        </Card>
+                    </Grid>
+                    <Grid item container lg={12} xs={10} sx={{ mb: 15 }}>
+                        <Card
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                borderLeft: 1,
+                                borderRight: 1,
+                                borderBottom: 3,
+                                borderColor: theme.palette.success.light,
+                                borderRadius: 5,
+                                boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                            }}
+                        >
+                            <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
+                                {' '}
+                                Circulating Supply (excl. PancakeSwap Pool)
+                            </Typography>
+                            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                                <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
+                                    {' '}
+                                    {TotalSupply}
+                                </Typography>
+                                <XsStaxLogo />
+                            </Grid>
+                        </Card>
+                    </Grid>
+                    <Grid item container lg={12} xs={10} sx={{ mb: 15 }}>
+                        <Card
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                borderLeft: 1,
+                                borderRight: 1,
+                                borderBottom: 3,
+                                borderColor: theme.palette.success.light,
+                                borderRadius: 5,
+                                boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                            }}
+                        >
+                            <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
+                                {' '}
+                                Locked (rewards to sSTX holders)
+                            </Typography>
+                            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                                <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
+                                    {' '}
+                                    10,000,000 STAX
+                                </Typography>
+                                <XsStaxLogo />
+                            </Grid>
+                        </Card>
+                    </Grid>
+                    <Grid item container lg={12} xs={10} sx={{ mb: 15 }}>
+                        <Card
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                borderLeft: 1,
+                                borderRight: 1,
+                                borderBottom: 3,
+                                borderColor: theme.palette.success.light,
+                                borderRadius: 5,
+                                boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                            }}
+                        >
+                            <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
+                                {' '}
+                                PancakeSwap Pool
+                            </Typography>
+                            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                                <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
+                                    {(staxPrice[0] / 1000000000000000000).toLocaleString(undefined, {
+                                        maximumFractionDigits: 2
+                                    })}{' '}
+                                    STAX
+                                </Typography>
+                                <XsStaxLogo />
+                            </Grid>
+                        </Card>
+                    </Grid>
+                    <Grid item container lg={12} xs={10} sx={{ mb: 15 }}>
+                        <Card
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                borderLeft: 1,
+                                borderRight: 1,
+                                borderBottom: 3,
+                                borderColor: theme.palette.success.light,
+                                borderRadius: 5,
+                                boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                            }}
+                        >
+                            <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
+                                {' '}
+                                Total Supply
+                            </Typography>
+                            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                                <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
+                                    {TotalSupply}
+                                </Typography>
+                                <XsStaxLogo />
+                            </Grid>
+                        </Card>
+                    </Grid>
                 </Grid>
-            </Grid>
-            <Grid item container lg={3.5} xs={10} sx={{ mb: 15 }}>
-                <Card
-                    sx={{
-                        width: '100%',
-                        height: '100%',
-                        borderLeft: 1,
-                        borderRight: 1,
-                        borderBottom: 3,
-                        borderColor: theme.palette.success.light,
-                        borderRadius: 5,
-                        boxShadow: '0px 10px 20px rgb(0, 230, 117)'
-                    }}
-                >
-                    <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
-                        {' '}
-                        Total staked
-                    </Typography>
-                    <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
-                        <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
-                            {' '}
-                            10,000,000
-                        </Typography>
-                        <XsStaxLogo />
+            ) : (
+                <Grid item xs={12} lg={12} />
+            )}
+            {marketStats ? (
+                <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Grid item container lg={3} xs={10} sx={{ mb: 15 }}>
+                        <Card
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                borderLeft: 1,
+                                borderRight: 1,
+                                borderBottom: 3,
+                                borderColor: theme.palette.success.light,
+                                borderRadius: 5,
+                                boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                            }}
+                        >
+                            <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
+                                {' '}
+                                STAX Price
+                            </Typography>
+                            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                                <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
+                                    {' '}
+                                    10,000,000
+                                </Typography>
+                                <XsStaxLogo />
+                            </Grid>
+                        </Card>
                     </Grid>
-                </Card>
-            </Grid>
-            <Grid item container lg={3.5} xs={10} sx={{ mb: 15 }}>
-                <Card
-                    sx={{
-                        width: '100%',
-                        height: '100%',
-                        borderLeft: 1,
-                        borderRight: 1,
-                        borderBottom: 3,
-                        borderColor: theme.palette.success.light,
-                        borderRadius: 5,
-                        boxShadow: '0px 10px 20px rgb(0, 230, 117)'
-                    }}
-                >
-                    <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
-                        {' '}
-                        Circulating Supply (excl. PancakeSwap Pool)
-                    </Typography>
-                    <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
-                        <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
-                            {' '}
-                            {TotalSupply}
-                        </Typography>
-                        <XsStaxLogo />
-                    </Grid>
-                </Card>
-            </Grid>
-            <Grid item container lg={3.5} xs={10} sx={{ mb: 15 }}>
-                <Card
-                    sx={{
-                        width: '100%',
-                        height: '100%',
-                        borderLeft: 1,
-                        borderRight: 1,
-                        borderBottom: 3,
-                        borderColor: theme.palette.success.light,
-                        borderRadius: 5,
-                        boxShadow: '0px 10px 20px rgb(0, 230, 117)'
-                    }}
-                >
-                    <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
-                        {' '}
-                        Locked (rewards to sSTX holders)
-                    </Typography>
-                    <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
-                        <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
-                            {' '}
-                            10,000,000 STAX
-                        </Typography>
-                        <XsStaxLogo />
-                    </Grid>
-                </Card>
-            </Grid>
-            <Grid item container lg={3.5} xs={10} sx={{ mb: 15 }}>
-                <Card
-                    sx={{
-                        width: '100%',
-                        height: '100%',
-                        borderLeft: 1,
-                        borderRight: 1,
-                        borderBottom: 3,
-                        borderColor: theme.palette.success.light,
-                        borderRadius: 5,
-                        boxShadow: '0px 10px 20px rgb(0, 230, 117)'
-                    }}
-                >
-                    <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
-                        {' '}
-                        PancakeSwap Pool
-                    </Typography>
-                    <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
-                        <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
-                            {(staxPrice[0] / 1000000000000000000).toLocaleString(undefined, {
-                                maximumFractionDigits: 2
-                            })}{' '}
-                            STAX
-                        </Typography>
-                        <XsStaxLogo />
-                    </Grid>
-                </Card>
-            </Grid>
-            <Grid item container lg={3.5} xs={10} sx={{ mb: 15 }}>
-                <Card
-                    sx={{
-                        width: '100%',
-                        height: '100%',
-                        borderLeft: 1,
-                        borderRight: 1,
-                        borderBottom: 3,
-                        borderColor: theme.palette.success.light,
-                        borderRadius: 5,
-                        boxShadow: '0px 10px 20px rgb(0, 230, 117)'
-                    }}
-                >
-                    <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
-                        {' '}
-                        Total Supply
-                    </Typography>
-                    <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
-                        <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
-                            {TotalSupply}
-                        </Typography>
-                        <XsStaxLogo />
-                    </Grid>
-                </Card>
-            </Grid>
+                </Grid>
+            ) : (
+                <Grid item xs={12} lg={12} />
+            )}
         </Grid>
     );
 };

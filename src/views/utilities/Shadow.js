@@ -13,6 +13,7 @@ import SwitchAccountIcon from '@mui/icons-material/SwitchAccount';
 import { ggetTotalSTAXSupply, getStaxPrice } from 'components/wallet/sharesABI';
 import BigNumber from 'bignumber.js';
 import XsStaxLogo from './xsStaxLogo';
+import XsSharesLogo from './XsSharesLogo';
 
 const ShadowBox = ({ shadow }) => (
     <Card sx={{ mb: 3, boxShadow: shadow }}>
@@ -349,9 +350,191 @@ const UtilitiesShadow = () => {
                             <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
                                 <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
                                     {' '}
-                                    10,000,000
+                                    0.07$
                                 </Typography>
-                                <XsStaxLogo />
+                            </Grid>
+                        </Card>
+                    </Grid>
+                    <Grid item container lg={3} xs={10} sx={{ mb: 15 }}>
+                        <Card
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                borderLeft: 1,
+                                borderRight: 1,
+                                borderBottom: 3,
+                                borderColor: theme.palette.success.light,
+                                borderRadius: 5,
+                                boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                            }}
+                        >
+                            <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
+                                {' '}
+                                SHARES Price
+                            </Typography>
+                            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                                <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
+                                    {' '}
+                                    171 BUSD
+                                </Typography>
+                            </Grid>
+                        </Card>
+                    </Grid>
+                    <Grid item container lg={3} xs={10} sx={{ mb: 15 }}>
+                        <Card
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                borderLeft: 1,
+                                borderRight: 1,
+                                borderBottom: 3,
+                                borderColor: theme.palette.success.light,
+                                borderRadius: 5,
+                                boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                            }}
+                        >
+                            <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
+                                {' '}
+                                Market Cap
+                            </Typography>
+                            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                                <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
+                                    {' '}
+                                    8,482,222$
+                                </Typography>
+                            </Grid>
+                        </Card>
+                    </Grid>
+                    <Grid item container lg={3} xs={10} sx={{ mb: 15 }}>
+                        <Card
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                borderLeft: 1,
+                                borderRight: 1,
+                                borderBottom: 3,
+                                borderColor: theme.palette.success.light,
+                                borderRadius: 5,
+                                boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                            }}
+                        >
+                            <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
+                                {' '}
+                                Liquidity
+                            </Typography>
+                            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                                <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
+                                    {' '}
+                                    458,000$
+                                </Typography>
+                            </Grid>
+                        </Card>
+                    </Grid>
+                </Grid>
+            ) : (
+                <Grid item xs={12} lg={12} />
+            )}
+            {sharesStats ? (
+                <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Grid item container lg={3} xs={10} sx={{ mb: 15 }}>
+                        <Card
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                borderLeft: 1,
+                                borderRight: 1,
+                                borderBottom: 3,
+                                borderColor: theme.palette.success.light,
+                                borderRadius: 5,
+                                boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                            }}
+                        >
+                            <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
+                                {' '}
+                                Total Shares Sold
+                            </Typography>
+                            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                                <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
+                                    {' '}
+                                    1,451
+                                </Typography>
+                                <XsSharesLogo />
+                            </Grid>
+                        </Card>
+                    </Grid>
+                    <Grid item container lg={3} xs={10} sx={{ mb: 15 }}>
+                        <Card
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                borderLeft: 1,
+                                borderRight: 1,
+                                borderBottom: 3,
+                                borderColor: theme.palette.success.light,
+                                borderRadius: 5,
+                                boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                            }}
+                        >
+                            <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
+                                {' '}
+                                Max Shares Supply
+                            </Typography>
+                            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                                <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
+                                    {' '}
+                                    40,000
+                                </Typography>
+                                <XsSharesLogo />
+                            </Grid>
+                        </Card>
+                    </Grid>
+                    <Grid item container lg={3} xs={10} sx={{ mb: 15 }}>
+                        <Card
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                borderLeft: 1,
+                                borderRight: 1,
+                                borderBottom: 3,
+                                borderColor: theme.palette.success.light,
+                                borderRadius: 5,
+                                boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                            }}
+                        >
+                            <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
+                                {' '}
+                                Initial Price
+                            </Typography>
+                            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                                <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
+                                    {' '}
+                                    20 BUSD
+                                </Typography>
+                            </Grid>
+                        </Card>
+                    </Grid>
+                    <Grid item container lg={3} xs={10} sx={{ mb: 15 }}>
+                        <Card
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                borderLeft: 1,
+                                borderRight: 1,
+                                borderBottom: 3,
+                                borderColor: theme.palette.success.light,
+                                borderRadius: 5,
+                                boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                            }}
+                        >
+                            <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
+                                {' '}
+                                Current Price:
+                            </Typography>
+                            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                                <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
+                                    {' '}
+                                    170 BUSD
+                                </Typography>
                             </Grid>
                         </Card>
                     </Grid>

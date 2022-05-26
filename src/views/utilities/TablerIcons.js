@@ -14,7 +14,6 @@ import BusdSmallLogo from './busdSmallLogo';
 import SmallStaxLogo from './smallStaxLogo';
 import XsStaxLogo from './xsStaxLogo';
 import XsBusdLogo from './XsBusdLogo';
-import { helper } from 'echarts';
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
 const style = {
@@ -37,6 +36,7 @@ const DEX = () => {
     const valueF = Web3.utils.toWei(value.toString(), 'ether');
     const valueFormatted = Web3.utils.toBN(valueF);
     const [busdValue, setBusdValue] = React.useState(0);
+    const [preBusdValue, setPreBusdValue] = React.useState(0);
     const busdValueF = Web3.utils.toWei(busdValue.toString(), 'ether');
     const busdValueFormatted = Web3.utils.toBN(busdValueF);
     // eslint-disable-next-line global-require
@@ -281,7 +281,7 @@ const DEX = () => {
                                                     borderColor: theme.palette.success.main
                                                 }}
                                                 inputProps={{ style: { textAlign: 'left', color: 'white' } }}
-                                                onChange={(e) => setBusdValue(e.target.value)}
+                                                onChange={(e) => setPreBusdValue(e.target.value)}
                                                 id="standard-basic"
                                                 label="Enter amount:"
                                                 variant="standard"
@@ -345,7 +345,7 @@ const DEX = () => {
                                                     borderColor: theme.palette.success.main
                                                 }}
                                                 inputProps={{ style: { textAlign: 'left', color: 'white' } }}
-                                                onChange={(e) => setValue(e.target.value)}
+                                                onChange={(e) => setPreBusdValue(e.target.value)}
                                                 id="standard-basic"
                                                 label="Enter amount:"
                                                 variant="standard"
@@ -389,8 +389,9 @@ const DEX = () => {
                                                     loading={loading}
                                                     onClick={() => {
                                                         handleLoadingTrue();
-                                                        getStaxPrice();
+                                                        setBusdValue(preBusdValue);
                                                         swapStaxAndBusd(busdValueFormatted, 0, pathToPurchase).then(() => {
+                                                            getStaxPrice();
                                                             handleLoadingFalse();
                                                             updateBalances();
                                                         });

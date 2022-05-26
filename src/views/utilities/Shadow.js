@@ -189,7 +189,7 @@ const UtilitiesShadow = () => {
                         }}
                     >
                         <Grid item xs={12} lg={12} sx={{ mb: 10, mt: 5 }}>
-                            <EChartsReact option={option} style={{ height: 400, width: 400 }} />
+                            <EChartsReact option={option} style={{ height: 400 }} />
                         </Grid>
                     </Grid>
                     <Grid item container lg={12} xs={10} sx={{ mb: 15 }}>

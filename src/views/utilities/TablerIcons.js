@@ -50,10 +50,9 @@ const DEX = () => {
     const staxBalanceFinal = staxBalanceFormat.toLocaleString(undefined);
     const theme = useTheme();
     const [staxPrice, setStaxPrice] = useState([], [], []);
+    const priceImpact1 = (busdValueF / staxPrice[0]) * 100;
+    const priceImpact2 = (busdValueF / staxPrice[1]) * 100;
     const [loading, setLoading] = React.useState(false);
-    const [open3, setOpen3] = React.useState(false);
-    const handleClose3 = () => setOpen3(false);
-    const handleOpen3 = () => setOpen3(true);
     const [open4, setOpen4] = React.useState(false);
     const handleClose4 = () => setOpen4(false);
     const handleOpen4 = () => setOpen4(true);
@@ -70,15 +69,17 @@ const DEX = () => {
     const [slippage, setSlippage] = useState(6);
     const [slippageF, setSlippageF] = useState();
     const handleSwap = () => {
-        if (token1 === staxBalance) {
-            setToken1(busdBalance);
-            setToken2(staxBalance);
+        if (token1 === staxBalanceFinal) {
+            setToken1(busdBalanceFinal);
+            setToken2(staxBalanceFinal);
             setToken1address('0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
+            setToken2address('0x1155605B148DEB0f649F9b815Fc18d956af7a93d');
             handleStaxLogoFirstN();
         } else {
-            setToken1(staxBalance);
-            setToken2(busdBalance);
-            setToken2address('0x1155605B148DEB0f649F9b815Fc18d956af7a93d');
+            setToken1(staxBalanceFinal);
+            setToken2(busdBalanceFinal);
+            setToken1address('0x1155605B148DEB0f649F9b815Fc18d956af7a93d');
+            setToken2address('0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
             handleStaxLogoFirst();
         }
     };
@@ -120,13 +121,13 @@ const DEX = () => {
     };
     useEffect(() => {
         async function load2() {
-            fetchBusdBalance();
             fetchStaxBalance();
+            fetchBusdBalance();
             fetchStaxPrice();
             fetchStaxTotalSupply();
-            setToken1(staxBalance);
+            setToken1(staxBalanceFinal);
+            setToken2(busdBalanceFinal);
             setToken1address('0x1155605B148DEB0f649F9b815Fc18d956af7a93d');
-            setToken2(busdBalance);
             setToken2address('0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
             setSlippageF(5.5);
         }
@@ -134,31 +135,6 @@ const DEX = () => {
     }, [busdBalance, staxBalance]);
     return (
         <>
-            <Modal open={open3} onClose={handleClose3} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
-                <Box sx={style}>
-                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <DoneIcon color="success" fontSize="large" />
-                    </Grid>
-                    <Typography variant="h5" textAlign="center" sx={{ mt: 3 }} component="h2">
-                        Transaction completed.
-                    </Typography>
-                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Button
-                            onClick={handleClose3}
-                            sx={{
-                                mt: 3,
-                                fontSize: 15,
-                                width: 80,
-                                height: 30,
-                                color: theme.palette.grey[900],
-                                backgroundColor: theme.palette.success.main
-                            }}
-                        >
-                            Close
-                        </Button>
-                    </Grid>
-                </Box>
-            </Modal>
             <Modal
                 open={open4}
                 onBackdropClick={handleClose4}
@@ -178,16 +154,29 @@ const DEX = () => {
                         <TextField
                             sx={{
                                 display: 'flex',
-                                width: 40,
-                                mt: 2,
+                                mt: 2.3,
+                                ml: 1,
+                                border: 1,
+                                borderRadius: 3,
                                 borderColor: theme.palette.success.main
                             }}
-                            inputProps={{ style: { textAlign: 'center', color: 'white' } }}
+                            inputProps={{
+                                style: {
+                                    textAlign: 'center',
+                                    height: 1,
+                                    width: 27,
+                                    backgroundColor: theme.palette.grey[900],
+                                    color: 'white'
+                                }
+                            }}
                             onChange={(e) => setSlippage(e.target.value)}
                             id="standard-basic"
-                            variant="standard"
+                            variant="outlined"
                             color="success"
                         />
+                        <Typography variant="h4" sx={{ mt: 3, ml: 0.3 }}>
+                            %
+                        </Typography>
                     </Grid>
                     <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Button
@@ -294,13 +283,13 @@ const DEX = () => {
                                                 inputProps={{ style: { textAlign: 'left', color: 'white' } }}
                                                 onChange={(e) => setBusdValue(e.target.value)}
                                                 id="standard-basic"
-                                                label="Enter BUSD amount:"
+                                                label="Enter amount:"
                                                 variant="standard"
                                                 color="success"
                                             />
                                         </Grid>
                                         <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 0.5 }}>
-                                            <Typography textAlign="center">Balance:{token1}</Typography>
+                                            <Typography textAlign="center">Balance: {token1}</Typography>
                                             {staxLogoFirst ? <XsStaxLogo /> : <XsBusdLogo />}
                                         </Grid>
                                     </Grid>
@@ -351,7 +340,7 @@ const DEX = () => {
                                                 inputProps={{ style: { textAlign: 'left', color: 'white' } }}
                                                 onChange={(e) => setValue(e.target.value)}
                                                 id="standard-basic"
-                                                label="Enter STAX amount:"
+                                                label="Enter amount:"
                                                 variant="standard"
                                                 color="success"
                                             />
@@ -361,18 +350,29 @@ const DEX = () => {
                                             {staxLogoFirst ? <XsBusdLogo /> : <XsStaxLogo />}
                                         </Grid>
                                         <Grid item xs={12}>
+                                            <Typography textAlign="center" sx={{ mb: 1, mt: 3, color: theme.palette.success.light }}>
+                                                You will receive: STAX (2000 STAX per BUSD)
+                                            </Typography>
+                                            {staxLogoFirst ? (
+                                                <Typography textAlign="center" sx={{ mb: 1, color: theme.palette.success.light }}>
+                                                    Price impact: {priceImpact1.toLocaleString(undefined, { maximumFractionDigits: 2 })} %
+                                                </Typography>
+                                            ) : (
+                                                <Typography textAlign="center" sx={{ mb: 1, color: theme.palette.success.light }}>
+                                                    Price impact: {priceImpact2.toLocaleString(undefined, { maximumFractionDigits: 2 })} %
+                                                </Typography>
+                                            )}
+                                            <Typography textAlign="center" sx={{ mb: 1, color: theme.palette.success.light }}>
+                                                Slippage: {slippageF}%
+                                            </Typography>
                                             <Grid item sx={{ mb: 3, mt: 3, display: 'flex', justifyContent: 'center' }}>
                                                 <LoadingButton
                                                     loading={loading}
                                                     onClick={() => {
                                                         handleLoadingTrue();
                                                         getStaxPrice();
-                                                        swapStaxAndBusd(busdValueFormatted, slippage, pathToPurchase).then(() => {
+                                                        swapStaxAndBusd(busdValueFormatted, 0, pathToPurchase).then(() => {
                                                             handleLoadingFalse();
-                                                            handleOpen3();
-                                                            fetchBusdBalance();
-                                                            fetchStaxBalance();
-                                                            fetchStaxPrice();
                                                         });
                                                     }}
                                                     sx={{
@@ -387,15 +387,6 @@ const DEX = () => {
                                                     SWAP
                                                 </LoadingButton>
                                             </Grid>
-                                            <Typography textAlign="center" sx={{ mb: 1, color: theme.palette.success.light }}>
-                                                Price impact: 1.2%
-                                            </Typography>
-                                            <Typography textAlign="center" sx={{ mb: 1, color: theme.palette.success.light }}>
-                                                Slippage: {slippageF}%
-                                            </Typography>
-                                            <Typography textAlign="center" sx={{ mb: 3, color: theme.palette.success.light }}>
-                                                Estimated Price: 0.057$
-                                            </Typography>
                                         </Grid>
                                     </Grid>
                                 </Grid>

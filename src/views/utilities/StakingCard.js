@@ -143,7 +143,13 @@ const StakingCard = () => {
     }, []);
     return (
         <>
-            <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+            <Modal
+                open={open}
+                onBackdropClick={handleClose}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
                 <Box sx={style}>
                     <Typography variant="h5" textAlign="center" component="h2">
                         Important: 90% penalty is applied to the `withdraw amount` to all pre-mature stakes.
@@ -202,7 +208,13 @@ const StakingCard = () => {
                     </Grid>
                 </Box>
             </Modal>
-            <Modal open={open4} onClose={handleClose4} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+            <Modal
+                open={open4}
+                onClose={handleClose4}
+                onBackdropClick={handleClose4}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
                 <Box sx={style}>
                     <Typography variant="h5" textAlign="center" component="h2">
                         Important: Your stake will be in `pre-mature` phase for the first 45 days and will face heavy penatlies in case of
@@ -285,7 +297,13 @@ const StakingCard = () => {
                     </Grid>
                 </Box>
             </Modal>
-            <Modal open={open3} onClose={handleClose3} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+            <Modal
+                open={open3}
+                onClose={handleClose3}
+                onBackdropClick={handleClose3}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
                 <Box sx={style}>
                     <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
                         <DoneIcon color="success" fontSize="large" />

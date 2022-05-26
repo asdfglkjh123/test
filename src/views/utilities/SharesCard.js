@@ -332,7 +332,7 @@ const SharesCard = () => {
                                         lg={3}
                                         md={1.5}
                                         sm={2.11}
-                                        xs={3.3}
+                                        xs={3.7}
                                     >
                                         <Typography xs={12} sx={{ my: 1 }} variant="h5" textAlign="left">
                                             Total Sold:

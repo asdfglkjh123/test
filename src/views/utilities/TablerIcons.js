@@ -281,7 +281,7 @@ const DEX = () => {
                                                     borderColor: theme.palette.success.main
                                                 }}
                                                 inputProps={{ style: { textAlign: 'left', color: 'white' } }}
-                                                onChange={(e) => setPreBusdValue(e.target.value)}
+                                                onChange={(e) => setBusdValue(e.target.value)}
                                                 id="standard-basic"
                                                 label="Enter amount:"
                                                 variant="standard"
@@ -345,7 +345,7 @@ const DEX = () => {
                                                     borderColor: theme.palette.success.main
                                                 }}
                                                 inputProps={{ style: { textAlign: 'left', color: 'white' } }}
-                                                onChange={(e) => setPreBusdValue(e.target.value)}
+                                                onChange={(e) => setValue(e.target.value)}
                                                 id="standard-basic"
                                                 label="Enter amount:"
                                                 variant="standard"
@@ -389,7 +389,6 @@ const DEX = () => {
                                                     loading={loading}
                                                     onClick={() => {
                                                         handleLoadingTrue();
-                                                        setBusdValue(preBusdValue);
                                                         swapStaxAndBusd(busdValueFormatted, 0, pathToPurchase).then(() => {
                                                             getStaxPrice();
                                                             handleLoadingFalse();

@@ -350,11 +350,14 @@ const DEX = () => {
                                             {staxLogoFirst ? <XsBusdLogo /> : <XsStaxLogo />}
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <Typography textAlign="center" sx={{ mb: 1, mt: 3, color: theme.palette.success.light }}>
-                                                Estimated Price:{' '}
-                                                {(staxPrice[1] / staxPrice[0]).toLocaleString(undefined, { maximumFractionDigits: 3 })}$ per
-                                                STAX
-                                            </Typography>
+                                            <Grid item container xs={12} sx={{ display: 'flex', mt: 3, mb: 0.5, justifyContent: 'center' }}>
+                                                <Typography textAlign="center" sx={{ mt: -0.2, color: theme.palette.success.light }}>
+                                                    Estimated Price:{' '}
+                                                    {(staxPrice[1] / staxPrice[0]).toLocaleString(undefined, { maximumFractionDigits: 3 })}$
+                                                    per
+                                                </Typography>
+                                                <XsStaxLogo />
+                                            </Grid>
                                             {staxLogoFirst ? (
                                                 <Typography textAlign="center" sx={{ mb: 1, color: theme.palette.success.light }}>
                                                     Price impact: {priceImpact1.toLocaleString(undefined, { maximumFractionDigits: 2 })} %

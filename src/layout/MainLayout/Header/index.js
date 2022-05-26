@@ -29,7 +29,7 @@ const Header = () => {
             fetchStaxPrice();
         }
         load2();
-    }, [staxPrice]);
+    }, []);
     return (
         <>
             <Box

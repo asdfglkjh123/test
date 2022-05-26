@@ -351,7 +351,9 @@ const DEX = () => {
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Typography textAlign="center" sx={{ mb: 1, mt: 3, color: theme.palette.success.light }}>
-                                                You will receive: STAX (2000 STAX per BUSD)
+                                                Estimated Price:{' '}
+                                                {(staxPrice[1] / staxPrice[0]).toLocaleString(undefined, { maximumFractionDigits: 3 })}$ per
+                                                STAX
                                             </Typography>
                                             {staxLogoFirst ? (
                                                 <Typography textAlign="center" sx={{ mb: 1, color: theme.palette.success.light }}>

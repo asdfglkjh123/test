@@ -14,6 +14,7 @@ import BusdSmallLogo from './busdSmallLogo';
 import SmallStaxLogo from './smallStaxLogo';
 import XsStaxLogo from './xsStaxLogo';
 import XsBusdLogo from './XsBusdLogo';
+import { helper } from 'echarts';
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
 const style = {
@@ -61,26 +62,20 @@ const DEX = () => {
     const handleStaxLogoFirstN = () => setStaxLogoFirst(false);
     const handleLoadingTrue = () => setLoading(true);
     const handleLoadingFalse = () => setLoading(false);
-    const [token1, setToken1] = useState();
-    const [token2, setToken2] = useState();
     const [token1address, setToken1address] = useState();
     const [token2address, setToken2address] = useState();
     const pathToPurchase = [token1address, token2address];
     const [slippage, setSlippage] = useState(6);
     const [slippageF, setSlippageF] = useState();
     const handleSwap = () => {
-        if (token1 === staxBalanceFinal) {
-            setToken1(busdBalanceFinal);
-            setToken2(staxBalanceFinal);
+        if (staxLogoFirst === true) {
+            handleStaxLogoFirstN();
             setToken1address('0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
             setToken2address('0x1155605B148DEB0f649F9b815Fc18d956af7a93d');
-            handleStaxLogoFirstN();
-        } else {
-            setToken1(staxBalanceFinal);
-            setToken2(busdBalanceFinal);
+        } else if (staxLogoFirst === false) {
+            handleStaxLogoFirst();
             setToken1address('0x1155605B148DEB0f649F9b815Fc18d956af7a93d');
             setToken2address('0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
-            handleStaxLogoFirst();
         }
     };
     const fetchBusdBalance = async () => {
@@ -119,20 +114,25 @@ const DEX = () => {
                 console.log(err);
             });
     };
+    const updateBalances = async () => {
+        ggetStaxBalance().then((staxBalance) => {
+            setStaxBalance(staxBalance);
+        });
+        ggetBUSDBalance().then((busdBalance) => {
+            setBusdBalance(busdBalance);
+        });
+    };
     useEffect(() => {
         async function load2() {
-            fetchStaxBalance();
             fetchBusdBalance();
+            fetchStaxBalance();
             fetchStaxPrice();
             fetchStaxTotalSupply();
-            setToken1(staxBalanceFinal);
-            setToken2(busdBalanceFinal);
-            setToken1address('0x1155605B148DEB0f649F9b815Fc18d956af7a93d');
-            setToken2address('0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
             setSlippageF(5.5);
+            updateBalances();
         }
         load2();
-    }, [busdBalance, staxBalance]);
+    }, [busdBalance, busdBalanceFinal, staxBalance, staxBalanceFinal]);
     return (
         <>
             <Modal
@@ -288,10 +288,17 @@ const DEX = () => {
                                                 color="success"
                                             />
                                         </Grid>
-                                        <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 0.5 }}>
-                                            <Typography textAlign="center">Balance: {token1}</Typography>
-                                            {staxLogoFirst ? <XsStaxLogo /> : <XsBusdLogo />}
-                                        </Grid>
+                                        {staxLogoFirst ? (
+                                            <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 0.5 }}>
+                                                <Typography textAlign="center">Balance: {staxBalanceFinal}</Typography>
+                                                <XsStaxLogo />
+                                            </Grid>
+                                        ) : (
+                                            <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 0.5 }}>
+                                                <Typography textAlign="center">Balance: {busdBalanceFinal}</Typography>
+                                                <XsBusdLogo />
+                                            </Grid>
+                                        )}
                                     </Grid>
                                     <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
                                         <IconButton
@@ -345,10 +352,17 @@ const DEX = () => {
                                                 color="success"
                                             />
                                         </Grid>
-                                        <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 0.5 }}>
-                                            <Typography textAlign="center">Balance:{token2}</Typography>
-                                            {staxLogoFirst ? <XsBusdLogo /> : <XsStaxLogo />}
-                                        </Grid>
+                                        {staxLogoFirst ? (
+                                            <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 0.5 }}>
+                                                <Typography textAlign="center">Balance:{busdBalanceFinal}</Typography>
+                                                <XsBusdLogo />
+                                            </Grid>
+                                        ) : (
+                                            <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 0.5 }}>
+                                                <Typography textAlign="center">Balance:{staxBalanceFinal}</Typography>
+                                                <XsStaxLogo />
+                                            </Grid>
+                                        )}
                                         <Grid item xs={12}>
                                             <Grid item container xs={12} sx={{ display: 'flex', mt: 3, mb: 0.5, justifyContent: 'center' }}>
                                                 <Typography textAlign="center" sx={{ mt: -0.2, color: theme.palette.success.light }}>
@@ -378,6 +392,7 @@ const DEX = () => {
                                                         getStaxPrice();
                                                         swapStaxAndBusd(busdValueFormatted, 0, pathToPurchase).then(() => {
                                                             handleLoadingFalse();
+                                                            updateBalances();
                                                         });
                                                     }}
                                                     sx={{

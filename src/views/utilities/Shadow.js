@@ -14,6 +14,7 @@ import { ggetTotalSTAXSupply, getStaxPrice } from 'components/wallet/sharesABI';
 import BigNumber from 'bignumber.js';
 import XsStaxLogo from './xsStaxLogo';
 import XsSharesLogo from './XsSharesLogo';
+import XsBusdLogo from './XsBusdLogo';
 
 const ShadowBox = ({ shadow }) => (
     <Card sx={{ mb: 3, boxShadow: shadow }}>
@@ -535,6 +536,142 @@ const UtilitiesShadow = () => {
                                     {' '}
                                     170 BUSD
                                 </Typography>
+                            </Grid>
+                        </Card>
+                    </Grid>
+                </Grid>
+            ) : (
+                <Grid item xs={12} lg={12} />
+            )}
+            {myStats ? (
+                <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Grid item container lg={3} xs={10} sx={{ mb: 15 }}>
+                        <Card
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                borderLeft: 1,
+                                borderRight: 1,
+                                borderBottom: 3,
+                                borderColor: theme.palette.success.light,
+                                borderRadius: 5,
+                                boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                            }}
+                        >
+                            <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
+                                {' '}
+                                STAX Balance
+                            </Typography>
+                            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                                <Typography textAlign="center" variant="h4" sx={{ mt: -0.1, color: theme.palette.success.main }}>
+                                    {' '}
+                                    3,050,446
+                                </Typography>
+                                <XsStaxLogo />
+                            </Grid>
+                        </Card>
+                    </Grid>
+                    <Grid item container lg={3} xs={10} sx={{ mb: 15 }}>
+                        <Card
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                borderLeft: 1,
+                                borderRight: 1,
+                                borderBottom: 3,
+                                borderColor: theme.palette.success.light,
+                                borderRadius: 5,
+                                boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                            }}
+                        >
+                            <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
+                                {' '}
+                                sSTX Balance:
+                            </Typography>
+                            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                                <Typography textAlign="center" variant="h4" sx={{ mt: -0.1, color: theme.palette.success.main }}>
+                                    {' '}
+                                    195
+                                </Typography>
+                                <XsSharesLogo />
+                            </Grid>
+                        </Card>
+                    </Grid>
+                    <Grid item container lg={3} xs={10} sx={{ mb: 15 }}>
+                        <Card
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                borderLeft: 1,
+                                borderRight: 1,
+                                borderBottom: 3,
+                                borderColor: theme.palette.success.light,
+                                borderRadius: 5,
+                                boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                            }}
+                        >
+                            <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
+                                {' '}
+                                BUSD Balance:
+                            </Typography>
+                            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                                <Typography textAlign="center" variant="h4" sx={{ mt: -0.1, color: theme.palette.success.main }}>
+                                    {' '}
+                                    10,000
+                                </Typography>
+                                <XsBusdLogo />
+                            </Grid>
+                        </Card>
+                    </Grid>
+                    <Grid item container lg={3} xs={10} sx={{ mb: 15 }}>
+                        <Card
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                borderLeft: 1,
+                                borderRight: 1,
+                                borderBottom: 3,
+                                borderColor: theme.palette.success.light,
+                                borderRadius: 5,
+                                boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                            }}
+                        >
+                            <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
+                                {' '}
+                                Total Staked
+                            </Typography>
+                            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                                <Typography textAlign="center" variant="h4" sx={{ mt: -0.1, color: theme.palette.success.main }}>
+                                    {' '}
+                                    17,050,449
+                                </Typography>
+                                <XsStaxLogo />
+                            </Grid>
+                        </Card>
+                    </Grid>
+                    <Grid item container lg={3} xs={10} sx={{ mb: 15 }}>
+                        <Card
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                borderLeft: 1,
+                                borderRight: 1,
+                                borderBottom: 3,
+                                borderColor: theme.palette.success.light,
+                                borderRadius: 5,
+                                boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                            }}
+                        >
+                            <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
+                                {' '}
+                                Total Dividends:
+                            </Typography>
+                            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
+                                <Typography textAlign="center" variant="h4" sx={{ mt: -0.1, color: theme.palette.success.main }}>
+                                    {' '}
+                                    96,540
+                                </Typography>
+                                <XsBusdLogo />
                             </Grid>
                         </Card>
                     </Grid>

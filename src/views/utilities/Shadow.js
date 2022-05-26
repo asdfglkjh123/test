@@ -174,10 +174,9 @@ const UtilitiesShadow = () => {
             </Grid>
             {stakingAndSupplyStats ? (
                 <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Typography variant="h3" sx={{ mt: 10, mb: 3 }}>
-                            Staking and Supply
-                        </Typography>
+                    <Grid item container sx={{ mt: 10, mb: 3, display: 'flex', justifyContent: 'center' }}>
+                        <Typography variant="h3">Staking and Supply</Typography>
+                        <LayersIcon color="success" />
                     </Grid>
                     <Grid
                         item
@@ -336,10 +335,9 @@ const UtilitiesShadow = () => {
             )}
             {marketStats ? (
                 <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Typography variant="h3" sx={{ mt: 7, mb: 8 }}>
-                            Market
-                        </Typography>
+                    <Grid item container sx={{ mt: 7, mb: 8, display: 'flex', justifyContent: 'center' }}>
+                        <Typography variant="h3">Market</Typography>
+                        <CandlestickChartIcon color="success" />
                     </Grid>
                     <Grid item container lg={3} xs={10} sx={{ mb: 15 }}>
                         <Card
@@ -447,10 +445,9 @@ const UtilitiesShadow = () => {
             )}
             {sharesStats ? (
                 <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Typography variant="h3" sx={{ mt: 4, mb: 8 }}>
-                            STAX Shares
-                        </Typography>
+                    <Grid item container sx={{ mt: 4, mb: 8, display: 'flex', justifyContent: 'center' }}>
+                        <Typography variant="h3">STAX Shares</Typography>
+                        <PriceChangeIcon color="success" />
                     </Grid>
                     <Grid item container lg={3} xs={10} sx={{ mb: 15 }}>
                         <Card
@@ -560,10 +557,9 @@ const UtilitiesShadow = () => {
             )}
             {myStats ? (
                 <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Typography variant="h3" sx={{ mt: 1, mb: 8 }}>
-                            My Stats
-                        </Typography>
+                    <Grid item container sx={{ mt: 1, mb: 8, display: 'flex', justifyContent: 'center' }}>
+                        <Typography variant="h3">My Stats</Typography>
+                        <SwitchAccountIcon color="success" />
                     </Grid>
                     <Grid item container lg={3} xs={10} sx={{ mb: 15 }}>
                         <Card

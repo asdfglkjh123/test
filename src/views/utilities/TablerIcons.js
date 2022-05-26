@@ -117,6 +117,10 @@ const DEX = () => {
     const updateBalances = async () => {
         ggetStaxBalance().then((staxBalance) => {
             setStaxBalance(staxBalance);
+            if (staxLogoFirst === true) {
+                setToken1address('0x1155605B148DEB0f649F9b815Fc18d956af7a93d');
+                setToken2address('0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
+            }
         });
         ggetBUSDBalance().then((busdBalance) => {
             setBusdBalance(busdBalance);
@@ -389,10 +393,11 @@ const DEX = () => {
                                                     loading={loading}
                                                     onClick={() => {
                                                         handleLoadingTrue();
+                                                        updateBalances();
                                                         swapStaxAndBusd(busdValueFormatted, 0, pathToPurchase).then(() => {
-                                                            getStaxPrice();
                                                             handleLoadingFalse();
                                                             updateBalances();
+                                                            getStaxPrice();
                                                         });
                                                     }}
                                                     sx={{

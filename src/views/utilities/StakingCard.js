@@ -76,7 +76,7 @@ const StakingCard = () => {
     const [open4, setOpen4] = React.useState(false);
     const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);
-    const handleClose2 = () => setOpen3(false);
+    const handleClose2 = () => setOpen2(false);
     const handleOpen2 = () => setOpen2(true);
     const handleClose3 = () => setOpen3(false);
     const handleOpen3 = () => setOpen3(true);
@@ -144,7 +144,10 @@ const StakingCard = () => {
         <>
             <Modal
                 open={open}
-                onBackdropClick={handleClose}
+                onBackdropClick={() => {
+                    handleClose();
+                    handleLoadingFalse3();
+                }}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
@@ -210,7 +213,10 @@ const StakingCard = () => {
             <Modal
                 open={open4}
                 onClose={handleClose4}
-                onBackdropClick={handleClose4}
+                onBackdropClick={() => {
+                    handleClose4();
+                    handleLoadingFalse();
+                }}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
@@ -251,7 +257,11 @@ const StakingCard = () => {
             <Modal
                 open={open2}
                 onClose={handleClose2}
-                onBackdropClick={handleClose2}
+                onBackdropClick={() => {
+                    handleClose2();
+                    handleLoadingFalse5();
+                    handleLoadingFalse4();
+                }}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
@@ -273,13 +283,17 @@ const StakingCard = () => {
                             loading={loading5}
                             onClick={() => {
                                 handleLoadingTrue5();
-                                withdrawAmount(0, currentIndex).then(() => {
-                                    handleLoadingFalse5();
-                                    setOpen2(false);
-                                    setOpen3(true);
-                                    handleLoadingFalse4();
-                                    fetchStakesBalance();
-                                });
+                                withdrawAmount(0, currentIndex)
+                                    .then(() => {
+                                        handleLoadingFalse5();
+                                        setOpen2(false);
+                                        setOpen3(true);
+                                        handleLoadingFalse4();
+                                        fetchStakesBalance();
+                                    })
+                                    .catch(() => {
+                                        handleLoadingFalse5();
+                                    });
                             }}
                             sx={{
                                 mt: 1,
@@ -623,6 +637,170 @@ const StakingCard = () => {
                     </Card>
                 </Grid>
             </Grid>
+            <Typography textAlign="center" variant="h2" sx={{ mt: 10 }}>
+                Regular Stakes
+            </Typography>
+            <Grid
+                item
+                lg={12}
+                xs={12}
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    mt: 6,
+                    mb: 15,
+                    borderLeft: 1,
+                    borderRight: 1,
+                    borderBottom: 3,
+                    borderColor: theme.palette.success.light,
+                    borderRadius: 5,
+                    boxShadow: '0px 10px 20px rgb(0, 230, 117)'
+                }}
+            >
+                <TableContainer sx={{ width: 350, borderRadius: 5 }}>
+                    <Table sx={{ width: 'max-width' }} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>
+                                    <Typography color={theme.palette.success.main} textAlign="center">
+                                        NAME
+                                    </Typography>
+                                </TableCell>
+                                <TableCell>
+                                    <Typography color={theme.palette.success.main} textAlign="center">
+                                        SHARESBONUS
+                                    </Typography>
+                                </TableCell>
+                                <TableCell>
+                                    <Typography color={theme.palette.success.main} textAlign="center">
+                                        STAKED
+                                    </Typography>
+                                </TableCell>
+                                <TableCell>
+                                    <Typography color={theme.palette.success.main} textAlign="center">
+                                        REWARDS
+                                    </Typography>
+                                </TableCell>
+                                <TableCell>
+                                    <Grid container>
+                                        <Grid item xs={6} sx={{ mt: 0.9 }}>
+                                            <Typography color={theme.palette.success.main} textAlign="center">
+                                                TUM
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item xs={3}>
+                                            <Tooltip
+                                                sx={{ mt: 0.6, color: theme.palette.success.main }}
+                                                title={
+                                                    <Typography
+                                                        sx={{
+                                                            color: theme.palette.success.main
+                                                        }}
+                                                    >
+                                                        TUM stands for Time Until Mature. Each stake will face heavy penalty (90% on the
+                                                        staked balane) if the stake is ended before the 45th day.
+                                                    </Typography>
+                                                }
+                                            >
+                                                <InfoIcon />
+                                            </Tooltip>
+                                        </Grid>
+                                    </Grid>
+                                </TableCell>
+                                <TableCell>
+                                    <Typography color={theme.palette.success.main} textAlign="center">
+                                        ACTIVITIES
+                                    </Typography>
+                                </TableCell>
+                            </TableRow>
+                        </TableHead>
+                        {stakedd.map((total, index) => (
+                            <TableBody key={index}>
+                                <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                    <TableCell>
+                                        <Typography key={index} textAlign="center">
+                                            {total.stakename}
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography key={index} textAlign="center">
+                                            {total.sharesbonus} / {total.sharesbonus * 4.56 + 9.12}%
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography key={index} textAlign="center">
+                                            {(total.amount / Number18Decimals).toLocaleString(undefined, {
+                                                maximumFractionDigits: 2
+                                            })}
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography key={index} textAlign="center">
+                                            {(total.claimable / Number18Decimals).toLocaleString(undefined, {
+                                                maximumFractionDigits: 2
+                                            })}
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography key={index} textAlign="center">
+                                            <SimpleDateTime dateSeparator="/" format="MYD" showTime="0">
+                                                {total.since}
+                                            </SimpleDateTime>
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Grid item container xs={12} sx={{ width: 170 }}>
+                                            <LoadingButton
+                                                loading={loading3}
+                                                onClick={() => {
+                                                    setCurrentClaimable(total.claimable);
+                                                    setCurrentStaked(total.amount);
+                                                    handleLoadingTrue3();
+                                                    handleOpen();
+                                                    setCurrentIndex(index);
+                                                }}
+                                                sx={{
+                                                    fontSize: 15,
+                                                    width: 80,
+                                                    height: 23,
+                                                    color: theme.palette.grey[900],
+                                                    bgcolor: theme.palette.success.main,
+                                                    backgroundColor: theme.palette.success.main
+                                                }}
+                                            >
+                                                Withdraw
+                                            </LoadingButton>
+                                            <LoadingButton
+                                                loading={loading4}
+                                                onClick={() => {
+                                                    setCurrentClaimable(total.claimable);
+                                                    handleLoadingTrue4();
+                                                    handleOpen2();
+                                                    setCurrentIndex(index);
+                                                }}
+                                                sx={{
+                                                    ml: 1,
+                                                    fontSize: 15,
+                                                    width: 80,
+                                                    height: 23,
+                                                    color: theme.palette.grey[900],
+                                                    bgcolor: theme.palette.success.main,
+                                                    backgroundColor: theme.palette.success.main
+                                                }}
+                                            >
+                                                Claim
+                                            </LoadingButton>
+                                        </Grid>
+                                    </TableCell>
+                                </TableRow>
+                            </TableBody>
+                        ))}
+                    </Table>
+                </TableContainer>
+            </Grid>
+            <Typography textAlign="center" variant="h2" sx={{ mt: 10 }}>
+                Boosted Stakes
+            </Typography>
             <Grid
                 item
                 lg={12}

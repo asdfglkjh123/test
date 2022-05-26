@@ -10,11 +10,21 @@ import LayersIcon from '@mui/icons-material/Layers';
 import CandlestickChartIcon from '@mui/icons-material/CandlestickChart';
 import PriceChangeIcon from '@mui/icons-material/PriceChange';
 import SwitchAccountIcon from '@mui/icons-material/SwitchAccount';
-import { ggetTotalSTAXSupply, getStaxPrice } from 'components/wallet/sharesABI';
+import {
+    ggetTotalSTAXSupply,
+    getStaxPrice,
+    ggetBUSDBalance,
+    ggetStaxBalance,
+    ggetOwnBalance,
+    getSTXPrice,
+    sharesTotalSupply,
+    stakeHas
+} from 'components/wallet/sharesABI';
 import BigNumber from 'bignumber.js';
 import XsStaxLogo from './xsStaxLogo';
 import XsSharesLogo from './XsSharesLogo';
 import XsBusdLogo from './XsBusdLogo';
+import Web3 from 'web3';
 
 const ShadowBox = ({ shadow }) => (
     <Card sx={{ mb: 3, boxShadow: shadow }}>
@@ -48,6 +58,25 @@ const UtilitiesShadow = () => {
     const [marketStats, setMarketStats] = useState(false);
     const [sharesStats, setSharesStats] = useState(false);
     const [myStats, setMyStats] = useState(false);
+    const [busdValue, setBusdValue] = React.useState(0);
+    const busdValueF = Web3.utils.toWei(busdValue.toString(), 'ether');
+    const busdValueFormatted = Web3.utils.toBN(busdValueF);
+    const [busdBalance, setBusdBalance] = React.useState();
+    const busdBalanceNumber = new BigNumber(busdBalance);
+    const busdBalanceFormat = busdBalanceNumber.decimalPlaces(2);
+    const busdBalanceFinal = busdBalanceFormat.toLocaleString(undefined);
+    const [staxBalance, setStaxBalance] = React.useState();
+    const staxBalanceNumber = new BigNumber(staxBalance);
+    const staxBalanceFormat = staxBalanceNumber.decimalPlaces(2);
+    const staxBalanceFinal = staxBalanceFormat.toLocaleString(undefined);
+    const [stakesList, setStakesList] = useState([[], []]);
+    const [sSTXPrice, setsSTXPrice] = useState(0);
+    const [sharesBalance, setSharesBalance] = useState(0);
+    const [staked, stakedd] = stakesList;
+    const stakedTotalN = new BigNumber(staked);
+    const stakedTotalF = stakedTotalN.decimalPlaces(2);
+    const stakedTotalFinal = stakedTotalF.toLocaleString(undefined);
+    const [totalsharesSupply, setTotalSharesSupply] = useState(0);
     const handleCloseAllStats = () => {
         setStakingAndSupplyStats(false);
         setMarketStats(false);
@@ -67,6 +96,16 @@ const UtilitiesShadow = () => {
                 console.log(err);
             });
     };
+    const fetchStakesBalance = async () => {
+        stakeHas(true)
+            .then((balancee) => {
+                setStakesList(balancee);
+                console.log(balancee);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
     const fetchStaxPrice = async () => {
         getStaxPrice()
             .then((result) => {
@@ -76,10 +115,61 @@ const UtilitiesShadow = () => {
                 console.log(err);
             });
     };
+    const fetchSharesSupply = async () => {
+        sharesTotalSupply()
+            .then((totalsharesSupply) => {
+                setTotalSharesSupply(totalsharesSupply);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+    const fetchBusdBalance = async () => {
+        ggetBUSDBalance()
+            .then((busdBalance) => {
+                setBusdBalance(busdBalance);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+    const fetchStaxBalance = async () => {
+        ggetStaxBalance()
+            .then((staxBalance) => {
+                setStaxBalance(staxBalance);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+    const fetchSharesBalance = async () => {
+        ggetOwnBalance()
+            .then((balance) => {
+                setSharesBalance(balance);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+    const fetchsSTXPrice = async () => {
+        getSTXPrice()
+            .then((sSTXPrice) => {
+                setsSTXPrice(sSTXPrice);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
     useEffect(() => {
         async function load2() {
             fetchStaxTotalSupply();
             fetchStaxPrice();
+            fetchSharesBalance();
+            fetchSharesSupply();
+            fetchStakesBalance();
+            fetchStaxBalance();
+            fetchBusdBalance();
+            fetchsSTXPrice();
         }
         load2();
     }, []);
@@ -239,7 +329,7 @@ const UtilitiesShadow = () => {
                         >
                             <Typography textAlign="center" variant="h3" sx={{ mt: 7 }}>
                                 {' '}
-                                Circulating Supply (excl. PancakeSwap Pool)
+                                Circulating Supply
                             </Typography>
                             <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
                                 <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
@@ -359,7 +449,8 @@ const UtilitiesShadow = () => {
                             <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
                                 <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
                                     {' '}
-                                    0.07$
+                                    {(staxPrice[1] / staxPrice[0]).toLocaleString(undefined, { maximumFractionDigits: 18 }).substring(0, 8)}
+                                    {` $ `}
                                 </Typography>
                             </Grid>
                         </Card>
@@ -384,8 +475,9 @@ const UtilitiesShadow = () => {
                             <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
                                 <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
                                     {' '}
-                                    171 BUSD
+                                    {sSTXPrice}
                                 </Typography>
+                                <XsBusdLogo />
                             </Grid>
                         </Card>
                     </Grid>
@@ -409,7 +501,10 @@ const UtilitiesShadow = () => {
                             <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
                                 <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
                                     {' '}
-                                    8,482,222$
+                                    {((staxPrice[1] / staxPrice[0]) * totalStaxSuply).toLocaleString(undefined, {
+                                        maximumFractionDigits: 2
+                                    })}{' '}
+                                    {` $ `}
                                 </Typography>
                             </Grid>
                         </Card>
@@ -434,7 +529,10 @@ const UtilitiesShadow = () => {
                             <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
                                 <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
                                     {' '}
-                                    458,000$
+                                    {((staxPrice[1] * 2) / 1000000000000000000).toLocaleString(undefined, {
+                                        maximumFractionDigits: 2
+                                    })}{' '}
+                                    {` $ `}
                                 </Typography>
                             </Grid>
                         </Card>
@@ -469,7 +567,7 @@ const UtilitiesShadow = () => {
                             <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
                                 <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
                                     {' '}
-                                    1,451
+                                    {totalsharesSupply}
                                 </Typography>
                                 <XsSharesLogo />
                             </Grid>
@@ -521,8 +619,9 @@ const UtilitiesShadow = () => {
                             <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
                                 <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
                                     {' '}
-                                    20 BUSD
+                                    20
                                 </Typography>
+                                <XsBusdLogo />
                             </Grid>
                         </Card>
                     </Grid>
@@ -546,8 +645,9 @@ const UtilitiesShadow = () => {
                             <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
                                 <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
                                     {' '}
-                                    170 BUSD
+                                    {sSTXPrice}
                                 </Typography>
+                                <XsBusdLogo />
                             </Grid>
                         </Card>
                     </Grid>
@@ -581,7 +681,7 @@ const UtilitiesShadow = () => {
                             <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
                                 <Typography textAlign="center" variant="h4" sx={{ mt: -0.1, color: theme.palette.success.main }}>
                                     {' '}
-                                    3,050,446
+                                    {staxBalanceFinal}
                                 </Typography>
                                 <XsStaxLogo />
                             </Grid>
@@ -607,7 +707,7 @@ const UtilitiesShadow = () => {
                             <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
                                 <Typography textAlign="center" variant="h4" sx={{ mt: -0.1, color: theme.palette.success.main }}>
                                     {' '}
-                                    195
+                                    {sharesBalance}
                                 </Typography>
                                 <XsSharesLogo />
                             </Grid>
@@ -633,7 +733,7 @@ const UtilitiesShadow = () => {
                             <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
                                 <Typography textAlign="center" variant="h4" sx={{ mt: -0.1, color: theme.palette.success.main }}>
                                     {' '}
-                                    10,000
+                                    {busdBalanceFinal}
                                 </Typography>
                                 <XsBusdLogo />
                             </Grid>
@@ -659,7 +759,7 @@ const UtilitiesShadow = () => {
                             <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
                                 <Typography textAlign="center" variant="h4" sx={{ mt: -0.1, color: theme.palette.success.main }}>
                                     {' '}
-                                    17,050,449
+                                    {stakedTotalFinal}
                                 </Typography>
                                 <XsStaxLogo />
                             </Grid>
@@ -685,7 +785,7 @@ const UtilitiesShadow = () => {
                             <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
                                 <Typography textAlign="center" variant="h4" sx={{ mt: -0.1, color: theme.palette.success.main }}>
                                     {' '}
-                                    96,540
+                                    0
                                 </Typography>
                                 <XsBusdLogo />
                             </Grid>

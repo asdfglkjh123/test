@@ -29,7 +29,7 @@ const Header = () => {
             fetchStaxPrice();
         }
         load2();
-    }, []);
+    }, [staxPrice]);
     return (
         <>
             <Box
@@ -54,7 +54,7 @@ const Header = () => {
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ border: 1, height: 44, width: 70, borderRadius: 5, mr: 2, borderColor: theme.palette.success.main }}>
                 <Typography sx={{ mt: 1.3, color: theme.palette.success.light }} variant="h4" textAlign="center">
-                    {(staxPrice[1] / staxPrice[0]).toLocaleString(undefined, { maximumFractionDigits: 4 }).substring(0, 8)}
+                    {(staxPrice[1] / staxPrice[0]).toLocaleString(undefined, { maximumFractionDigits: 3 }).substring(0, 8)}
                     {` $ `}
                 </Typography>
             </Box>

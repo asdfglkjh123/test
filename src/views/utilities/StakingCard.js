@@ -456,27 +456,29 @@ const StakingCard = () => {
                                 </Tooltip>
                             </Grid>
                             <Grid container sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
-                                <Grid
-                                    item
-                                    sx={{ justifyContent: 'center', backgroundColor: theme.palette.grey[900], my: 1 }}
-                                    lg="auto"
-                                    md="auto"
-                                    xs="auto"
+                                <Typography variant="h4" textAlign="center" sx={{ mt: 1 }}>
+                                    NAME:
+                                </Typography>
+                                <TextField
+                                    required
+                                    sx={{ borderBottom: 2, borderColor: theme.palette.success.main }}
+                                    onChange={(e) => setStakeName(e.target.value)}
+                                    inputProps={{ style: { width: 110, textAlign: 'center', color: 'white' } }}
+                                    id="standard-basic"
+                                    value={stakeName}
+                                    defaultValue="Default"
+                                    variant="standard"
+                                    color="success"
+                                />
+                                <Button
+                                    variant="outlined"
+                                    onClick={() => setStakeName('Default')}
+                                    size="small"
+                                    sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
                                 >
-                                    <Typography variant="h4" textAlign="center">
-                                        NAME:
-                                    </Typography>
-                                </Grid>
-                                <Grid item sx={{ backgroundColor: theme.palette.grey[900] }} lg="auto">
-                                    <TextField
-                                        required
-                                        sx={{ borderBottom: 2, borderColor: theme.palette.success.main }}
-                                        onChange={(e) => setStakeName(e.target.value)}
-                                        inputProps={{ style: { width: 110, textAlign: 'center', color: 'white' } }}
-                                        id="standard-basic"
-                                        variant="standard"
-                                        color="success"
-                                    />
+                                    Default
+                                </Button>
+                                <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                                     <Typography variant="h5" textAlign="left">
                                         Enter stake name
                                     </Typography>
@@ -505,16 +507,14 @@ const StakingCard = () => {
                                         color="success"
                                     />
                                 </Grid>
-                                <Grid item sx={{ backgroundColor: theme.palette.grey[900] }} lg="auto">
-                                    <Button
-                                        variant="outlined"
-                                        onClick={() => setPreAmount(balanceFormatted)}
-                                        size="small"
-                                        sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
-                                    >
-                                        Max
-                                    </Button>
-                                </Grid>
+                                <Button
+                                    variant="outlined"
+                                    onClick={() => setPreAmount(balanceFormatted)}
+                                    size="small"
+                                    sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
+                                >
+                                    Max
+                                </Button>
                                 <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                                     <Typography variant="h5" textAlign="left">
                                         Balance: {balanceFormatted}

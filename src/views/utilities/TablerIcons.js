@@ -235,16 +235,16 @@ const DEX = () => {
                                 <Grid container sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
                                     <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
                                         <Grid item xs="auto" lg="auto" md="auto" sm="auto" sx={{ mt: 1.2 }}>
-                                            <Typography variant="h3" color={theme.palette.grey[50]}>
+                                            <Typography variant="h2" color={theme.palette.grey[50]}>
                                                 SWAP
                                             </Typography>
                                         </Grid>
                                         <Grid item xs="auto" lg="auto" sm="auto" md="auto" sx={{ mt: 1.2 }}>
-                                            <Typography variant="h3" color={theme.palette.success.main} textAlign="left">
+                                            <Typography variant="h2" color={theme.palette.success.main} textAlign="left">
                                                 STAX
                                             </Typography>
                                         </Grid>
-                                        <Grid item xs="auto" lg="auto" sm="auto" md="auto">
+                                        <Grid item xs="auto" lg="auto" sm="auto" md="auto" sx={{ mt: 0.3 }}>
                                             <IconButton onClick={() => handleOpen4()}>
                                                 <SettingsIcon fontSize="medium" color="success" />
                                             </IconButton>
@@ -324,7 +324,7 @@ const DEX = () => {
                                             </Grid>
                                         )}
                                     </Grid>
-                                    <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
+                                    <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                                         <IconButton
                                             onClick={() => {
                                                 handleSwap();
@@ -339,8 +339,7 @@ const DEX = () => {
                                         sx={{
                                             backgroundColor: theme.palette.grey[900],
                                             justifyContent: 'center',
-                                            display: 'flex',
-                                            mt: 1.6
+                                            display: 'flex'
                                         }}
                                         lg={12}
                                         md={7}
@@ -388,16 +387,8 @@ const DEX = () => {
                                             </Grid>
                                         )}
                                         <Grid item xs={12}>
-                                            <Grid item container xs={12} sx={{ display: 'flex', mt: 3, mb: 0.5, justifyContent: 'center' }}>
-                                                <Typography textAlign="center" sx={{ mt: -0.2, color: theme.palette.success.light }}>
-                                                    Estimated Price:{' '}
-                                                    {(staxPrice[1] / staxPrice[0]).toLocaleString(undefined, { maximumFractionDigits: 3 })}$
-                                                    per
-                                                </Typography>
-                                                <XsStaxLogo />
-                                            </Grid>
                                             {staxLogoFirst ? (
-                                                <Typography textAlign="center" sx={{ mb: 1, color: theme.palette.success.light }}>
+                                                <Typography textAlign="center" sx={{ mb: 1, mt: 3, color: theme.palette.success.light }}>
                                                     Price impact: {priceImpact1.toLocaleString(undefined, { maximumFractionDigits: 2 })} %
                                                 </Typography>
                                             ) : (

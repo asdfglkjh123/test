@@ -351,25 +351,25 @@ const SharesCard = () => {
                                         md={6}
                                         xs={5}
                                     >
-                                        <Grid item container sx={{ mt: 1, justifyContent: 'right' }}>
+                                        <Grid item container sx={{ mt: 1 }}>
                                             <Typography variant="h5" textAlign="right">
                                                 {totalsharesSupply}/40,000
                                             </Typography>
                                             <XsSharesLogo />
                                         </Grid>
-                                        <Grid item container sx={{ mt: 1, justifyContent: 'right' }}>
+                                        <Grid item container sx={{ mt: 1 }}>
                                             <Typography variant="h5" textAlign="right">
                                                 20
                                             </Typography>
                                             <XsBusdLogo />
                                         </Grid>
-                                        <Grid item container sx={{ mt: 1, justifyContent: 'right' }}>
+                                        <Grid item container sx={{ mt: 1 }}>
                                             <Typography variant="h5" textAlign="right">
                                                 {sSTXPrice}
                                             </Typography>
                                             <XsBusdLogo />
                                         </Grid>
-                                        <Grid item container sx={{ mt: 1, justifyContent: 'right' }}>
+                                        <Grid item container sx={{ mt: 1 }}>
                                             <Typography variant="h5" textAlign="right">
                                                 {busdBalanceFormatted}
                                             </Typography>
@@ -378,7 +378,7 @@ const SharesCard = () => {
                                         <Typography sx={{ mt: 1, color: theme.palette.success.main }} variant="h5" textAlign="right">
                                             {myAPYFormatted} %
                                         </Typography>
-                                        <Grid item container sx={{ mt: 1, justifyContent: 'right' }}>
+                                        <Grid item container sx={{ mt: 1 }}>
                                             <Typography sx={{ color: theme.palette.success.main }} variant="h5" textAlign="right">
                                                 {balance}
                                             </Typography>

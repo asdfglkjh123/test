@@ -838,7 +838,10 @@ const StakingCard = () => {
                                                 </TableCell>
                                                 <TableCell>
                                                     <Typography key={index} textAlign="center">
-                                                        {total.sharesbonus} / {total.sharesbonus * 4.56 + 9.12}%
+                                                        {((total.sharesbonus / total.sharesbonus) * 4.56 + 9.12).toLocaleString(undefined, {
+                                                            maximumFractionDigits: 2
+                                                        })}
+                                                        %
                                                     </Typography>
                                                 </TableCell>
                                                 <TableCell>
@@ -1019,7 +1022,10 @@ const StakingCard = () => {
                                                 </TableCell>
                                                 <TableCell>
                                                     <Typography key={index} textAlign="center">
-                                                        {total.sharesbonus} / {total.sharesbonus * 4.56 + 9.12}%
+                                                        {((total.sharesbonus / total.sharesbonus) * 4.56 + 9.12).toLocaleString(undefined, {
+                                                            maximumFractionDigits: 2
+                                                        })}
+                                                        %
                                                     </Typography>
                                                 </TableCell>
                                                 <TableCell>

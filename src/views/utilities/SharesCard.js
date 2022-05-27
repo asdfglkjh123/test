@@ -149,9 +149,6 @@ const SharesCard = () => {
     };
     const [open, setOpen] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
-    const [open3, setOpen3] = React.useState(false);
-    const handleClose3 = () => setOpen3(false);
-    const handleOpen3 = () => setOpen3(true);
     const handleLoadingTrue = () => setLoading(true);
     const handleLoadingFalse = () => setLoading(false);
     const myShareRateFormatted = myShareRate.toLocaleString(undefined, { maximumFractionDigits: 1 });
@@ -228,31 +225,6 @@ const SharesCard = () => {
     }, []);
     return (
         <>
-            <Modal open={open3} onClose={handleClose3} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
-                <Box sx={style}>
-                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <DoneIcon color="success" fontSize="large" />
-                    </Grid>
-                    <Typography variant="h5" textAlign="center" sx={{ mt: 3 }} component="h2">
-                        Transaction completed.
-                    </Typography>
-                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Button
-                            onClick={handleClose3}
-                            sx={{
-                                mt: 3,
-                                fontSize: 15,
-                                width: 80,
-                                height: 30,
-                                color: theme.palette.grey[900],
-                                backgroundColor: theme.palette.success.main
-                            }}
-                        >
-                            Close
-                        </Button>
-                    </Grid>
-                </Box>
-            </Modal>
             <MainCard
                 sx={{ width: 'full%', height: '108%', borderRadius: 0, backgroundColor: theme.palette.grey[900], border: 0 }}
                 content={false}
@@ -419,10 +391,9 @@ const SharesCard = () => {
                                             onClick={() => {
                                                 getSTXPriceFull();
                                                 handleLoadingTrue();
-                                                approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', valueFormatted).then((result) => {
+                                                approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', valueFormatted).then(() => {
                                                     purchaseSharess(value).then(() => {
                                                         handleLoadingFalse();
-                                                        handleOpen3();
                                                         fetchBalance();
                                                         fetchTotalSupply();
                                                         fetchsSTXPrice();

@@ -762,7 +762,7 @@ const StakingCard = () => {
                             boxShadow: '0px 10px 20px rgb(0, 230, 117)'
                         }}
                     >
-                        <TableContainer sx={{ width: 370, borderRadius: 5 }}>
+                        <TableContainer sx={{ width: 350, borderRadius: 5 }}>
                             <Table sx={{ width: 'max-width' }} aria-label="simple table">
                                 <TableHead>
                                     <TableRow>
@@ -941,7 +941,7 @@ const StakingCard = () => {
                             boxShadow: '0px 10px 20px rgb(0, 230, 117)'
                         }}
                     >
-                        <TableContainer sx={{ width: 370, borderRadius: 5 }}>
+                        <TableContainer sx={{ width: 350, borderRadius: 5 }}>
                             <Table sx={{ width: 'max-width' }} aria-label="simple table">
                                 <TableHead>
                                     <TableRow>

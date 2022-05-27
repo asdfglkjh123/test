@@ -286,11 +286,31 @@ const DEX = () => {
                                                 }}
                                                 inputProps={{ style: { textAlign: 'left', color: 'white' } }}
                                                 onChange={(e) => setBusdValue(e.target.value)}
+                                                value={busdValue}
                                                 id="standard-basic"
                                                 label="Enter amount:"
                                                 variant="standard"
                                                 color="success"
                                             />
+                                            {staxLogoFirst ? (
+                                                <Button
+                                                    variant="text"
+                                                    onClick={() => setBusdValue(staxBalanceFinal)}
+                                                    size="small"
+                                                    sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
+                                                >
+                                                    Max
+                                                </Button>
+                                            ) : (
+                                                <Button
+                                                    variant="text"
+                                                    onClick={() => setBusdValue(busdBalanceFinal)}
+                                                    size="small"
+                                                    sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
+                                                >
+                                                    Max
+                                                </Button>
+                                            )}
                                         </Grid>
                                         {staxLogoFirst ? (
                                             <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 0.5 }}>

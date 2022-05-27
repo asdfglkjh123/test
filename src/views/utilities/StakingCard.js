@@ -500,9 +500,20 @@ const StakingCard = () => {
                                         onChange={(e) => setPreAmount(e.target.value)}
                                         inputProps={{ style: { width: 110, textAlign: 'center', color: 'white' } }}
                                         id="standard-basic"
+                                        value={preAmount}
                                         variant="standard"
                                         color="success"
                                     />
+                                </Grid>
+                                <Grid item sx={{ backgroundColor: theme.palette.grey[900] }} lg="auto">
+                                    <Button
+                                        variant="outlined"
+                                        onClick={() => setPreAmount(balanceFormatted)}
+                                        size="small"
+                                        sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
+                                    >
+                                        Max
+                                    </Button>
                                 </Grid>
                                 <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                                     <Typography variant="h5" textAlign="left">

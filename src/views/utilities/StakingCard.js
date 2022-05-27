@@ -58,6 +58,7 @@ const StakingCard = () => {
     const [stakeName, setStakeName] = useState(0);
     const Number18Decimals = 1000000000000000000;
     const [sharesBalance, setSharesBalance] = useState(0);
+    const [boostedSharesBalance, setBoostedSharesBalance] = useState(0);
     const [stakesList, setStakesList] = useState([[], []]);
     const [currentClaimable, setCurrentClaimable] = useState(0);
     const [currentStaked, setCurrentStaked] = useState(0);
@@ -71,10 +72,12 @@ const StakingCard = () => {
     const [loading3, setLoading3] = React.useState(false);
     const [loading4, setLoading4] = React.useState(false);
     const [loading5, setLoading5] = React.useState(false);
+    const [loading6, setLoading6] = React.useState(false);
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
     const [open3, setOpen3] = React.useState(false);
     const [open4, setOpen4] = React.useState(false);
+    const [open5, setOpen5] = React.useState(false);
     const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);
     const handleClose2 = () => setOpen2(false);
@@ -83,6 +86,8 @@ const StakingCard = () => {
     const handleOpen3 = () => setOpen3(true);
     const handleClose4 = () => setOpen4(false);
     const handleOpen4 = () => setOpen4(true);
+    const handleClose5 = () => setOpen5(false);
+    const handleOpen5 = () => setOpen5(true);
     const handleLoadingFalse = () => setLoading(false);
     const handleLoadingTrue = () => setLoading(true);
     const handleLoadingFalse2 = () => setLoading2(false);
@@ -93,12 +98,15 @@ const StakingCard = () => {
     const handleLoadingTrue4 = () => setLoading4(true);
     const handleLoadingFalse5 = () => setLoading5(false);
     const handleLoadingTrue5 = () => setLoading5(true);
+    const handleLoadingFalse6 = () => setLoading6(false);
+    const handleLoadingTrue6 = () => setLoading6(true);
     const updateStakeAmount = (event, newValue) => {
         setStakeAmount(newValue);
     };
     //  WITHDRAWING INDEX
     const [currentIndex, setCurrentIndex] = useState(0);
-    const myAPY = 9.125 + sharesBalance * 4.5625;
+    const myAPY = (9.125 + sharesBalance * 4.5625).toLocaleString(undefined, { maximumFractionDigits: 2 });
+    const myAPY2 = (9.125 + boostedSharesBalance * 4.5625).toLocaleString(undefined, { maximumFractionDigits: 2 });
     //  FETCHING BLOCKCHAIN DATA
     const fetchStaxBalance = async () => {
         ggetStaxBalance()
@@ -122,10 +130,15 @@ const StakingCard = () => {
     const fetchSharesBalance = async () => {
         ggetOwnBalance()
             .then((balance) => {
-                if (balance > 20) {
-                    setSharesBalance(20);
+                if (balance > 30) {
+                    setBoostedSharesBalance(30);
+                    setSharesBalance(15);
+                } else if (balance > 15) {
+                    setSharesBalance(15);
+                    setBoostedSharesBalance(balance);
                 } else {
                     setSharesBalance(balance);
+                    setBoostedSharesBalance(balance);
                 }
             })
             .catch((err) => {
@@ -251,6 +264,54 @@ const StakingCard = () => {
                             }}
                         >
                             Stake
+                        </LoadingButton>
+                    </Grid>
+                </Box>
+            </Modal>
+            <Modal
+                open={open5}
+                onClose={handleClose5}
+                onBackdropClick={() => {
+                    handleClose5();
+                    handleLoadingFalse6();
+                    handleLoadingFalse2();
+                    handleLoadingFalse();
+                }}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <Typography variant="h5" textAlign="center" component="h2">
+                        Important: Your stake will be in `pre-mature` phase for the first 1 year. You will NOT be able to withdraw any
+                        amount of the the 365 days after creating the stake. However, claiming rewards is possible and 5% fee is applied on
+                        each claim during the pre-mature phase. That amount is burnt forever. Each claim/withdraw transaction decreases the
+                        stake`s SHARESBONUS by 1.
+                    </Typography>
+                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <LoadingButton
+                            loading={loading2}
+                            onClick={() => {
+                                handleLoadingTrue2();
+                                stakeStax(stakeAmountFormatted, stakeName).then(() => {
+                                    handleClose5();
+                                    handleOpen3();
+                                    handleLoadingFalse2();
+                                    handleLoadingFalse();
+                                    fetchStakesBalance();
+                                    fetchStaxBalance();
+                                });
+                            }}
+                            sx={{
+                                fontSize: 18,
+                                minHeight: 45,
+                                minWidth: 140,
+                                mt: 3,
+                                bgcolor: theme.palette.success.main,
+                                backgroundColor: theme.palette.success.main,
+                                color: theme.palette.grey[900]
+                            }}
+                        >
+                            Boost
                         </LoadingButton>
                     </Grid>
                 </Box>
@@ -450,7 +511,7 @@ const StakingCard = () => {
                                     <XsStaxLogo />
                                 </Grid>
                             </Grid>
-                            <Grid container sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
+                            <Grid container sx={{ mt: 5, display: 'flex', justifyContent: 'center' }}>
                                 <Grid item xs="auto">
                                     <Typography variant="h4" color={theme.palette.grey[50]} textAlign="center">
                                         SHARESBONUS:
@@ -458,7 +519,7 @@ const StakingCard = () => {
                                 </Grid>
                                 <Grid item xs="auto">
                                     <Typography variant="h4" sx={{ ml: 1 }} color={theme.palette.success.main} textAlign="center">
-                                        {sharesBalance}
+                                        {sharesBalance} / {boostedSharesBalance}
                                     </Typography>
                                 </Grid>
                                 <Grid item xs="auto" sx={{ ml: 0.7, mt: -0.3 }}>
@@ -471,66 +532,9 @@ const StakingCard = () => {
                                                 }}
                                             >
                                                 SHARESBONUS - shows your current sSTX balance. Each sSTX in your wallet, increases your APY
-                                                by 5%. An user may hold unlimited amount of sSTX but the SHARESBONUS is limited to 20.
-                                                Therefore, we can say the maximum APY is 108% (20 * 5% + 8%).
-                                            </Typography>
-                                        }
-                                    >
-                                        <InfoIcon />
-                                    </Tooltip>
-                                </Grid>
-                            </Grid>
-                            <Grid container sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
-                                <Grid item xs="auto">
-                                    <Typography variant="h4" sx={{ mt: 1 }} color={theme.palette.grey[50]} textAlign="center">
-                                        INITIAL APY:
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs="auto">
-                                    <Typography variant="h4" sx={{ mt: 1, ml: 1 }} color={theme.palette.success.main} textAlign="center">
-                                        9.125%
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs="auto" sx={{ ml: 0.7, my: 0.9 }}>
-                                    <Tooltip
-                                        sx={{ color: theme.palette.success.main }}
-                                        title={
-                                            <Typography
-                                                sx={{
-                                                    color: theme.palette.success.main
-                                                }}
-                                            >
-                                                Initial APY - That is the minimum APY that a stake can get if there are no sSTX in the
-                                                wallet of the staker at that given moment.
-                                            </Typography>
-                                        }
-                                    >
-                                        <InfoIcon />
-                                    </Tooltip>
-                                </Grid>
-                            </Grid>
-                            <Grid container sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
-                                <Grid item xs="auto">
-                                    <Typography variant="h4" color={theme.palette.grey[50]} textAlign="center">
-                                        CURRENT APY:
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs="auto">
-                                    <Typography variant="h4" sx={{ ml: 1 }} color={theme.palette.success.main} textAlign="center">
-                                        {myAPY}%
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs="auto" sx={{ ml: 0.7, mt: -0.3 }}>
-                                    <Tooltip
-                                        sx={{ color: theme.palette.success.main }}
-                                        title={
-                                            <Typography
-                                                sx={{
-                                                    color: theme.palette.success.main
-                                                }}
-                                            >
-                                                Current APY - shows your APY at the moment if you open a stake. It is calculated by the
-                                                following formula: SHARESBONUS * 5 + 8%. The APY is limited to 108% (20 SHARESBONUS).
+                                                by 5%. An user may hold unlimited amount of sSTX but the SHARESBONUS is limited to 15 when
+                                                opening a regular stake or 30 when opening a Boosted Stake. Regular Stake maximum APR:
+                                                77.56%. Boosted Stake maximum APR: 146%.
                                             </Typography>
                                         }
                                     >
@@ -543,7 +547,7 @@ const StakingCard = () => {
                                     item
                                     sx={{
                                         backgroundColor: theme.palette.grey[900],
-                                        mt: 2,
+                                        mt: 5,
                                         mb: 3
                                     }}
                                     lg="auto"
@@ -557,14 +561,33 @@ const StakingCard = () => {
                                         }}
                                         sx={{
                                             fontSize: 18,
-                                            minHeight: 45,
-                                            minWidth: 140,
+                                            minHeight: 30,
+                                            minWidth: 100,
                                             bgcolor: theme.palette.success.main,
                                             backgroundColor: theme.palette.success.main,
                                             color: theme.palette.grey[900]
                                         }}
                                     >
                                         Stake
+                                    </LoadingButton>
+                                    <LoadingButton
+                                        loading={loading}
+                                        onClick={() => {
+                                            setStakeAmount(preAmount);
+                                            handleLoadingTrue();
+                                            handleOpen5();
+                                        }}
+                                        sx={{
+                                            fontSize: 18,
+                                            minHeight: 30,
+                                            minWidth: 100,
+                                            ml: 2,
+                                            bgcolor: theme.palette.success.main,
+                                            backgroundColor: theme.palette.success.main,
+                                            color: theme.palette.grey[900]
+                                        }}
+                                    >
+                                        Boost
                                     </LoadingButton>
                                 </Grid>
                             </Grid>
@@ -626,19 +649,87 @@ const StakingCard = () => {
                         <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
                             <Grid item xs="auto">
                                 <Typography variant="h3" sx={{ my: 4 }} color={theme.palette.grey[50]} textAlign="center">
-                                    Current APY:
+                                    Current APR:
                                 </Typography>
                             </Grid>
                             <Grid item xs="auto">
                                 <Typography variant="h3" sx={{ my: 4, ml: 1 }} color={theme.palette.success.main} textAlign="center">
-                                    {myAPY}%
+                                    {myAPY}% / {myAPY2}%
+                                </Typography>
+                            </Grid>
+                            <Grid item xs="auto" sx={{ my: 4 }}>
+                                <Tooltip
+                                    sx={{ color: theme.palette.success.main }}
+                                    title={
+                                        <Typography
+                                            sx={{
+                                                color: theme.palette.success.main
+                                            }}
+                                        >
+                                            The current APR is calculed by following the following formula: 9.125% + SHARESBONUS * 4.5625%
+                                            where SHARESBONUS is limited to 15 (when choosing `Regular Stake`) or 30 when opening a `Boosted
+                                            Stake`. Therefore, the maximum APR of a `Regular Stake` is 77.56% and the maximum APR of a
+                                            `Boosted Stake` is 146%.
+                                        </Typography>
+                                    }
+                                >
+                                    <InfoIcon />
+                                </Tooltip>
+                            </Grid>
+                        </Grid>
+                    </Card>
+                    <Card
+                        sx={{
+                            width: '100%',
+                            borderLeft: 1,
+                            borderRight: 1,
+                            borderBottom: 3,
+                            borderColor: theme.palette.success.light,
+                            borderRadius: 5,
+                            boxShadow: '0px 10px 20px rgb(0, 230, 117)',
+                            mb: 1
+                        }}
+                    >
+                        <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <Grid item lg="auto">
+                                <Typography variant="h2" sx={{ my: 4 }} color={theme.palette.grey[50]} textAlign="center">
+                                    Regular vs
+                                </Typography>
+                            </Grid>
+                            <Grid item lg="auto">
+                                <Typography variant="h2" sx={{ my: 4, ml: 0.6 }} color={theme.palette.success.main} textAlign="center">
+                                    Boosted Stake
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                        <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <Grid item xs={4} lg={5} sm={4}>
+                                <Typography variant="h4" color={theme.palette.grey[50]} textAlign="center">
+                                    Maximum APR: 77.56%
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={4} lg={5} sm={4}>
+                                <Typography variant="h4" sx={{ ml: 1 }} color={theme.palette.success.main} textAlign="center">
+                                    Maximum APR: 146%
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                        <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <Grid item xs={4} lg={5.5} sm={4}>
+                                <Typography variant="h4" sx={{ my: 4 }} color={theme.palette.grey[50]} textAlign="center">
+                                    Pre-mature phase: 45 days
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={4} lg={5.5} sm={4}>
+                                <Typography variant="h4" sx={{ my: 4, ml: 1 }} color={theme.palette.success.main} textAlign="center">
+                                    Pre-mature phase: 1 year
                                 </Typography>
                             </Grid>
                         </Grid>
                     </Card>
                 </Grid>
             </Grid>
-            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5 }}>
+            <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 20 }}>
                 <Grid
                     item
                     container
@@ -835,7 +926,7 @@ const StakingCard = () => {
                 >
                     <Grid item container lg={12} sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
                         <Grid item lg={6}>
-                            <Typography textAlign="center" variant="h2">
+                            <Typography textAlign="center" variant="h2" sx={{ color: theme.palette.success.main }}>
                                 Boosted Stakes
                             </Typography>
                         </Grid>

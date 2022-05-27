@@ -280,8 +280,8 @@ const StakingCard = () => {
                     <Typography variant="h5" textAlign="center" component="h2">
                         Important: Your stake will be in `pre-mature` phase for the first 1 year. You will NOT be able to withdraw any
                         amount of the the 365 days after creating the stake. However, claiming rewards is possible and 5% fee is applied on
-                        each claim during the pre-mature phase. That amount is burnt forever. Each claim/withdraw transaction decreases the
-                        stake`s SHARESBONUS by 1.
+                        each claim only during the pre-mature phase. That amount is burnt forever. Each claim/withdraw transaction decreases
+                        the stake`s SHARESBONUS by 1.
                     </Typography>
                     <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
                         <LoadingButton

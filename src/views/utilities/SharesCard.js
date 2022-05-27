@@ -304,26 +304,38 @@ const SharesCard = () => {
                                         lg={3}
                                         md={1.5}
                                         sm={2.11}
-                                        xs={3.7}
+                                        xs={5}
                                     >
-                                        <Typography xs={12} sx={{ my: 1 }} variant="h5" textAlign="left">
-                                            Total Sold:
-                                        </Typography>
-                                        <Typography sx={{ my: 1 }} variant="h5" textAlign="left">
-                                            Initial Price:
-                                        </Typography>
-                                        <Typography sx={{ my: 1 }} variant="h5" textAlign="left">
-                                            Current Price:
-                                        </Typography>
-                                        <Typography sx={{ my: 1 }} variant="h5" textAlign="left">
-                                            BUSD Balance:
-                                        </Typography>
-                                        <Typography sx={{ my: 1 }} variant="h5" textAlign="left">
-                                            BONUS APY:
-                                        </Typography>
-                                        <Typography sx={{ my: 1 }} variant="h5" textAlign="left">
-                                            sSTX Balance:
-                                        </Typography>
+                                        <Grid item container sx={{ mt: 1, justifyContent: 'left' }}>
+                                            <Typography xs={12} variant="h5" textAlign="left">
+                                                Total Sold:
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item container sx={{ mt: 2, justifyContent: 'left' }}>
+                                            <Typography variant="h5" textAlign="left">
+                                                Initial Price:
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item container sx={{ mt: 2, justifyContent: 'left' }}>
+                                            <Typography variant="h5" textAlign="left">
+                                                Current Price:
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item container sx={{ mt: 2, justifyContent: 'left' }}>
+                                            <Typography variant="h5" textAlign="left">
+                                                BUSD Balance:
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item container sx={{ mt: 2, justifyContent: 'left' }}>
+                                            <Typography variant="h5" textAlign="left">
+                                                BONUS APY:
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item container sx={{ mt: 2, mb: 1, justifyContent: 'left' }}>
+                                            <Typography variant="h5" textAlign="left">
+                                                sSTX Balance:
+                                            </Typography>
+                                        </Grid>
                                     </Grid>
                                     <Grid
                                         item

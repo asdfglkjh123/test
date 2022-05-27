@@ -330,7 +330,7 @@ const DEX = () => {
                                                     }}
                                                     inputProps={{ style: { textAlign: 'left', color: 'white' } }}
                                                     onChange={(e) => {
-                                                        setPreBusdValue(Math.min(e.target.value, staxBalance));
+                                                        setPreBusdValue(e.target.value);
                                                         setSwappingToken('STAX');
                                                     }}
                                                     value={preBusdValue}
@@ -348,7 +348,7 @@ const DEX = () => {
                                                     }}
                                                     inputProps={{ style: { textAlign: 'left', color: 'white' } }}
                                                     onChange={(e) => {
-                                                        setPreBusdValue(Math.min(e.target.value, busdBalance));
+                                                        setPreBusdValue(e.target.value);
                                                         setSwappingToken('BUSD');
                                                     }}
                                                     value={preBusdValue}

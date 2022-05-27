@@ -443,7 +443,7 @@ const StakingCard = () => {
                                 <Grid
                                     item
                                     container
-                                    xs={7.5}
+                                    xs="auto"
                                     sx={{ border: 2, borderColor: theme.palette.success.main, borderRadius: 2 }}
                                     lg="auto"
                                 >
@@ -475,8 +475,14 @@ const StakingCard = () => {
                                 <Grid
                                     item
                                     container
-                                    xs={7.5}
-                                    sx={{ border: 2, borderColor: theme.palette.success.main, borderRadius: 2 }}
+                                    xs="auto"
+                                    sx={{
+                                        border: 2,
+                                        borderColor: theme.palette.success.main,
+                                        borderRadius: 2,
+                                        display: 'flex',
+                                        justifyContent: 'center'
+                                    }}
                                     lg="auto"
                                 >
                                     <TextField

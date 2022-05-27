@@ -75,15 +75,12 @@ const StakingCard = () => {
     const [loading6, setLoading6] = React.useState(false);
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
-    const [open3, setOpen3] = React.useState(false);
     const [open4, setOpen4] = React.useState(false);
     const [open5, setOpen5] = React.useState(false);
     const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);
     const handleClose2 = () => setOpen2(false);
     const handleOpen2 = () => setOpen2(true);
-    const handleClose3 = () => setOpen3(false);
-    const handleOpen3 = () => setOpen3(true);
     const handleClose4 = () => setOpen4(false);
     const handleOpen4 = () => setOpen4(true);
     const handleClose5 = () => setOpen5(false);
@@ -204,7 +201,6 @@ const StakingCard = () => {
                                 withdrawAmount(withdrawAFormatted, currentIndex).then(() => {
                                     handleLoadingFalse5();
                                     setOpen(false);
-                                    setOpen3(true);
                                     handleLoadingFalse3();
                                     fetchStakesBalance();
                                 });
@@ -229,6 +225,7 @@ const StakingCard = () => {
                 onClose={handleClose4}
                 onBackdropClick={() => {
                     handleClose4();
+                    handleLoadingFalse2();
                     handleLoadingFalse();
                 }}
                 aria-labelledby="modal-modal-title"
@@ -246,7 +243,6 @@ const StakingCard = () => {
                                 handleLoadingTrue2();
                                 stakeStax(stakeAmountFormatted, stakeName).then(() => {
                                     handleClose4();
-                                    handleOpen3();
                                     handleLoadingFalse2();
                                     handleLoadingFalse();
                                     fetchStakesBalance();
@@ -294,7 +290,6 @@ const StakingCard = () => {
                                 handleLoadingTrue2();
                                 stakeStax(stakeAmountFormatted, stakeName).then(() => {
                                     handleClose5();
-                                    handleOpen3();
                                     handleLoadingFalse2();
                                     handleLoadingFalse();
                                     fetchStakesBalance();
@@ -349,7 +344,6 @@ const StakingCard = () => {
                                     .then(() => {
                                         handleLoadingFalse5();
                                         setOpen2(false);
-                                        setOpen3(true);
                                         handleLoadingFalse4();
                                         fetchStakesBalance();
                                     })
@@ -369,38 +363,6 @@ const StakingCard = () => {
                         >
                             Claim
                         </LoadingButton>
-                    </Grid>
-                </Box>
-            </Modal>
-            <Modal
-                open={open3}
-                onClose={handleClose3}
-                onBackdropClick={handleClose3}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box sx={style}>
-                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <DoneIcon color="success" fontSize="large" />
-                    </Grid>
-                    <Typography variant="h5" textAlign="center" sx={{ mt: 3 }} component="h2">
-                        Transaction completed.
-                    </Typography>
-                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Button
-                            onClick={handleClose3}
-                            sx={{
-                                mt: 2,
-                                fontSize: 18,
-                                minHeight: 45,
-                                minWidth: 140,
-                                bgcolor: theme.palette.success.main,
-                                backgroundColor: theme.palette.success.main,
-                                color: theme.palette.grey[900]
-                            }}
-                        >
-                            Close
-                        </Button>
                     </Grid>
                 </Box>
             </Modal>

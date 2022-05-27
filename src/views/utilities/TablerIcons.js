@@ -31,12 +31,9 @@ const style = {
 };
 
 const DEX = () => {
-    const [value, setValue] = React.useState(0);
     const [totalStaxSuply, setTotalStaxSupply] = React.useState(0);
-    const valueF = Web3.utils.toWei(value.toString(), 'ether');
-    const valueFormatted = Web3.utils.toBN(valueF);
-    const [busdValue, setBusdValue] = React.useState(0);
-    const [preBusdValue, setPreBusdValue] = React.useState(0);
+    const [preBusdValue, setPreBusdValue] = useState();
+    const [busdValue, setBusdValue] = useState(0);
     const busdValueF = Web3.utils.toWei(busdValue.toString(), 'ether');
     const busdValueFormatted = Web3.utils.toBN(busdValueF);
     // eslint-disable-next-line global-require
@@ -50,6 +47,7 @@ const DEX = () => {
     const staxBalanceFormat = staxBalanceNumber.decimalPlaces(2);
     const staxBalanceFinal = staxBalanceFormat.toLocaleString(undefined);
     const theme = useTheme();
+    const [swappingToken, setSwappingToken] = useState('STAX');
     const [staxPrice, setStaxPrice] = useState([], [], []);
     const priceImpact1 = (busdValueF / staxPrice[0]) * 100;
     const priceImpact2 = (busdValueF / staxPrice[1]) * 100;
@@ -57,6 +55,9 @@ const DEX = () => {
     const [open4, setOpen4] = React.useState(false);
     const handleClose4 = () => setOpen4(false);
     const handleOpen4 = () => setOpen4(true);
+    const [open5, setOpen5] = React.useState(false);
+    const handleClose5 = () => setOpen5(false);
+    const handleOpen5 = () => setOpen5(true);
     const [staxLogoFirst, setStaxLogoFirst] = React.useState(true);
     const handleStaxLogoFirst = () => setStaxLogoFirst(true);
     const handleStaxLogoFirstN = () => setStaxLogoFirst(false);
@@ -202,6 +203,48 @@ const DEX = () => {
                     </Grid>
                 </Box>
             </Modal>
+            <Modal
+                open={open5}
+                onBackdropClick={() => {
+                    handleClose5();
+                    handleLoadingFalse();
+                }}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <Grid item>
+                            <Typography variant="h5" textAlign="center" sx={{ mt: 3 }} component="h2">
+                                You are going to swap {preBusdValue} {swappingToken}. Please confirm the transaction by clicking below
+                                button.
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <Button
+                            onClick={() => {
+                                swapStaxAndBusd(busdValueFormatted, 0, pathToPurchase).then(() => {
+                                    handleLoadingFalse();
+                                    updateBalances();
+                                    getStaxPrice();
+                                    handleClose5();
+                                });
+                            }}
+                            sx={{
+                                mt: 3,
+                                fontSize: 15,
+                                width: 80,
+                                height: 30,
+                                color: theme.palette.grey[900],
+                                backgroundColor: theme.palette.success.main
+                            }}
+                        >
+                            Confirm
+                        </Button>
+                    </Grid>
+                </Box>
+            </Modal>
             <MainCard
                 sx={{
                     width: '100%',
@@ -266,7 +309,7 @@ const DEX = () => {
                                     >
                                         <Grid
                                             item
-                                            xs={7}
+                                            xs={8.5}
                                             sx={{
                                                 borderRadius: 2,
                                                 border: 2,
@@ -278,24 +321,47 @@ const DEX = () => {
                                             <Grid item sx={{ display: 'flex', justifyContent: 'center', mt: 1.5, mr: 1, ml: 1 }}>
                                                 {staxLogoFirst ? <SmallStaxLogo /> : <BusdSmallLogo />}
                                             </Grid>
-                                            <TextField
-                                                fullWidth
-                                                sx={{
-                                                    display: 'flex',
-                                                    borderColor: theme.palette.success.main
-                                                }}
-                                                inputProps={{ style: { textAlign: 'left', color: 'white' } }}
-                                                onChange={(e) => setBusdValue(e.target.value)}
-                                                value={busdValue}
-                                                id="standard-basic"
-                                                label="Enter amount:"
-                                                variant="standard"
-                                                color="success"
-                                            />
+                                            {staxLogoFirst ? (
+                                                <TextField
+                                                    fullWidth
+                                                    sx={{
+                                                        display: 'flex',
+                                                        borderColor: theme.palette.success.main
+                                                    }}
+                                                    inputProps={{ style: { textAlign: 'left', color: 'white' } }}
+                                                    onChange={(e) => {
+                                                        setPreBusdValue(Math.min(e.target.value, staxBalance));
+                                                        setSwappingToken('STAX');
+                                                    }}
+                                                    value={preBusdValue}
+                                                    id="standard-basic"
+                                                    label="Enter amount:"
+                                                    variant="standard"
+                                                    color="success"
+                                                />
+                                            ) : (
+                                                <TextField
+                                                    fullWidth
+                                                    sx={{
+                                                        display: 'flex',
+                                                        borderColor: theme.palette.success.main
+                                                    }}
+                                                    inputProps={{ style: { textAlign: 'left', color: 'white' } }}
+                                                    onChange={(e) => {
+                                                        setPreBusdValue(Math.min(e.target.value, busdBalance));
+                                                        setSwappingToken('BUSD');
+                                                    }}
+                                                    value={preBusdValue}
+                                                    id="standard-basic"
+                                                    label="Enter amount:"
+                                                    variant="standard"
+                                                    color="success"
+                                                />
+                                            )}
                                             {staxLogoFirst ? (
                                                 <Button
                                                     variant="text"
-                                                    onClick={() => setBusdValue(staxBalanceFinal)}
+                                                    onClick={() => setPreBusdValue(staxBalance)}
                                                     size="small"
                                                     sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
                                                 >
@@ -304,7 +370,7 @@ const DEX = () => {
                                             ) : (
                                                 <Button
                                                     variant="text"
-                                                    onClick={() => setBusdValue(busdBalanceFinal)}
+                                                    onClick={() => setPreBusdValue(busdBalance)}
                                                     size="small"
                                                     sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
                                                 >
@@ -348,7 +414,7 @@ const DEX = () => {
                                     >
                                         <Grid
                                             item
-                                            xs={7}
+                                            xs={8.5}
                                             sx={{
                                                 borderRadius: 2,
                                                 mt: 1,
@@ -368,7 +434,7 @@ const DEX = () => {
                                                     borderColor: theme.palette.success.main
                                                 }}
                                                 inputProps={{ style: { textAlign: 'left', color: 'white' } }}
-                                                onChange={(e) => setValue(e.target.value)}
+                                                onChange={(e) => setPreBusdValue(e.target.value)}
                                                 id="standard-basic"
                                                 label="Enter amount:"
                                                 variant="standard"
@@ -386,13 +452,13 @@ const DEX = () => {
                                                 <XsStaxLogo />
                                             </Grid>
                                         )}
-                                        <Grid item xs={12}>
+                                        <Grid item xs={12} sx={{ mt: 1 }}>
                                             {staxLogoFirst ? (
-                                                <Typography textAlign="center" sx={{ mb: 1, mt: 3, color: theme.palette.success.light }}>
+                                                <Typography textAlign="center" sx={{ mb: 1, mt: 2, color: theme.palette.success.light }}>
                                                     Price impact: {priceImpact1.toLocaleString(undefined, { maximumFractionDigits: 2 })} %
                                                 </Typography>
                                             ) : (
-                                                <Typography textAlign="center" sx={{ mb: 1, color: theme.palette.success.light }}>
+                                                <Typography textAlign="center" sx={{ mb: 1, mt: 2, color: theme.palette.success.light }}>
                                                     Price impact: {priceImpact2.toLocaleString(undefined, { maximumFractionDigits: 2 })} %
                                                 </Typography>
                                             )}
@@ -403,13 +469,10 @@ const DEX = () => {
                                                 <LoadingButton
                                                     loading={loading}
                                                     onClick={() => {
+                                                        setBusdValue(preBusdValue);
                                                         handleLoadingTrue();
                                                         updateBalances();
-                                                        swapStaxAndBusd(busdValueFormatted, 0, pathToPurchase).then(() => {
-                                                            handleLoadingFalse();
-                                                            updateBalances();
-                                                            getStaxPrice();
-                                                        });
+                                                        handleOpen5();
                                                     }}
                                                     sx={{
                                                         fontSize: 18,

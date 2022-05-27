@@ -167,31 +167,52 @@ const StakingCard = () => {
                     <Typography variant="h5" textAlign="center" component="h2">
                         Important: 90% penalty is applied to the `withdraw amount` to all pre-mature stakes.
                     </Typography>
-                    <Grid item container sx={{ mt: 2, mb: 1, display: 'flex', justifyContent: 'center' }}>
-                        <Typography variant="h5" textAlign="center" component="h2">
-                            Rewards:{' '}
-                            {(currentClaimable / Number18Decimals).toLocaleString(undefined, {
-                                maximumFractionDigits: 2
-                            })}
-                        </Typography>
-                        <Typography variant="h5" textAlign="center" sx={{ ml: 2 }} component="h2">
-                            Staked:{' '}
-                            {(currentStaked / Number18Decimals).toLocaleString(undefined, {
-                                maximumFractionDigits: 2
-                            })}
-                        </Typography>
+                    <Grid item container sx={{ mb: 1, mt: 2, display: 'flex', justifyContent: 'center' }}>
+                        <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <Typography variant="h5" textAlign="center" component="h2">
+                                Rewards:{' '}
+                                {(currentClaimable / Number18Decimals).toLocaleString(undefined, {
+                                    maximumFractionDigits: 2
+                                })}
+                            </Typography>
+                            <XsStaxLogo />
+                        </Grid>
+                        <Grid item container sx={{ mt: 1, display: 'flex', justifyContent: 'center' }}>
+                            <Typography variant="h5" textAlign="center" sx={{ ml: 2 }} component="h2">
+                                Staked:{' '}
+                                {(currentStaked / Number18Decimals).toLocaleString(undefined, {
+                                    maximumFractionDigits: 2
+                                })}
+                            </Typography>
+                            <XsStaxLogo />
+                        </Grid>
                     </Grid>
-                    <Grid item sx={{ justifyContent: 'center', display: 'flex' }}>
-                        <TextField
-                            required
-                            sx={{ borderBottom: 2, borderColor: theme.palette.success.main }}
-                            onChange={(e) => setWithdrawSum(e.target.value)}
-                            inputProps={{ style: { width: 120, textAlign: 'center', color: 'white' } }}
-                            id="standard-basic"
-                            label="Withdraw amount"
-                            variant="standard"
-                            color="success"
-                        />
+                    <Grid container sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
+                        <Grid
+                            item
+                            container
+                            xs="auto"
+                            sx={{ border: 2, borderColor: theme.palette.success.main, borderRadius: 2 }}
+                            lg="auto"
+                        >
+                            <TextField
+                                onChange={(e) => setWithdrawSum(e.target.value)}
+                                inputProps={{ style: { width: 100, textAlign: 'center', color: 'white' } }}
+                                id="standard-basic"
+                                value={withdrawSum}
+                                variant="standard"
+                                color="success"
+                                label="Enter amount:"
+                            />
+                            <Button
+                                variant="text"
+                                onClick={() => setWithdrawSum(currentStaked / 1000000000000000000)}
+                                size="small"
+                                sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
+                            >
+                                Max
+                            </Button>
+                        </Grid>
                     </Grid>
                     <Grid item sx={{ justifyContent: 'center', display: 'flex' }}>
                         <LoadingButton
@@ -279,9 +300,9 @@ const StakingCard = () => {
                 <Box sx={style}>
                     <Typography variant="h5" textAlign="center" component="h2">
                         Important: Your stake will be in `pre-mature` phase for the first 1 year. You will NOT be able to withdraw any
-                        amount of the the 365 days after creating the stake. However, claiming rewards is possible and 5% fee is applied on
-                        each claim only during the pre-mature phase. That amount is burnt forever. Each claim/withdraw transaction decreases
-                        the stake`s SHARESBONUS by 1.
+                        amount 365 days after creating the stake. However, claiming rewards is possible and 5% fee is applied on each claim
+                        only during the pre-mature phase. That amount is burnt forever. Each claim/withdraw transaction decreases the
+                        stake`s SHARESBONUS by 1.
                     </Typography>
                     <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
                         <LoadingButton
@@ -327,13 +348,14 @@ const StakingCard = () => {
                         Important: Each claim reduces the SHARESBONUS by 1. Therefore, the stake APR will be reduced by ~4,56% on each
                         claim/withdraw.
                     </Typography>
-                    <Grid item sx={{ display: 'flex', my: 2, justifyContent: 'center' }}>
+                    <Grid item container sx={{ display: 'flex', my: 2, justifyContent: 'center' }}>
                         <Typography variant="h5" textAlign="center" component="h2" key={currentIndex}>
                             Amount to be claimed:{' '}
                             {(currentClaimable / Number18Decimals).toLocaleString(undefined, {
                                 maximumFractionDigits: 2
                             })}
                         </Typography>
+                        <XsStaxLogo />
                     </Grid>
                     <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
                         <LoadingButton
@@ -353,9 +375,9 @@ const StakingCard = () => {
                             }}
                             sx={{
                                 mt: 1,
-                                fontSize: 18,
-                                minHeight: 35,
-                                minWidth: 110,
+                                fontSize: 16,
+                                minHeight: 30,
+                                minWidth: 80,
                                 bgcolor: theme.palette.success.main,
                                 backgroundColor: theme.palette.success.main,
                                 color: theme.palette.grey[900]
@@ -417,31 +439,34 @@ const StakingCard = () => {
                                     <InfoIcon />
                                 </Tooltip>
                             </Grid>
-                            <Grid container sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
-                                <Typography variant="h4" textAlign="center" sx={{ mt: 1 }}>
-                                    NAME:
-                                </Typography>
-                                <TextField
-                                    required
-                                    sx={{ borderBottom: 2, borderColor: theme.palette.success.main }}
-                                    onChange={(e) => setStakeName(e.target.value)}
-                                    inputProps={{ style: { width: 110, textAlign: 'center', color: 'white' } }}
-                                    id="standard-basic"
-                                    value={stakeName}
-                                    defaultValue="Default"
-                                    variant="standard"
-                                    color="success"
-                                />
-                                <Button
-                                    variant="outlined"
-                                    onClick={() => setStakeName('Default')}
-                                    size="small"
-                                    sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
+                            <Grid container sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
+                                <Grid
+                                    item
+                                    container
+                                    xs="auto"
+                                    sx={{ border: 2, borderColor: theme.palette.success.main, borderRadius: 2 }}
+                                    lg="auto"
                                 >
-                                    Default
-                                </Button>
-                                <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
-                                    <Typography variant="h5" textAlign="left">
+                                    <TextField
+                                        onChange={(e) => setStakeName(e.target.value)}
+                                        inputProps={{ style: { width: 100, textAlign: 'center', color: 'white' } }}
+                                        id="standard-basic"
+                                        value={stakeName}
+                                        variant="standard"
+                                        color="success"
+                                        label="Enter stake name:"
+                                    />
+                                    <Button
+                                        variant="text"
+                                        onClick={() => setStakeName('Default')}
+                                        size="small"
+                                        sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
+                                    >
+                                        Default
+                                    </Button>
+                                </Grid>
+                                <Grid item container xs={12} sx={{ display: 'flex', mt: 0.7, justifyContent: 'center' }}>
+                                    <Typography variant="h5" textAlign="center">
                                         Enter stake name
                                     </Typography>
                                 </Grid>
@@ -449,35 +474,30 @@ const StakingCard = () => {
                             <Grid container sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
                                 <Grid
                                     item
-                                    sx={{ justifyContent: 'center', backgroundColor: theme.palette.grey[900], my: 1 }}
-                                    lg="auto"
-                                    md="auto"
+                                    container
                                     xs="auto"
+                                    sx={{ border: 2, borderColor: theme.palette.success.main, borderRadius: 2 }}
+                                    lg="auto"
                                 >
-                                    <Typography variant="h4" textAlign="center">
-                                        AMOUNT:
-                                    </Typography>
-                                </Grid>
-                                <Grid item sx={{ backgroundColor: theme.palette.grey[900] }} lg="auto">
                                     <TextField
-                                        sx={{ borderBottom: 2, borderColor: theme.palette.success.main }}
                                         onChange={(e) => setPreAmount(e.target.value)}
-                                        inputProps={{ style: { width: 110, textAlign: 'center', color: 'white' } }}
+                                        inputProps={{ style: { width: 100, textAlign: 'center', color: 'white' } }}
                                         id="standard-basic"
                                         value={preAmount}
                                         variant="standard"
                                         color="success"
+                                        label="Enter amount:"
                                     />
+                                    <Button
+                                        variant="text"
+                                        onClick={() => setPreAmount(balanceFormatted)}
+                                        size="small"
+                                        sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
+                                    >
+                                        Max
+                                    </Button>
                                 </Grid>
-                                <Button
-                                    variant="outlined"
-                                    onClick={() => setPreAmount(balanceFormatted)}
-                                    size="small"
-                                    sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
-                                >
-                                    Max
-                                </Button>
-                                <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
+                                <Grid item container xs={12} sx={{ mt: 0.7, display: 'flex', justifyContent: 'center' }}>
                                     <Typography variant="h5" textAlign="left">
                                         Balance: {balanceFormatted}
                                     </Typography>

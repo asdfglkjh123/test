@@ -354,6 +354,7 @@ const DEX = () => {
                                                     value={preBusdValue}
                                                     id="standard-basic"
                                                     label="Enter amount:"
+                                                    defaultValue={0}
                                                     variant="standard"
                                                     color="success"
                                                 />

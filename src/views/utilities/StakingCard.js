@@ -159,6 +159,7 @@ const StakingCard = () => {
                 onBackdropClick={() => {
                     handleClose();
                     handleLoadingFalse3();
+                    handleLoadingFalse5();
                 }}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
@@ -207,7 +208,7 @@ const StakingCard = () => {
                             />
                             <Button
                                 variant="text"
-                                onClick={() => setWithdrawSum(currentStaked / 1000000000000000000)}
+                                onClick={() => setWithdrawSum(Web3.utils.fromWei(currentStaked))}
                                 size="small"
                                 sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
                             >
@@ -826,92 +827,90 @@ const StakingCard = () => {
                                         </TableCell>
                                     </TableRow>
                                 </TableHead>
-                                {stakedd
-                                    .filter((total1) => total1.amount > 0)
-                                    .map((total, index) => (
-                                        <TableBody key={index}>
-                                            <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                                <TableCell>
-                                                    <Typography key={index} textAlign="center">
-                                                        {total.stakename}
-                                                    </Typography>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Typography key={index} textAlign="center">
-                                                        {((total.sharesbonus / total.sharesbonus) * 4.56 + 9.12).toLocaleString(undefined, {
-                                                            maximumFractionDigits: 2
-                                                        })}
-                                                        %
-                                                    </Typography>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Typography key={index} textAlign="center">
-                                                        {(total.amount / Number18Decimals).toLocaleString(undefined, {
-                                                            maximumFractionDigits: 2
-                                                        })}
-                                                    </Typography>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Typography key={index} textAlign="center">
-                                                        {(total.claimable / Number18Decimals).toLocaleString(undefined, {
-                                                            maximumFractionDigits: 2
-                                                        })}
-                                                    </Typography>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Typography key={index} textAlign="center">
-                                                        <SimpleDateTime dateSeparator="/" format="MYD" showTime="0">
-                                                            {total.since}
-                                                        </SimpleDateTime>
-                                                    </Typography>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Grid item container xs={12} sx={{ width: 170 }}>
-                                                        <LoadingButton
-                                                            loading={loading3}
-                                                            onClick={() => {
-                                                                setCurrentClaimable(total.claimable);
-                                                                setCurrentStaked(total.amount);
-                                                                handleLoadingTrue3();
-                                                                handleOpen();
-                                                                setCurrentIndex(index);
-                                                            }}
-                                                            sx={{
-                                                                fontSize: 15,
-                                                                width: 80,
-                                                                height: 23,
-                                                                color: theme.palette.grey[900],
-                                                                bgcolor: theme.palette.success.main,
-                                                                backgroundColor: theme.palette.success.main
-                                                            }}
-                                                        >
-                                                            Withdraw
-                                                        </LoadingButton>
-                                                        <LoadingButton
-                                                            loading={loading4}
-                                                            onClick={() => {
-                                                                setCurrentClaimable(total.claimable);
-                                                                handleLoadingTrue4();
-                                                                handleOpen2();
-                                                                setCurrentIndex(index);
-                                                            }}
-                                                            sx={{
-                                                                ml: 1,
-                                                                fontSize: 15,
-                                                                width: 80,
-                                                                height: 23,
-                                                                color: theme.palette.grey[900],
-                                                                bgcolor: theme.palette.success.main,
-                                                                backgroundColor: theme.palette.success.main
-                                                            }}
-                                                        >
-                                                            Claim
-                                                        </LoadingButton>
-                                                    </Grid>
-                                                </TableCell>
-                                            </TableRow>
-                                        </TableBody>
-                                    ))}
+                                {stakedd.filter(amountGreaterThanZero).map((total, index) => (
+                                    <TableBody key={index}>
+                                        <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                            <TableCell>
+                                                <Typography key={index} textAlign="center">
+                                                    {total.stakename}
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography key={index} textAlign="center">
+                                                    {((total.sharesbonus / total.sharesbonus) * 4.56 + 9.12).toLocaleString(undefined, {
+                                                        maximumFractionDigits: 2
+                                                    })}
+                                                    %
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography key={index} textAlign="center">
+                                                    {(total.amount / Number18Decimals).toLocaleString(undefined, {
+                                                        maximumFractionDigits: 2
+                                                    })}
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography key={index} textAlign="center">
+                                                    {(total.claimable / Number18Decimals).toLocaleString(undefined, {
+                                                        maximumFractionDigits: 2
+                                                    })}
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography key={index} textAlign="center">
+                                                    <SimpleDateTime dateSeparator="/" format="MYD" showTime="0">
+                                                        {total.since}
+                                                    </SimpleDateTime>
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Grid item container keyy={index} xs={12} sx={{ width: 170 }}>
+                                                    <LoadingButton
+                                                        loading={loading3}
+                                                        onClick={() => {
+                                                            setCurrentClaimable(total.claimable);
+                                                            setCurrentStaked(total.amount);
+                                                            handleLoadingTrue3();
+                                                            handleOpen();
+                                                            setCurrentIndex(index);
+                                                        }}
+                                                        sx={{
+                                                            fontSize: 15,
+                                                            width: 80,
+                                                            height: 23,
+                                                            color: theme.palette.grey[900],
+                                                            bgcolor: theme.palette.success.main,
+                                                            backgroundColor: theme.palette.success.main
+                                                        }}
+                                                    >
+                                                        Withdraw
+                                                    </LoadingButton>
+                                                    <LoadingButton
+                                                        loading={loading4}
+                                                        onClick={() => {
+                                                            setCurrentClaimable(total.claimable);
+                                                            handleLoadingTrue4();
+                                                            handleOpen2();
+                                                            setCurrentIndex(index);
+                                                        }}
+                                                        sx={{
+                                                            ml: 1,
+                                                            fontSize: 15,
+                                                            width: 80,
+                                                            height: 23,
+                                                            color: theme.palette.grey[900],
+                                                            bgcolor: theme.palette.success.main,
+                                                            backgroundColor: theme.palette.success.main
+                                                        }}
+                                                    >
+                                                        Claim
+                                                    </LoadingButton>
+                                                </Grid>
+                                            </TableCell>
+                                        </TableRow>
+                                    </TableBody>
+                                ))}
                             </Table>
                         </TableContainer>
                     </Grid>

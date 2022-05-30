@@ -26,6 +26,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import {
     ggetStaxBalance,
     withdrawAmount,
+    withdrawAmountSuper,
     ggetOwnBalance,
     stakeStax,
     stakeHas,
@@ -536,7 +537,7 @@ const StakingCard = () => {
                             loading={loading5}
                             onClick={() => {
                                 handleLoadingTrue5();
-                                withdrawAmount(0, currentIndex).then(() => {
+                                withdrawAmountSuper(0, currentIndex).then(() => {
                                     handleLoadingFalse5();
                                     setOpen2(false);
                                     handleLoadingFalse4();
@@ -1182,7 +1183,7 @@ const StakingCard = () => {
                                         <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                             <TableCell>
                                                 <Typography key={index} textAlign="center">
-                                                    {total.stakename}
+                                                    {total.stakenamesuper}
                                                 </Typography>
                                             </TableCell>
                                             <TableCell>

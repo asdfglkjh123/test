@@ -541,7 +541,7 @@ const SharesCard = () => {
                                             </Grid>
                                             <Grid item lg={12} md={12} xs={10} sx={{ mt: 5, justifyContent: 'center', display: 'flex' }}>
                                                 <Typography variant="h5" color={theme.palette.grey[50]} textAlign="center">
-                                                    STAX Volume Dividends
+                                                    Total BUSD Dividends
                                                 </Typography>
                                                 <Tooltip
                                                     sx={{ height: 20, color: theme.palette.success.main }}
@@ -567,7 +567,7 @@ const SharesCard = () => {
                                                 sx={{ mt: 1, mx: 1, justifyContent: 'center', display: 'flex' }}
                                             >
                                                 <Typography variant="h2" sx={{ mr: 1 }} color={theme.palette.grey[50]} textAlign="right">
-                                                    0
+                                                    {busdDividendsFormatted}
                                                 </Typography>
                                                 <BusdSmallLogo />
                                                 <Button
@@ -612,7 +612,7 @@ const SharesCard = () => {
                                                 sx={{ mt: 1, justifyContent: 'center', display: 'flex' }}
                                             >
                                                 <Typography variant="h2" sx={{ mr: 1 }} color={theme.palette.grey[50]} textAlign="right">
-                                                    {busdDividendsFormatted}
+                                                    {(busdDividendsFormatted * myShareRateFormatted) / 100}
                                                 </Typography>
                                                 <BusdSmallLogo />
                                                 <Button

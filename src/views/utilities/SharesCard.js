@@ -586,7 +586,7 @@ const SharesCard = () => {
                                             </Grid>
                                             <Grid item lg={12} md={12} xs={10} sx={{ mt: 2, justifyContent: 'center', display: 'flex' }}>
                                                 <Typography variant="h5" color={theme.palette.grey[50]} textAlign="center">
-                                                    STAX Pool Dividends
+                                                    My BUSD Dividends
                                                 </Typography>
                                                 <Tooltip
                                                     sx={{ height: 20, color: theme.palette.success.main }}

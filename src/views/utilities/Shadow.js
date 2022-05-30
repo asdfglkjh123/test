@@ -529,7 +529,7 @@ const UtilitiesShadow = () => {
                             <Grid item container sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 7 }}>
                                 <Typography textAlign="center" variant="h4" sx={{ color: theme.palette.success.main }}>
                                     {' '}
-                                    {((staxPrice[1] * 2) / 1000000000000000000).toLocaleString(undefined, {
+                                    {((staxPrice[0] / 1000000000000000000) * (staxPrice[1] / staxPrice[0])).toLocaleString(undefined, {
                                         maximumFractionDigits: 2
                                     })}{' '}
                                     {` $ `}

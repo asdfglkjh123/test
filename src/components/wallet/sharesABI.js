@@ -378,6 +378,33 @@ export const init = async () => {
             type: 'function'
         },
         {
+            inputs: [],
+            name: 'claimDividend',
+            outputs: [],
+            stateMutability: 'nonpayable',
+            type: 'function'
+        },
+        {
+            inputs: [
+                {
+                    internalType: 'uint256',
+                    name: 'amount',
+                    type: 'uint256'
+                }
+            ],
+            name: 'distributeDividends',
+            outputs: [],
+            stateMutability: 'nonpayable',
+            type: 'function'
+        },
+        {
+            inputs: [],
+            name: 'distributeFirstDividends',
+            outputs: [],
+            stateMutability: 'nonpayable',
+            type: 'function'
+        },
+        {
             inputs: [
                 {
                     internalType: 'uint256',
@@ -410,11 +437,11 @@ export const init = async () => {
         }
     ];
 
-    erc20SharesContract = new web3.eth.Contract(erc20Abi, '0x7232B097096E5D6Be6c160A504B1142316a9556F');
-    erc20StaxContract = new web3.eth.Contract(erc20Abi, '0x30564fD07cd655AcDF1bf125722BfE1160c0FfF5');
+    erc20SharesContract = new web3.eth.Contract(erc20Abi, '0x3Ab4b7392788C54BB6E978eB4cCc4290bd1C31AC');
+    erc20StaxContract = new web3.eth.Contract(erc20Abi, '0x09712607134d4119a678dE94242505Be98C6Ae42');
     erc20BusdContract = new web3.eth.Contract(erc20Abi, '0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
     erc20PancakeContract = new web3.eth.Contract(erc20Abi, '0xDE2Db97D54a3c3B008a097B2260633E6cA7DB1AF');
-    erc20PairContract = new web3.eth.Contract(erc20Abi, '0x213Ea1aFe4AfbC69F919986c41A6A148207A51A5');
+    erc20PairContract = new web3.eth.Contract(erc20Abi, '0xC5077a8CDFBc186c041E77CB9653663c1Bc1d18B');
 
     isInitialized = true;
 };
@@ -538,7 +565,7 @@ export const approve = async (priceToApprove) => {
         await init();
     }
     return erc20BusdContract.methods
-        .approve('0x7232B097096E5D6Be6c160A504B1142316a9556F', priceToApprove)
+        .approve('0x3Ab4b7392788C54BB6E978eB4cCc4290bd1C31AC', priceToApprove)
         .send({ from: selectedAccount })
         .catch((err) => {
             console.log(err);

@@ -81,11 +81,11 @@ const DEX = () => {
         if (staxLogoFirst === true) {
             handleStaxLogoFirstN();
             setToken1address('0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
-            setToken2address('0x30564fD07cd655AcDF1bf125722BfE1160c0FfF5');
+            setToken2address('0x09712607134d4119a678dE94242505Be98C6Ae42');
             setSwappingToken('BUSD');
         } else if (staxLogoFirst === false) {
             handleStaxLogoFirst();
-            setToken1address('0x30564fD07cd655AcDF1bf125722BfE1160c0FfF5');
+            setToken1address('0x09712607134d4119a678dE94242505Be98C6Ae42');
             setToken2address('0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
             setSwappingToken('STAX');
         }
@@ -130,7 +130,7 @@ const DEX = () => {
         ggetStaxBalance().then((staxBalance) => {
             setStaxBalance(staxBalance);
             if (staxLogoFirst === true) {
-                setToken1address('0x30564fD07cd655AcDF1bf125722BfE1160c0FfF5');
+                setToken1address('0x09712607134d4119a678dE94242505Be98C6Ae42');
                 setToken2address('0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
             }
         });

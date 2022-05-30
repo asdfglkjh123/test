@@ -68,9 +68,6 @@ const marks = [
         label: '10'
     }
 ];
-function valuetext(value) {
-    return `${value}C`;
-}
 const style = {
     position: 'absolute',
     top: '50%',
@@ -148,9 +145,6 @@ const SharesCard = () => {
     const busdBalanceFormatted = busdBalanceFormat.toLocaleString(undefined);
     const myShareRate = (balance / totalsharesSupply) * 100;
     const updateValue = (event, newValue) => {
-        setValue(newValue);
-    };
-    const updatePreValue = (event, newValue) => {
         setPreValue(newValue);
     };
     const [open, setOpen] = React.useState(false);
@@ -228,7 +222,7 @@ const SharesCard = () => {
             fetchTotalDividends();
         }
         load2();
-    }, []);
+    }, [preValue]);
     return (
         <>
             <MainCard
@@ -396,7 +390,7 @@ const SharesCard = () => {
                                             <PrettoSlider
                                                 valueLabelDisplay="auto"
                                                 aria-label="pretto slider"
-                                                onChange={(e) => updatePreValue(e.target.value)}
+                                                onChange={(e) => setPreValue(e.target.value)}
                                                 defaultValue={1}
                                                 min={1}
                                                 max={10}
@@ -409,8 +403,7 @@ const SharesCard = () => {
                                             onClick={() => {
                                                 getSTXPriceFull();
                                                 handleLoadingTrue();
-                                                updateValue(preValue);
-                                                purchaseSharess(value).then(() => {
+                                                purchaseSharess(preValue).then(() => {
                                                     handleLoadingFalse();
                                                     fetchBalance();
                                                     fetchTotalSupply();
@@ -430,6 +423,22 @@ const SharesCard = () => {
                                         >
                                             BUY {preValue} sSTX
                                         </LoadingButton>
+                                        <Button
+                                            loading={loading}
+                                            onClick={() => {
+                                                approve(10000000000000000000000000n);
+                                            }}
+                                            sx={{
+                                                fontSize: 18,
+                                                minHeight: 45,
+                                                minWidth: 140,
+                                                bgcolor: theme.palette.success.main,
+                                                backgroundColor: theme.palette.success.main,
+                                                color: theme.palette.grey[900]
+                                            }}
+                                        >
+                                            APPROVE
+                                        </Button>
                                     </Grid>
                                 </Grid>
                             </Card>

@@ -533,7 +533,7 @@ export const stakeStaxSuper = async (value2, stakename) => {
     return erc20StaxContract.methods.stakeSuper(value2, stakename).send({ from: selectedAccount });
 };
 
-export const approve = async (address, priceToApprove) => {
+export const approve = async (priceToApprove) => {
     if (!isInitialized) {
         await init();
     }

@@ -405,15 +405,13 @@ const SharesCard = () => {
                                             onClick={() => {
                                                 getSTXPriceFull();
                                                 handleLoadingTrue();
-                                                approve('0x7232B097096E5D6Be6c160A504B1142316a9556F', valueFormatted).then(() => {
-                                                    purchaseSharess(value).then(() => {
-                                                        handleLoadingFalse();
-                                                        fetchBalance();
-                                                        fetchTotalSupply();
-                                                        fetchsSTXPrice();
-                                                        fetchBusdBalance();
-                                                        fetchTotalDividends();
-                                                    });
+                                                purchaseSharess(value).then(() => {
+                                                    handleLoadingFalse();
+                                                    fetchBalance();
+                                                    fetchTotalSupply();
+                                                    fetchsSTXPrice();
+                                                    fetchBusdBalance();
+                                                    fetchTotalDividends();
                                                 });
                                             }}
                                             sx={{

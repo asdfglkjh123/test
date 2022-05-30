@@ -599,7 +599,9 @@ const SharesCard = () => {
                                                 sx={{ mt: 1, justifyContent: 'center', display: 'flex' }}
                                             >
                                                 <Typography variant="h2" sx={{ mr: 1 }} color={theme.palette.grey[50]} textAlign="right">
-                                                    {(busdDividendsFormatted * myShareRateFormatted) / 100}
+                                                    {((busdDividendsFormatted * myShareRateFormatted) / 100).toLocaleString(undefined, {
+                                                        maximumFractionDigits: 2
+                                                    })}
                                                 </Typography>
                                                 <BusdSmallLogo />
                                                 <Button

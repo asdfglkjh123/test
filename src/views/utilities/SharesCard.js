@@ -355,7 +355,7 @@ const SharesCard = () => {
                                     >
                                         <Grid item container sx={{ mt: 1, display: 'flex', justifyContent: 'right' }}>
                                             <Typography variant="h5" textAlign="right">
-                                                {totalsharesSupply}/40,000
+                                                {totalsharesSupply}/4,000
                                             </Typography>
                                             <XsSharesLogo />
                                         </Grid>

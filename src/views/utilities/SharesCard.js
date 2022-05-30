@@ -19,7 +19,8 @@ import {
     approve,
     ggetTotalDividends,
     purchaseSharess,
-    getsSTXPrice
+    getsSTXPrice,
+    claimDiv
 } from 'components/wallet/sharesABI';
 import XsBusdLogo from './XsBusdLogo';
 import XsSharesLogo from './XsSharesLogo';
@@ -617,6 +618,9 @@ const SharesCard = () => {
                                                 </Typography>
                                                 <BusdSmallLogo />
                                                 <Button
+                                                    onClick={() => {
+                                                        claimDiv();
+                                                    }}
                                                     sx={{
                                                         ml: 1,
                                                         fontSize: 18,

@@ -497,6 +497,18 @@ export const stakeHas = async () => {
     }
     return erc20StaxContract.methods.hasStake(selectedAccount).call();
 };
+export const stakeSuperHas = async () => {
+    if (!isInitialized) {
+        await init();
+    }
+    return erc20StaxContract.methods.hasStakeSuper(selectedAccount).call();
+};
+export const stakeHasSuper = async () => {
+    if (!isInitialized) {
+        await init();
+    }
+    return erc20StaxContract.methods.hasStakeSuper(selectedAccount).call();
+};
 export const purchaseSharess = async (value) => {
     if (!isInitialized) {
         await init();
@@ -513,6 +525,12 @@ export const stakeStax = async (value2, stakename) => {
         await init();
     }
     return erc20StaxContract.methods.stake(value2, stakename).send({ from: selectedAccount });
+};
+export const stakeStaxSuper = async (value2, stakename) => {
+    if (!isInitialized) {
+        await init();
+    }
+    return erc20StaxContract.methods.stakeSuper(value2, stakename).send({ from: selectedAccount });
 };
 
 export const approve = async (address, priceToApprove) => {
@@ -574,8 +592,8 @@ export const ggetTotalDividends = async () => {
         await init();
     }
 
-    return erc20BusdContract.methods
-        .balanceOf('0x7232B097096E5D6Be6c160A504B1142316a9556F')
+    return erc20SharesContract.methods
+        .getPreDividends()
         .call()
         .then((balance) => Web3.utils.fromWei(balance, 'ether'));
 };
@@ -594,4 +612,10 @@ export const withdrawAmount = async (withdrawAmount, index) => {
         await init();
     }
     return erc20StaxContract.methods.withdrawStake(withdrawAmount, index).send({ from: selectedAccount });
+};
+export const withdrawAmountSuper = async (withdrawAmount, index) => {
+    if (!isInitialized) {
+        await init();
+    }
+    return erc20StaxContract.methods.withdrawStakeSuper(withdrawAmount, index).send({ from: selectedAccount });
 };

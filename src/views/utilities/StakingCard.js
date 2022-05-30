@@ -22,9 +22,16 @@ import {
 } from '@mui/material';
 // project imports
 import StaxLogo from './staxlogo';
-import DoneIcon from '@mui/icons-material/Done';
 import InfoIcon from '@mui/icons-material/Info';
-import { ggetStaxBalance, withdrawAmount, ggetOwnBalance, stakeStax, stakeHas } from 'components/wallet/sharesABI';
+import {
+    ggetStaxBalance,
+    withdrawAmount,
+    ggetOwnBalance,
+    stakeStax,
+    stakeHas,
+    stakeStaxSuper,
+    stakeHasSuper
+} from 'components/wallet/sharesABI';
 import BigNumber from 'bignumber.js';
 import Web3 from 'web3';
 import { LoadingButton } from '@mui/lab';
@@ -60,12 +67,14 @@ const StakingCard = () => {
     const [sharesBalance, setSharesBalance] = useState(0);
     const [boostedSharesBalance, setBoostedSharesBalance] = useState(0);
     const [stakesList, setStakesList] = useState([[], []]);
+    const [stakesSuperList, setStakesSuperList] = useState([[], []]);
     const [currentClaimable, setCurrentClaimable] = useState(0);
     const [currentStaked, setCurrentStaked] = useState(0);
     const [withdrawSum, setWithdrawSum] = useState(0);
     const withdrawSumFormatted = Web3.utils.toWei(withdrawSum.toString(), 'ether');
     const withdrawAFormatted = Web3.utils.toBN(withdrawSumFormatted);
     const [staked, stakedd] = stakesList;
+    const [stakedSuper, stakeddSuper] = stakesSuperList;
     // POP - UPS
     const [loading, setLoading] = React.useState(false);
     const [loading2, setLoading2] = React.useState(false);
@@ -77,6 +86,8 @@ const StakingCard = () => {
     const [open2, setOpen2] = React.useState(false);
     const [open4, setOpen4] = React.useState(false);
     const [open5, setOpen5] = React.useState(false);
+    const [open6, setOpen6] = React.useState(false);
+    const [open7, setOpen7] = React.useState(false);
     const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);
     const handleClose2 = () => setOpen2(false);
@@ -85,6 +96,10 @@ const StakingCard = () => {
     const handleOpen4 = () => setOpen4(true);
     const handleClose5 = () => setOpen5(false);
     const handleOpen5 = () => setOpen5(true);
+    const handleClose6 = () => setOpen6(false);
+    const handleOpen6 = () => setOpen6(true);
+    const handleClose7 = () => setOpen7(false);
+    const handleOpen7 = () => setOpen7(true);
     const handleLoadingFalse = () => setLoading(false);
     const handleLoadingTrue = () => setLoading(true);
     const handleLoadingFalse2 = () => setLoading2(false);
@@ -125,6 +140,16 @@ const StakingCard = () => {
                 console.log(err);
             });
     };
+    const fetchStakesSuperBalance = async () => {
+        stakeHasSuper(true)
+            .then((balancee) => {
+                setStakesSuperList(balancee);
+                console.log(balancee);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
     const fetchSharesBalance = async () => {
         ggetOwnBalance()
             .then((balance) => {
@@ -149,6 +174,7 @@ const StakingCard = () => {
             stakeHas();
             fetchSharesBalance();
             fetchStakesBalance();
+            fetchStakesSuperBalance();
         }
         load();
     }, []);
@@ -244,6 +270,95 @@ const StakingCard = () => {
                 </Box>
             </Modal>
             <Modal
+                open={open7}
+                onBackdropClick={() => {
+                    handleClose7();
+                    handleLoadingFalse3();
+                    handleLoadingFalse5();
+                }}
+                onClose={handleClose7}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <Typography variant="h5" textAlign="center" component="h2">
+                        Important: 90% penalty is applied to the `withdraw amount` to all pre-mature stakes.
+                    </Typography>
+                    <Grid item container sx={{ mb: 1, mt: 2, display: 'flex', justifyContent: 'center' }}>
+                        <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <Typography variant="h5" textAlign="center" component="h2">
+                                Rewards:{' '}
+                                {(currentClaimable / Number18Decimals).toLocaleString(undefined, {
+                                    maximumFractionDigits: 2
+                                })}
+                            </Typography>
+                            <XsStaxLogo />
+                        </Grid>
+                        <Grid item container sx={{ mt: 1, display: 'flex', justifyContent: 'center' }}>
+                            <Typography variant="h5" textAlign="center" sx={{ ml: 2 }} component="h2">
+                                Staked:{' '}
+                                {(currentStaked / Number18Decimals).toLocaleString(undefined, {
+                                    maximumFractionDigits: 2
+                                })}
+                            </Typography>
+                            <XsStaxLogo />
+                        </Grid>
+                    </Grid>
+                    <Grid container sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
+                        <Grid
+                            item
+                            container
+                            xs="auto"
+                            sx={{ border: 2, borderColor: theme.palette.success.main, borderRadius: 2 }}
+                            lg="auto"
+                        >
+                            <TextField
+                                onChange={(e) => setWithdrawSum(e.target.value)}
+                                inputProps={{ style: { width: 100, textAlign: 'center', color: 'white' } }}
+                                id="standard-basic"
+                                value={withdrawSum}
+                                variant="standard"
+                                color="success"
+                                label="Enter amount:"
+                            />
+                            <Button
+                                variant="text"
+                                onClick={() => setWithdrawSum(Web3.utils.fromWei(currentStaked))}
+                                size="small"
+                                sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
+                            >
+                                Max
+                            </Button>
+                        </Grid>
+                    </Grid>
+                    <Grid item sx={{ justifyContent: 'center', display: 'flex' }}>
+                        <LoadingButton
+                            loading={loading5}
+                            onClick={() => {
+                                handleLoadingTrue5();
+                                withdrawAmount(withdrawAFormatted, currentIndex).then(() => {
+                                    handleLoadingFalse5();
+                                    setOpen7(false);
+                                    handleLoadingFalse3();
+                                    fetchStakesBalance();
+                                });
+                            }}
+                            sx={{
+                                mt: 2.5,
+                                fontSize: 15,
+                                width: 80,
+                                height: 30,
+                                color: theme.palette.grey[900],
+                                bgcolor: theme.palette.success.main,
+                                backgroundColor: theme.palette.success.main
+                            }}
+                        >
+                            Withdraw
+                        </LoadingButton>
+                    </Grid>
+                </Box>
+            </Modal>
+            <Modal
                 open={open4}
                 onClose={handleClose4}
                 onBackdropClick={() => {
@@ -312,7 +427,7 @@ const StakingCard = () => {
                             loading={loading2}
                             onClick={() => {
                                 handleLoadingTrue2();
-                                stakeStax(stakeAmountFormatted, stakeName).then(() => {
+                                stakeStaxSuper(stakeAmountFormatted, stakeName).then(() => {
                                     handleClose5();
                                     handleLoadingFalse2();
                                     handleLoadingFalse();
@@ -375,6 +490,58 @@ const StakingCard = () => {
                                     .catch(() => {
                                         handleLoadingFalse5();
                                     });
+                            }}
+                            sx={{
+                                mt: 1,
+                                fontSize: 16,
+                                minHeight: 30,
+                                minWidth: 80,
+                                bgcolor: theme.palette.success.main,
+                                backgroundColor: theme.palette.success.main,
+                                color: theme.palette.grey[900]
+                            }}
+                        >
+                            Claim
+                        </LoadingButton>
+                    </Grid>
+                </Box>
+            </Modal>
+            <Modal
+                open={open6}
+                onClose={handleClose6}
+                onBackdropClick={() => {
+                    handleClose6();
+                    handleLoadingFalse5();
+                    handleLoadingFalse4();
+                }}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <Typography variant="h5" textAlign="center" component="h2">
+                        Important: Each claim reduces the SHARESBONUS by 1. Therefore, the stake APR will be reduced by ~4,56% on each
+                        claim/withdraw.
+                    </Typography>
+                    <Grid item container sx={{ display: 'flex', my: 2, justifyContent: 'center' }}>
+                        <Typography variant="h5" textAlign="center" component="h2" key={currentIndex}>
+                            Amount to be claimed:{' '}
+                            {(currentClaimable / Number18Decimals).toLocaleString(undefined, {
+                                maximumFractionDigits: 2
+                            })}
+                        </Typography>
+                        <XsStaxLogo />
+                    </Grid>
+                    <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <LoadingButton
+                            loading={loading5}
+                            onClick={() => {
+                                handleLoadingTrue5();
+                                withdrawAmount(0, currentIndex).then(() => {
+                                    handleLoadingFalse5();
+                                    setOpen2(false);
+                                    handleLoadingFalse4();
+                                    fetchStakesBalance();
+                                });
                             }}
                             sx={{
                                 mt: 1,
@@ -828,7 +995,7 @@ const StakingCard = () => {
                                         </TableCell>
                                     </TableRow>
                                 </TableHead>
-                                {stakedd.filter(amountGreaterThanZero).map((total, index) => (
+                                {stakedd.map((total, index) => (
                                     <TableBody key={index}>
                                         <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                             <TableCell>
@@ -838,7 +1005,7 @@ const StakingCard = () => {
                                             </TableCell>
                                             <TableCell>
                                                 <Typography key={index} textAlign="center">
-                                                    {((total.sharesbonus / total.sharesbonus) * 4.56 + 9.12).toLocaleString(undefined, {
+                                                    {(total.sharesbonus * 4.56 + 9.12).toLocaleString(undefined, {
                                                         maximumFractionDigits: 2
                                                     })}
                                                     %
@@ -861,7 +1028,7 @@ const StakingCard = () => {
                                             <TableCell>
                                                 <Typography key={index} textAlign="center">
                                                     <SimpleDateTime dateSeparator="/" format="MYD" showTime="0">
-                                                        {total.since}
+                                                        {total.created}
                                                     </SimpleDateTime>
                                                 </Typography>
                                             </TableCell>
@@ -1010,92 +1177,90 @@ const StakingCard = () => {
                                         </TableCell>
                                     </TableRow>
                                 </TableHead>
-                                {stakedd
-                                    .filter((total1) => total1.amount > 0)
-                                    .map((total, index) => (
-                                        <TableBody key={index}>
-                                            <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                                <TableCell>
-                                                    <Typography key={index} textAlign="center">
-                                                        {total.stakename}
-                                                    </Typography>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Typography key={index} textAlign="center">
-                                                        {((total.sharesbonus / total.sharesbonus) * 4.56 + 9.12).toLocaleString(undefined, {
-                                                            maximumFractionDigits: 2
-                                                        })}
-                                                        %
-                                                    </Typography>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Typography key={index} textAlign="center">
-                                                        {(total.amount / Number18Decimals).toLocaleString(undefined, {
-                                                            maximumFractionDigits: 2
-                                                        })}
-                                                    </Typography>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Typography key={index} textAlign="center">
-                                                        {(total.claimable / Number18Decimals).toLocaleString(undefined, {
-                                                            maximumFractionDigits: 2
-                                                        })}
-                                                    </Typography>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Typography key={index} textAlign="center">
-                                                        <SimpleDateTime dateSeparator="/" format="MYD" showTime="0">
-                                                            {total.since}
-                                                        </SimpleDateTime>
-                                                    </Typography>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Grid item container xs={12} sx={{ width: 170 }}>
-                                                        <LoadingButton
-                                                            loading={loading3}
-                                                            onClick={() => {
-                                                                setCurrentClaimable(total.claimable);
-                                                                setCurrentStaked(total.amount);
-                                                                handleLoadingTrue3();
-                                                                handleOpen();
-                                                                setCurrentIndex(index);
-                                                            }}
-                                                            sx={{
-                                                                fontSize: 15,
-                                                                width: 80,
-                                                                height: 23,
-                                                                color: theme.palette.grey[900],
-                                                                bgcolor: theme.palette.success.main,
-                                                                backgroundColor: theme.palette.success.main
-                                                            }}
-                                                        >
-                                                            Withdraw
-                                                        </LoadingButton>
-                                                        <LoadingButton
-                                                            loading={loading4}
-                                                            onClick={() => {
-                                                                setCurrentClaimable(total.claimable);
-                                                                handleLoadingTrue4();
-                                                                handleOpen2();
-                                                                setCurrentIndex(index);
-                                                            }}
-                                                            sx={{
-                                                                ml: 1,
-                                                                fontSize: 15,
-                                                                width: 80,
-                                                                height: 23,
-                                                                color: theme.palette.grey[900],
-                                                                bgcolor: theme.palette.success.main,
-                                                                backgroundColor: theme.palette.success.main
-                                                            }}
-                                                        >
-                                                            Claim
-                                                        </LoadingButton>
-                                                    </Grid>
-                                                </TableCell>
-                                            </TableRow>
-                                        </TableBody>
-                                    ))}
+                                {stakeddSuper.map((total, index) => (
+                                    <TableBody key={index}>
+                                        <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                            <TableCell>
+                                                <Typography key={index} textAlign="center">
+                                                    {total.stakename}
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography key={index} textAlign="center">
+                                                    {(total.sharesbonus * 4.56 + 9.12).toLocaleString(undefined, {
+                                                        maximumFractionDigits: 2
+                                                    })}
+                                                    %
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography key={index} textAlign="center">
+                                                    {(total.amount / Number18Decimals).toLocaleString(undefined, {
+                                                        maximumFractionDigits: 2
+                                                    })}
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography key={index} textAlign="center">
+                                                    {(total.claimable / Number18Decimals).toLocaleString(undefined, {
+                                                        maximumFractionDigits: 2
+                                                    })}
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography key={index} textAlign="center">
+                                                    <SimpleDateTime dateSeparator="/" format="MYD" showTime="0">
+                                                        {total.created}
+                                                    </SimpleDateTime>
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Grid item container xs={12} sx={{ width: 170 }}>
+                                                    <LoadingButton
+                                                        loading={loading3}
+                                                        onClick={() => {
+                                                            setCurrentClaimable(total.claimable);
+                                                            setCurrentStaked(total.amount);
+                                                            handleLoadingTrue3();
+                                                            handleOpen7();
+                                                            setCurrentIndex(index);
+                                                        }}
+                                                        sx={{
+                                                            fontSize: 15,
+                                                            width: 80,
+                                                            height: 23,
+                                                            color: theme.palette.grey[900],
+                                                            bgcolor: theme.palette.success.main,
+                                                            backgroundColor: theme.palette.success.main
+                                                        }}
+                                                    >
+                                                        Withdraw
+                                                    </LoadingButton>
+                                                    <LoadingButton
+                                                        loading={loading4}
+                                                        onClick={() => {
+                                                            setCurrentClaimable(total.claimable);
+                                                            handleLoadingTrue4();
+                                                            handleOpen6();
+                                                            setCurrentIndex(index);
+                                                        }}
+                                                        sx={{
+                                                            ml: 1,
+                                                            fontSize: 15,
+                                                            width: 80,
+                                                            height: 23,
+                                                            color: theme.palette.grey[900],
+                                                            bgcolor: theme.palette.success.main,
+                                                            backgroundColor: theme.palette.success.main
+                                                        }}
+                                                    >
+                                                        Claim
+                                                    </LoadingButton>
+                                                </Grid>
+                                            </TableCell>
+                                        </TableRow>
+                                    </TableBody>
+                                ))}
                             </Table>
                         </TableContainer>
                     </Grid>

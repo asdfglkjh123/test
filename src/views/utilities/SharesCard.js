@@ -124,12 +124,15 @@ const PrettoSlider = styled(Slider)({
 });
 
 const SharesCard = () => {
+    // eslint-disable-next-line global-require
+    const BigNumber = require('bignumber.js');
     const [value, setValue] = React.useState(1);
     const [busdBalance, setBusdBalance] = React.useState(0);
     const [busdDividends, setBusdDividends] = React.useState(0);
+    const busdDividendsNumber = new BigNumber(busdDividends);
+    const busdDividendsFormat = busdDividendsNumber.decimalPlaces(2);
+    const busdDividendsFormatted = busdDividendsFormat.toLocaleString(undefined);
     const theme = useTheme();
-    // eslint-disable-next-line global-require
-    const BigNumber = require('bignumber.js');
     const [sSTXPrice, setsSTXPrice] = useState(0);
     const [sSTXPriceFull, setsSTXPriceFull] = useState(0);
     const [balance, setBalance] = useState(0);
@@ -609,7 +612,7 @@ const SharesCard = () => {
                                                 sx={{ mt: 1, justifyContent: 'center', display: 'flex' }}
                                             >
                                                 <Typography variant="h2" sx={{ mr: 1 }} color={theme.palette.grey[50]} textAlign="right">
-                                                    {busdDividends}
+                                                    {busdDividendsFormatted}
                                                 </Typography>
                                                 <BusdSmallLogo />
                                                 <Button

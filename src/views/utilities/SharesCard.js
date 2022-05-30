@@ -3,7 +3,6 @@ import { useTheme, styled } from '@mui/material/styles';
 import { Button, Box, Card, CardContent, Tooltip, Grid, Typography, Modal } from '@mui/material';
 import Slider from '@mui/material/Slider';
 import LoadingButton from '@mui/lab/LoadingButton';
-import DoneIcon from '@mui/icons-material/Done';
 import Web3 from 'web3';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
@@ -15,12 +14,12 @@ import InfoIcon from '@mui/icons-material/Info';
 import {
     ggetOwnBalance,
     ggetBUSDBalance,
-    getSTXPrice,
     sharesTotalSupply,
     getSTXPriceFull,
     approve,
     ggetTotalDividends,
-    purchaseSharess
+    purchaseSharess,
+    getsSTXPrice
 } from 'components/wallet/sharesABI';
 import XsBusdLogo from './XsBusdLogo';
 import XsSharesLogo from './XsSharesLogo';
@@ -153,7 +152,7 @@ const SharesCard = () => {
     const handleLoadingFalse = () => setLoading(false);
     const myShareRateFormatted = myShareRate.toLocaleString(undefined, { maximumFractionDigits: 1 });
     const fetchsSTXPrice = async () => {
-        getSTXPrice()
+        getsSTXPrice()
             .then((sSTXPrice) => {
                 setsSTXPrice(sSTXPrice);
             })
@@ -403,7 +402,7 @@ const SharesCard = () => {
                                             onClick={() => {
                                                 getSTXPriceFull();
                                                 handleLoadingTrue();
-                                                approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', valueFormatted).then(() => {
+                                                approve('0x7232B097096E5D6Be6c160A504B1142316a9556F', valueFormatted).then(() => {
                                                     purchaseSharess(value).then(() => {
                                                         handleLoadingFalse();
                                                         fetchBalance();

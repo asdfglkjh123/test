@@ -79,6 +79,39 @@ export const init = async () => {
             type: 'function'
         },
         {
+            inputs: [],
+            name: 'getPrice',
+            outputs: [
+                {
+                    internalType: 'uint256',
+                    name: '',
+                    type: 'uint256'
+                }
+            ],
+            stateMutability: 'view',
+            type: 'function'
+        },
+        {
+            inputs: [
+                {
+                    internalType: 'uint256',
+                    name: 'amount',
+                    type: 'uint256'
+                }
+            ],
+            name: 'distributeDividends',
+            outputs: [],
+            stateMutability: 'nonpayable',
+            type: 'function'
+        },
+        {
+            inputs: [],
+            name: 'distributeFirstDividends',
+            outputs: [],
+            stateMutability: 'nonpayable',
+            type: 'function'
+        },
+        {
             inputs: [
                 {
                     internalType: 'uint256',
@@ -89,6 +122,19 @@ export const init = async () => {
             name: 'PurchaseSHARES',
             outputs: [],
             stateMutability: 'nonpayable',
+            type: 'function'
+        },
+        {
+            inputs: [],
+            name: 'getPreDividends',
+            outputs: [
+                {
+                    internalType: 'uint256',
+                    name: '',
+                    type: 'uint256'
+                }
+            ],
+            stateMutability: 'view',
             type: 'function'
         },
         {
@@ -249,6 +295,11 @@ export const init = async () => {
             inputs: [
                 {
                     internalType: 'uint256',
+                    name: 'amount',
+                    type: 'uint256'
+                },
+                {
+                    internalType: 'uint256',
                     name: 'stake_index',
                     type: 'uint256'
                 }
@@ -359,11 +410,11 @@ export const init = async () => {
         }
     ];
 
-    erc20SharesContract = new web3.eth.Contract(erc20Abi, '0xDc696BF1cee0e0796d7612Af902476150a0bD654');
-    erc20StaxContract = new web3.eth.Contract(erc20Abi, '0x96Ada88505c3779dAB1Ae6E0073D21f7a4726D66');
+    erc20SharesContract = new web3.eth.Contract(erc20Abi, '0x7232B097096E5D6Be6c160A504B1142316a9556F');
+    erc20StaxContract = new web3.eth.Contract(erc20Abi, '0x30564fD07cd655AcDF1bf125722BfE1160c0FfF5');
     erc20BusdContract = new web3.eth.Contract(erc20Abi, '0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
     erc20PancakeContract = new web3.eth.Contract(erc20Abi, '0xDE2Db97D54a3c3B008a097B2260633E6cA7DB1AF');
-    erc20PairContract = new web3.eth.Contract(erc20Abi, '0x73fd3bcff85d70f12717e539312998d108c07d61');
+    erc20PairContract = new web3.eth.Contract(erc20Abi, '0x213Ea1aFe4AfbC69F919986c41A6A148207A51A5');
 
     isInitialized = true;
 };
@@ -387,6 +438,16 @@ export const ggetOwnBalance = async () => {
         .balanceOf(selectedAccount)
         .call()
         .then((balance) => Web3.utils.toWei(balance, 'wei'));
+};
+export const getsSTXPrice = async () => {
+    if (!isInitialized) {
+        await init();
+    }
+
+    return erc20SharesContract.methods
+        .getPrice()
+        .call()
+        .then((balance) => Web3.utils.fromWei(balance, 'ether'));
 };
 export const getStaxPrice = async () => {
     if (!isInitialized) {
@@ -419,17 +480,6 @@ export const soldShares = async () => {
             .then((sold) => Web3.utils.toWei(sold, 'wei'))
     );
 };
-export const getSTXPrice = async () => {
-    if (!isInitialized) {
-        await init();
-    }
-
-    // eslint-disable-next-line no-underscore-dangle
-    return erc20SharesContract.methods
-        .getSTXPrice()
-        .call()
-        .then((balance) => Web3.utils.fromWei(balance, 'ether'));
-};
 export const getSTXPriceFull = async () => {
     if (!isInitialized) {
         await init();
@@ -437,7 +487,7 @@ export const getSTXPriceFull = async () => {
 
     // eslint-disable-next-line no-underscore-dangle
     return erc20SharesContract.methods
-        .getSTXPrice()
+        .getPrice()
         .call()
         .then((balance) => Web3.utils.toWei(balance, 'ether'));
 };
@@ -470,7 +520,7 @@ export const approve = async (address, priceToApprove) => {
         await init();
     }
     return erc20BusdContract.methods
-        .approve('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee', priceToApprove)
+        .approve('0x7232B097096E5D6Be6c160A504B1142316a9556F', priceToApprove)
         .send({ from: selectedAccount })
         .catch((err) => {
             console.log(err);
@@ -525,7 +575,7 @@ export const ggetTotalDividends = async () => {
     }
 
     return erc20BusdContract.methods
-        .balanceOf('0xDc696BF1cee0e0796d7612Af902476150a0bD654')
+        .balanceOf('0x7232B097096E5D6Be6c160A504B1142316a9556F')
         .call()
         .then((balance) => Web3.utils.fromWei(balance, 'ether'));
 };

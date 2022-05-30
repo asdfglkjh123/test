@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import BigNumber from 'bignumber.js';
 // project imports
 import AnimateButton from 'ui-component/extended/AnimateButton';
-import { ggetOwnBalance, getSTXPrice, ggetStaxBalance, getStaxPrice } from 'components/wallet/sharesABI';
+import { ggetOwnBalance, ggetStaxBalance, getStaxPrice, getsSTXPrice } from 'components/wallet/sharesABI';
 import XsSharesLogo from 'views/utilities/XsSharesLogo';
 import XsStaxLogo from 'views/utilities/xsStaxLogo';
 
@@ -62,7 +62,7 @@ const UpgradePlanCard = () => {
             });
     };
     const fetchsSTXPrice = async () => {
-        getSTXPrice()
+        getsSTXPrice()
             .then((sSTXPrice) => {
                 setsSTXPrice(sSTXPrice);
             })

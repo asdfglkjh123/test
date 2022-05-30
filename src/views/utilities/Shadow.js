@@ -16,7 +16,7 @@ import {
     ggetBUSDBalance,
     ggetStaxBalance,
     ggetOwnBalance,
-    getSTXPrice,
+    getsSTXPrice,
     sharesTotalSupply,
     stakeHas
 } from 'components/wallet/sharesABI';
@@ -152,7 +152,7 @@ const UtilitiesShadow = () => {
             });
     };
     const fetchsSTXPrice = async () => {
-        getSTXPrice()
+        getsSTXPrice()
             .then((sSTXPrice) => {
                 setsSTXPrice(sSTXPrice);
             })

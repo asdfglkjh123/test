@@ -9,7 +9,15 @@ import MainCard from 'ui-component/cards/MainCard';
 import SettingsIcon from '@mui/icons-material/Settings';
 import React, { useState, useEffect } from 'react';
 import SwapVerticalCircleIcon from '@mui/icons-material/SwapVerticalCircle';
-import { ggetBUSDBalance, ggetStaxBalance, getStaxPrice, ggetTotalSTAXSupply, swapStaxAndBusd } from 'components/wallet/sharesABI';
+import {
+    ggetBUSDBalance,
+    ggetStaxBalance,
+    getStaxPrice,
+    ggetTotalSTAXSupply,
+    swapStaxAndBusd,
+    approveStax,
+    approveBusd
+} from 'components/wallet/sharesABI';
 import BusdSmallLogo from './busdSmallLogo';
 import SmallStaxLogo from './smallStaxLogo';
 import XsStaxLogo from './xsStaxLogo';
@@ -73,11 +81,11 @@ const DEX = () => {
         if (staxLogoFirst === true) {
             handleStaxLogoFirstN();
             setToken1address('0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
-            setToken2address('0x1155605B148DEB0f649F9b815Fc18d956af7a93d');
+            setToken2address('0x30564fD07cd655AcDF1bf125722BfE1160c0FfF5');
             setSwappingToken('BUSD');
         } else if (staxLogoFirst === false) {
             handleStaxLogoFirst();
-            setToken1address('0x1155605B148DEB0f649F9b815Fc18d956af7a93d');
+            setToken1address('0x30564fD07cd655AcDF1bf125722BfE1160c0FfF5');
             setToken2address('0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
             setSwappingToken('STAX');
         }
@@ -122,7 +130,7 @@ const DEX = () => {
         ggetStaxBalance().then((staxBalance) => {
             setStaxBalance(staxBalance);
             if (staxLogoFirst === true) {
-                setToken1address('0x1155605B148DEB0f649F9b815Fc18d956af7a93d');
+                setToken1address('0x30564fD07cd655AcDF1bf125722BfE1160c0FfF5');
                 setToken2address('0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
             }
         });
@@ -445,7 +453,6 @@ const DEX = () => {
                                                 }}
                                                 inputProps={{ style: { textAlign: 'left', color: 'white' } }}
                                                 defaultValue={0}
-                                                value={preBusdValue2}
                                                 id="standard-basic"
                                                 label="Enter amount:"
                                                 variant="standard"
@@ -496,6 +503,25 @@ const DEX = () => {
                                                 >
                                                     SWAP
                                                 </LoadingButton>
+                                            </Grid>
+                                            <Grid item sx={{ mb: 3, mt: 3, display: 'flex', justifyContent: 'center' }}>
+                                                <Button
+                                                    onClick={() => {
+                                                        approveBusd().then(() => {
+                                                            approveStax();
+                                                        });
+                                                    }}
+                                                    sx={{
+                                                        fontSize: 18,
+                                                        minHeight: 45,
+                                                        minWidth: 110,
+                                                        bgcolor: theme.palette.success.main,
+                                                        backgroundColor: theme.palette.success.main,
+                                                        color: theme.palette.grey[900]
+                                                    }}
+                                                >
+                                                    APPROVE
+                                                </Button>
                                             </Grid>
                                         </Grid>
                                     </Grid>

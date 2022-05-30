@@ -127,6 +127,7 @@ const SharesCard = () => {
     // eslint-disable-next-line global-require
     const BigNumber = require('bignumber.js');
     const [value, setValue] = React.useState(1);
+    const [preValue, setPreValue] = React.useState(1);
     const [busdBalance, setBusdBalance] = React.useState(0);
     const [busdDividends, setBusdDividends] = React.useState(0);
     const busdDividendsNumber = new BigNumber(busdDividends);
@@ -148,6 +149,9 @@ const SharesCard = () => {
     const myShareRate = (balance / totalsharesSupply) * 100;
     const updateValue = (event, newValue) => {
         setValue(newValue);
+    };
+    const updatePreValue = (event, newValue) => {
+        setPreValue(newValue);
     };
     const [open, setOpen] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
@@ -392,7 +396,7 @@ const SharesCard = () => {
                                             <PrettoSlider
                                                 valueLabelDisplay="auto"
                                                 aria-label="pretto slider"
-                                                onChange={(e) => updateValue(e.target.value)}
+                                                onChange={(e) => updatePreValue(e.target.value)}
                                                 defaultValue={1}
                                                 min={1}
                                                 max={10}
@@ -405,6 +409,7 @@ const SharesCard = () => {
                                             onClick={() => {
                                                 getSTXPriceFull();
                                                 handleLoadingTrue();
+                                                updateValue(preValue);
                                                 purchaseSharess(value).then(() => {
                                                     handleLoadingFalse();
                                                     fetchBalance();
@@ -423,7 +428,7 @@ const SharesCard = () => {
                                                 color: theme.palette.grey[900]
                                             }}
                                         >
-                                            BUY {value} sSTX
+                                            BUY {preValue} sSTX
                                         </LoadingButton>
                                     </Grid>
                                 </Grid>

@@ -266,6 +266,7 @@ const StakingCard = () => {
                                 handleLoadingTrue2();
                                 stakeStax(stakeAmountFormatted, stakeName).then(() => {
                                     handleClose4();
+                                    setPreAmount(0);
                                     handleLoadingFalse2();
                                     handleLoadingFalse();
                                     fetchStakesBalance();

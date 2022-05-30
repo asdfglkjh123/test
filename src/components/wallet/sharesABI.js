@@ -92,19 +92,6 @@ export const init = async () => {
             type: 'function'
         },
         {
-            inputs: [],
-            name: 'getSTXPrice',
-            outputs: [
-                {
-                    internalType: 'uint256',
-                    name: '',
-                    type: 'uint256'
-                }
-            ],
-            stateMutability: 'view',
-            type: 'function'
-        },
-        {
             inputs: [
                 {
                     internalType: 'address',
@@ -129,18 +116,23 @@ export const init = async () => {
                                     type: 'address'
                                 },
                                 {
+                                    internalType: 'uint256',
+                                    name: 'amount',
+                                    type: 'uint256'
+                                },
+                                {
                                     internalType: 'string',
                                     name: 'stakename',
                                     type: 'string'
                                 },
                                 {
                                     internalType: 'uint256',
-                                    name: 'amount',
+                                    name: 'since',
                                     type: 'uint256'
                                 },
                                 {
                                     internalType: 'uint256',
-                                    name: 'since',
+                                    name: 'created',
                                     type: 'uint256'
                                 },
                                 {
@@ -170,6 +162,74 @@ export const init = async () => {
         {
             inputs: [
                 {
+                    internalType: 'address',
+                    name: '_staker',
+                    type: 'address'
+                }
+            ],
+            name: 'hasStakeSuper',
+            outputs: [
+                {
+                    components: [
+                        {
+                            internalType: 'uint256',
+                            name: 'total_amount',
+                            type: 'uint256'
+                        },
+                        {
+                            components: [
+                                {
+                                    internalType: 'address',
+                                    name: 'user',
+                                    type: 'address'
+                                },
+                                {
+                                    internalType: 'uint256',
+                                    name: 'amount',
+                                    type: 'uint256'
+                                },
+                                {
+                                    internalType: 'string',
+                                    name: 'stakenamesuper',
+                                    type: 'string'
+                                },
+                                {
+                                    internalType: 'uint256',
+                                    name: 'since',
+                                    type: 'uint256'
+                                },
+                                {
+                                    internalType: 'uint256',
+                                    name: 'created',
+                                    type: 'uint256'
+                                },
+                                {
+                                    internalType: 'uint256',
+                                    name: 'claimable',
+                                    type: 'uint256'
+                                },
+                                {
+                                    internalType: 'uint256',
+                                    name: 'sharesbonus',
+                                    type: 'uint256'
+                                }
+                            ],
+                            internalType: 'struct Stakeable.StakeSuper[]',
+                            name: 'stakessuper',
+                            type: 'tuple[]'
+                        }
+                    ],
+                    internalType: 'struct Stakeable.StakingSummarySuper',
+                    name: '',
+                    type: 'tuple'
+                }
+            ],
+            stateMutability: 'view',
+            type: 'function'
+        },
+        {
+            inputs: [
+                {
                     internalType: 'uint256',
                     name: 'amount',
                     type: 'uint256'
@@ -181,6 +241,19 @@ export const init = async () => {
                 }
             ],
             name: 'withdrawStake',
+            outputs: [],
+            stateMutability: 'nonpayable',
+            type: 'function'
+        },
+        {
+            inputs: [
+                {
+                    internalType: 'uint256',
+                    name: 'stake_index',
+                    type: 'uint256'
+                }
+            ],
+            name: 'withdrawStakeSuper',
             outputs: [],
             stateMutability: 'nonpayable',
             type: 'function'
@@ -241,6 +314,37 @@ export const init = async () => {
             type: 'function'
         },
         {
+            constant: true,
+            inputs: [],
+            name: 'getReserves',
+            outputs: [
+                { internalType: 'uint112', name: '_reserve0', type: 'uint112' },
+                { internalType: 'uint112', name: '_reserve1', type: 'uint112' },
+                { internalType: 'uint32', name: '_blockTimestampLast', type: 'uint32' }
+            ],
+            payable: false,
+            stateMutability: 'view',
+            type: 'function'
+        },
+        {
+            inputs: [
+                {
+                    internalType: 'uint256',
+                    name: '_amountsuper',
+                    type: 'uint256'
+                },
+                {
+                    internalType: 'string',
+                    name: '_stakenamesuper',
+                    type: 'string'
+                }
+            ],
+            name: 'stakeSuper',
+            outputs: [],
+            stateMutability: 'nonpayable',
+            type: 'function'
+        },
+        {
             inputs: [
                 { internalType: 'uint256', name: 'amountIn', type: 'uint256' },
                 { internalType: 'uint256', name: 'amountOutMin', type: 'uint256' },
@@ -255,10 +359,10 @@ export const init = async () => {
         }
     ];
 
-    erc20SharesContract = new web3.eth.Contract(erc20Abi, '0xb08CE509caFb6660E4F7b951Fbb8ae63930a6aEE');
-    erc20StaxContract = new web3.eth.Contract(erc20Abi, '0x1155605B148DEB0f649F9b815Fc18d956af7a93d');
+    erc20SharesContract = new web3.eth.Contract(erc20Abi, '0xDc696BF1cee0e0796d7612Af902476150a0bD654');
+    erc20StaxContract = new web3.eth.Contract(erc20Abi, '0x96Ada88505c3779dAB1Ae6E0073D21f7a4726D66');
     erc20BusdContract = new web3.eth.Contract(erc20Abi, '0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
-    erc20PancakeContract = new web3.eth.Contract(erc20Abi, '0xde2db97d54a3c3b008a097b2260633e6ca7db1af');
+    erc20PancakeContract = new web3.eth.Contract(erc20Abi, '0xDE2Db97D54a3c3B008a097B2260633E6cA7DB1AF');
     erc20PairContract = new web3.eth.Contract(erc20Abi, '0x73fd3bcff85d70f12717e539312998d108c07d61');
 
     isInitialized = true;
@@ -421,7 +525,7 @@ export const ggetTotalDividends = async () => {
     }
 
     return erc20BusdContract.methods
-        .balanceOf('0xb08ce509cafb6660e4f7b951fbb8ae63930a6aee')
+        .balanceOf('0xDc696BF1cee0e0796d7612Af902476150a0bD654')
         .call()
         .then((balance) => Web3.utils.fromWei(balance, 'ether'));
 };

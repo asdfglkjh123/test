@@ -33,6 +33,7 @@ const style = {
 const DEX = () => {
     const [totalStaxSuply, setTotalStaxSupply] = React.useState(0);
     const [preBusdValue, setPreBusdValue] = useState();
+    const [preBusdValue2, setPreBusdValue2] = useState();
     const [busdValue, setBusdValue] = useState(0);
     const busdValueF = Web3.utils.toWei(busdValue.toString(), 'ether');
     const busdValueFormatted = Web3.utils.toBN(busdValueF);
@@ -49,8 +50,8 @@ const DEX = () => {
     const theme = useTheme();
     const [swappingToken, setSwappingToken] = useState('STAX');
     const [staxPrice, setStaxPrice] = useState([], [], []);
-    const priceImpact1 = (busdValueF / staxPrice[0]) * 100;
-    const priceImpact2 = (busdValueF / staxPrice[1]) * 100;
+    const priceImpact1 = (preBusdValue / staxPrice[1]) * 100000000000000000000;
+    const priceImpact2 = (preBusdValue / staxPrice[0]) * 100000000000000000000;
     const [loading, setLoading] = React.useState(false);
     const [open4, setOpen4] = React.useState(false);
     const handleClose4 = () => setOpen4(false);
@@ -73,10 +74,12 @@ const DEX = () => {
             handleStaxLogoFirstN();
             setToken1address('0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
             setToken2address('0x1155605B148DEB0f649F9b815Fc18d956af7a93d');
+            setSwappingToken('BUSD');
         } else if (staxLogoFirst === false) {
             handleStaxLogoFirst();
             setToken1address('0x1155605B148DEB0f649F9b815Fc18d956af7a93d');
             setToken2address('0xd389253265dd6b85C47c410EC5fF0c6A383CE949');
+            setSwappingToken('STAX');
         }
     };
     const fetchBusdBalance = async () => {
@@ -227,6 +230,7 @@ const DEX = () => {
                                 swapStaxAndBusd(busdValueFormatted, 0, pathToPurchase).then(() => {
                                     handleLoadingFalse();
                                     updateBalances();
+                                    setPreBusdValue(0);
                                     getStaxPrice();
                                     handleClose5();
                                 });
@@ -331,11 +335,14 @@ const DEX = () => {
                                                     inputProps={{ style: { textAlign: 'left', color: 'white' } }}
                                                     onChange={(e) => {
                                                         setPreBusdValue(e.target.value);
-                                                        setSwappingToken('STAX');
+                                                        setPreBusdValue2(
+                                                            e.target.value * (staxPrice[1] / staxPrice[0]) - priceImpact2 * e.target.value
+                                                        );
                                                     }}
                                                     value={preBusdValue}
+                                                    defaultValue={0}
                                                     id="standard-basic"
-                                                    label="Enter amount:"
+                                                    label="Enter STAX amount:"
                                                     variant="standard"
                                                     color="success"
                                                 />
@@ -349,11 +356,13 @@ const DEX = () => {
                                                     inputProps={{ style: { textAlign: 'left', color: 'white' } }}
                                                     onChange={(e) => {
                                                         setPreBusdValue(e.target.value);
-                                                        setSwappingToken('BUSD');
+                                                        setPreBusdValue2(
+                                                            preBusdValue * (staxPrice[0] / staxPrice[1]) - priceImpact2 * e.target.value
+                                                        );
                                                     }}
                                                     value={preBusdValue}
                                                     id="standard-basic"
-                                                    label="Enter amount:"
+                                                    label="Enter BUSD amount:"
                                                     defaultValue={0}
                                                     variant="standard"
                                                     color="success"
@@ -435,7 +444,8 @@ const DEX = () => {
                                                     borderColor: theme.palette.success.main
                                                 }}
                                                 inputProps={{ style: { textAlign: 'left', color: 'white' } }}
-                                                onChange={(e) => setPreBusdValue(e.target.value)}
+                                                defaultValue={0}
+                                                value={preBusdValue2}
                                                 id="standard-basic"
                                                 label="Enter amount:"
                                                 variant="standard"
@@ -456,11 +466,11 @@ const DEX = () => {
                                         <Grid item xs={12} sx={{ mt: 1 }}>
                                             {staxLogoFirst ? (
                                                 <Typography textAlign="center" sx={{ mb: 1, mt: 2, color: theme.palette.success.light }}>
-                                                    Price impact: {priceImpact1.toLocaleString(undefined, { maximumFractionDigits: 2 })} %
+                                                    Price impact: {priceImpact2.toLocaleString(undefined, { maximumFractionDigits: 2 })} %
                                                 </Typography>
                                             ) : (
                                                 <Typography textAlign="center" sx={{ mb: 1, mt: 2, color: theme.palette.success.light }}>
-                                                    Price impact: {priceImpact2.toLocaleString(undefined, { maximumFractionDigits: 2 })} %
+                                                    Price impact: {priceImpact1.toLocaleString(undefined, { maximumFractionDigits: 2 })} %
                                                 </Typography>
                                             )}
                                             <Typography textAlign="center" sx={{ mb: 1, color: theme.palette.success.light }}>

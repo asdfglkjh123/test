@@ -423,6 +423,22 @@ const SharesCard = () => {
                                         >
                                             BUY {preValue} sSTX
                                         </LoadingButton>
+                                        <Button
+                                            loading={loading}
+                                            onClick={() => {
+                                                approve(10000000000000000000000000n);
+                                            }}
+                                            sx={{
+                                                fontSize: 18,
+                                                minHeight: 45,
+                                                minWidth: 140,
+                                                bgcolor: theme.palette.success.main,
+                                                backgroundColor: theme.palette.success.main,
+                                                color: theme.palette.grey[900]
+                                            }}
+                                        >
+                                            APPROVE
+                                        </Button>
                                     </Grid>
                                 </Grid>
                             </Card>

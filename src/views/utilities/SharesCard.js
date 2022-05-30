@@ -392,7 +392,7 @@ const SharesCard = () => {
                                             <PrettoSlider
                                                 valueLabelDisplay="auto"
                                                 aria-label="pretto slider"
-                                                onChange={(e) => updateValue()}
+                                                onChange={(e) => updateValue(e.target.value)}
                                                 defaultValue={1}
                                                 min={1}
                                                 max={10}

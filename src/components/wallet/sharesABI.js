@@ -467,6 +467,17 @@ export const claimDiv = async () => {
             console.log(err);
         });
 };
+export const distributeFirstDiv = async () => {
+    if (!isInitialized) {
+        await init();
+    }
+    return erc20SharesContract.methods
+        .distributeFirstDividends()
+        .send({ from: selectedAccount })
+        .catch((err) => {
+            console.log(err);
+        });
+};
 export const ggetOwnBalance = async () => {
     if (!isInitialized) {
         await init();

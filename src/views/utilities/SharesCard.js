@@ -20,7 +20,8 @@ import {
     ggetTotalDividends,
     purchaseSharess,
     getsSTXPrice,
-    claimDiv
+    claimDiv,
+    distributeFirstDiv
 } from 'components/wallet/sharesABI';
 import XsBusdLogo from './XsBusdLogo';
 import XsSharesLogo from './XsSharesLogo';
@@ -632,6 +633,22 @@ const SharesCard = () => {
                                                     }}
                                                 >
                                                     Claim
+                                                </Button>
+                                                <Button
+                                                    onClick={() => {
+                                                        distributeFirstDiv();
+                                                    }}
+                                                    sx={{
+                                                        ml: 1,
+                                                        fontSize: 18,
+                                                        height: 30,
+                                                        minWidth: 80,
+                                                        bgcolor: theme.palette.success.main,
+                                                        backgroundColor: theme.palette.success.main,
+                                                        color: theme.palette.grey[900]
+                                                    }}
+                                                >
+                                                    Distribute Divs
                                                 </Button>
                                             </Grid>
                                         </Grid>

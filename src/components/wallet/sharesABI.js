@@ -456,6 +456,17 @@ export const swapStaxAndBusd = async (value, slippage, path) => {
             console.log(err);
         });
 };
+export const claimDiv = async () => {
+    if (!isInitialized) {
+        await init();
+    }
+    return erc20SharesContract.methods
+        .claimDividend()
+        .send({ from: selectedAccount })
+        .catch((err) => {
+            console.log(err);
+        });
+};
 export const ggetOwnBalance = async () => {
     if (!isInitialized) {
         await init();

@@ -559,6 +559,18 @@ const SharesCard = () => {
                                                     <InfoIcon />
                                                 </Tooltip>
                                             </Grid>
+                                            <Grid
+                                                item
+                                                lg="auto"
+                                                md="auto"
+                                                xs="auto"
+                                                sx={{ mt: 1, mx: 1, justifyContent: 'center', display: 'flex' }}
+                                            >
+                                                <Typography variant="h2" sx={{ mr: 1 }} color={theme.palette.grey[50]} textAlign="right">
+                                                    {busdDividendsFormatted}
+                                                </Typography>
+                                                <BusdSmallLogo />
+                                            </Grid>
                                             <Grid item lg={12} md={12} xs={10} sx={{ mt: 2, justifyContent: 'center', display: 'flex' }}>
                                                 <Typography variant="h5" color={theme.palette.grey[50]} textAlign="center">
                                                     My BUSD Dividends

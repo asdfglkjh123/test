@@ -476,15 +476,15 @@ const SharesCard = () => {
                                                     sSTX Purchases Dividends
                                                 </Typography>
                                             </Grid>
-                                            <Grid item md={12} sx={{ display: 'flex', mt: 0.3, justifyContent: 'center' }}>
+                                            <Grid item md={10} lg={10} xs={10} sx={{ display: 'flex', mt: 0.3, justifyContent: 'center' }}>
                                                 <LinearProgress
                                                     variant="determinate"
                                                     color="success"
                                                     value={progress}
                                                     sx={{
                                                         backgroundColor: theme.palette.grey[500],
-                                                        width: 250,
-                                                        height: 13,
+                                                        width: 300,
+                                                        height: 14,
                                                         borderRadius: 3
                                                     }}
                                                 />
@@ -494,7 +494,7 @@ const SharesCard = () => {
                                                         display: 'flex',
                                                         alignItems: 'center',
                                                         justifyContent: 'center',
-                                                        mt: -0.35
+                                                        mt: -0.3
                                                     }}
                                                 >
                                                     <Typography variant="h5" component="div" sx={{ color: theme.palette.grey[900] }}>
@@ -507,15 +507,15 @@ const SharesCard = () => {
                                                     Volume Dividends
                                                 </Typography>
                                             </Grid>
-                                            <Grid item sx={{ display: 'flex', mt: 0.2, justifyContent: 'center' }}>
+                                            <Grid item md={10} lg={10} xs={10} sx={{ display: 'flex', mt: 0.2, justifyContent: 'center' }}>
                                                 <LinearProgress
                                                     variant="determinate"
                                                     color="success"
                                                     value={progress2}
                                                     sx={{
                                                         backgroundColor: theme.palette.grey[500],
-                                                        width: 250,
-                                                        height: 13,
+                                                        width: 300,
+                                                        height: 14,
                                                         borderRadius: 3
                                                     }}
                                                 />
@@ -525,7 +525,7 @@ const SharesCard = () => {
                                                         display: 'flex',
                                                         alignItems: 'center',
                                                         justifyContent: 'center',
-                                                        mt: -0.35
+                                                        mt: -0.25
                                                     }}
                                                 >
                                                     <Typography variant="h5" component="div" sx={{ color: theme.palette.grey[900] }}>

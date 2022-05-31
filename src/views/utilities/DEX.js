@@ -147,7 +147,7 @@ const DEX = () => {
             updateBalances();
         }
         load2();
-    }, [busdBalance, busdBalanceFinal, staxBalance, staxBalanceFinal]);
+    }, [busdBalance, busdBalanceFinal, staxBalance, staxBalanceFinal, preBusdValue, preBusdValue2]);
     return (
         <>
             <Modal
@@ -342,9 +342,7 @@ const DEX = () => {
                                                     inputProps={{ style: { textAlign: 'left', color: 'white' } }}
                                                     onChange={(e) => {
                                                         setPreBusdValue(e.target.value);
-                                                        setPreBusdValue2(
-                                                            e.target.value * (staxPrice[1] / staxPrice[0]) - priceImpact2 * e.target.value
-                                                        );
+                                                        setPreBusdValue2(e.target.value * (staxPrice[1] / staxPrice[0]));
                                                     }}
                                                     value={preBusdValue}
                                                     defaultValue={0}
@@ -363,9 +361,7 @@ const DEX = () => {
                                                     inputProps={{ style: { textAlign: 'left', color: 'white' } }}
                                                     onChange={(e) => {
                                                         setPreBusdValue(e.target.value);
-                                                        setPreBusdValue2(
-                                                            preBusdValue * (staxPrice[0] / staxPrice[1]) - priceImpact2 * e.target.value
-                                                        );
+                                                        setPreBusdValue2(e.target.value * (staxPrice[0] / staxPrice[1]));
                                                     }}
                                                     value={preBusdValue}
                                                     id="standard-basic"
@@ -452,11 +448,31 @@ const DEX = () => {
                                                 }}
                                                 inputProps={{ style: { textAlign: 'left', color: 'white' } }}
                                                 defaultValue={0}
+                                                value={preBusdValue2}
                                                 id="standard-basic"
                                                 label="Enter amount:"
                                                 variant="standard"
                                                 color="success"
                                             />
+                                            {staxLogoFirst ? (
+                                                <Button
+                                                    variant="text"
+                                                    onClick={() => setPreBusdValue2(busdBalance)}
+                                                    size="small"
+                                                    sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
+                                                >
+                                                    Max
+                                                </Button>
+                                            ) : (
+                                                <Button
+                                                    variant="text"
+                                                    onClick={() => setPreBusdValue2(staxBalance)}
+                                                    size="small"
+                                                    sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
+                                                >
+                                                    Max
+                                                </Button>
+                                            )}
                                         </Grid>
                                         {staxLogoFirst ? (
                                             <Grid item container xs={12} sx={{ display: 'flex', justifyContent: 'center', mt: 0.5 }}>

@@ -26,7 +26,7 @@ const utilities = {
             id: 'default',
             title: 'Home',
             type: 'item',
-            url: '/home',
+            url: '/',
             icon: icons.HomeIcon,
             breadcrumbs: false
         },

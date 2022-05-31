@@ -26,7 +26,7 @@ const MainRoutes = {
             element: <Dashboard />
         },
         {
-            path: '/home',
+            path: '/',
             element: <Dashboard />
         },
         {

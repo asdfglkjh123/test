@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { injected } from './connectors';
 import { useWeb3React } from '@web3-react/core';
+import Loading from 'layout/MainLayout/Loading';
 
 function MetamaskProvider({ children }) {
     const { active: networkActive, error: networkError, activate: activateNetwork } = useWeb3React();
@@ -21,7 +22,11 @@ function MetamaskProvider({ children }) {
     if (loaded) {
         return children;
     }
-    return <>Loading</>;
+    return (
+        <>
+            <Loading />
+        </>
+    );
 }
 
 export default MetamaskProvider;

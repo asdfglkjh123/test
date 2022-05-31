@@ -32,7 +32,7 @@ const ProfileSection = () => {
     const theme = useTheme();
     const customization = useSelector((state) => state.customization);
     const [open, setOpen] = useState(false);
-    const { active, account, deactivate } = useWeb3React();
+    const { active: networkActive, account, activate: networkActivate, deactivate } = useWeb3React();
     /**
      * anchorRef is used on different componets and specifying one type leads to other components throwing an error
      * */
@@ -68,7 +68,7 @@ const ProfileSection = () => {
 
     return (
         <div>
-            {active ? (
+            {networkActive ? (
                 <div>
                     <Chip
                         sx={{

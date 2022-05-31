@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import SharesCard from './SharesCard';
 // project imports
-import SSTXCard from './SharesCard';
 // ==============================|| TYPOGRAPHY ||============================== //
 
 const Typography = () => {
@@ -9,7 +9,7 @@ const Typography = () => {
     return (
         <Grid container sx={{ justifyContent: 'center', display: 'flex' }}>
             <Grid item lg={12}>
-                <SSTXCard />
+                <SharesCard />
             </Grid>
         </Grid>
     );

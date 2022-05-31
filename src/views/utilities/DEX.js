@@ -2,7 +2,6 @@
 import { useTheme } from '@mui/material/styles';
 import { Button, Box, Card, CardContent, TextField, Grid, Typography, Modal, IconButton } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
-import DoneIcon from '@mui/icons-material/Done';
 import Web3 from 'web3';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';

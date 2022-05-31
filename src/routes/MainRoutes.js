@@ -5,14 +5,13 @@ import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 
 // dashboard routing
-const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
+const Dashboard = Loadable(lazy(() => import('views/dashboard/Default')));
 
 // utilities routing
-const UtilsTypography = Loadable(lazy(() => import('views/utilities/Typography')));
-const UtilsColor = Loadable(lazy(() => import('views/utilities/Color')));
-const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
-const UtilsMaterialIcons = Loadable(lazy(() => import('views/utilities/MaterialIcons')));
-const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons')));
+const Stake = Loadable(lazy(() => import('views/utilities/Stake')));
+const Shares = Loadable(lazy(() => import('views/utilities/Shares')));
+const Stats = Loadable(lazy(() => import('views/utilities/Stats')));
+const DEX = Loadable(lazy(() => import('views/utilities/DEX')));
 
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
@@ -24,27 +23,27 @@ const MainRoutes = {
     children: [
         {
             path: '/',
-            element: <DashboardDefault />
+            element: <Dashboard />
         },
         {
             path: '/home',
-            element: <DashboardDefault />
+            element: <Dashboard />
         },
         {
             path: '/stake',
-            element: <UtilsTypography />
+            element: <Stake />
         },
         {
             path: '/shares',
-            element: <UtilsColor />
+            element: <Shares />
         },
         {
             path: '/stats',
-            element: <UtilsShadow />
+            element: <Stats />
         },
         {
             path: '/dex',
-            element: <UtilsTablerIcons />
+            element: <DEX />
         },
         {
             path: '/sample-page',

@@ -5,7 +5,7 @@ import { gridSpacing } from 'store/constant';
 import StakingCard from './StakingCard';
 // ==============================|| TYPOGRAPHY ||============================== //
 
-const Typography = () => {
+const Stake = () => {
     useTheme();
     return (
         <Grid container spacing={gridSpacing}>
@@ -16,4 +16,4 @@ const Typography = () => {
     );
 };
 
-export default Typography;
+export default Stake;

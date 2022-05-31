@@ -484,7 +484,7 @@ const SharesCard = () => {
                                                     sx={{
                                                         backgroundColor: theme.palette.grey[500],
                                                         width: 300,
-                                                        height: 14,
+                                                        height: 15,
                                                         borderRadius: 3
                                                     }}
                                                 />
@@ -494,7 +494,7 @@ const SharesCard = () => {
                                                         display: 'flex',
                                                         alignItems: 'center',
                                                         justifyContent: 'center',
-                                                        mt: -0.3
+                                                        mt: -0.2
                                                     }}
                                                 >
                                                     <Typography variant="h5" component="div" sx={{ color: theme.palette.grey[900] }}>
@@ -515,7 +515,7 @@ const SharesCard = () => {
                                                     sx={{
                                                         backgroundColor: theme.palette.grey[500],
                                                         width: 300,
-                                                        height: 14,
+                                                        height: 15,
                                                         borderRadius: 3
                                                     }}
                                                 />
@@ -525,7 +525,7 @@ const SharesCard = () => {
                                                         display: 'flex',
                                                         alignItems: 'center',
                                                         justifyContent: 'center',
-                                                        mt: -0.25
+                                                        mt: -0.2
                                                     }}
                                                 >
                                                     <Typography variant="h5" component="div" sx={{ color: theme.palette.grey[900] }}>

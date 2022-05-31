@@ -440,20 +440,45 @@ const DEX = () => {
                                             <Grid item sx={{ display: 'flex', justifyContent: 'center', mt: 1.5, mr: 1, ml: 1 }}>
                                                 {staxLogoFirst ? <BusdSmallLogo /> : <SmallStaxLogo />}
                                             </Grid>
-                                            <TextField
-                                                fullWidth
-                                                sx={{
-                                                    display: 'flex',
-                                                    borderColor: theme.palette.success.main
-                                                }}
-                                                inputProps={{ style: { textAlign: 'left', color: 'white' } }}
-                                                defaultValue={0}
-                                                value={preBusdValue2}
-                                                id="standard-basic"
-                                                label="Enter amount:"
-                                                variant="standard"
-                                                color="success"
-                                            />
+                                            {staxLogoFirst ? (
+                                                <TextField
+                                                    fullWidth
+                                                    sx={{
+                                                        display: 'flex',
+                                                        borderColor: theme.palette.success.main
+                                                    }}
+                                                    inputProps={{ style: { textAlign: 'left', color: 'white' } }}
+                                                    onChange={(e) => {
+                                                        setPreBusdValue2(e.target.value);
+                                                        setPreBusdValue(e.target.value * (staxPrice[0] / staxPrice[1]));
+                                                    }}
+                                                    value={preBusdValue2}
+                                                    defaultValue={0}
+                                                    id="standard-basic"
+                                                    label="Enter STAX amount:"
+                                                    variant="standard"
+                                                    color="success"
+                                                />
+                                            ) : (
+                                                <TextField
+                                                    fullWidth
+                                                    sx={{
+                                                        display: 'flex',
+                                                        borderColor: theme.palette.success.main
+                                                    }}
+                                                    inputProps={{ style: { textAlign: 'left', color: 'white' } }}
+                                                    onChange={(e) => {
+                                                        setPreBusdValue2(e.target.value);
+                                                        setPreBusdValue(e.target.value * (staxPrice[1] / staxPrice[0]));
+                                                    }}
+                                                    value={preBusdValue2}
+                                                    id="standard-basic"
+                                                    label="Enter BUSD amount:"
+                                                    defaultValue={0}
+                                                    variant="standard"
+                                                    color="success"
+                                                />
+                                            )}
                                             {staxLogoFirst ? (
                                                 <Button
                                                     variant="text"

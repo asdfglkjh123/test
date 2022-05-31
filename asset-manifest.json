@@ -7,10 +7,10 @@
     "static/js/2.caf8c64e.chunk.js": "/test/static/js/2.caf8c64e.chunk.js",
     "static/js/2.caf8c64e.chunk.js.map": "/test/static/js/2.caf8c64e.chunk.js.map",
     "main.css": "/test/static/css/main.18152fb5.chunk.css",
-    "main.js": "/test/static/js/main.5becd480.chunk.js",
-    "main.js.map": "/test/static/js/main.5becd480.chunk.js.map",
-    "runtime-main.js": "/test/static/js/runtime-main.c8cbeb2b.js",
-    "runtime-main.js.map": "/test/static/js/runtime-main.c8cbeb2b.js.map",
+    "main.js": "/test/static/js/main.48ebbba3.chunk.js",
+    "main.js.map": "/test/static/js/main.48ebbba3.chunk.js.map",
+    "runtime-main.js": "/test/static/js/runtime-main.22023e7c.js",
+    "runtime-main.js.map": "/test/static/js/runtime-main.22023e7c.js.map",
     "static/css/5.03ebe89f.chunk.css": "/test/static/css/5.03ebe89f.chunk.css",
     "static/js/5.7662705f.chunk.js": "/test/static/js/5.7662705f.chunk.js",
     "static/js/5.7662705f.chunk.js.map": "/test/static/js/5.7662705f.chunk.js.map",
@@ -20,8 +20,8 @@
     "static/js/7.7fdc2f28.chunk.js.map": "/test/static/js/7.7fdc2f28.chunk.js.map",
     "static/js/8.07ed9b6e.chunk.js": "/test/static/js/8.07ed9b6e.chunk.js",
     "static/js/8.07ed9b6e.chunk.js.map": "/test/static/js/8.07ed9b6e.chunk.js.map",
-    "static/js/9.00718735.chunk.js": "/test/static/js/9.00718735.chunk.js",
-    "static/js/9.00718735.chunk.js.map": "/test/static/js/9.00718735.chunk.js.map",
+    "static/js/9.61665084.chunk.js": "/test/static/js/9.61665084.chunk.js",
+    "static/js/9.61665084.chunk.js.map": "/test/static/js/9.61665084.chunk.js.map",
     "static/js/10.345efd68.chunk.js": "/test/static/js/10.345efd68.chunk.js",
     "static/js/10.345efd68.chunk.js.map": "/test/static/js/10.345efd68.chunk.js.map",
     "static/js/11.99d7eef7.chunk.js": "/test/static/js/11.99d7eef7.chunk.js",
@@ -48,10 +48,10 @@
     "static/media/telegramlogo.133c0bae.png": "/test/static/media/telegramlogo.133c0bae.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.c8cbeb2b.js",
+    "static/js/runtime-main.22023e7c.js",
     "static/css/5.03ebe89f.chunk.css",
     "static/js/5.7662705f.chunk.js",
     "static/css/main.18152fb5.chunk.css",
-    "static/js/main.5becd480.chunk.js"
+    "static/js/main.48ebbba3.chunk.js"
   ]
 }

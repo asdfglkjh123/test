@@ -483,7 +483,7 @@ const SharesCard = () => {
                                                     value={progress}
                                                     sx={{
                                                         backgroundColor: theme.palette.grey[500],
-                                                        width: 300,
+                                                        width: 250,
                                                         height: 13,
                                                         borderRadius: 3
                                                     }}
@@ -514,7 +514,7 @@ const SharesCard = () => {
                                                     value={progress2}
                                                     sx={{
                                                         backgroundColor: theme.palette.grey[500],
-                                                        width: 300,
+                                                        width: 250,
                                                         height: 13,
                                                         borderRadius: 3
                                                     }}

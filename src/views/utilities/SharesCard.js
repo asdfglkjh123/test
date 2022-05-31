@@ -482,6 +482,7 @@ const SharesCard = () => {
                                                     mb: 0.5,
                                                     border: 1,
                                                     borderRadius: 1,
+                                                    borderColor: theme.palette.success.main,
                                                     justifyContent: 'center',
                                                     display: 'flex'
                                                 }}
@@ -490,7 +491,7 @@ const SharesCard = () => {
                                                     letterSpacing={4}
                                                     variant="h4"
                                                     component="div"
-                                                    sx={{ color: theme.palette.grey[50] }}
+                                                    sx={{ color: theme.palette.success.main }}
                                                 >
                                                     16:32:05
                                                 </Typography>

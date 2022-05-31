@@ -7,6 +7,7 @@ import Web3 from 'web3';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import SharesSTAXChart from './SharesSTAXChart';
+import Blink from 'react-blink-text';
 import BusdLogo from './busdlogo';
 import React, { useState, useEffect } from 'react';
 import InfoIcon from '@mui/icons-material/Info';
@@ -475,17 +476,39 @@ const SharesCard = () => {
                                                 item
                                                 lg={5}
                                                 md={2.5}
-                                                xs={8}
+                                                xs={5}
                                                 sx={{
                                                     mt: 4,
+                                                    mb: 0.5,
+                                                    border: 1,
+                                                    borderRadius: 1,
+                                                    justifyContent: 'center',
+                                                    display: 'flex'
+                                                }}
+                                            >
+                                                <Typography
+                                                    letterSpacing={4}
+                                                    variant="h4"
+                                                    component="div"
+                                                    sx={{ color: theme.palette.grey[50] }}
+                                                >
+                                                    16:32:05
+                                                </Typography>
+                                            </Grid>
+                                            <Grid
+                                                item
+                                                lg={5}
+                                                md={2.5}
+                                                xs={8}
+                                                sx={{
                                                     mb: 1,
                                                     justifyContent: 'center',
                                                     display: 'flex'
                                                 }}
                                             >
-                                                <Typography variant="h5" component="div" sx={{ color: theme.palette.grey[50] }}>
-                                                    16:32:05 until Dividends #2
-                                                </Typography>
+                                                <Blink color={theme.palette.success.main} fontSize={15} text="until Dividends #2">
+                                                    until Dividends #2
+                                                </Blink>
                                             </Grid>
                                             <Grid item xs={12} sx={{ ml: 0.5, mt: 3.3, display: 'flex', justifyContent: 'center' }}>
                                                 <Typography variant="h5" textAllign="center" color={theme.palette.grey[50]}>

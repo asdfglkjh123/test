@@ -1,6 +1,6 @@
 // material-ui
 import { useTheme, styled } from '@mui/material/styles';
-import { Button, Box, Card, CardContent, Tooltip, Grid, Typography, Modal, LinearProgress, CircularProgress } from '@mui/material';
+import { Button, Box, Card, CardContent, Tooltip, Grid, Typography, LinearProgress, Divider } from '@mui/material';
 import Slider from '@mui/material/Slider';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Web3 from 'web3';
@@ -468,7 +468,23 @@ const SharesCard = () => {
                                             </Grid>
                                             <Grid item lg="auto" xs="auto" md="auto" sm="auto" sx={{ ml: 0.5, mt: 3.3 }}>
                                                 <Typography variant="h2" color={theme.palette.success.main}>
-                                                    Dividends
+                                                    Dividends #1
+                                                </Typography>
+                                            </Grid>
+                                            <Grid
+                                                item
+                                                lg={5}
+                                                md={2.5}
+                                                xs={8}
+                                                sx={{
+                                                    mt: 4,
+                                                    mb: 1,
+                                                    justifyContent: 'center',
+                                                    display: 'flex'
+                                                }}
+                                            >
+                                                <Typography variant="h5" component="div" sx={{ color: theme.palette.grey[50] }}>
+                                                    16:32:05 until Dividends #2
                                                 </Typography>
                                             </Grid>
                                             <Grid item xs={12} sx={{ ml: 0.5, mt: 3.3, display: 'flex', justifyContent: 'center' }}>
@@ -511,7 +527,7 @@ const SharesCard = () => {
                                                 <LinearProgress
                                                     variant="determinate"
                                                     color="success"
-                                                    value={progress2}
+                                                    value={progress}
                                                     sx={{
                                                         backgroundColor: theme.palette.grey[500],
                                                         width: 300,
@@ -529,13 +545,30 @@ const SharesCard = () => {
                                                     }}
                                                 >
                                                     <Typography variant="h5" component="div" sx={{ color: theme.palette.grey[900] }}>
-                                                        12:33:56
+                                                        {1000 - totalsharesSupply} to be sold until dividends activation.
                                                     </Typography>
                                                 </Box>
                                             </Grid>
-                                            <Grid item lg={12} md={12} xs={10} sx={{ mt: 2, justifyContent: 'center', display: 'flex' }}>
+                                            <Grid
+                                                item
+                                                lg={5}
+                                                md={2.5}
+                                                xs={8}
+                                                sx={{
+                                                    mt: 4,
+                                                    justifyContent: 'center',
+                                                    borderBottom: 2,
+                                                    borderColor: theme.palette.success.main,
+                                                    display: 'flex'
+                                                }}
+                                            >
+                                                <Typography variant="h5" component="div" sx={{ mb: 0.8, color: theme.palette.grey[50] }}>
+                                                    sSTX Purchases Dividends
+                                                </Typography>
+                                            </Grid>
+                                            <Grid item lg={12} md={12} xs={10} sx={{ mt: 1, justifyContent: 'center', display: 'flex' }}>
                                                 <Typography variant="h5" color={theme.palette.grey[50]} textAlign="center">
-                                                    Current Total Dividends
+                                                    Pending Dividends
                                                 </Typography>
                                                 <Tooltip
                                                     sx={{ height: 18, color: theme.palette.success.main }}
@@ -562,16 +595,78 @@ const SharesCard = () => {
                                                 </Typography>
                                                 <XsBusdLogo />
                                             </Grid>
-                                            <Grid item lg={12} md={12} xs={10} sx={{ mt: 2, justifyContent: 'center', display: 'flex' }}>
+                                            <Grid item lg={12} md={12} xs={10} sx={{ mt: 1, justifyContent: 'center', display: 'flex' }}>
                                                 <Typography variant="h5" color={theme.palette.grey[50]} textAlign="center">
-                                                    All Time Dividends:
+                                                    My Dividends: {(busdDividends * myShareRateFormatted) / 100}
                                                 </Typography>
-                                                <Typography variant="h5" sx={{ ml: 1 }} color={theme.palette.grey[50]} textAlign="right">
-                                                    233,760
+                                                <XsBusdLogo />
+                                                <Button
+                                                    onClick={() => {
+                                                        claimDiv();
+                                                    }}
+                                                    sx={{
+                                                        ml: 1,
+                                                        fontSize: 15,
+                                                        height: 20,
+                                                        minWidth: 65,
+                                                        bgcolor: theme.palette.success.main,
+                                                        backgroundColor: theme.palette.success.main,
+                                                        color: theme.palette.grey[900]
+                                                    }}
+                                                >
+                                                    Claim
+                                                </Button>
+                                            </Grid>
+                                            <Grid
+                                                item
+                                                lg={5}
+                                                md={2.5}
+                                                xs={8}
+                                                sx={{
+                                                    justifyContent: 'center',
+                                                    borderBottom: 2,
+                                                    borderColor: theme.palette.success.main,
+                                                    display: 'flex'
+                                                }}
+                                            >
+                                                <Typography
+                                                    variant="h5"
+                                                    component="div"
+                                                    sx={{ mb: 0.8, mt: 3, color: theme.palette.grey[50] }}
+                                                >
+                                                    STAX Volume Dividends
+                                                </Typography>
+                                            </Grid>
+                                            <Grid item lg={12} md={12} xs={10} sx={{ mt: 1, justifyContent: 'center', display: 'flex' }}>
+                                                <Typography variant="h5" color={theme.palette.grey[50]} textAlign="center">
+                                                    Collected Dividends
+                                                </Typography>
+                                                <Tooltip
+                                                    sx={{ height: 18, color: theme.palette.success.main }}
+                                                    title={
+                                                        <Typography
+                                                            sx={{
+                                                                color: theme.palette.success.main
+                                                            }}
+                                                        >
+                                                            80% of the BUSD used for sSTX purchases is collected in the smart contract. When
+                                                            all sSTX are sold, those BUSD dividends are distributed to all sSTX holders in a
+                                                            direct propotion. Afterwards, all BUSD dividends will be distributed every 24
+                                                            hours.
+                                                        </Typography>
+                                                    }
+                                                >
+                                                    <InfoIcon />
+                                                </Tooltip>
+                                                <Typography variant="h5" sx={{ mr: 1 }} color={theme.palette.grey[50]} textAlign="right">
+                                                    :
+                                                </Typography>
+                                                <Typography variant="h5" color={theme.palette.grey[50]} textAlign="right">
+                                                    {busdDividendsFormatted}
                                                 </Typography>
                                                 <XsBusdLogo />
                                             </Grid>
-                                            <Grid item lg={12} md={12} xs={10} sx={{ mt: 2, justifyContent: 'center', display: 'flex' }}>
+                                            <Grid item lg={12} md={12} xs={10} sx={{ mt: 1, justifyContent: 'center', display: 'flex' }}>
                                                 <Typography variant="h5" color={theme.palette.grey[50]} textAlign="center">
                                                     My Dividends
                                                 </Typography>

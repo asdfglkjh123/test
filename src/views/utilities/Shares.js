@@ -4,7 +4,7 @@ import SharesCard from './SharesCard';
 // project imports
 // ==============================|| TYPOGRAPHY ||============================== //
 
-const Typography = () => {
+const Shares = () => {
     useTheme();
     return (
         <Grid container sx={{ justifyContent: 'center', display: 'flex' }}>
@@ -15,4 +15,4 @@ const Typography = () => {
     );
 };
 
-export default Typography;
+export default Shares;

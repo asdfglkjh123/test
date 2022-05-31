@@ -20,6 +20,7 @@ const utilities = {
     id: 'utilities',
     title: 'Ecosystem',
     type: 'group',
+    url: '/test',
     children: [
         {
             id: 'default',

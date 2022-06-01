@@ -41,7 +41,6 @@ const DEX = () => {
     const [totalStaxSuply, setTotalStaxSupply] = React.useState(0);
     const [preBusdValue, setPreBusdValue] = useState();
     const [preBusdValue2, setPreBusdValue2] = useState();
-    const [minAmountValue, setMinAmountValue] = useState(0);
     const [busdValue, setBusdValue] = useState(0);
     const busdValueF = Web3.utils.toWei(busdValue.toString(), 'ether');
     const busdValueFormatted = Web3.utils.toBN(busdValueF);
@@ -113,12 +112,6 @@ const DEX = () => {
     const pathToPurchase = [token1address, token2address];
     const [slippage, setSlippage] = useState(6);
     const [slippageF, setSlippageF] = useState();
-    const minAmount = (amount) => {
-        const amountPre = amount - (slippage / 100) * amount;
-        const amountF = Web3.utils.toWei(amountPre.toString(), 'ether');
-        const amountMin = Web3.utils.toBN(amountF);
-        setMinAmountValue(amountMin);
-    };
     const handleSwap = () => {
         if (staxLogoFirst === true) {
             handleStaxLogoFirstN();
@@ -277,7 +270,7 @@ const DEX = () => {
                     <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Button
                             onClick={() => {
-                                swapStaxAndBusd(busdValueFormatted, minAmountValue, pathToPurchase).then(() => {
+                                swapStaxAndBusd(busdValueFormatted, 0, pathToPurchase).then(() => {
                                     handleLoadingFalse();
                                     updateBalances();
                                     setPreBusdValue(0);
@@ -584,7 +577,6 @@ const DEX = () => {
                                                     loading={loading}
                                                     onClick={() => {
                                                         setBusdValue(preBusdValue);
-                                                        minAmount(preBusdValue);
                                                         handleLoadingTrue();
                                                         updateBalances();
                                                         handleOpen5();

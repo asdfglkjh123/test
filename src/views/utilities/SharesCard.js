@@ -21,7 +21,8 @@ import {
     purchaseSharess,
     getsSTXPrice,
     claimDiv,
-    distributeFirstDiv
+    distributeFirstDiv,
+    getCountdown
 } from 'components/wallet/sharesABI';
 import XsBusdLogo from './XsBusdLogo';
 import XsSharesLogo from './XsSharesLogo';
@@ -97,6 +98,7 @@ const SharesCard = () => {
         setPreValue(newValue);
     };
     const [open, setOpen] = React.useState(false);
+    const [countdown, setCountdown] = useState(0);
     const [loading, setLoading] = React.useState(false);
     const handleLoadingTrue = () => setLoading(true);
     const handleLoadingFalse = () => setLoading(false);

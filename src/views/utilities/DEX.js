@@ -41,6 +41,7 @@ const DEX = () => {
     const [totalStaxSuply, setTotalStaxSupply] = React.useState(0);
     const [preBusdValue, setPreBusdValue] = useState();
     const [preBusdValue2, setPreBusdValue2] = useState();
+    const [minAmountValue, setMinAmountValue] = useState(0);
     const [busdValue, setBusdValue] = useState(0);
     const busdValueF = Web3.utils.toWei(busdValue.toString(), 'ether');
     const busdValueFormatted = Web3.utils.toBN(busdValueF);
@@ -48,11 +49,11 @@ const DEX = () => {
     const BigNumber = require('bignumber.js');
     const [busdBalance, setBusdBalance] = React.useState();
     const busdBalanceNumber = new BigNumber(busdBalance);
-    const busdBalanceFormat = busdBalanceNumber.decimalPlaces(2);
+    const busdBalanceFormat = busdBalanceNumber.decimalPlaces(4);
     const busdBalanceFinal = busdBalanceFormat.toLocaleString(undefined);
     const [staxBalance, setStaxBalance] = React.useState();
     const staxBalanceNumber = new BigNumber(staxBalance);
-    const staxBalanceFormat = staxBalanceNumber.decimalPlaces(2);
+    const staxBalanceFormat = staxBalanceNumber.decimalPlaces(4);
     const staxBalanceFinal = staxBalanceFormat.toLocaleString(undefined);
     const theme = useTheme();
     const [swappingToken, setSwappingToken] = useState('STAX');
@@ -60,6 +61,42 @@ const DEX = () => {
     const priceImpact1 = (preBusdValue / staxPrice[1]) * 100000000000000000000;
     const priceImpact2 = (preBusdValue / staxPrice[0]) * 100000000000000000000;
     const [loading, setLoading] = React.useState(false);
+    const format = (number) => {
+        const constantProduct = Number(((staxPrice[1] / 1000000000000000000) * staxPrice[0]) / 1000000000000000000);
+        const oldBUSD = Number(staxPrice[1] / 1000000000000000000);
+        const newBUSD = oldBUSD + number;
+        const oldSTAX = Number(staxPrice[0] / 1000000000000000000);
+        const newSTAX = constantProduct / newBUSD;
+        const final = oldSTAX - newSTAX;
+        setPreBusdValue2(final);
+    };
+    const format2 = (number) => {
+        const constantProduct = Number(((staxPrice[1] / 1000000000000000000) * staxPrice[0]) / 1000000000000000000);
+        const oldSTAX = Number(staxPrice[0] / 1000000000000000000);
+        const newSTAX = oldSTAX + number;
+        const oldBUSD = Number(staxPrice[1] / 1000000000000000000);
+        const newBUSD = constantProduct / newSTAX;
+        const final = oldBUSD - newBUSD;
+        setPreBusdValue2(final);
+    };
+    const format3 = (number) => {
+        const constantProduct = Number(((staxPrice[1] / 1000000000000000000) * staxPrice[0]) / 1000000000000000000);
+        const oldBUSD = Number(staxPrice[1] / 1000000000000000000);
+        const newBUSD = oldBUSD + number;
+        const oldSTAX = Number(staxPrice[0] / 1000000000000000000);
+        const newSTAX = constantProduct / newBUSD;
+        const final = oldSTAX - newSTAX;
+        setPreBusdValue(final);
+    };
+    const format4 = (number) => {
+        const constantProduct = Number(((staxPrice[1] / 1000000000000000000) * staxPrice[0]) / 1000000000000000000);
+        const oldSTAX = Number(staxPrice[0] / 1000000000000000000);
+        const newSTAX = oldSTAX + number;
+        const oldBUSD = Number(staxPrice[1] / 1000000000000000000);
+        const newBUSD = constantProduct / newSTAX;
+        const final = oldBUSD - newBUSD;
+        setPreBusdValue(final);
+    };
     const [open4, setOpen4] = React.useState(false);
     const handleClose4 = () => setOpen4(false);
     const handleOpen4 = () => setOpen4(true);
@@ -76,6 +113,12 @@ const DEX = () => {
     const pathToPurchase = [token1address, token2address];
     const [slippage, setSlippage] = useState(6);
     const [slippageF, setSlippageF] = useState();
+    const minAmount = (amount) => {
+        const amountPre = amount - (slippage / 100) * amount;
+        const amountF = Web3.utils.toWei(amountPre.toString(), 'ether');
+        const amountMin = Web3.utils.toBN(amountF);
+        setMinAmountValue(amountMin);
+    };
     const handleSwap = () => {
         if (staxLogoFirst === true) {
             handleStaxLogoFirstN();
@@ -234,10 +277,11 @@ const DEX = () => {
                     <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Button
                             onClick={() => {
-                                swapStaxAndBusd(busdValueFormatted, 0, pathToPurchase).then(() => {
+                                swapStaxAndBusd(busdValueFormatted, minAmountValue, pathToPurchase).then(() => {
                                     handleLoadingFalse();
                                     updateBalances();
                                     setPreBusdValue(0);
+                                    setPreBusdValue2(0);
                                     getStaxPrice();
                                     handleClose5();
                                 });
@@ -342,7 +386,7 @@ const DEX = () => {
                                                     inputProps={{ style: { textAlign: 'left', color: 'white' } }}
                                                     onChange={(e) => {
                                                         setPreBusdValue(e.target.value);
-                                                        setPreBusdValue2(e.target.value * (staxPrice[1] / staxPrice[0]));
+                                                        format2(Number(e.target.value));
                                                     }}
                                                     value={preBusdValue}
                                                     defaultValue={0}
@@ -361,7 +405,7 @@ const DEX = () => {
                                                     inputProps={{ style: { textAlign: 'left', color: 'white' } }}
                                                     onChange={(e) => {
                                                         setPreBusdValue(e.target.value);
-                                                        setPreBusdValue2(e.target.value * (staxPrice[0] / staxPrice[1]));
+                                                        format(Number(e.target.value));
                                                     }}
                                                     value={preBusdValue}
                                                     id="standard-basic"
@@ -374,7 +418,10 @@ const DEX = () => {
                                             {staxLogoFirst ? (
                                                 <Button
                                                     variant="text"
-                                                    onClick={() => setPreBusdValue(staxBalance)}
+                                                    onClick={() => {
+                                                        setPreBusdValue(staxBalance);
+                                                        format2(Number(staxBalance));
+                                                    }}
                                                     size="small"
                                                     sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
                                                 >
@@ -383,7 +430,10 @@ const DEX = () => {
                                             ) : (
                                                 <Button
                                                     variant="text"
-                                                    onClick={() => setPreBusdValue(busdBalance)}
+                                                    onClick={() => {
+                                                        setPreBusdValue(busdBalance);
+                                                        format(Number(busdBalance));
+                                                    }}
                                                     size="small"
                                                     sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
                                                 >
@@ -450,12 +500,12 @@ const DEX = () => {
                                                     inputProps={{ style: { textAlign: 'left', color: 'white' } }}
                                                     onChange={(e) => {
                                                         setPreBusdValue2(e.target.value);
-                                                        setPreBusdValue(e.target.value * (staxPrice[0] / staxPrice[1]));
+                                                        format3(Number(e.target.value));
                                                     }}
                                                     value={preBusdValue2}
                                                     defaultValue={0}
                                                     id="standard-basic"
-                                                    label="Enter STAX amount:"
+                                                    label="Enter BUSD amount:"
                                                     variant="standard"
                                                     color="success"
                                                 />
@@ -469,11 +519,11 @@ const DEX = () => {
                                                     inputProps={{ style: { textAlign: 'left', color: 'white' } }}
                                                     onChange={(e) => {
                                                         setPreBusdValue2(e.target.value);
-                                                        setPreBusdValue(e.target.value * (staxPrice[1] / staxPrice[0]));
+                                                        format4(Number(e.target.value));
                                                     }}
                                                     value={preBusdValue2}
                                                     id="standard-basic"
-                                                    label="Enter BUSD amount:"
+                                                    label="Enter STAX amount:"
                                                     defaultValue={0}
                                                     variant="standard"
                                                     color="success"
@@ -482,7 +532,10 @@ const DEX = () => {
                                             {staxLogoFirst ? (
                                                 <Button
                                                     variant="text"
-                                                    onClick={() => setPreBusdValue2(busdBalance)}
+                                                    onClick={() => {
+                                                        setPreBusdValue2(busdBalance);
+                                                        format3(Number(busdBalance));
+                                                    }}
                                                     size="small"
                                                     sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
                                                 >
@@ -491,7 +544,10 @@ const DEX = () => {
                                             ) : (
                                                 <Button
                                                     variant="text"
-                                                    onClick={() => setPreBusdValue2(staxBalance)}
+                                                    onClick={() => {
+                                                        setPreBusdValue2(staxBalance);
+                                                        format4(Number(staxBalance));
+                                                    }}
                                                     size="small"
                                                     sx={{ color: theme.palette.success.main, borderColor: theme.palette.success.main }}
                                                 >
@@ -528,6 +584,7 @@ const DEX = () => {
                                                     loading={loading}
                                                     onClick={() => {
                                                         setBusdValue(preBusdValue);
+                                                        minAmount(preBusdValue);
                                                         handleLoadingTrue();
                                                         updateBalances();
                                                         handleOpen5();

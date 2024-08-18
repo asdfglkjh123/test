@@ -10,6 +10,7 @@ import 'assets/scss/style.scss';
 import MetamaskProvider from 'components/wallet/MetamaskProvider';
 import { store } from 'store';
 import { Provider } from 'react-redux';
+import Loadable from 'ui-component/Loadable';
 
 // ==============================|| REACT DOM RENDER  ||============================== //
 
@@ -22,7 +23,10 @@ ReactDOM.render(
         <Provider store={store}>
             <BrowserRouter>
                 <MetamaskProvider>
-                    <App />
+                    <>
+                        <Loadable />
+                        <App />
+                    </>
                 </MetamaskProvider>
             </BrowserRouter>
         </Provider>

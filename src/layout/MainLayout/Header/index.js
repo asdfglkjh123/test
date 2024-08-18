@@ -1,65 +1,119 @@
-// material-ui
-import { useTheme } from '@mui/material/styles';
-import { Box, Typography } from '@mui/material';
-
-// project imports
-import LogoSection from '../LogoSection';
-import ProfileSection from './ProfileSection';
-// assets
-import MenuList from '../Sidebar/MenuList';
-import { useState, useEffect } from 'react';
-import { getStaxPrice } from 'components/wallet/sharesABI';
-
-// ==============================|| MAIN NAVBAR / HEADER ||============================== //
+import io from 'socket.io-client';
+import { grey } from '@mui/material/colors';
+import { useEffect, useState } from 'react';
+import { Grid, Typography } from '@mui/material';
+import settings from '../../../assets/settings.svg';
+import mainlogo from '../../../assets/mainlogo.svg';
+import leaderboard from '../../../assets/leaderboard.svg';
+import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
+import ConnButtonColorful from 'components/wallet/ConnButtonColorful';
 
 const Header = () => {
-    const [staxPrice, setStaxPrice] = useState([], [], []);
-    const theme = useTheme();
-    const fetchStaxPrice = async () => {
-        getStaxPrice()
-            .then((result) => {
-                setStaxPrice(result);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
+    const [onlinePlayers, setOnlinePlayers] = useState(0);
+
+    const [socket] = useState(() => io('http://localhost:3001'));
+
     useEffect(() => {
-        async function load2() {
-            fetchStaxPrice();
-        }
-        load2();
-    }, []);
+        socket.on('totalConnections', (count) => {
+            console.log(`Total connected clients: ${count}`);
+            setOnlinePlayers(count);
+        });
+    }, [socket]);
+
     return (
         <>
-            <Box
-                sx={{
-                    height: 58,
-                    bgcolor: theme.palette.grey[900],
-                    display: 'flex',
-                    [theme.breakpoints.down('md')]: {
-                        width: 'auto'
-                    }
-                }}
+            <Grid
+                container
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                sx={{ px: { lg: 5, md: 5, sm: 4, xs: 2 }, background: '#17191f' }}
+                py={1}
+                borderBottom={1}
             >
-                <Box component="span" sx={{ display: { md: 'block' }, bgcolor: theme.palette.grey[900], flexGrow: 1 }}>
-                    <LogoSection />
-                </Box>
-                <Box sx={{ display: { xs: 'none', md: 'block' }, ml: 10, mt: 0.4 }}>
-                    <MenuList />
-                </Box>
-            </Box>
-
-            {/* header search */}
-            <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ border: 1, height: 44, width: 70, borderRadius: 5, mr: 2, borderColor: theme.palette.success.main }}>
-                <Typography sx={{ mt: 1.3, color: theme.palette.success.light }} variant="h4" textAlign="center">
-                    {(staxPrice[1] / staxPrice[0]).toLocaleString(undefined, { maximumFractionDigits: 4 })}
-                    {` $ `}
-                </Typography>
-            </Box>
-            {/* notification & profile */}
-            <ProfileSection />
+                <Grid container width="auto">
+                    <img src={mainlogo} alt="logo" height={70} />
+                </Grid>
+                <Grid container width="auto">
+                    <Grid
+                        container
+                        width="auto"
+                        display="flex"
+                        justifyContent="center"
+                        sx={{
+                            filter: 'brightness(90%)',
+                            transition: 'filter 0.3s ease-in-out',
+                            '&:hover': {
+                                filter: 'brightness(130%)'
+                            }
+                        }}
+                    >
+                        <PeopleRoundedIcon sx={{ color: grey[100], fontSize: 45 }} />
+                        <Grid container width="100%" display="flex" justifyContent="center">
+                            <Typography
+                                textAlign="center"
+                                sx={{ color: grey[100], fontWeight: 900, fontSize: { lg: 18, md: 18, sm: 12, xs: 13 } }}
+                            >
+                                ONLINE: {onlinePlayers}
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                    <Grid
+                        container
+                        width="auto"
+                        display="flex"
+                        justifyContent="center"
+                        sx={{
+                            filter: 'brightness(90%)',
+                            transition: 'filter 0.3s ease-in-out',
+                            '&:hover': {
+                                filter: 'brightness(130%)'
+                            }
+                        }}
+                    >
+                        <img
+                            src={leaderboard}
+                            width={45}
+                            alt="icon"
+                            style={{ filter: 'brightness(100%)', '&:hover': { filter: 'brightness(20%)' } }}
+                        />
+                        <Grid container width="100%" display="flex" justifyContent="center">
+                            <Typography
+                                textAlign="center"
+                                sx={{ color: grey[100], fontWeight: 900, fontSize: { lg: 18, md: 18, sm: 12, xs: 13 } }}
+                            >
+                                LEADERBOARD
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                    <Grid
+                        container
+                        width="auto"
+                        display="flex"
+                        justifyContent="center"
+                        sx={{
+                            filter: 'brightness(90%)',
+                            transition: 'filter 0.3s ease-in-out',
+                            '&:hover': {
+                                filter: 'brightness(130%)'
+                            }
+                        }}
+                    >
+                        <img src={settings} width={45} alt="icon" />
+                        <Grid container width="100%" display="flex" justifyContent="center">
+                            <Typography
+                                textAlign="center"
+                                sx={{ color: grey[100], fontWeight: 900, fontSize: { lg: 18, md: 18, sm: 12, xs: 13 } }}
+                            >
+                                SETTINGS
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid container width="auto" justifyContent="center" sx={{ display: { lg: 'flex', md: 'flex', sm: 'flex', xs: 'none' } }}>
+                    <ConnButtonColorful />
+                </Grid>
+            </Grid>
         </>
     );
 };

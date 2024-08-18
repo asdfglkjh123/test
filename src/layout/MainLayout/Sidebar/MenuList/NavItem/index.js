@@ -2,35 +2,23 @@ import PropTypes from 'prop-types';
 import { forwardRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Avatar, Grid, Chip, ListItemButton, ListItemText, ListItemIcon, Typography, useMediaQuery } from '@mui/material';
+import { Grid, ListItemButton, ListItemIcon, ListItemText, Typography, useMediaQuery } from '@mui/material';
 
 // project imports
 import { MENU_OPEN, SET_MENU } from 'store/actions';
 import config from 'config';
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import { grey } from '@mui/material/colors';
+
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 
-const NavItem = ({ item, level }) => {
+const NavItem = ({ item }) => {
     const theme = useTheme();
     const dispatch = useDispatch();
     const customization = useSelector((state) => state.customization);
-    const matchesSM = useMediaQuery(theme.breakpoints.down('lg'));
 
-    const Icon = item.icon;
-    const itemIcon = item?.icon ? (
-        <Icon stroke={1.5} size="1.3rem" color={customization.isOpen.findIndex((id) => id === item?.id) > -1 ? 'white' : 'success'} />
-    ) : (
-        <FiberManualRecordIcon
-            sx={{
-                width: customization.isOpen.findIndex((id) => id === item?.id) > -1 ? 8 : 6,
-                height: customization.isOpen.findIndex((id) => id === item?.id) > -1 ? 8 : 6
-            }}
-            fontSize={level > 0 ? 'inherit' : 'medium'}
-        />
-    );
+    const matchesSM = useMediaQuery(theme.breakpoints.down('lg'));
 
     let itemTarget = '_self';
     if (item.target) {
@@ -40,6 +28,7 @@ const NavItem = ({ item, level }) => {
     let listItemProps = {
         component: forwardRef((props, ref) => <Link ref={ref} {...props} to={`${config.basename}${item.url}`} target={itemTarget} />)
     };
+
     if (item?.external) {
         listItemProps = { component: 'a', href: item.url, target: itemTarget };
     }
@@ -55,61 +44,46 @@ const NavItem = ({ item, level }) => {
             .toString()
             .split('/')
             .findIndex((id) => id === item.id);
+
         if (currentIndex > -1) {
             dispatch({ type: MENU_OPEN, id: item.id });
         }
-        // eslint-disable-next-line
-    }, []);
+    }, [dispatch, item.id]);
 
     return (
         <ListItemButton
             {...listItemProps}
             disabled={item.disabled}
             sx={{
-                borderRadius: `20px`,
-                alignItems: 'flex-start',
-                bgcolor: theme.palette.grey[900],
+                borderRadius: 3,
+                '&:hover': { bgcolor: 'transparent' },
+                alignItems: 'center',
+                bgcolor: 'transparent',
                 height: 55,
-                width: 'auto'
+                width: 'auto',
+                mx: 0.3
             }}
             selected={customization.isOpen.findIndex((id) => id === item.id) > -1}
             onClick={() => itemHandler(item.id)}
         >
             <Grid item container sx={{ display: 'flex', justifyContent: 'center' }}>
-                <ListItemIcon sx={{ my: -0.3, justifyContent: 'center', minWidth: !item?.icon ? 10 : 36 }}>{itemIcon}</ListItemIcon>
+                {item.icon && (
+                    <ListItemIcon sx={{ my: 'auto', minWidth: 18 }}>
+                        <item.icon />
+                    </ListItemIcon>
+                )}
                 <ListItemText
                     primary={
                         <Typography
-                            textAlign="center"
-                            variant={customization.isOpen.findIndex((id) => id === item.id) > -1 ? 'h5' : 'body1'}
-                            color={theme.palette.grey[50]}
+                            textAlign="left"
+                            variant={customization.isOpen.findIndex((id) => id === item.id) > -1 ? 'body1' : 'body1'}
+                            color={grey[50]}
+                            sx={{ my: 'auto', ml: 0.5 }}
                         >
                             {item.title}
                         </Typography>
                     }
-                    secondary={
-                        item.caption && (
-                            <Typography
-                                textAlign="center"
-                                variant="caption"
-                                sx={{ ...theme.typography.subMenuCaption }}
-                                display="block"
-                                gutterBottom
-                            >
-                                {item.caption}
-                            </Typography>
-                        )
-                    }
                 />
-                {item.chip && (
-                    <Chip
-                        color={item.chip.color}
-                        variant={item.chip.variant}
-                        size={item.chip.size}
-                        label={item.chip.label}
-                        avatar={item.chip.avatar && <Avatar>{item.chip.avatar}</Avatar>}
-                    />
-                )}
             </Grid>
         </ListItemButton>
     );

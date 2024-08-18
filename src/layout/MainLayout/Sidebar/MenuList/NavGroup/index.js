@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Divider, List, Stack, Typography } from '@mui/material';
+import { List, Stack, Typography } from '@mui/material';
 
 // project imports
 import NavItem from '../NavItem';
@@ -34,6 +34,7 @@ const NavGroup = ({ item }) => {
             <List
                 component={Stack}
                 direction="row"
+                sx={{ mt: 1 }}
                 subheader={
                     item.title && (
                         <Typography variant="caption" sx={{ ...theme.typography.menuCaption }} display="block" gutterBottom>
@@ -50,7 +51,6 @@ const NavGroup = ({ item }) => {
             </List>
 
             {/* group divider */}
-            <Divider sx={{ mt: 0.25, mb: 1.25 }} />
         </>
     );
 };

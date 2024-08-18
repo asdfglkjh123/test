@@ -1,18 +1,8 @@
 // assets
-import HomeIcon from '@mui/icons-material/Home';
-import GroupWorkIcon from '@mui/icons-material/GroupWork';
-import QueryStatsIcon from '@mui/icons-material/QueryStats';
-import SwapVerticalCircleIcon from '@mui/icons-material/SwapVerticalCircle';
 import LayersIcon from '@mui/icons-material/Layers';
-
-// constant
-const icons = {
-    LayersIcon,
-    GroupWorkIcon,
-    QueryStatsIcon,
-    SwapVerticalCircleIcon,
-    HomeIcon
-};
+import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
+import MultilineChartOutlinedIcon from '@mui/icons-material/MultilineChartOutlined';
+import { FaBitcoinSign } from 'react-icons/fa6';
 
 // ==============================|| UTILITIES MENU ITEMS ||============================== //
 
@@ -20,46 +10,38 @@ const utilities = {
     id: 'utilities',
     title: 'Ecosystem',
     type: 'group',
-    url: '/test',
+    url: '/',
     children: [
         {
-            id: 'default',
-            title: 'Home',
+            id: 'dashboard',
+            icon: LayersIcon,
+            title: `Home`,
             type: 'item',
-            url: '/',
-            icon: icons.HomeIcon,
+            url: '/dashboard',
             breadcrumbs: false
         },
         {
-            id: 'util-typography',
-            title: `Stake`,
+            id: 'lease',
+            icon: AttachMoneyOutlinedIcon,
+            title: `Plinko`,
             type: 'item',
-            url: '/stake',
-            icon: icons.LayersIcon,
+            url: '/lease',
             breadcrumbs: false
         },
         {
-            id: 'util-color',
-            title: 'sSTX',
+            id: 'lendborrow',
+            icon: FaBitcoinSign,
+            title: `Coin flip`,
             type: 'item',
-            url: '/shares',
-            icon: icons.GroupWorkIcon,
+            url: '/lendborrow',
             breadcrumbs: false
         },
         {
-            id: 'util-shadow',
-            title: 'Stats',
+            id: 'analytics',
+            icon: MultilineChartOutlinedIcon,
+            title: 'Roulette',
             type: 'item',
-            url: '/stats',
-            icon: icons.QueryStatsIcon,
-            breadcrumbs: false
-        },
-        {
-            id: 'icons',
-            title: 'DEX',
-            type: 'item',
-            url: '/dex',
-            icon: icons.SwapVerticalCircleIcon,
+            url: '/analytics',
             breadcrumbs: false
         }
     ]

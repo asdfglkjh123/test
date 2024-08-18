@@ -1,6 +1,6 @@
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import staxLogo from 'assets/StaxLogo.png';
+import alxlogo from 'assets/alxtransparentlogo.svg';
 
 /**
  * if you want to use image instead of <svg> uncomment following.
@@ -22,7 +22,7 @@ const Logo = () => {
          * <img src={logo} alt="Berry" width="100" />
          *
          */
-        <img height={60} src={staxLogo} alt="StaxLogo" />
+        <img height={40} src={alxlogo} alt="alphalogo" />
     );
 };
 

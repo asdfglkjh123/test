@@ -3,6 +3,7 @@ import { injected } from './connectors';
 import { useWeb3React } from '@web3-react/core';
 import Loading from 'layout/MainLayout/Loading';
 
+// eslint-disable-next-line react/prop-types
 function MetamaskProvider({ children }) {
     const { active: networkActive, error: networkError, activate: activateNetwork } = useWeb3React();
     const [loaded, setLoaded] = useState(false);
@@ -20,7 +21,7 @@ function MetamaskProvider({ children }) {
             });
     }, [activateNetwork, networkActive, networkError]);
     if (loaded) {
-        return children;
+        return <>{children}</>;
     }
     return (
         <>
